@@ -11,18 +11,19 @@ import static at.ac.fhcampuswien.xsolutions.Users.usersList;
 
 
 public class App extends Application {
-
+    public static Tables[] arrayTables;
+    public static Bills[] arrayBills;
     //Converting UsersList Objects to JSON
     public static void userToJson() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
             java.nio.file.Path path = Paths.get("src/main/java/usersList.json");
             objectMapper.writeValue(path.toFile(), usersList);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
     //Creating JavaFX UI
     @Override
     public void start(Stage stage) throws IOException {
@@ -34,11 +35,11 @@ public class App extends Application {
     }
 
     public static Tables[] generateTables(int amount){
-        Tables[] array = new Tables[amount];
+        arrayTables = new Tables[amount];
         for(int i = 0;i < amount; i++){
-            array[i]  = new Tables();
+            arrayTables[i]  = new Tables();
         }
-        return array;
+        return arrayTables;
     }
 
     //Testing
@@ -49,7 +50,7 @@ public class App extends Application {
         Users userTheresa = new Users("Theresa", true, 1);
         Users userEtrit = new Users("Etrit", true, 1);
 
-        generateTables(5);
+        generateTables(15);
         launch();
     }
 }

@@ -1,30 +1,31 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import javafx.event.ActionEvent;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static at.ac.fhcampuswien.xsolutions.App.arrayBills;
+import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
 
 public class AppController implements Initializable {
 
     @FXML
-    private TextField name;
-    Stage stage;
+    private Label totalPrice;
 
     @FXML
-    private ListView<String> tablesListView;
-    String[] tablesListString = new String[getCount()];
+    private ListView<String> tablesListView; // Left Panel
+    String[] tablesListAsString = new String[getCount()]; //List of the Left Panel
 
     @FXML
     void exitButton(MouseEvent event) {
@@ -32,10 +33,26 @@ public class AppController implements Initializable {
     }
 
     @FXML
+    private ScrollPane bill;
+
+    @FXML
+    private Label billText;
+    int currentTable;
+
+    @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
-        for (int i = 0; i < getCount(); i++) {
-            tablesListString[i] = "Table " + (i+1);
+
+        for (int i = 0; i < getCount(); i++) {                       //Adding as many tables to the array as have been created
+            tablesListAsString[i] = getTableNumberAsString(i+1);
         }
-        tablesListView.getItems().addAll(tablesListString);
+        tablesListView.getItems().addAll(tablesListAsString);         //Parsing them in to the Left Panel
+        tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                currentTable = tablesListView.getSelectionModel().getSelectedIndex();
+                billText.setText(arrayTables[currentTable].getBill());        //Setting the Info of the Bill
+                totalPrice.setText(arrayTables[currentTable].reformatAmountBeforeTaxes()); //Setting the price of the Bill
+            }
+        });
     }
 }
