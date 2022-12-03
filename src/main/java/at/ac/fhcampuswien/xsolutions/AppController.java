@@ -4,10 +4,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -19,7 +16,6 @@ import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
 
 public class AppController implements Initializable {
-
     @FXML
     private Label totalPrice;
 
@@ -38,6 +34,9 @@ public class AppController implements Initializable {
     @FXML
     private Label billText;
     int currentTable;
+
+    @FXML
+    private Button pay_btn;
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
