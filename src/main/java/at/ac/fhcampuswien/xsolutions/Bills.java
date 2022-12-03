@@ -12,7 +12,7 @@ public class Bills {
         bill++;
     }
     public void getBill(){
-        System.out.println("Bill №" + bill + System.lineSeparator() +
+        System.out.println("Bill #" + bill + System.lineSeparator() +
                 "Amount: " + amountBeforeTaxes + "$" + System.lineSeparator() +
                 "MWSt: " + TAXES + "%" + System.lineSeparator() +
                 "Total amount: " + calculateAmountAfterTaxes() + "$" + System.lineSeparator());
