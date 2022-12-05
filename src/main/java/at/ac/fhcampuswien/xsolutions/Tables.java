@@ -8,57 +8,41 @@ import static at.ac.fhcampuswien.xsolutions.App.arrayBills;
 public class Tables {
     private static int billNumber = ThreadLocalRandom.current().nextInt(12415, 28174);
     private double randomDouble = ThreadLocalRandom.current().nextInt(1, 3000);
-    private static double amountBeforeTaxes;
-    final static int TAXES = 20;
+    private double amountBeforeTaxes;
+    private double amountAfterTaxes;
+
+    private int tableNumber;
+
+    final static double TAXES_MULTIPLIER = 1.20;
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static int count;
-    public static String[] tablesArray = new String[count];
 
     public Tables(){
         count++;
-        Bills bill = new Bills();
-
-        System.out.println(getTableNumberAsString());
-        getBill();
+        billNumber++;
+        this.tableNumber = count;
+        this.amountBeforeTaxes = Double.parseDouble(df.format(randomDouble));
+        this.amountAfterTaxes = Double.parseDouble(df.format(amountBeforeTaxes * TAXES_MULTIPLIER));
+        System.out.println("Table " + count + System.lineSeparator()
+                            + "Bill #" + billNumber + System.lineSeparator()
+                            + "Amount before Taxes: " + amountBeforeTaxes + System.lineSeparator()
+                            + "Amount after Taxes: " + amountAfterTaxes + System.lineSeparator());
     }
 
-    public static Bills[] generateBill(){
-        arrayBills = new Bills[count];
-        arrayBills[count] = new Bills();
-        return arrayBills;
-    }
-
-    public static double getAmountBeforeTaxes() {
-        System.out.println(amountBeforeTaxes);
-        return amountBeforeTaxes;
-    }
-
-    public String reformatAmountBeforeTaxes() {
-        if (amountBeforeTaxes % 1 == 0) {
-            return String.format("%.0f", amountBeforeTaxes) + "$";
-        } else {
-            return Double.toString(amountBeforeTaxes) + "$";
-        }
-    }
-
-    private static int getTableNumberAsInt(){
+    public static int getCount(){
         return count;
     }
 
-    private static String getTableNumberAsString(){
-        return "Tisch " + getTableNumberAsInt();
+    public String getTableNumberAsString(){
+        return "Tisch " + tableNumber;
     }
 
-    public static String getTableNumberAsString(int number){
-        return "Tisch " + number;
+    public String getAmountAfterTaxes() {
+        return String.valueOf(amountAfterTaxes);
     }
 
-    public static int getCount() {
-        return count;
+    public String getBill(){
+        return "Amount before Taxes: " + amountBeforeTaxes + System.lineSeparator()
+                + "Amount after Taxes: " + amountAfterTaxes + System.lineSeparator();
     }
-
-    public String getBill() {
-        return Bills.getBill();
-    }
-
 }

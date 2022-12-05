@@ -1,11 +1,14 @@
 package at.ac.fhcampuswien.xsolutions;
 import javafx.application.Application;
+import javafx.css.Stylesheet;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import static at.ac.fhcampuswien.xsolutions.Users.usersList;
 
@@ -27,7 +30,7 @@ public class App extends Application {
     //Creating JavaFX UI
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setScene(scene);
         stage.setFullScreen(true); // Set to Full Screen Mode
@@ -50,7 +53,7 @@ public class App extends Application {
         Users userTheresa = new Users("Theresa", true, 1);
         Users userEtrit = new Users("Etrit", true, 1);
 
-        generateTables(15);
+        generateTables(35);
         launch();
     }
 }

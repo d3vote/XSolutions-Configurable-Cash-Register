@@ -2,15 +2,22 @@ package at.ac.fhcampuswien.xsolutions;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static at.ac.fhcampuswien.xsolutions.App.arrayBills;
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
@@ -39,10 +46,23 @@ public class AppController implements Initializable {
     private Button pay_btn;
 
     @FXML
+    void userLogout(ActionEvent event) {
+
+    }
+
+    @FXML
+    void userLogin(MouseEvent event) {
+
+    }
+
+    @FXML
+    private GridPane user;
+
+    @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
 
         for (int i = 0; i < getCount(); i++) {                       //Adding as many tables to the array as have been created
-            tablesListAsString[i] = getTableNumberAsString(i+1);
+            tablesListAsString[i] = arrayTables[i].getTableNumberAsString();
         }
         tablesListView.getItems().addAll(tablesListAsString);         //Parsing them in to the Left Panel
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -50,7 +70,7 @@ public class AppController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 currentTable = tablesListView.getSelectionModel().getSelectedIndex();
                 billText.setText(arrayTables[currentTable].getBill());        //Setting the Info of the Bill
-                totalPrice.setText(arrayTables[currentTable].reformatAmountBeforeTaxes()); //Setting the price of the Bill
+                totalPrice.setText(arrayTables[currentTable].getAmountAfterTaxes());
             }
         });
     }
