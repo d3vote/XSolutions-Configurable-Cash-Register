@@ -3,7 +3,6 @@ package at.ac.fhcampuswien.xsolutions;
 import java.text.DecimalFormat;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static at.ac.fhcampuswien.xsolutions.App.arrayBills;
 
 public class Tables {
     private static int billNumber = ThreadLocalRandom.current().nextInt(12415, 28174);
@@ -23,10 +22,6 @@ public class Tables {
         this.tableNumber = count;
         this.amountBeforeTaxes = Double.parseDouble(df.format(randomDouble));
         this.amountAfterTaxes = Double.parseDouble(df.format(amountBeforeTaxes * TAXES_MULTIPLIER));
-        System.out.println("Table " + count + System.lineSeparator()
-                            + "Bill #" + billNumber + System.lineSeparator()
-                            + "Amount before Taxes: " + amountBeforeTaxes + System.lineSeparator()
-                            + "Amount after Taxes: " + amountAfterTaxes + System.lineSeparator());
     }
 
     public static int getCount(){
@@ -42,7 +37,7 @@ public class Tables {
     }
 
     public String getBill(){
-        return "Amount before Taxes: " + amountBeforeTaxes + System.lineSeparator()
-                + "Amount after Taxes: " + amountAfterTaxes + System.lineSeparator();
+        return "Amount before Taxes: " + amountBeforeTaxes + "$" + System.lineSeparator()
+                + "Amount after Taxes: " + amountAfterTaxes + "$" + System.lineSeparator();
     }
 }
