@@ -92,8 +92,8 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="424.0" prefHeight="17.0" prefWidth="231.0" text="Keine Produkte wurden gefunden" />
-                  <ListView fx:id="productsListView" fixedCellSize="40.0" layoutX="-7.0" layoutY="61.0" prefHeight="804.0" prefWidth="824.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                  <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" prefHeight="864.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <ListView fx:id="productsListView" fixedCellSize="40.0" layoutX="-7.0" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50%;">
