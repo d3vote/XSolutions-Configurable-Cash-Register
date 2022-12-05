@@ -17,7 +17,7 @@ public class App extends Application {
     //Creating JavaFX UI
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setScene(scene);
         stage.setFullScreen(true); // Set to Full Screen Mode

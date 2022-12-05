@@ -10,7 +10,11 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import javafx.stage.Stage;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
@@ -34,6 +39,9 @@ import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
 
 public class AppController implements Initializable {
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
     @FXML
     private Label totalPrice;
 
@@ -44,8 +52,6 @@ public class AppController implements Initializable {
 
     @FXML
     private ListView<String> productsListView;
-
-
 
     @FXML
     void exitButton(MouseEvent event) {
@@ -63,19 +69,18 @@ public class AppController implements Initializable {
     private Button pay_btn;
 
     @FXML
-    void userLogout(ActionEvent event) {
+    void userLogout(ActionEvent event) throws IOException {
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("login.fxml"))));
+        stage.setFullScreen(true); // Set to Full Screen Mode
+        stage.show();
     }
 
-    @FXML
-    void userLogin(MouseEvent event) {
-    }
     @FXML
     private TextField searchField;
 
     @FXML
     private GridPane user;
-
-
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
