@@ -15,7 +15,7 @@ public class Product {
     public String productDescription;
     public String productImageUrl;
     static File productsListPath = new File("src/main/java/productsList.json");
-    public static List<Product> productsList = new ArrayList<>();    // UserList
+    public static List<Product> productsList = new ArrayList<>();    // ProductList
 
 
     public Product() {

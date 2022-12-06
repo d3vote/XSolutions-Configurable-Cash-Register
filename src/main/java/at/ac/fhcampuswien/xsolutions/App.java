@@ -43,18 +43,17 @@ public class App extends Application {
 
     //Testing
     public static void main(String[] args) throws IOException {
-        //JSONtoUsersList(); //Convert the JSON File back to Objects in a List
+        JSONtoUsersList(); //Convert the JSON File back to Objects in a List
         JSONtoProductList();
         generateTables(35);
 
 //        Product pizzaSalami= new Product("Pizza Salami",10);
 
-//        Users userDmytro = new Users("Dmytro", true, 1);
-//        Users userTolga = new Users("Tolga", true, 1);
-//        Users userTosha = new Users("Tosha", true, 1);
-//        Users userTheresa = new Users("Theresa", true, 1);
-//        Users userEtrit = new Users("Etrit", true, 1);
-
+//        User userDmytro = new User("Dmytro", true, "d3vote", "test");
+//        User userTolga = new User("Tolga", true, "tolga", "test");
+//        User userTosha = new User("Tosha", true, "tosha", "test");
+//        User userTheresa = new User("Theresa", true, "theresa", "test");
+//        User userEtrit = new User("Etrit", true, "etrit", "test");
         launch();
     }
 }

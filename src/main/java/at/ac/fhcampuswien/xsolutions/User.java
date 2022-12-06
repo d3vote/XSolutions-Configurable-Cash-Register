@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    private String name;
-    private boolean adminRights;
-    private int permissionsLevel;
-    private static int id = 0;
+    public String name;
+
+    public String password;
+
+    public String userName;
+    public boolean isAdmin;
     static File usersListPath = new File("src/main/java/usersList.json");
     public static List<User> usersList = new ArrayList<>();    // UserList
 
@@ -21,13 +23,33 @@ public class User {
 
     }
 
-    public User(String name, boolean adminRights, int permissionsLevel){
-        id++;
+    public User(String name, boolean isAdmin, String userName, String password) throws IOException {
         this.name = name;
-        this.adminRights = adminRights;
-        this.permissionsLevel = permissionsLevel;
+        this.isAdmin = isAdmin;
+        this.userName = userName;
+        this.password = password;
+        intializeUsers();
+    }
+
+    public User(String name, boolean isAdmin, String userName) throws IOException {
+        this.name = name;
+        this.isAdmin = isAdmin;
+        this.userName = userName;
+        this.password = "admin";
+        intializeUsers();
+    }
+
+    private void intializeUsers() throws IOException{
         usersList.add(this);        //Adding new User to UsersList
         userToJson();               //Converting it to JSON
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public static List<User> getUsersList(){
@@ -36,17 +58,6 @@ public class User {
 
     public String getName() {
         return name;
-    }
-
-    public boolean isAdminRights() {
-        return adminRights;
-    }
-
-    public int getPermissionsLevel() {
-        return permissionsLevel;
-    }
-    public int getId() {
-        return id;
     }
 
     //Converting UsersList Objects to JSON
