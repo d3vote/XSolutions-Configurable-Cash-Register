@@ -39,9 +39,6 @@ import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
 
 public class AppController implements Initializable {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     @FXML
     private Label totalPrice;
 
@@ -70,8 +67,9 @@ public class AppController implements Initializable {
 
     @FXML
     void userLogout(ActionEvent event) throws IOException {
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("login.fxml"))));
+        stage.setFullScreenExitHint("");
         stage.setFullScreen(true); // Set to Full Screen Mode
         stage.show();
     }

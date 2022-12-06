@@ -1,13 +1,19 @@
 package at.ac.fhcampuswien.xsolutions;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.TypeFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static at.ac.fhcampuswien.xsolutions.Product.JSONtoProductList;
 import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
+import static at.ac.fhcampuswien.xsolutions.User.usersListPath;
 
 
 public class App extends Application {
@@ -17,9 +23,12 @@ public class App extends Application {
     //Creating JavaFX UI
     @Override
     public void start(Stage stage) throws IOException {
+        stage.getIcons().add(new Image("file:src/main/resources/icon.png"));
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
+        stage.setTitle("Configurable Cash Register");
         stage.setScene(scene);
+        stage.setFullScreenExitHint("");
         stage.setFullScreen(true); // Set to Full Screen Mode
         stage.show();
     }
@@ -30,6 +39,7 @@ public class App extends Application {
             arrayTables[i]  = new Tables();
         }
     }
+
 
     //Testing
     public static void main(String[] args) throws IOException {
