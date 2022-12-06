@@ -9,19 +9,19 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Users {
+public class User {
     private String name;
     private boolean adminRights;
     private int permissionsLevel;
     private static int id = 0;
     static File usersListPath = new File("src/main/java/usersList.json");
-    public static List<Users> usersList = new ArrayList<>();    // UserList
+    public static List<User> usersList = new ArrayList<>();    // UserList
 
-    public Users(){
+    public User(){
 
     }
 
-    public Users(String name, boolean adminRights, int permissionsLevel){
+    public User(String name, boolean adminRights, int permissionsLevel){
         id++;
         this.name = name;
         this.adminRights = adminRights;
@@ -30,7 +30,7 @@ public class Users {
         userToJson();               //Converting it to JSON
     }
 
-    public static List<Users> getUsersList(){
+    public static List<User> getUsersList(){
         return usersList;
     }
 
@@ -64,7 +64,7 @@ public class Users {
         if (usersList != null){
             ObjectMapper objectMapper = new ObjectMapper();
             TypeFactory typeFactory = objectMapper.getTypeFactory();
-            usersList = objectMapper.readValue(usersListPath, typeFactory.constructCollectionType(List.class, Users.class));
+            usersList = objectMapper.readValue(usersListPath, typeFactory.constructCollectionType(List.class, User.class));
         }
     }
 

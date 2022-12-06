@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Product {
     public String productTitle;
-    public String productPrice;
+    public double productPrice;
     public String productDescription;
     public String productImageUrl;
     static File productsListPath = new File("src/main/java/productsList.json");
@@ -21,7 +21,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(String productTitle, String productPrice, String productDescription, String productImageUrl) throws IOException {
+    public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) throws IOException {
         this.productImageUrl = productImageUrl;
         this.productTitle = productTitle;
         this.productPrice = productPrice;
@@ -29,14 +29,14 @@ public class Product {
         initializeProducts();
     }
 
-    public Product(String productTitle, String productPrice, String productDescription) throws IOException {
+    public Product(String productTitle, double productPrice, String productDescription) throws IOException {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
         initializeProducts();
     }
 
-    public Product(String productTitle, String productPrice) throws IOException {
+    public Product(String productTitle, double productPrice) throws IOException {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         initializeProducts();
@@ -49,7 +49,7 @@ public class Product {
     public String getProductTitle() {
         return productTitle;
     }
-    public String getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
     public String getProductDescription() {

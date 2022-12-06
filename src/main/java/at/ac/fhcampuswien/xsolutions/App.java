@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import static at.ac.fhcampuswien.xsolutions.Product.JSONtoProductList;
-import static at.ac.fhcampuswien.xsolutions.Users.JSONtoUsersList;
+import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
 
 public class App extends Application {
@@ -33,9 +33,11 @@ public class App extends Application {
 
     //Testing
     public static void main(String[] args) throws IOException {
-//        JSONtoUsersList();
-        JSONtoProductList(); //Convert the JSON File back to Objects in a List
+        //JSONtoUsersList(); //Convert the JSON File back to Objects in a List
+        JSONtoProductList();
         generateTables(35);
+
+//        Product pizzaSalami= new Product("Pizza Salami",10);
 
 //        Users userDmytro = new Users("Dmytro", true, 1);
 //        Users userTolga = new Users("Tolga", true, 1);
