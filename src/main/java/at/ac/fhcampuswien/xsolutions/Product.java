@@ -16,12 +16,14 @@ public class Product {
     public String productImageUrl;
     static File productsListPath = new File("src/main/java/productsList.json");
     public static List<Product> productsList = new ArrayList<>();    // ProductList
+    private static int count;
 
 
     public Product() {
     }
 
     public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) throws IOException {
+        count++;
         this.productImageUrl = productImageUrl;
         this.productTitle = productTitle;
         this.productPrice = productPrice;
@@ -57,6 +59,10 @@ public class Product {
     }
     public String getProductImageUrl() {
         return productImageUrl;
+    }
+
+    public static int getCount() {
+        return count;
     }
 
     public static void productToJSON() {

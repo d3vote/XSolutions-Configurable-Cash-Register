@@ -23,6 +23,12 @@ import static at.ac.fhcampuswien.xsolutions.User.usersList;
 
 public class LoginController {
 
+    public static String loggedInUserName;
+
+    public static String getLoggedInUserName() {
+        return "Kellner: " + loggedInUserName;
+    }
+
     @FXML
     private Label errorLabel;
 
@@ -47,9 +53,10 @@ public class LoginController {
     }
 
     @FXML
-    void userLogin(ActionEvent event) throws IOException {
+    void userLogin(ActionEvent event) throws IOException { //Compare every "Row" of the list to the input
         for (int i = 0; i < usersList.size(); i++) {
             if (Objects.equals(usernameField.getText(), usersList.get(i).getUserName()) && Objects.equals(passwordField.getText(), usersList.get(i).getPassword())){
+                loggedInUserName = usersList.get(i).getName();
                 executeLogin(event);
                 return;
             }

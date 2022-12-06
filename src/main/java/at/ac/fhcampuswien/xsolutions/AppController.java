@@ -44,16 +44,13 @@ public class AppController implements Initializable {
 
     @FXML
     private ListView<String> tablesListView;                // Left Panel
-    String[] tablesListAsString = new String[getCount()];   //Array of Tables on the Left Panel
+    String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
+
+    String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
 
     @FXML
     private ListView<String> productsListView;
-
-    @FXML
-    void exitButton(MouseEvent event) {
-        System.exit(0);
-    }
 
     @FXML
     private ScrollPane bill;
@@ -66,6 +63,20 @@ public class AppController implements Initializable {
     private Button pay_btn;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
+    private GridPane user;
+
+    @FXML
+    private Label kellnerLabel;
+
+    @FXML
+    void exitButton(MouseEvent event) {
+        System.exit(0);
+    }
+
+    @FXML
     void userLogout(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("login.fxml"))));
@@ -75,18 +86,15 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private TextField searchField;
-
-    @FXML
-    private GridPane user;
-
-    @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
+        kellnerLabel.setText(LoginController.getLoggedInUserName());
 
-        for (int i = 0; i < getCount(); i++) {                       //Adding as many tables to the array as have been created
-            tablesListAsString[i] = arrayTables[i].getTableNumberAsString();
+        for (Tables arrayTable : arrayTables) {   //Parsing Tables
+            tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
-        tablesListView.getItems().addAll(tablesListAsString);         //Parsing Tables in to the Left Panel
+        for (Product product : productsList) {  //Parsing Products
+            productsListView.getItems().add(product.getProductTitle());
+        }
 
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override

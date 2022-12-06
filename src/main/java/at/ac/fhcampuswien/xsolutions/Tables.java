@@ -9,9 +9,7 @@ public class Tables {
     private double randomDouble = ThreadLocalRandom.current().nextInt(1, 3000);
     private double amountBeforeTaxes;
     private double amountAfterTaxes;
-
     private int tableNumber;
-
     final static double TAXES_MULTIPLIER = 1.20;
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static int count;

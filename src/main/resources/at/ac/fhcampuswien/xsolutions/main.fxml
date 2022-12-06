@@ -46,7 +46,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="954.0" prefWidth="1647.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
+<VBox prefHeight="954.0" prefWidth="1647.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
     <children>
         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0" prefWidth="1068.0" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
             <children>
@@ -92,7 +92,7 @@
                         </Label>
                      </children>
                   </GridPane>
-                  <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" prefHeight="864.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="60.0" prefHeight="804.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                   <ListView fx:id="productsListView" fixedCellSize="40.0" layoutX="-7.0" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                     </children>
                 </AnchorPane>
@@ -147,7 +147,7 @@
         </HBox>
         <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0" prefWidth="1067.0" style="-fx-background-color: #000000;">
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -156,10 +156,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="43.0" prefWidth="284.0" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE">
-                    <font>
-                        <Font size="18.0" />
-                    </font></Button>
             <GridPane GridPane.columnIndex="3">
               <columnConstraints>
                 <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
@@ -177,6 +173,7 @@
                   </Button>
                </children>
             </GridPane>
+            <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE" />
             </children>
         </GridPane>
     </children>
