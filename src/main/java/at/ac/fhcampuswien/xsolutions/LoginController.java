@@ -57,6 +57,7 @@ public class LoginController {
         for (int i = 0; i < usersList.size(); i++) {
             if (Objects.equals(usernameField.getText(), usersList.get(i).getUserName()) && Objects.equals(passwordField.getText(), usersList.get(i).getPassword())){
                 loggedInUserName = usersList.get(i).getName();
+                errorLabel.setVisible(false);
                 executeLogin(event);
                 return;
             }

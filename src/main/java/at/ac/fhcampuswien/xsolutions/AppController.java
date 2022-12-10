@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -31,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import com.fasterxml.jackson.databind.type.TypeFactory;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
@@ -72,6 +75,21 @@ public class AppController implements Initializable {
     private Label kellnerLabel;
 
     @FXML
+    private ImageView productImgHolder;
+
+    @FXML
+    private Label productTitle;
+
+    @FXML
+    private VBox vboxProduct;
+
+    @FXML
+    private FlowPane flowpaneProducts;
+
+    @FXML
+    private Label searchResult;
+
+    @FXML
     void exitButton(MouseEvent event) {
         System.exit(0);
     }
@@ -93,7 +111,18 @@ public class AppController implements Initializable {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
         for (Product product : productsList) {  //Parsing Products
-            productsListView.getItems().add(product.getProductTitle());
+            searchResult.setVisible(false);
+            if (product.getProductImageUrl() != null) {
+                Image image = new Image(product.getProductImageUrl());
+                productImgHolder = new ImageView(image);
+                productTitle = new Label(product.getProductTitle());
+                vboxProduct = new VBox(productImgHolder, productTitle);
+            } else {
+                productTitle = new Label(product.getProductTitle());
+                vboxProduct = new VBox(productTitle);
+            }
+            //flowpaneProducts.getChildren().add(new VBox(new Label(product.getProductTitle())));
+            //productsListView.getItems().add(product.getProductTitle());
         }
 
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {

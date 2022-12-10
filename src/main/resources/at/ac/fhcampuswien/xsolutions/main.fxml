@@ -38,8 +38,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -94,6 +97,27 @@
                   </GridPane>
                   <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="60.0" prefHeight="804.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
                   <ListView fx:id="productsListView" fixedCellSize="40.0" layoutX="-7.0" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                  <FlowPane fx:id="flowpaneProducts" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+                     <children>
+                        <VBox fx:id="vboxProduct" prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <ImageView fx:id="productImgHolder" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets bottom="20.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label fx:id="productTitle" prefHeight="42.0" prefWidth="200.0" style="-fx-font-size: 16px;" text="Product Label" wrapText="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <FlowPane.margin>
+                              <Insets left="20.0" top="20.0" />
+                           </FlowPane.margin>
+                        </VBox>
+                     </children>
+                  </FlowPane>
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50%;">
@@ -147,7 +171,7 @@
         </HBox>
         <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0" prefWidth="1067.0" style="-fx-background-color: #000000;">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -173,7 +197,18 @@
                   </Button>
                </children>
             </GridPane>
-            <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE" />
+            <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE" GridPane.halignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin></Label>
+            <ImageView fitHeight="56.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+               <image>
+                  <Image url="@../../../../settingsBtn.png" />
+               </image>
+            </ImageView>
             </children>
         </GridPane>
     </children>
