@@ -90,6 +90,9 @@ public class AppController implements Initializable {
     private FlowPane flowpaneProducts;
 
     @FXML
+    private Label productTitleInGrid;
+
+    @FXML
     private GridPane GridPaneProducts;
 
     @FXML
@@ -151,14 +154,6 @@ public class AppController implements Initializable {
 
 
     @FXML
-    void setupBill(ActionEvent event) {
-
-    }
-
-    @FXML
-    private Label productTitleInGrid;
-
-    @FXML
     void assignProductToGrid(MouseEvent event){
         Node source = (Node) event.getSource();
         int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
@@ -172,7 +167,8 @@ public class AppController implements Initializable {
 
     @FXML
     void setupProducts(ActionEvent event) {
-
+        usersSettingsPane.setVisible(false);
+        tablesSettingPane.setVisible(false);
     }
 
     @FXML
@@ -185,6 +181,12 @@ public class AppController implements Initializable {
     void setupUsers(ActionEvent event) {
         tablesSettingPane.setVisible(false);
         usersSettingsPane.setVisible(true);
+    }
+
+    @FXML
+    void setupBill(ActionEvent event) {
+        usersSettingsPane.setVisible(false);
+        tablesSettingPane.setVisible(false);
     }
 
     @FXML
