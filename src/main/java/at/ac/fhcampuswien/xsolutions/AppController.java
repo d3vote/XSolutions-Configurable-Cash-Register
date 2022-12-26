@@ -126,7 +126,7 @@ public class AppController implements Initializable {
 
     @FXML
     void changeValue(ActionEvent event) {
-        int newSize = Integer.parseInt(settingsInputField.getText())
+        int newSize = Integer.parseInt(settingsInputField.getText());
         Tables[] newArray = new Tables[newSize];
         int oldSize = arrayTables.length;
         for (int i = 0; i < Math.min(oldSize, newSize); i++) {
