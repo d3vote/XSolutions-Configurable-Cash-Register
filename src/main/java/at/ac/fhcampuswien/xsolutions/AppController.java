@@ -47,12 +47,15 @@ public class AppController implements Initializable {
     private ListView<String> tablesListView;                // Left Panel
     String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
-
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
-
     @FXML
     private ListView<String> productsListView;
 
+    @FXML
+    private GridPane GridPaneProducts;
+
+    @FXML
+    private ScrollPane ScrollPaneProducts;
     @FXML
     private ScrollPane bill;
 
@@ -107,16 +110,30 @@ public class AppController implements Initializable {
 
     @FXML
     private Label settingsLabelParameter;
+    @FXML
+    private ImageView imageForProduct;
 
 
     @FXML
     void setupBill(ActionEvent event) {
 
     }
+    @FXML
+    private Label productTitleInGrid;
 
     @FXML
     void setupProducts(ActionEvent event) {
-
+    }
+    @FXML
+    void assignProductToGrid(MouseEvent event){
+        Node source = (Node) event.getSource();
+        currentTable = tablesListView.getSelectionModel().getSelectedIndex();
+        if (source == GridPaneProducts){
+            productTitleInGrid.setText(productsList.get(0).productTitle);
+            arrayTables[currentTable].addToAllProducts(productsList.get(0).productTitle + " " + productsList.get(0).productPrice + "$");
+            billText.setText(arrayTables[currentTable].getBill());
+        }
+        // Will add something tomorrow got a good idea on what to do.
     }
 
     @FXML
@@ -137,7 +154,6 @@ public class AppController implements Initializable {
 
     @FXML
     void setupUsers(ActionEvent event) {
-
     }
 
     @FXML

@@ -42,7 +42,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -153,23 +152,43 @@
                      </children>
                   </GridPane>
                   <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="60.0" prefHeight="804.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                  <ListView fx:id="productsListView" fixedCellSize="40.0" layoutX="-7.0" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                  <FlowPane fx:id="flowpaneProducts" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-                     <children>
-                        <VBox fx:id="vboxProduct" prefHeight="200.0" prefWidth="100.0">
+                  <ScrollPane fx:id="ScrollPaneProducts" layoutX="292.0" layoutY="134.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0">
+                     <content>
+                        <GridPane fx:id="GridPaneProducts" onMouseClicked="#assignProductToGrid" prefHeight="798.0" prefWidth="811.0">
+                          <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
                            <children>
-                              <Label fx:id="productTitle" prefHeight="42.0" prefWidth="200.0" style="-fx-font-size: 16px;" text="Product Label" wrapText="true">
+                              <Label fx:id="productTitleInGrid" alignment="CENTER" prefHeight="27.0" prefWidth="203.0" text="ProductTitle" wrapText="true">
                                  <font>
-                                    <Font size="18.0" />
+                                    <Font size="24.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets top="135.0" />
+                                 </GridPane.margin>
                               </Label>
+                              <ImageView fx:id="imageForProduct" fitHeight="132.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../../../../Desktop/BilderFürProducts/depositphotos_72191677-stock-photo-pizza-margherita.jpg" />
+                                 </image>
+                                 <GridPane.margin>
+                                    <Insets bottom="27.0" />
+                                 </GridPane.margin>
+                              </ImageView>
                            </children>
-                           <FlowPane.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </FlowPane.margin>
-                        </VBox>
-                     </children>
-                  </FlowPane>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50%;">

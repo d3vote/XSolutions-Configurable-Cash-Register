@@ -2,7 +2,6 @@ package at.ac.fhcampuswien.xsolutions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -74,7 +73,6 @@ public class User {
             e.printStackTrace();
         }
     }
-
     public static void JSONtoUsersList() throws IOException {
         if (usersList != null){
             ObjectMapper objectMapper = new ObjectMapper();
@@ -82,6 +80,4 @@ public class User {
             usersList = objectMapper.readValue(usersListPath, typeFactory.constructCollectionType(List.class, User.class));
         }
     }
-
-
 }
