@@ -6,6 +6,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Tables {
     private static int billNumber = ThreadLocalRandom.current().nextInt(12415, 28174);
+    private String allProducts = "";
     private double randomDouble = ThreadLocalRandom.current().nextInt(1, 3000);
     private double amountBeforeTaxes;
     private double amountAfterTaxes;
@@ -39,7 +40,9 @@ public class Tables {
     }
 
     public String getBill(){
-        return "Amount before Taxes: " + amountBeforeTaxes + "$" + System.lineSeparator()
-                + "Amount after Taxes: " + amountAfterTaxes + "$" + System.lineSeparator();
+        return tableNumber + System.lineSeparator() + allProducts;
+    }
+    public void addToAllProducts(String name){
+        allProducts = allProducts + name + System.lineSeparator();
     }
 }

@@ -2,7 +2,6 @@ package at.ac.fhcampuswien.xsolutions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -18,10 +17,8 @@ public class Product {
     public static List<Product> productsList = new ArrayList<>();    // ProductList
     private static int count;
 
-
     public Product() {
     }
-
     public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) throws IOException {
         count++;
         this.productImageUrl = productImageUrl;
@@ -37,13 +34,11 @@ public class Product {
         this.productDescription = productDescription;
         initializeProducts();
     }
-
     public Product(String productTitle, double productPrice) throws IOException {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         initializeProducts();
     }
-
     private void initializeProducts() throws IOException {
         productsList.add(this);
         productToJSON();
