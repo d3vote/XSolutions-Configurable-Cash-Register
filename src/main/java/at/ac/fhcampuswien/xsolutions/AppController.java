@@ -19,9 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,11 +30,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
+import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
@@ -90,6 +88,64 @@ public class AppController implements Initializable {
     private Label searchResult;
 
     @FXML
+    private AnchorPane settingsTab;
+
+    @FXML
+    private Button userSettings;
+
+    @FXML
+    private Button billSettings;
+
+    @FXML
+    private Button productsSettings;
+
+    @FXML
+    private Button tablesSettings;
+
+    @FXML
+    private TextField settingsInputField;
+
+    @FXML
+    private Label settingsLabelParameter;
+
+
+    @FXML
+    void setupBill(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setupProducts(ActionEvent event) {
+
+    }
+
+    @FXML
+    void setupTables(ActionEvent event) {
+        settingsLabelParameter.setText("Input Tables amount:");
+    }
+
+    @FXML
+    void changeValue(ActionEvent event) {
+        int newSize = Integer.parseInt(settingsInputField.getText())
+        Tables[] newArray = new Tables[newSize];
+        int oldSize = arrayTables.length;
+        for (int i = 0; i < Math.min(oldSize, newSize); i++) {
+            newArray[i] = arrayTables[i];
+        }
+        arrayTables = newArray;
+    }
+
+    @FXML
+    void setupUsers(ActionEvent event) {
+
+    }
+
+    @FXML
+    void openSettings(MouseEvent event) {
+        settingsTab.setVisible(!settingsTab.isVisible());
+    }
+
+    @FXML
     void exitButton(MouseEvent event) {
         System.exit(0);
     }
@@ -106,23 +162,12 @@ public class AppController implements Initializable {
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
         kellnerLabel.setText(LoginController.getLoggedInUserName());
+        userSettings.setVisible(isAdmin);
+        tablesSettings.setVisible(isAdmin);
+        productsSettings.setVisible(isAdmin);
 
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
-        }
-        for (Product product : productsList) {  //Parsing Products
-            searchResult.setVisible(false);
-            if (product.getProductImageUrl() != null) {
-                Image image = new Image(product.getProductImageUrl());
-                productImgHolder = new ImageView(image);
-                productTitle = new Label(product.getProductTitle());
-                vboxProduct = new VBox(productImgHolder, productTitle);
-            } else {
-                productTitle = new Label(product.getProductTitle());
-                vboxProduct = new VBox(productTitle);
-            }
-            //flowpaneProducts.getChildren().add(new VBox(new Label(product.getProductTitle())));
-            //productsListView.getItems().add(product.getProductTitle());
         }
 
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {

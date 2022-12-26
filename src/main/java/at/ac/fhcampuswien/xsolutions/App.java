@@ -1,20 +1,13 @@
 package at.ac.fhcampuswien.xsolutions;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.TypeFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static at.ac.fhcampuswien.xsolutions.Product.JSONtoProductList;
 import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
-import static at.ac.fhcampuswien.xsolutions.User.usersListPath;
-
 
 public class App extends Application {
     public static Tables[] arrayTables;
@@ -54,6 +47,7 @@ public class App extends Application {
 //        User userTosha = new User("Tosha", true, "tosha", "test");
 //        User userTheresa = new User("Theresa", true, "theresa", "test");
 //        User userEtrit = new User("Etrit", true, "etrit", "test");
+
         launch();
     }
 }

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -25,8 +26,14 @@ public class LoginController {
 
     public static String loggedInUserName;
 
+    public static boolean isAdmin;
+
     public static String getLoggedInUserName() {
         return "Kellner: " + loggedInUserName;
+    }
+
+    public static boolean getIsAdminLogin() {
+        return isAdmin;
     }
 
     @FXML
@@ -58,6 +65,7 @@ public class LoginController {
             if (Objects.equals(usernameField.getText(), usersList.get(i).getUserName()) && Objects.equals(passwordField.getText(), usersList.get(i).getPassword())){
                 loggedInUserName = usersList.get(i).getName();
                 errorLabel.setVisible(false);
+                isAdmin = usersList.get(i).getIsAdmin();
                 executeLogin(event);
                 return;
             }

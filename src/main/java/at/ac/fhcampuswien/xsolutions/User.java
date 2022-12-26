@@ -56,6 +56,10 @@ public class User {
         return usersList;
     }
 
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
     public String getName() {
         return name;
     }

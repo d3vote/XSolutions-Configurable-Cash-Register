@@ -60,7 +60,64 @@
                                 <Font size="18.0" />
                             </font>
                         </Label>
-                  <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutX="2.0" layoutY="50.0" prefHeight="201.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                  <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="201.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
+                  <AnchorPane fx:id="settingsTab" layoutY="709.0" opacity="0.9" prefHeight="111.0" prefWidth="568.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                     <children>
+                        <VBox prefHeight="90.0" prefWidth="568.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                           <children>
+                              <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="568.0">
+                                 <children>
+                                    <Button fx:id="billSettings" mnemonicParsing="false" onAction="#setupBill" styleClass="settingsBtn" stylesheets="@styles.css" text="Rechnung bearbeiten">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="settingsBtn" stylesheets="@styles.css" text="Nutzer bearbeiten">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="settingsBtn" stylesheets="@styles.css" text="Prdoukte bearbeiten">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables" styleClass="settingsBtn" stylesheets="@styles.css" text="Tische bearbeiten">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <VBox fillWidth="false" prefHeight="76.0" prefWidth="568.0" VBox.vgrow="NEVER">
+                                 <children>
+                                    <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 12;" text="{settingsLabelParameter}">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" left="20.0" top="10.0" />
+                                       </VBox.margin>
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox prefHeight="27.0" prefWidth="322.0">
+                                       <children>
+                                          <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="25.0" prefWidth="134.0" />
+                                          <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="25.0" prefWidth="58.0" styleClass="settingsBtn" text="OK">
+                                             <HBox.margin>
+                                                <Insets left="20.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets left="20.0" />
+                                       </VBox.margin>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
                     </children>
                 </AnchorPane>
                 <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
@@ -101,11 +158,6 @@
                      <children>
                         <VBox fx:id="vboxProduct" prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <ImageView fx:id="productImgHolder" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                 <VBox.margin>
-                                    <Insets bottom="20.0" />
-                                 </VBox.margin>
-                              </ImageView>
                               <Label fx:id="productTitle" prefHeight="42.0" prefWidth="200.0" style="-fx-font-size: 16px;" text="Product Label" wrapText="true">
                                  <font>
                                     <Font size="18.0" />
@@ -134,7 +186,7 @@
                         </Label>
                         <ScrollPane fx:id="bill" layoutY="58.0" prefHeight="494.0" prefWidth="254.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                      <content>
-                        <Label fx:id="billText" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="357.0" prefWidth="244.0">
+                        <Label fx:id="billText" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="360.0" prefWidth="253.0">
                            <font>
                               <Font name="Arial" size="16.0" />
                            </font>
@@ -201,7 +253,7 @@
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin></Label>
-            <ImageView fitHeight="56.0" fitWidth="198.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="56.0" fitWidth="198.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
                <GridPane.margin>
                   <Insets left="20.0" />
                </GridPane.margin>
