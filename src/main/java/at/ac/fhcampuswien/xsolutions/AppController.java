@@ -28,6 +28,7 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import javafx.scene.text.Text;
@@ -37,11 +38,16 @@ import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
+import static at.ac.fhcampuswien.xsolutions.User.userToJson;
+import static at.ac.fhcampuswien.xsolutions.User.usersList;
 
 
 public class AppController implements Initializable {
     @FXML
     private Label totalPrice;
+
+    @FXML
+    private ListView<String> usersListView;
 
     @FXML
     private ListView<String> tablesListView;                // Left Panel
@@ -58,7 +64,6 @@ public class AppController implements Initializable {
 
     @FXML
     private Label billText;
-    int currentTable;
 
     @FXML
     private Button pay_btn;
@@ -88,7 +93,7 @@ public class AppController implements Initializable {
     private Label searchResult;
 
     @FXML
-    private AnchorPane settingsTab;
+    private Pane settingsTab;
 
     @FXML
     private Button userSettings;
@@ -108,6 +113,33 @@ public class AppController implements Initializable {
     @FXML
     private Label settingsLabelParameter;
 
+    @FXML
+    private Pane productsPane;
+
+    @FXML
+    private VBox tablesSettingPane;
+
+    @FXML
+    private Pane usersSettingsPane;
+
+    @FXML
+    private Label userSettingsAdminRights;
+
+    @FXML
+    private Label userSettingsFullName;
+
+    @FXML
+    private Label userSettingsUsername;
+
+    @FXML
+    private TextField newFullNameField;
+
+    @FXML
+    private TextField newUsernameField;
+
+    @FXML
+    private TextField newPasswordField;
+
 
     @FXML
     void setupBill(ActionEvent event) {
@@ -121,28 +153,103 @@ public class AppController implements Initializable {
 
     @FXML
     void setupTables(ActionEvent event) {
-        settingsLabelParameter.setText("Input Tables amount:");
+        usersSettingsPane.setVisible(false);
+        tablesSettingPane.setVisible(true);
+    }
+
+    @FXML
+    void setupUsers(ActionEvent event) {
+        tablesSettingPane.setVisible(false);
+        usersSettingsPane.setVisible(true);
+    }
+
+    @FXML
+    void userSettingsChangeName(ActionEvent event) {
+        int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+        String text = newFullNameField.getText();
+        if (!Objects.equals(text, ""))  {
+            usersList.get(currentUser).setFullName(text);
+        }
+        updateUsersList(currentUser);
+    }
+
+    @FXML
+    void userSettingsChangePassword(ActionEvent event) {
+        int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+        String text = newPasswordField.getText();
+        if (!Objects.equals(text, ""))  {
+            usersList.get(currentUser).setPassword(text);
+        }
+        updateUsersList(currentUser);
+    }
+
+    @FXML
+    void userSettingsChangeUsername(ActionEvent event) {
+        int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+        String text = newUsernameField.getText();
+        if (!Objects.equals(text, ""))  {
+            usersList.get(currentUser).setUserName(text);
+        }
+        updateUsersList(currentUser);
+    }
+
+    @FXML
+    void userSettingsToggleAdminRights(ActionEvent event) {
+        int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+        usersList.get(currentUser).setAdmin(!usersList.get(currentUser).getIsAdmin());
+        updateUsersList(currentUser);
+    }
+
+    @FXML
+    void userSettingsDeleteUser(MouseEvent event) {
+        int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+        usersList.remove(currentUser);
+        updateUsersList(currentUser);
+    }
+
+    @FXML
+    void userSettingsCreateNewUser(MouseEvent event) throws IOException {
+        int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+        new User("New User", false, "newuser");
+        updateUsersList(currentUser);
+    }
+
+    private void updateUsersList(int currentUser) {
+        usersListView.getItems().clear();
+        for (User user : usersList) {
+            usersListView.getItems().add(user.getName());
+        }
+        if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
+            userSettingsFullName.setText("Full Name: " + usersList.get(currentUser).getName());
+            userSettingsUsername.setText("Username: " + usersList.get(currentUser).getUserName());
+            userSettingsAdminRights.setText("Admin rights: " + usersList.get(currentUser).getIsAdmin());
+            usersListView.getSelectionModel().select(currentUser);
+        }
+        userToJson();
     }
 
     @FXML
     void changeValue(ActionEvent event) {
         int newSize = Integer.parseInt(settingsInputField.getText());
+
+        //Regenerate Tables
         Tables[] newArray = new Tables[newSize];
-        int oldSize = arrayTables.length;
-        for (int i = 0; i < Math.min(oldSize, newSize); i++) {
-            newArray[i] = arrayTables[i];
+        setTablesCount(0);
+        for (int i = 0; i < newSize; i++) {
+            newArray[i] = new Tables();
         }
         arrayTables = newArray;
-    }
 
-    @FXML
-    void setupUsers(ActionEvent event) {
-
+        tablesListView.getItems().clear();                                  //Clear Table List
+        for (Tables arrayTable : arrayTables) {                             //Parsing Tables
+            tablesListView.getItems().add(arrayTable.getTableNumberAsString());
+        }
     }
 
     @FXML
     void openSettings(MouseEvent event) {
         settingsTab.setVisible(!settingsTab.isVisible());
+        productsPane.setVisible(!productsPane.isVisible());
     }
 
     @FXML
@@ -170,12 +277,28 @@ public class AppController implements Initializable {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
 
+        for (User user : usersList) {
+            usersListView.getItems().add(user.getName());
+        }
+
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                currentTable = tablesListView.getSelectionModel().getSelectedIndex();
+                int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
                 billText.setText(arrayTables[currentTable].getBill());        //Setting the Info of the Bill
                 totalPrice.setText(arrayTables[currentTable].getAmountAfterTaxes() + "$");
+            }
+        });
+
+        usersListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+                if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
+                    userSettingsFullName.setText("Full Name: " + usersList.get(currentUser).getName());
+                    userSettingsUsername.setText("Username: " + usersList.get(currentUser).getUserName());
+                    userSettingsAdminRights.setText("Admin rights: " + usersList.get(currentUser).getIsAdmin());
+                }
             }
         });
 

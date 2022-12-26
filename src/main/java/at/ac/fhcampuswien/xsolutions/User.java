@@ -64,6 +64,22 @@ public class User {
         return name;
     }
 
+    public void setFullName(String name) {
+        this.name = name;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
+
     //Converting UsersList Objects to JSON
     public static void userToJson() {
         ObjectMapper objectMapper = new ObjectMapper();

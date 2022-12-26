@@ -45,11 +45,12 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="954.0" prefWidth="1647.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
+<VBox prefHeight="1080.0" prefWidth="1920.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
     <children>
         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0" prefWidth="1068.0" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
             <children>
@@ -61,115 +62,106 @@
                             </font>
                         </Label>
                   <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="201.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                  <AnchorPane fx:id="settingsTab" layoutY="709.0" opacity="0.9" prefHeight="111.0" prefWidth="568.0" style="-fx-background-color: gray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
-                     <children>
-                        <VBox prefHeight="90.0" prefWidth="568.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
-                           <children>
-                              <HBox alignment="TOP_CENTER" prefHeight="0.0" prefWidth="568.0">
-                                 <children>
-                                    <Button fx:id="billSettings" mnemonicParsing="false" onAction="#setupBill" styleClass="settingsBtn" stylesheets="@styles.css" text="Rechnung bearbeiten">
-                                       <HBox.margin>
-                                          <Insets />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="settingsBtn" stylesheets="@styles.css" text="Nutzer bearbeiten">
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="settingsBtn" stylesheets="@styles.css" text="Prdoukte bearbeiten">
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables" styleClass="settingsBtn" stylesheets="@styles.css" text="Tische bearbeiten">
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                              </HBox>
-                              <VBox fillWidth="false" prefHeight="76.0" prefWidth="568.0" VBox.vgrow="NEVER">
-                                 <children>
-                                    <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 12;" text="{settingsLabelParameter}">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" left="20.0" top="10.0" />
-                                       </VBox.margin>
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Label>
-                                    <HBox prefHeight="27.0" prefWidth="322.0">
-                                       <children>
-                                          <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="25.0" prefWidth="134.0" />
-                                          <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="25.0" prefWidth="58.0" styleClass="settingsBtn" text="OK">
-                                             <HBox.margin>
-                                                <Insets left="20.0" />
-                                             </HBox.margin>
-                                          </Button>
-                                       </children>
-                                       <VBox.margin>
-                                          <Insets left="20.0" />
-                                       </VBox.margin>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
                     </children>
                 </AnchorPane>
                 <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
                     <children>
-                  <GridPane layoutY="-1.0" prefHeight="62.0" prefWidth="814.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
+                  <Pane fx:id="settingsTab" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
                      <children>
-                              <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" text="Produkte">
-                                  <font>
-                                      <Font size="18.0" />
-                                  </font>
-                           <GridPane.margin>
-                              <Insets left="20.0" />
-                           </GridPane.margin>
-                              </Label>
-                        <TextField fx:id="searchField" maxWidth="400.0" prefHeight="25.0" prefWidth="320.0" promptText="Suche" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                           <GridPane.margin>
-                              <Insets />
-                           </GridPane.margin>
-                        </TextField>
-                        <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" GridPane.columnIndex="2">
+                        <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Label>
-                     </children>
-                  </GridPane>
-                  <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="60.0" prefHeight="804.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                  <ListView fx:id="productsListView" fixedCellSize="40.0" layoutX="-7.0" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                  <FlowPane fx:id="flowpaneProducts" layoutY="61.0" prefHeight="804.0" prefWidth="814.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-                     <children>
-                        <VBox fx:id="vboxProduct" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="105.0" prefHeight="50.0" prefWidth="212.0" visible="false">
                            <children>
-                              <Label fx:id="productTitle" prefHeight="42.0" prefWidth="200.0" style="-fx-font-size: 16px;" text="Product Label" wrapText="true">
+                              <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 12;" text="Input Tables amount:">
+                                 <VBox.margin>
+                                    <Insets bottom="4.0" top="4.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <HBox prefHeight="27.0" prefWidth="322.0">
+                                 <children>
+                                    <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="25.0" prefWidth="134.0" />
+                                    <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="25.0" prefWidth="58.0" styleClass="settingsBtn" text="OK">
+                                       <HBox.margin>
+                                          <Insets left="20.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <FlowPane columnHalignment="CENTER" hgap="10.0" layoutX="3.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="609.0" vgap="20.0">
+                           <children>
+                              <Button fx:id="billSettings" mnemonicParsing="false" onAction="#setupBill" styleClass="settingsBtn" stylesheets="@styles.css" text="Rechnung bearbeiten" />
+                              <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="settingsBtn" stylesheets="@styles.css" text="Nutzer bearbeiten" />
+                              <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="settingsBtn" stylesheets="@styles.css" text="Prdoukte bearbeiten" />
+                              <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables" styleClass="settingsBtn" stylesheets="@styles.css" text="Tische bearbeiten" />
+                           </children>
+                        </FlowPane>
+                        <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0" visible="false">
+                           <children>
+                              <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0" />
+                              <Label layoutY="334.0" prefHeight="27.0" prefWidth="212.0" style="-fx-font-size: 18;" text="Information about User:" />
+                              <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0" prefWidth="212.0" text="Full Name: None" />
+                              <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0" prefWidth="212.0" text="Username: None" />
+                              <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0" prefWidth="212.0" text="Admin rights: None" />
+                              <Button layoutY="455.0" mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Full Name" />
+                              <Button layoutY="486.0" mnemonicParsing="false" onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Username" />
+                              <Button layoutY="548.0" mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Toggle Admin Rights" />
+                              <Button layoutY="517.0" mnemonicParsing="false" onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Password" />
+                              <Button layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Delete User" />
+                              <Button layoutX="145.0" layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Create New User" />
+                              <TextField fx:id="newFullNameField" layoutX="160.0" layoutY="455.0" prefHeight="25.0" prefWidth="164.0" promptText="New Full Name" />
+                              <TextField fx:id="newUsernameField" layoutX="160.0" layoutY="486.0" prefHeight="25.0" prefWidth="164.0" promptText="New Username" />
+                              <TextField fx:id="newPasswordField" layoutX="160.0" layoutY="517.0" prefHeight="25.0" prefWidth="164.0" promptText="New Password" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="productsPane" prefHeight="871.0" prefWidth="814.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <GridPane prefHeight="62.0" prefWidth="814.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                                    <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" text="Produkte">
+                                        <font>
+                                            <Font size="18.0" />
+                                        </font>
+                                 <GridPane.margin>
+                                    <Insets left="20.0" />
+                                 </GridPane.margin>
+                                    </Label>
+                              <TextField fx:id="searchField" maxWidth="400.0" prefHeight="25.0" prefWidth="320.0" promptText="Suche" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </TextField>
+                              <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" GridPane.columnIndex="2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
                            </children>
-                           <FlowPane.margin>
-                              <Insets left="20.0" top="20.0" />
-                           </FlowPane.margin>
-                        </VBox>
+                        </GridPane>
+                        <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" prefHeight="804.0" prefWidth="814.0" text="Keine Produkte wurden gefunden" />
+                        <ListView fx:id="productsListView" fixedCellSize="40.0" prefHeight="804.0" prefWidth="814.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" />
                      </children>
-                  </FlowPane>
+                  </Pane>
                     </children>
                 </AnchorPane>
                 <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50%;">

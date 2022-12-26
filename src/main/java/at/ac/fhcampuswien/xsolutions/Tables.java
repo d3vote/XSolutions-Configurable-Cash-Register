@@ -22,6 +22,10 @@ public class Tables {
         this.amountAfterTaxes = Double.parseDouble(df.format(amountBeforeTaxes * TAXES_MULTIPLIER));
     }
 
+    public static void setTablesCount(int count) {
+        Tables.count = count;
+    }
+
     public static int getCount(){
         return count;
     }
