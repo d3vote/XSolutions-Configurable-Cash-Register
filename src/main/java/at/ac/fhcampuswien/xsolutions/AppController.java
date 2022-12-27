@@ -36,6 +36,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
+import static at.ac.fhcampuswien.xsolutions.App.updateTableCount;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.productToJSON;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
@@ -433,6 +434,7 @@ public class AppController implements Initializable {
         for (Tables arrayTable : arrayTables) {                             //Parsing Tables
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
+        updateTableCount(newSize);
     }
 
     @FXML
