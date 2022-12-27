@@ -178,7 +178,7 @@
                         <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0" prefHeight="930.0" prefWidth="868.0" text="Keine Produkte wurden gefunden" />
                         <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0">
                            <content>
-                              <GridPane fx:id="GridPaneProducts" onMouseClicked="#assignProductToGrid" prefHeight="922.0" prefWidth="866.0">
+                              <GridPane fx:id="GridPaneProducts" hgap="20.0" onMouseClicked="#assignProductToGrid" prefHeight="915.0" prefWidth="865.0" vgap="20.0">
                                  <columnConstraints>
                                     <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -192,23 +192,9 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
-                                 <children>
-                                    <Pane fx:id="imageForProduct" prefHeight="138.0" prefWidth="217.0" GridPane.valignment="CENTER">
-                                       <opaqueInsets>
-                                          <Insets />
-                                       </opaqueInsets>
-                                    </Pane>
-                                    <Label fx:id="productTitleInGrid" alignment="CENTER" prefHeight="32.0" prefWidth="217.0" text="ProductTitle" wrapText="true" GridPane.valignment="TOP">
-                                       <font>
-                                          <Font size="24.0" />
-                                       </font>
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Label>
-                                    <Button fx:id="remove" mnemonicParsing="false" onAction="#removeFromBillButton" prefHeight="25.0" prefWidth="109.0" text="Button" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM" />
-                                    <Button fx:id="add" mnemonicParsing="false" onAction="#addToBillButton" prefHeight="25.0" prefWidth="109.0" text="Button" GridPane.halignment="LEFT" GridPane.valignment="BOTTOM" />
-                                 </children>
+                                 <padding>
+                                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                                 </padding>
                               </GridPane>
                            </content>
                         </ScrollPane>
