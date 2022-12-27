@@ -34,6 +34,8 @@ import java.util.*;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
 import static at.ac.fhcampuswien.xsolutions.App.updateTableCount;
@@ -238,6 +240,15 @@ public class AppController implements Initializable {
             Label productTitleLabel = new Label(item.getProductTitle());
             Button addButton = new Button("Add");
             Button removeButton = new Button("Remove");
+
+            // creates Tooltip that shows productDescription
+            Tooltip tt = new Tooltip();
+            tt.setText(item.productDescription);
+            tt.setShowDelay(Duration.millis(100));
+            tt.setStyle("-fx-font: normal bold 12 Langdon; "
+                    + "-fx-base: #AE3522; "
+                    + "-fx-text-fill: orange;");
+            productTitleLabel.setTooltip(tt);
 
             addButton.getStyleClass().add("cartOptions-l");
             removeButton.getStyleClass().add("cartOptions-r");

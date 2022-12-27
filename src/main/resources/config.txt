@@ -1,1 +1,1 @@
-tableCount = 30
+tableCount = 5
