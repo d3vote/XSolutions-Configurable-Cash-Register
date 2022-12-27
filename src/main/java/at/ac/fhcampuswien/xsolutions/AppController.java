@@ -211,9 +211,12 @@ public class AppController implements Initializable {
             currentTable.getProductCounter().put(item, 1);
         }
 
-        String currentText = billText.getText();
-        String newText = currentText + "\n" + item.getProductTitle() + " x " + currentTable.getProductCounter().get(item) + " $" + currentTable.getProductCounter().get(item)*item.getProductPrice();
-        billText.setText(newText);
+        //String currentText = billText.getText();
+        //String newText = currentText + "\n" + item.getProductTitle() + " x " + currentTable.getProductCounter().get(item) + " $" + currentTable.getProductCounter().get(item)*item.getProductPrice();
+        currentTable.addUsedProducts(item);
+        currentTable.addToTotal(item.getProductPrice());
+        totalPrice.setText(currentTable.getAmountAfterTaxes() + "$");
+        billText.setText(currentTable.getBill());
     }
     @FXML
     private void addProductElementsToGrid(GridPane grid) {
@@ -249,7 +252,7 @@ public class AppController implements Initializable {
             grid.add(productPane, col, row);
 
             col++;
-            if (col % 3 == 0) {
+            if (col % 4 == 0) {
                 col = 0;
                 row++;
             }

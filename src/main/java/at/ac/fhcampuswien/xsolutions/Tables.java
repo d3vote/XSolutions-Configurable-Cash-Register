@@ -1,6 +1,7 @@
 package at.ac.fhcampuswien.xsolutions;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public class Tables {
     final static double TAXES_MULTIPLIER = 1.20;
     private static final DecimalFormat df = new DecimalFormat("0.00");
     private static int count;
+    private ArrayList<Product> usedProducts;
 
     public Tables(){
         count++;
@@ -24,6 +26,7 @@ public class Tables {
         this.amountBeforeTaxes = Double.parseDouble(df.format(randomDouble));
         this.amountAfterTaxes = Double.parseDouble(df.format(amountBeforeTaxes * TAXES_MULTIPLIER));
         productCounter = new HashMap<>();
+        usedProducts = new ArrayList<>();
     }
 
     public static void setTablesCount(int count) {
@@ -47,9 +50,24 @@ public class Tables {
     }
 
     public String getBill(){
-        return tableNumber + System.lineSeparator();
+
+        StringBuilder productsTotal = new StringBuilder();
+        productsTotal.delete(0, productsTotal.length());
+        for (Product usedProduct : usedProducts){
+            productsTotal.append("\n").append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(" $").append(usedProduct.getProductPrice() * productCounter.get(usedProduct));
+        }
+
+        return tableNumber + System.lineSeparator() + productsTotal;
     }
     public void addToAllProducts(String name){
         allProducts = allProducts + name + System.lineSeparator();
+    }
+    public void addUsedProducts(Product item) {
+        if (!usedProducts.contains(item)){
+            usedProducts.add(item);
+        }
+    }
+    public void addToTotal(double num) {
+        amountAfterTaxes += num;
     }
 }
