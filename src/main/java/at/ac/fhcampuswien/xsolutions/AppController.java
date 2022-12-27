@@ -63,7 +63,6 @@ public class AppController implements Initializable {
     String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
-    Map<Product, Integer> productCounter; // For Bill
 
     @FXML
     private ScrollPane bill;
@@ -189,17 +188,6 @@ public class AppController implements Initializable {
 
     @FXML
     void assignProductToGrid(MouseEvent event){
-        Node source = (Node) event.getSource();
-        /*
-        int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
-        if (source == GridPaneProducts){
-            productTitleInGrid.setText(productsList.get(0).productTitle);
-            arrayTables[currentTable].addToAllProducts(productsList.get(0).productTitle + " " + productsList.get(0).productPrice + "$");
-            billText.setText(arrayTables[currentTable].getBill());
-            imageForProduct.setStyle("-fx-background-image: url(\"" + productsList.get(0).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
-        }
-        // Will add something tomorrow got a good idea on what to do.
-        */
     }
     @FXML
     void dateSetter(){
@@ -209,13 +197,24 @@ public class AppController implements Initializable {
         datum.setText(dateString);
     }
     @FXML
-    void addToBillButton(){
-        int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
-        Product product = productsList.get(0);
-        int counter = productCounter.getOrDefault(product, 0) + 1;
-        productCounter.put(product, counter);
+    void addToBillButton(Product item){
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
 
-}
+        // If the product is already in the map, increase its quantity by 1
+        if (currentTable.getProductCounter().containsKey(item)) {
+            int currentQuantity = currentTable.getProductCounter().get(item);
+            currentTable.getProductCounter().put(item, currentQuantity + 1);
+        }
+        // Otherwise, add the product to the map with a quantity of 1
+        else {
+            currentTable.getProductCounter().put(item, 1);
+        }
+
+        String currentText = billText.getText();
+        String newText = currentText + "\n" + item.getProductTitle() + " x " + currentTable.getProductCounter().get(item) + " $" + currentTable.getProductCounter().get(item)*item.getProductPrice();
+        billText.setText(newText);
+    }
     @FXML
     private void addProductElementsToGrid(GridPane grid) {
         int row = 0;
@@ -243,8 +242,8 @@ public class AppController implements Initializable {
             productPane.getChildren().addAll(productTitleLabel, imagePane, buttonBox);
 
             // Set the properties of the elements
-            addButton.setOnAction(event -> addToBillButton());
-            removeButton.setOnAction(event -> removeFromBillButton());
+            addButton.setOnAction(event -> addToBillButton(item));
+            removeButton.setOnAction(event -> removeFromBillButton(item));
 
             // Add the elements to the grid
             grid.add(productPane, col, row);
@@ -259,7 +258,7 @@ public class AppController implements Initializable {
 
 
     @FXML
-    void removeFromBillButton(){
+    void removeFromBillButton(Product item){
 
     }
 
