@@ -9,9 +9,11 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.Scanner;
 
 import static at.ac.fhcampuswien.xsolutions.Product.JSONtoProductList;
+import static at.ac.fhcampuswien.xsolutions.Product.productsList;
 import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
 public class App extends Application {
@@ -59,12 +61,18 @@ public class App extends Application {
     }
 
 
-    //Testing
+
     public static void main(String[] args) throws IOException {
         JSONtoUsersList(); //Convert the JSON File back to Objects in a List
         JSONtoProductList();
         readConfig();
         generateTables(tableCount);
+        productsList.sort(new Comparator<Product>() {
+            @Override
+            public int compare(Product p1, Product p2) {
+                return p2.getProductTitle().compareTo(p1.getProductTitle());
+            }
+        });
         launch();
     }
 }
