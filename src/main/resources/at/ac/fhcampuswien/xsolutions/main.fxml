@@ -228,9 +228,9 @@
                         </Label>
                         <ScrollPane fx:id="bill" layoutY="58.0" prefHeight="494.0" prefWidth="254.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
                      <content>
-                        <Label fx:id="billText" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="360.0" prefWidth="253.0">
+                        <Label fx:id="billText" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="872.0" prefWidth="463.0" text="Add Products" textAlignment="CENTER" wrapText="true">
                            <font>
-                              <Font name="Arial" size="16.0" />
+                              <Font name="Arial Bold" size="25.0" />
                            </font>
                            <padding>
                               <Insets left="20.0" top="10.0" />
@@ -259,6 +259,11 @@
                                 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="491.0" prefWidth="252.0" style="-fx-border-width: 0; -fx-font-size: 15px;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
                             </children>
                         </GridPane>
+                  <Label fx:id="datum" alignment="CENTER_RIGHT" layoutX="417.0" layoutY="24.0" prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Datum" wrapText="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font name="Poor Richard" size="18.0" />
+                     </font>
+                  </Label>
                     </children>
                 </AnchorPane>
             </children>

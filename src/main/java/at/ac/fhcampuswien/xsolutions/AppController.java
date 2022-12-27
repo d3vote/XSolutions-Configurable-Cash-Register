@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.io.StringReader;
 import java.net.URL;
 import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -61,7 +63,6 @@ public class AppController implements Initializable {
 
     String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
-
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
 
 
@@ -179,6 +180,9 @@ public class AppController implements Initializable {
     @FXML
     private TextField newURL;
 
+    @FXML
+    private Label datum;
+
 
     @FXML
     void assignProductToGrid(MouseEvent event){
@@ -188,8 +192,15 @@ public class AppController implements Initializable {
             productTitleInGrid.setText(productsList.get(0).productTitle);
             arrayTables[currentTable].addToAllProducts(productsList.get(0).productTitle + " " + productsList.get(0).productPrice + "$");
             billText.setText(arrayTables[currentTable].getBill());
-            imageForProduct.setStyle("-fx-background-image: url(\"" + productsList.get(0).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");        }
+            imageForProduct.setStyle("-fx-background-image: url(\"" + productsList.get(0).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");     }
         // Will add something tomorrow got a good idea on what to do.
+    }
+    @FXML
+    void dateSetter(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String dateString = currentDate.format(formatter);
+        datum.setText(dateString);
     }
 
     @FXML
@@ -388,6 +399,7 @@ public class AppController implements Initializable {
         userSettings.setVisible(isAdmin);
         tablesSettings.setVisible(isAdmin);
         productsSettings.setVisible(isAdmin);
+        dateSetter();
 
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());

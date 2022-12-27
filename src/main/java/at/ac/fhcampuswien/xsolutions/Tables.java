@@ -1,13 +1,12 @@
 package at.ac.fhcampuswien.xsolutions;
 
 import java.text.DecimalFormat;
-import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Tables {
-    private static int billNumber = ThreadLocalRandom.current().nextInt(12415, 28174);
+    private static int billNumber;
     private String allProducts = "";
-    private double randomDouble = ThreadLocalRandom.current().nextInt(1, 3000);
+    private double randomDouble;
     private double amountBeforeTaxes;
     private double amountAfterTaxes;
     private int tableNumber;
