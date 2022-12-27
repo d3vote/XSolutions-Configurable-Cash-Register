@@ -48,7 +48,7 @@
 
 <VBox prefHeight="954.0" prefWidth="1647.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.LoginController">
    <children>
-      <VBox fx:id="bg" alignment="CENTER" onMouseClicked="#unfocusFields" prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+      <VBox fx:id="bg" alignment="CENTER" onMouseClicked="#unfocusFields" prefHeight="200.0" prefWidth="100.0" styleClass="loginBG" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
          <children>
             <HBox alignment="CENTER" prefHeight="205.0" prefWidth="1647.0">
                <children>

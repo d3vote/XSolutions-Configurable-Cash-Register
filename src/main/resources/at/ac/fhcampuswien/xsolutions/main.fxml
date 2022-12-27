@@ -124,6 +124,23 @@
                               <TextField fx:id="newPasswordField" layoutX="160.0" layoutY="517.0" prefHeight="25.0" prefWidth="164.0" promptText="New Password" />
                            </children>
                         </Pane>
+                        <Pane fx:id="productsSettingsPane" layoutY="115.0" prefHeight="638.0" prefWidth="828.0" visible="false">
+                           <children>
+                              <ListView fx:id="productsListViewSettings" layoutY="-10.0" prefHeight="311.0" prefWidth="828.0" />
+                              <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Information about Product:" />
+                              <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Product Name: None" />
+                              <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Description: None" />
+                              <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="828.0" text="Image URL: None" />
+                              <Button layoutY="445.0" mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Product Name" />
+                              <Button layoutY="476.0" mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Description" />
+                              <Button layoutY="507.0" mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Image URL" />
+                              <Button layoutX="-1.0" layoutY="558.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Delete Product" />
+                              <Button layoutX="144.0" layoutY="558.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Create New Product" />
+                              <TextField fx:id="newProductName" layoutX="160.0" layoutY="445.0" prefHeight="25.0" prefWidth="669.0" promptText="New Product Name" />
+                              <TextField fx:id="newProductDescription" layoutX="160.0" layoutY="476.0" prefHeight="25.0" prefWidth="669.0" promptText="New Description" />
+                              <TextField fx:id="newURL" layoutX="160.0" layoutY="507.0" prefHeight="25.0" prefWidth="669.0" promptText="New Image URL" />
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                   <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -163,20 +180,25 @@
                            <content>
                               <GridPane fx:id="GridPaneProducts" onMouseClicked="#assignProductToGrid" prefHeight="922.0" prefWidth="866.0">
                                  <columnConstraints>
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                  </columnConstraints>
                                  <rowConstraints>
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints fillHeight="false" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
-                                    <Label fx:id="productTitleInGrid" alignment="CENTER" prefHeight="27.0" prefWidth="203.0" text="ProductTitle" wrapText="true">
+                                    <Pane fx:id="imageForProduct" prefHeight="156.0" prefWidth="217.0" GridPane.valignment="TOP">
+                                       <opaqueInsets>
+                                          <Insets />
+                                       </opaqueInsets>
+                                    </Pane>
+                                    <Label fx:id="productTitleInGrid" alignment="CENTER" prefHeight="27.0" prefWidth="218.0" text="ProductTitle" wrapText="true" GridPane.valignment="BOTTOM">
                                        <font>
                                           <Font size="24.0" />
                                        </font>
@@ -184,14 +206,6 @@
                                           <Insets top="135.0" />
                                        </GridPane.margin>
                                     </Label>
-                                    <ImageView fx:id="imageForProduct" fitHeight="132.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../../../../../../../../Desktop/BilderFürProducts/depositphotos_72191677-stock-photo-pizza-margherita.jpg" />
-                                       </image>
-                                       <GridPane.margin>
-                                          <Insets bottom="27.0" />
-                                       </GridPane.margin>
-                                    </ImageView>
                                  </children>
                               </GridPane>
                            </content>

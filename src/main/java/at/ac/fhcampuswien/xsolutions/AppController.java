@@ -36,6 +36,7 @@ import javafx.stage.Stage;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
+import static at.ac.fhcampuswien.xsolutions.Product.productToJSON;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 import static at.ac.fhcampuswien.xsolutions.User.userToJson;
@@ -50,14 +51,19 @@ public class AppController implements Initializable {
     private ListView<String> usersListView;
 
     @FXML
+    private ListView<String> productsListView;
+
+    @FXML
+    private ListView<String> productsListViewSettings;
+
+    @FXML
     private ListView<String> tablesListView;                // Left Panel
+
     String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
 
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
 
-    @FXML
-    private ListView<String> productsListView;
 
     @FXML
     private ScrollPane bill;
@@ -99,7 +105,7 @@ public class AppController implements Initializable {
     private ScrollPane ScrollPaneProducts;
 
     @FXML
-    private ImageView imageForProduct;
+    private Pane imageForProduct;
 
     @FXML
     private Label searchResult;
@@ -152,6 +158,27 @@ public class AppController implements Initializable {
     @FXML
     private TextField newPasswordField;
 
+    @FXML
+    private Label productsSettingsDescription;
+
+    @FXML
+    private Label productsSettingsName;
+
+    @FXML
+    private Pane productsSettingsPane;
+
+    @FXML
+    private Label productsSettingsURL;
+
+    @FXML
+    private TextField newProductDescription;
+
+    @FXML
+    private TextField newProductName;
+
+    @FXML
+    private TextField newURL;
+
 
     @FXML
     void assignProductToGrid(MouseEvent event){
@@ -161,7 +188,7 @@ public class AppController implements Initializable {
             productTitleInGrid.setText(productsList.get(0).productTitle);
             arrayTables[currentTable].addToAllProducts(productsList.get(0).productTitle + " " + productsList.get(0).productPrice + "$");
             billText.setText(arrayTables[currentTable].getBill());
-        }
+            imageForProduct.setStyle("-fx-background-image: url(\"" + productsList.get(0).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");        }
         // Will add something tomorrow got a good idea on what to do.
     }
 
@@ -169,24 +196,86 @@ public class AppController implements Initializable {
     void setupProducts(ActionEvent event) {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(false);
+        productsSettingsPane.setVisible(true);
     }
 
     @FXML
     void setupTables(ActionEvent event) {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(true);
+        productsSettingsPane.setVisible(false);
     }
 
     @FXML
     void setupUsers(ActionEvent event) {
         tablesSettingPane.setVisible(false);
         usersSettingsPane.setVisible(true);
+        productsSettingsPane.setVisible(false);
     }
 
     @FXML
     void setupBill(ActionEvent event) {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(false);
+        productsSettingsPane.setVisible(false);
+    }
+
+    @FXML
+    void productsSettingsChangeName(ActionEvent event) {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        String text = newProductName.getText();
+        if (!Objects.equals(text, ""))  {
+            productsList.get(currentProduct).setProductTitle(text);
+        }
+        updateProductsList(currentProduct);
+    }
+
+    @FXML
+    void productsSettingsChangeURL(ActionEvent event) {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        String text = newURL.getText();
+        if (!Objects.equals(text, ""))  {
+            productsList.get(currentProduct).setProductImageUrl(text);
+        }
+        updateProductsList(currentProduct);
+    }
+
+    @FXML
+    void productsSettingsChangeDescription(ActionEvent event) {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        String text = newProductDescription.getText();
+        if (!Objects.equals(text, ""))  {
+            productsList.get(currentProduct).setProductDescription(text);
+        }
+        updateProductsList(currentProduct);
+    }
+
+    @FXML
+    void productsSettingsCreateNew(MouseEvent event) throws IOException {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        new Product("New Product", 0, "description");
+        updateProductsList(currentProduct);
+    }
+
+    @FXML
+    void productsSettingsDelete(MouseEvent event) {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        productsList.remove(currentProduct);
+        updateProductsList(currentProduct);
+    }
+
+    private void updateProductsList(int currentProduct) {
+        productsListViewSettings.getItems().clear();
+        for (Product product : productsList) {
+            productsListViewSettings.getItems().add(product.getProductTitle());
+        }
+        if (currentProduct >= 0 && currentProduct < productsListViewSettings.getItems().size()){
+            productsSettingsName.setText("Product Name: " + productsList.get(currentProduct).getProductTitle());
+            productsSettingsDescription.setText("Description: " + productsList.get(currentProduct).getProductDescription());
+            productsSettingsURL.setText("Image URL: " + productsList.get(currentProduct).getProductImageUrl());
+            productsListViewSettings.getSelectionModel().select(currentProduct);
+        }
+        productToJSON();
     }
 
     @FXML
@@ -254,6 +343,7 @@ public class AppController implements Initializable {
         userToJson();
     }
 
+
     @FXML
     void changeValue(ActionEvent event) {
         int newSize = Integer.parseInt(settingsInputField.getText());
@@ -303,6 +393,10 @@ public class AppController implements Initializable {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
 
+        for (Product product : productsList) {
+            productsListViewSettings.getItems().add(product.getProductTitle());
+        }
+
         for (User user : usersList) {
             usersListView.getItems().add(user.getName());
         }
@@ -324,6 +418,18 @@ public class AppController implements Initializable {
                     userSettingsFullName.setText("Full Name: " + usersList.get(currentUser).getName());
                     userSettingsUsername.setText("Username: " + usersList.get(currentUser).getUserName());
                     userSettingsAdminRights.setText("Admin rights: " + usersList.get(currentUser).getIsAdmin());
+                }
+            }
+        });
+
+        productsListViewSettings.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+                if (currentProduct >= 0 && currentProduct < productsListViewSettings.getItems().size()){
+                    productsSettingsName.setText("Product Name: " + productsList.get(currentProduct).getProductTitle());
+                    productsSettingsDescription.setText("Description: " + productsList.get(currentProduct).getProductDescription());
+                    productsSettingsURL.setText("Image URL: " + productsList.get(currentProduct).getProductImageUrl());
                 }
             }
         });
