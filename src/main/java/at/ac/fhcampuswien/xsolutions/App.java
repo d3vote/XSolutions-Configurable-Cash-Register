@@ -63,20 +63,8 @@ public class App extends Application {
     public static void main(String[] args) throws IOException {
         JSONtoUsersList(); //Convert the JSON File back to Objects in a List
         JSONtoProductList();
-        generateTables(20);
-
-        //Product p2 = new Product("Spaghetti bolognese",11.99);
-        //Product p3 = new Product("Spaghetti arrabiata",9.99,"Spaghetti with a spicy sauce made of tomatoes cooked with chilli peppers, used in Italian cookery.");
-        //Product p4 = new Product("Lasagna",13.99);
-        //Product pizzaSalami= new Product("Pizza Salami",10);
-
-
-//        User userDmytro = new User("Dmytro", true, "d3vote", "test");
-//        User userTolga = new User("Tolga", true, "tolga", "test");
-//        User userTosha = new User("Tosha", true, "tosha", "test");
-//        User userTheresa = new User("Theresa", true, "theresa", "test");
-//        User userEtrit = new User("Etrit", true, "etrit", "test");
-
+        readConfig();
+        generateTables(tableCount);
         launch();
     }
 }
