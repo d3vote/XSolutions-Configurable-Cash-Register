@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,10 +29,8 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -64,7 +63,7 @@ public class AppController implements Initializable {
     String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
-
+    Map<Product, Integer> productCounter; // For Bill
 
     @FXML
     private ScrollPane bill;
@@ -182,11 +181,16 @@ public class AppController implements Initializable {
 
     @FXML
     private Label datum;
+    @FXML
+    private Button add;
+    @FXML
+    private Button remove;
 
 
     @FXML
     void assignProductToGrid(MouseEvent event){
         Node source = (Node) event.getSource();
+        /*
         int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
         if (source == GridPaneProducts){
             productTitleInGrid.setText(productsList.get(0).productTitle);
@@ -194,6 +198,7 @@ public class AppController implements Initializable {
             billText.setText(arrayTables[currentTable].getBill());
             imageForProduct.setStyle("-fx-background-image: url(\"" + productsList.get(0).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");     }
         // Will add something tomorrow got a good idea on what to do.
+        */
     }
     @FXML
     void dateSetter(){
@@ -202,7 +207,53 @@ public class AppController implements Initializable {
         String dateString = currentDate.format(formatter);
         datum.setText(dateString);
     }
+    @FXML
+    void addToBillButton(){
+        int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
+        Product product = productsList.get(0);
+        int counter = productCounter.getOrDefault(product, 0) + 1;
+        productCounter.put(product, counter);
 
+}
+    @FXML
+    private void addProductElementsToGrid(GridPane grid, Product product,int column,int row) {
+        // Create the elements
+        Pane imagePane = new Pane();
+        Label productTitleLabel = new Label(product.getProductTitle());
+        Button addButton = new Button("Add");
+        Button removeButton = new Button("Remove");
+
+        // Sets size of new elements
+        imagePane.setPrefSize(220, 135);
+        productTitleLabel.setPrefSize(215, 30);
+        addButton.setPrefSize(109, 25);
+        removeButton.setPrefSize(109, 25);
+
+        // sets positions of new elements
+
+
+        // Set the properties of the elements
+        addButton.setOnAction(event -> addToBillButton());
+        removeButton.setOnAction(event -> removeFromBillButton());
+
+
+        // Add the elements to the grid
+        grid.add(imagePane, column, row);
+        grid.add(productTitleLabel, column, row);
+        grid.add(addButton, column, row);
+        grid.add(removeButton, column, row);
+    }
+
+
+    @FXML
+    void removeFromBillButton(){
+
+    }
+    @FXML
+    void initializeImage(){
+        imageForProduct.setStyle("-fx-background-image: url(\"" + productsList.get(0).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
+
+    }
     @FXML
     void setupProducts(ActionEvent event) {
         usersSettingsPane.setVisible(false);
@@ -400,6 +451,8 @@ public class AppController implements Initializable {
         tablesSettings.setVisible(isAdmin);
         productsSettings.setVisible(isAdmin);
         dateSetter();
+        initializeImage();
+        addProductElementsToGrid(GridPaneProducts,productsList.get(0),1, 0);
 
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
