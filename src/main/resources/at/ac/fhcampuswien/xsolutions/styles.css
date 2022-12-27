@@ -19,3 +19,11 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position: 20 20;
 }
+
+.cartOptions-l {
+  -fx-background-radius: 0 0 0 33;
+}
+
+.cartOptions-r {
+  -fx-background-radius: 0 0 33 0;
+}

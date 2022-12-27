@@ -66,6 +66,9 @@ public class AppController implements Initializable {
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
 
     @FXML
+    private ImageView adminButton;
+
+    @FXML
     private ScrollPane bill;
 
     @FXML
@@ -115,9 +118,6 @@ public class AppController implements Initializable {
 
     @FXML
     private Button userSettings;
-
-    @FXML
-    private Button billSettings;
 
     @FXML
     private Button productsSettings;
@@ -171,10 +171,16 @@ public class AppController implements Initializable {
     private Label productsSettingsURL;
 
     @FXML
+    private Label productsSettingsPrice;
+
+    @FXML
     private TextField newProductDescription;
 
     @FXML
     private TextField newProductName;
+
+    @FXML
+    private TextField newProductPrice;
 
     @FXML
     private TextField newURL;
@@ -187,9 +193,7 @@ public class AppController implements Initializable {
     private Button remove;
 
 
-    @FXML
-    void assignProductToGrid(MouseEvent event){
-    }
+    // Set date in the Bill
     @FXML
     void dateSetter(){
         LocalDate currentDate = LocalDate.now();
@@ -197,6 +201,8 @@ public class AppController implements Initializable {
         String dateString = currentDate.format(formatter);
         datum.setText(dateString);
     }
+
+    // Add Product into Bill of selected Table
     @FXML
     void addToBillButton(Product item){
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
@@ -212,13 +218,15 @@ public class AppController implements Initializable {
             currentTable.getProductCounter().put(item, 1);
         }
 
-        //String currentText = billText.getText();
-        //String newText = currentText + "\n" + item.getProductTitle() + " x " + currentTable.getProductCounter().get(item) + " $" + currentTable.getProductCounter().get(item)*item.getProductPrice();
+        // Add product to usedProducts list
         currentTable.addUsedProducts(item);
+        // Update Total Price and Bill
         currentTable.addToTotal(item.getProductPrice());
         totalPrice.setText(currentTable.getAmountAfterTaxes() + "$");
         billText.setText(currentTable.getBill());
     }
+
+    // Parse all Products into Grid
     @FXML
     private void addProductElementsToGrid(GridPane grid) {
         int row = 0;
@@ -231,11 +239,15 @@ public class AppController implements Initializable {
             Button addButton = new Button("Add");
             Button removeButton = new Button("Remove");
 
+            addButton.getStyleClass().add("cartOptions-l");
+            removeButton.getStyleClass().add("cartOptions-r");
+
             // Sets size of new elements
-            imagePane.setPrefSize(220, 135);
-            productTitleLabel.setPrefSize(215, 30);
-            addButton.setPrefSize(109, 25);
-            removeButton.setPrefSize(109, 25);
+            imagePane.setMinSize(200, 120);
+            imagePane.setMaxSize(220, 135);
+            productTitleLabel.setMinSize(215, 30);
+            addButton.setMinSize(90, 25);
+            removeButton.setMinSize(90, 25);
 
             // sets positions of new elements
             HBox buttonBox = new HBox();
@@ -257,6 +269,9 @@ public class AppController implements Initializable {
                 col = 0;
                 row++;
             }
+            for (int i = 0;i<30; i++) {
+                grid.addRow(grid.getRowCount()+1);
+            }
         }
     }
 
@@ -266,6 +281,7 @@ public class AppController implements Initializable {
 
     }
 
+    // Tab Switching
     @FXML
     void setupProducts(ActionEvent event) {
         usersSettingsPane.setVisible(false);
@@ -294,6 +310,7 @@ public class AppController implements Initializable {
         productsSettingsPane.setVisible(false);
     }
 
+    // PRODUCT SETTINGS TAB METHODS
     @FXML
     void productsSettingsChangeName(ActionEvent event) {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
@@ -320,6 +337,17 @@ public class AppController implements Initializable {
         String text = newProductDescription.getText();
         if (!Objects.equals(text, ""))  {
             productsList.get(currentProduct).setProductDescription(text);
+        }
+        updateProductsList(currentProduct);
+    }
+
+
+    @FXML
+    void productsSettingsChangePrice(ActionEvent event) {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        Double text = Double.valueOf(newProductPrice.getText());
+        if (!Objects.equals(text, ""))  {
+            productsList.get(currentProduct).setProductPrice(text);
         }
         updateProductsList(currentProduct);
     }
@@ -352,6 +380,7 @@ public class AppController implements Initializable {
         productToJSON();
     }
 
+    // USER SETTINGS TAB METHODS
     @FXML
     void userSettingsChangeName(ActionEvent event) {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
@@ -404,10 +433,13 @@ public class AppController implements Initializable {
     }
 
     private void updateUsersList(int currentUser) {
+        // Clear User ListView
         usersListView.getItems().clear();
+        // Recreate User ListView
         for (User user : usersList) {
             usersListView.getItems().add(user.getName());
         }
+        // Update User Info
         if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
             userSettingsFullName.setText("Full Name: " + usersList.get(currentUser).getName());
             userSettingsUsername.setText("Username: " + usersList.get(currentUser).getUserName());
@@ -417,21 +449,22 @@ public class AppController implements Initializable {
         userToJson();
     }
 
-
+    // Update Table Amount inside JSON, update List and Config
     @FXML
     void changeValue(ActionEvent event) {
         int newSize = Integer.parseInt(settingsInputField.getText());
 
-        //Regenerate Tables
+        // Regenerate Tables
         Tables[] newArray = new Tables[newSize];
         setTablesCount(0);
         for (int i = 0; i < newSize; i++) {
             newArray[i] = new Tables();
         }
         arrayTables = newArray;
-
-        tablesListView.getItems().clear();                                  //Clear Table List
-        for (Tables arrayTable : arrayTables) {                             //Parsing Tables
+        // Clear Table ListView
+        tablesListView.getItems().clear();
+        // Recreating Tables ListView
+        for (Tables arrayTable : arrayTables) {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
         updateTableCount(newSize);
@@ -443,11 +476,13 @@ public class AppController implements Initializable {
         productsPane.setVisible(!productsPane.isVisible());
     }
 
+    // "Crash" button
     @FXML
     void exitButton(MouseEvent event) {
         System.exit(0);
     }
 
+    // Logout button
     @FXML
     void userLogout(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -459,13 +494,22 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
+        ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
+        ScrollPaneProducts.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         kellnerLabel.setText(LoginController.getLoggedInUserName());
         userSettings.setVisible(isAdmin);
         tablesSettings.setVisible(isAdmin);
         productsSettings.setVisible(isAdmin);
+
+        // Hide Admin Settings Button if not admin
+        if(!isAdmin){
+            adminButton.setVisible(false);
+        }
+
         dateSetter();
         addProductElementsToGrid(GridPaneProducts);
 
+        // Generate Lists of Tables, Products and Users
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
@@ -478,6 +522,7 @@ public class AppController implements Initializable {
             usersListView.getItems().add(user.getName());
         }
 
+        // Check if ListView Selection changed (Tables)
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -487,6 +532,7 @@ public class AppController implements Initializable {
             }
         });
 
+        // Check if ListView Selection changed (Users)
         usersListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -499,6 +545,7 @@ public class AppController implements Initializable {
             }
         });
 
+        // Check if ListView Selection changed (Products)
         productsListViewSettings.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -507,6 +554,7 @@ public class AppController implements Initializable {
                     productsSettingsName.setText("Product Name: " + productsList.get(currentProduct).getProductTitle());
                     productsSettingsDescription.setText("Description: " + productsList.get(currentProduct).getProductDescription());
                     productsSettingsURL.setText("Image URL: " + productsList.get(currentProduct).getProductImageUrl());
+                    productsSettingsPrice.setText("Price: " + productsList.get(currentProduct).getProductPrice());
                 }
             }
         });

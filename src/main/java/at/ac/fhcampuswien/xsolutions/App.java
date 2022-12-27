@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -40,7 +39,8 @@ public class App extends Application {
             arrayTables[i]  = new Tables();
         }
     }
-    private static void readConfig() {
+
+    private static void readConfig() { //Read Config File with Table Counter
         try (Scanner scanner = new Scanner(new File(CONFIG_FILE))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -52,7 +52,8 @@ public class App extends Application {
             e.printStackTrace();
         }
     }
-    public static void updateTableCount(int newTableCount) {
+
+    public static void updateTableCount(int newTableCount) { //Update Config File of Table Counter
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(CONFIG_FILE))) {
             writer.write("tableCount = " + newTableCount);
         } catch (IOException e) {
@@ -67,7 +68,7 @@ public class App extends Application {
         JSONtoProductList();
         readConfig();
         generateTables(tableCount);
-        productsList.sort(new Comparator<Product>() {
+        productsList.sort(new Comparator<Product>() { //Sort Products List
             @Override
             public int compare(Product p1, Product p2) {
                 return p2.getProductTitle().compareTo(p1.getProductTitle());

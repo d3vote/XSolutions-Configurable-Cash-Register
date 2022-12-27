@@ -8,10 +8,7 @@ import java.util.Map;
 
 public class Tables {
     private static int billNumber;
-    private String allProducts = "";
     public Map<Product, Integer> productCounter;
-    private double randomDouble;
-    private double amountBeforeTaxes;
     private double amountAfterTaxes;
     private int tableNumber;
     final static double TAXES_MULTIPLIER = 1.20;
@@ -23,8 +20,6 @@ public class Tables {
         count++;
         billNumber++;
         this.tableNumber = count;
-        this.amountBeforeTaxes = Double.parseDouble(df.format(randomDouble));
-        this.amountAfterTaxes = Double.parseDouble(df.format(amountBeforeTaxes * TAXES_MULTIPLIER));
         productCounter = new HashMap<>();
         usedProducts = new ArrayList<>();
     }
@@ -50,23 +45,24 @@ public class Tables {
     }
 
     public String getBill(){
-
         StringBuilder productsTotal = new StringBuilder();
+        // Clear productsTotal List
         productsTotal.delete(0, productsTotal.length());
+
+        // Recreate a new productsTotal List
         for (Product usedProduct : usedProducts){
             productsTotal.append("\n").append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(" $").append(usedProduct.getProductPrice() * productCounter.get(usedProduct));
         }
 
-        return tableNumber + System.lineSeparator() + productsTotal;
+        return "Table: " + tableNumber + System.lineSeparator() + productsTotal;
     }
-    public void addToAllProducts(String name){
-        allProducts = allProducts + name + System.lineSeparator();
-    }
+
     public void addUsedProducts(Product item) {
         if (!usedProducts.contains(item)){
             usedProducts.add(item);
         }
     }
+
     public void addToTotal(double num) {
         amountAfterTaxes += num;
     }
