@@ -244,7 +244,8 @@ public class AppController implements Initializable {
             // creates Tooltip that shows productDescription
             Tooltip tt = new Tooltip();
             tt.setText(item.productDescription);
-            tt.setShowDelay(Duration.millis(100));
+            tt.setShowDelay(Duration.millis(10));
+            tt.setHideDelay(Duration.ZERO);
             tt.setStyle("-fx-font: normal bold 12 Langdon; "
                     + "-fx-base: #AE3522; "
                     + "-fx-text-fill: orange;");
