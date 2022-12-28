@@ -1,2 +1,2 @@
 tableCount = 10
-currency = £
+currency = €
