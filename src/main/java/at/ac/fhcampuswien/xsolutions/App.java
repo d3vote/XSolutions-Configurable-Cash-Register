@@ -4,23 +4,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.getTableCount;
 import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigTableCount;
 import static at.ac.fhcampuswien.xsolutions.Product.JSONtoProductList;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
-import static at.ac.fhcampuswien.xsolutions.Tables.setCurrency;
 import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
 public class App extends Application {
@@ -49,8 +41,7 @@ public class App extends Application {
     public static String getDate() {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String dateString = currentDate.format(formatter);
-        return dateString;
+        return currentDate.format(formatter);
     }
 
 
@@ -60,12 +51,8 @@ public class App extends Application {
         JSONtoProductList();
         readConfigTableCount();
         generateTables(getTableCount());
-        productsList.sort(new Comparator<Product>() { //Sort Products List
-            @Override
-            public int compare(Product p1, Product p2) {
-                return p2.getProductTitle().compareTo(p1.getProductTitle());
-            }
-        });
+        //Sort Products List
+        productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
         launch();
     }
 }

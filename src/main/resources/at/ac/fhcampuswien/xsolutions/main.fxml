@@ -51,261 +51,339 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1080.0" prefWidth="1920.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
-    <children>
-        <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0" prefWidth="1068.0" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
-            <children>
-                <AnchorPane prefHeight="464.0" prefWidth="461.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
-                    <children>
-                        <Label layoutX="21.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Tische" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
-                        </Label>
-                  <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="201.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
-                    </children>
-                </AnchorPane>
-                <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
-                    <children>
-                  <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
-                     <children>
-                        <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Label>
-                        <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="105.0" prefHeight="50.0" prefWidth="212.0" visible="false">
-                           <children>
-                              <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 12;" text="Input Tables amount:">
-                                 <VBox.margin>
-                                    <Insets bottom="4.0" top="4.0" />
-                                 </VBox.margin>
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <HBox prefHeight="27.0" prefWidth="322.0">
-                                 <children>
-                                    <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="25.0" prefWidth="134.0" />
-                                    <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="25.0" prefWidth="58.0" styleClass="settingsBtn" text="OK">
-                                       <HBox.margin>
-                                          <Insets left="20.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                 </children>
-                                 <VBox.margin>
-                                    <Insets />
-                                 </VBox.margin>
-                              </HBox>
-                           </children>
-                        </VBox>
-                        <FlowPane columnHalignment="CENTER" hgap="10.0" layoutX="3.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="609.0" vgap="20.0">
-                           <children>
-                              <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="settingsBtn" stylesheets="@styles.css" text="Nutzer bearbeiten" />
-                              <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="settingsBtn" stylesheets="@styles.css" text="Prdoukte bearbeiten" />
-                              <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables" styleClass="settingsBtn" stylesheets="@styles.css" text="Tische bearbeiten" />
-                              <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem" styleClass="settingsBtn" stylesheets="@styles.css" text="System Steuerung" />
-                           </children>
-                        </FlowPane>
-                        <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0" visible="false">
-                           <children>
-                              <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0" />
-                              <Label layoutY="334.0" prefHeight="27.0" prefWidth="212.0" style="-fx-font-size: 18;" text="Information about User:" />
-                              <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0" prefWidth="212.0" text="Full Name: None" />
-                              <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0" prefWidth="212.0" text="Username: None" />
-                              <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0" prefWidth="212.0" text="Admin rights: None" />
-                              <Button layoutY="455.0" mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Full Name" />
-                              <Button layoutY="486.0" mnemonicParsing="false" onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Username" />
-                              <Button layoutY="548.0" mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Toggle Admin Rights" />
-                              <Button layoutY="517.0" mnemonicParsing="false" onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Password" />
-                              <Button layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Delete User" />
-                              <Button layoutX="145.0" layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Create New User" />
-                              <TextField fx:id="newFullNameField" layoutX="160.0" layoutY="455.0" prefHeight="25.0" prefWidth="164.0" promptText="New Full Name" />
-                              <TextField fx:id="newUsernameField" layoutX="160.0" layoutY="486.0" prefHeight="25.0" prefWidth="164.0" promptText="New Username" />
-                              <TextField fx:id="newPasswordField" layoutX="160.0" layoutY="517.0" prefHeight="25.0" prefWidth="164.0" promptText="New Password" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="systemSettingsPane" layoutY="105.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="638.0" prefWidth="828.0">
-                           <children>
-                              <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="System Steuerung:" />
-                              <Button layoutY="34.0" mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Currency" />
-                              <Button layoutY="63.0" mnemonicParsing="false" onAction="#systemSettingsChangeTaxes" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Taxes" />
-                              <TextField fx:id="systemNewTaxesField" layoutX="160.0" layoutY="63.0" prefHeight="25.0" prefWidth="164.0" promptText="New Taxes" />
-                              <ChoiceBox fx:id="systemNewCurrencySelector" layoutX="160.0" layoutY="34.0" prefWidth="164.0" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="productsSettingsPane" layoutY="115.0" prefHeight="663.0" prefWidth="828.0" visible="false">
-                           <children>
-                              <ListView fx:id="productsListViewSettings" layoutY="-10.0" prefHeight="311.0" prefWidth="828.0" />
-                              <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Information about Product:" />
-                              <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Product Name: None" />
-                              <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Description: None" />
-                              <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="828.0" text="Image URL: None" />
-                              <Button layoutY="476.0" mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Product Name" />
-                              <Button layoutY="507.0" mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Description" />
-                              <Button layoutY="538.0" mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Image URL" />
-                              <Button layoutX="-1.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Delete Product" />
-                              <Button layoutX="144.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Create New Product" />
-                              <TextField fx:id="newProductName" layoutX="160.0" layoutY="476.0" prefHeight="25.0" prefWidth="669.0" promptText="New Product Name" />
-                              <TextField fx:id="newProductDescription" layoutX="160.0" layoutY="507.0" prefHeight="25.0" prefWidth="669.0" promptText="New Description" />
-                              <TextField fx:id="newURL" layoutX="160.0" layoutY="538.0" prefHeight="25.0" prefWidth="669.0" promptText="New Image URL" />
-                              <Button layoutY="569.0" mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Price" />
-                              <TextField fx:id="newProductPrice" layoutX="160.0" layoutY="569.0" prefHeight="25.0" prefWidth="669.0" promptText="New Price" />
-                              <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Price: None" />
-                           </children>
-                        </Pane>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <GridPane prefHeight="62.0" prefWidth="814.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                                    <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" text="Produkte">
-                                        <font>
-                                            <Font size="18.0" />
-                                        </font>
-                                 <GridPane.margin>
-                                    <Insets left="20.0" />
-                                 </GridPane.margin>
-                                    </Label>
-                              <TextField fx:id="searchField" maxWidth="400.0" prefHeight="25.0" prefWidth="320.0" promptText="Suche" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                 <GridPane.margin>
-                                    <Insets />
-                                 </GridPane.margin>
-                              </TextField>
-                              <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" GridPane.columnIndex="2">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </GridPane>
-                        <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0" prefHeight="930.0" prefWidth="868.0" text="Keine Produkte wurden gefunden" />
-                        <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0" style="-fx-vbar-unit-increment: 100;">
-                           <content>
-                              <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="915.0" prefWidth="865.0" vgap="20.0">
-                                 <columnConstraints>
-                                    <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                 </columnConstraints>
-                                 <rowConstraints>
-                                    <RowConstraints maxHeight="220.0" minHeight="220.0" prefHeight="220.0" vgrow="SOMETIMES" />
-                                 </rowConstraints>
-                                 <padding>
-                                    <Insets bottom="20.0" left="3.0" right="50.0" top="20.0" />
-                                 </padding>
-                              </GridPane>
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </Pane>
-                    </children>
-                </AnchorPane>
-                <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: D9D9D9; -fx-border-radius: 50%;">
-                    <children>
-                        <Button id="pay_btn" fx:id="pay_btn" layoutX="79.0" layoutY="597.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="327.0" style="-fx-background-color: #9E9E9E; -fx-font-weight: 700; -fx-background-radius: 31px; -fx-font-size: 18px; -fx-text-fill: #ffffff;" stylesheets="@styles.css" text="Bezahlen" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                            <font>
-                                <Font size="18.0" />
-                            </font>
+<VBox prefHeight="1080.0" prefWidth="1920.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/19"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
+    <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0" prefWidth="1068.0"
+          stylesheets="@styles.css" VBox.vgrow="ALWAYS">
+        <AnchorPane prefHeight="464.0" prefWidth="461.0" style="-fx-background-color: #D9D9D9;" styleClass="text"
+                    stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+            <Label layoutX="21.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text"
+                   stylesheets="@styles.css" text="Tische" AnchorPane.leftAnchor="20.0"
+                   AnchorPane.topAnchor="14.0">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Label>
+            <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="201.0"
+                      prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;"
+                      styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0"/>
+        </AnchorPane>
+        <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
+            <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0"
+                  visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
+                  AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+                <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css"
+                       text="Einstellungen">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="105.0"
+                      prefHeight="50.0" prefWidth="212.0" visible="false">
+                    <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0"
+                           style="-fx-font-size: 12;" text="Input Tables amount:">
+                        <VBox.margin>
+                            <Insets bottom="4.0" top="4.0"/>
+                        </VBox.margin>
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Label>
+                    <HBox prefHeight="27.0" prefWidth="322.0">
+                        <VBox.margin>
+                            <Insets/>
+                        </VBox.margin>
+                        <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="25.0"
+                                   prefWidth="134.0"/>
+                        <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="25.0"
+                                prefWidth="58.0" styleClass="settingsBtn" text="OK">
+                            <HBox.margin>
+                                <Insets left="20.0"/>
+                            </HBox.margin>
                         </Button>
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Rechnung" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
-                            <font>
-                                <Font name="Poor Richard" size="18.0" />
-                            </font>
-                        </Label>
-                        <ScrollPane fx:id="bill" layoutY="58.0" prefHeight="494.0" prefWidth="254.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
-                     <content>
-                        <Label fx:id="billText" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="872.0" prefWidth="463.0" style="-fx-font-size: 14;" text="Rechnug leer" wrapText="true">
-                           <font>
-                              <Font name="Arial Bold" size="25.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" top="10.0" />
-                           </padding>
-                        </Label>
-                     </content></ScrollPane>
-                        <GridPane layoutX="20.0" layoutY="576.0" prefHeight="36.0" prefWidth="254.0" AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-                            <columnConstraints>
-                                <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="101.0" />
-                                <ColumnConstraints halignment="RIGHT" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="113.0" />
-                            </columnConstraints>
-                            <rowConstraints>
-                                <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                            </rowConstraints>
-                            <children>
-                                <Label prefHeight="36.0" prefWidth="124.0" style="-fx-font-size: 15px; -fx-font-weight: 700;" text="Gesamtpreis:">
-                                    <font>
-                                        <Font size="18.0" />
-                                    </font>
-                                </Label>
-                                <Label fx:id="totalPrice" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="150.0" style="-fx-font-size: 15px; -fx-font-weight: 700;" text="0$" textAlignment="RIGHT" GridPane.columnIndex="1">
-                                    <font>
-                                        <Font size="17.0" />
-                                    </font>
-                                </Label>
-                                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="491.0" prefWidth="252.0" style="-fx-border-width: 0; -fx-font-size: 15px;" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
-                            </children>
-                        </GridPane>
-                  <Label fx:id="datum" alignment="CENTER_RIGHT" layoutX="417.0" layoutY="24.0" prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Datum" wrapText="true" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0">
-                     <font>
-                        <Font name="Poor Richard" size="18.0" />
-                     </font>
-                  </Label>
-                    </children>
-                </AnchorPane>
-            </children>
-        </HBox>
-        <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0" prefWidth="1067.0" style="-fx-background-color: #000000;">
+                    </HBox>
+                </VBox>
+                <FlowPane columnHalignment="CENTER" hgap="10.0" layoutX="3.0" layoutY="63.0"
+                          nodeOrientation="LEFT_TO_RIGHT" prefHeight="27.0" prefWidth="609.0" vgap="20.0">
+                    <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers"
+                            styleClass="settingsBtn" stylesheets="@styles.css"
+                            text="Nutzer bearbeiten"/>
+                    <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts"
+                            styleClass="settingsBtn" stylesheets="@styles.css"
+                            text="Produkte bearbeiten"/>
+                    <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables"
+                            styleClass="settingsBtn" stylesheets="@styles.css"
+                            text="Tische bearbeiten"/>
+                    <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem"
+                            styleClass="settingsBtn" stylesheets="@styles.css" text="System Steuerung"/>
+                </FlowPane>
+                <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0"
+                      visible="false">
+                    <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0"/>
+                    <Label layoutY="334.0" prefHeight="27.0" prefWidth="212.0"
+                           style="-fx-font-size: 18;" text="Information about User:"/>
+                    <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0"
+                           prefWidth="212.0" text="Full Name: None"/>
+                    <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0"
+                           prefWidth="212.0" text="Username: None"/>
+                    <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0"
+                           prefWidth="212.0" text="Admin rights: None"/>
+                    <Button layoutY="455.0" mnemonicParsing="false" onAction="#userSettingsChangeName"
+                            prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn"
+                            text="Change Full Name"/>
+                    <Button layoutY="486.0" mnemonicParsing="false"
+                            onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="142.0"
+                            styleClass="settingsBtn" text="Change Username"/>
+                    <Button layoutY="548.0" mnemonicParsing="false"
+                            onAction="#userSettingsToggleAdminRights" prefHeight="25.0"
+                            prefWidth="142.0" styleClass="settingsBtn" text="Toggle Admin Rights"/>
+                    <Button layoutY="517.0" mnemonicParsing="false"
+                            onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="142.0"
+                            styleClass="settingsBtn" text="Change Password"/>
+                    <Button layoutY="599.0" mnemonicParsing="false"
+                            onMouseReleased="#userSettingsDeleteUser" prefHeight="25.0"
+                            prefWidth="142.0" styleClass="settingsBtn" text="Delete User"/>
+                    <Button layoutX="145.0" layoutY="599.0" mnemonicParsing="false"
+                            onMouseReleased="#userSettingsCreateNewUser" prefHeight="25.0"
+                            prefWidth="142.0" styleClass="settingsBtn" text="Create New User"/>
+                    <TextField fx:id="newFullNameField" layoutX="160.0" layoutY="455.0"
+                               prefHeight="25.0" prefWidth="164.0" promptText="New Full Name"/>
+                    <TextField fx:id="newUsernameField" layoutX="160.0" layoutY="486.0"
+                               prefHeight="25.0" prefWidth="164.0" promptText="New Username"/>
+                    <TextField fx:id="newPasswordField" layoutX="160.0" layoutY="517.0"
+                               prefHeight="25.0" prefWidth="164.0" promptText="New Password"/>
+                </Pane>
+                <Pane fx:id="systemSettingsPane" layoutY="105.0" nodeOrientation="LEFT_TO_RIGHT"
+                      prefHeight="638.0" prefWidth="828.0" visible="false">
+                    <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;"
+                           text="System Steuerung:"/>
+                    <Button layoutY="34.0" mnemonicParsing="false"
+                            onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="142.0"
+                            styleClass="settingsBtn" text="Change Currency"/>
+                    <Button layoutY="63.0" mnemonicParsing="false" onAction="#systemSettingsChangeTaxes"
+                            prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn"
+                            text="Change Taxes"/>
+                    <TextField fx:id="systemNewTaxesField" layoutX="160.0" layoutY="63.0"
+                               prefHeight="25.0" prefWidth="164.0" promptText="New Taxes"/>
+                    <ChoiceBox fx:id="systemNewCurrencySelector" layoutX="160.0" layoutY="34.0"
+                               prefWidth="164.0"/>
+                </Pane>
+                <Pane fx:id="productsSettingsPane" layoutY="115.0" prefHeight="663.0" prefWidth="828.0"
+                      visible="false">
+                    <ListView fx:id="productsListViewSettings" layoutY="-10.0" prefHeight="311.0"
+                              prefWidth="828.0"/>
+                    <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0"
+                           style="-fx-font-size: 18;" text="Information about Product:"/>
+                    <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0"
+                           prefWidth="828.0" text="Product Name: None"/>
+                    <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0"
+                           prefWidth="828.0" text="Description: None"/>
+                    <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0"
+                           prefWidth="828.0" text="Image URL: None"/>
+                    <Button layoutY="476.0" mnemonicParsing="false"
+                            onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="142.0"
+                            styleClass="settingsBtn" text="Change Product Name"/>
+                    <Button layoutY="507.0" mnemonicParsing="false"
+                            onAction="#productsSettingsChangeDescription" prefHeight="25.0"
+                            prefWidth="142.0" styleClass="settingsBtn" text="Change Description"/>
+                    <Button layoutY="538.0" mnemonicParsing="false"
+                            onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="142.0"
+                            styleClass="settingsBtn" text="Change Image URL"/>
+                    <Button layoutX="-1.0" layoutY="626.0" mnemonicParsing="false"
+                            onMouseReleased="#productsSettingsDelete" prefHeight="25.0"
+                            prefWidth="142.0" styleClass="settingsBtn" text="Delete Product"/>
+                    <Button layoutX="144.0" layoutY="626.0" mnemonicParsing="false"
+                            onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0"
+                            prefWidth="142.0" styleClass="settingsBtn" text="Create New Product"/>
+                    <TextField fx:id="newProductName" layoutX="160.0" layoutY="476.0" prefHeight="25.0"
+                               prefWidth="669.0" promptText="New Product Name"/>
+                    <TextField fx:id="newProductDescription" layoutX="160.0" layoutY="507.0"
+                               prefHeight="25.0" prefWidth="669.0" promptText="New Description"/>
+                    <TextField fx:id="newURL" layoutX="160.0" layoutY="538.0" prefHeight="25.0"
+                               prefWidth="669.0" promptText="New Image URL"/>
+                    <Button layoutY="569.0" mnemonicParsing="false"
+                            onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="142.0"
+                            styleClass="settingsBtn" text="Change Price"/>
+                    <TextField fx:id="newProductPrice" layoutX="160.0" layoutY="569.0" prefHeight="25.0"
+                               prefWidth="669.0" promptText="New Price"/>
+                    <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0"
+                           prefWidth="828.0" text="Price: None"/>
+                </Pane>
+            </Pane>
+            <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <GridPane prefHeight="62.0" prefWidth="814.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0"
+                                           prefWidth="100.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <Label prefHeight="36.0" prefWidth="114.0" styleClass="text"
+                           stylesheets="@styles.css" text="Produkte">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                        <GridPane.margin>
+                            <Insets left="20.0"/>
+                        </GridPane.margin>
+                    </Label>
+                    <TextField fx:id="searchField" maxWidth="400.0" prefHeight="25.0" prefWidth="320.0"
+                               promptText="Suche" GridPane.columnIndex="1" GridPane.halignment="CENTER"
+                               GridPane.valignment="CENTER">
+                        <GridPane.margin>
+                            <Insets/>
+                        </GridPane.margin>
+                    </TextField>
+                    <Label prefHeight="36.0" prefWidth="114.0" styleClass="text"
+                           stylesheets="@styles.css" GridPane.columnIndex="2">
+                        <font>
+                            <Font size="18.0"/>
+                        </font>
+                    </Label>
+                </GridPane>
+                <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0"
+                       prefHeight="930.0" prefWidth="868.0" text="Keine Produkte wurden gefunden"/>
+                <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0"
+                            style="-fx-vbar-unit-increment: 100;">
+                    <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="915.0" prefWidth="865.0"
+                              vgap="20.0">
+                        <columnConstraints>
+                            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0"
+                                               prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                        </columnConstraints>
+                        <rowConstraints>
+                            <RowConstraints maxHeight="220.0" minHeight="220.0" prefHeight="220.0"
+                                            vgrow="SOMETIMES"/>
+                        </rowConstraints>
+                        <padding>
+                            <Insets bottom="20.0" left="3.0" right="50.0" top="20.0"/>
+                        </padding>
+                    </GridPane>
+                </ScrollPane>
+            </Pane>
+        </AnchorPane>
+        <AnchorPane prefHeight="464.0" prefWidth="479.0"
+                    style="-fx-background-color: D9D9D9; -fx-border-radius: 50%;">
+            <Button id="pay_btn" fx:id="pay_btn" layoutX="79.0" layoutY="597.0" mnemonicParsing="false"
+                    prefHeight="30.0" prefWidth="327.0"
+                    style="-fx-background-color: #9E9E9E; -fx-font-weight: 700; -fx-background-radius: 31px; -fx-font-size: 18px; -fx-text-fill: #ffffff;"
+                    stylesheets="@styles.css" text="Bezahlen" textFill="WHITE" AnchorPane.bottomAnchor="20.0"
+                    AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                <font>
+                    <Font size="18.0"/>
+                </font>
+            </Button>
+            <Label layoutX="14.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text"
+                   stylesheets="@styles.css" text="Rechnung" AnchorPane.leftAnchor="20.0"
+                   AnchorPane.topAnchor="14.0">
+                <font>
+                    <Font name="Poor Richard" size="18.0"/>
+                </font>
+            </Label>
+            <ScrollPane fx:id="bill" layoutY="58.0" prefHeight="494.0" prefWidth="254.0"
+                        style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="110.0"
+                        AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+                <Label fx:id="billText" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308"
+                       maxWidth="1.7976931348623157E308" prefHeight="872.0" prefWidth="463.0"
+                       style="-fx-font-size: 14;" text="Rechnung leer" wrapText="true">
+                    <font>
+                        <Font name="Arial Bold" size="25.0"/>
+                    </font>
+                    <padding>
+                        <Insets left="20.0" top="10.0"/>
+                    </padding>
+                </Label>
+            </ScrollPane>
+            <GridPane layoutX="20.0" layoutY="576.0" prefHeight="36.0" prefWidth="254.0"
+                      AnchorPane.bottomAnchor="64.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                <columnConstraints>
+                    <ColumnConstraints maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="101.0"/>
+                    <ColumnConstraints halignment="RIGHT" maxWidth="1.7976931348623157E308" minWidth="10.0"
+                                       prefWidth="113.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+                </rowConstraints>
+                <Label prefHeight="36.0" prefWidth="124.0"
+                       style="-fx-font-size: 15px; -fx-font-weight: 700;" text="Gesamtpreis:">
+                    <font>
+                        <Font size="18.0"/>
+                    </font>
+                </Label>
+                <Label fx:id="totalPrice" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="150.0"
+                       style="-fx-font-size: 15px; -fx-font-weight: 700;" text="0$" textAlignment="RIGHT"
+                       GridPane.columnIndex="1">
+                    <font>
+                        <Font size="17.0"/>
+                    </font>
+                </Label>
+                <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                            prefHeight="491.0" prefWidth="252.0"
+                            style="-fx-border-width: 0; -fx-font-size: 15px;" GridPane.columnIndex="1"
+                            GridPane.hgrow="ALWAYS"/>
+            </GridPane>
+            <Label fx:id="datum" alignment="CENTER_RIGHT" layoutX="417.0" layoutY="24.0" prefHeight="36.0"
+                   prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Datum" wrapText="true"
+                   AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="14.0">
+                <font>
+                    <Font name="Poor Richard" size="18.0"/>
+                </font>
+            </Label>
+        </AnchorPane>
+    </HBox>
+    <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0" prefWidth="1067.0"
+              style="-fx-background-color: #000000;">
+        <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+        </rowConstraints>
+        <GridPane GridPane.columnIndex="3">
             <columnConstraints>
-                <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-            <GridPane GridPane.columnIndex="3">
-              <columnConstraints>
-                <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Exit" textFill="WHITE" />
-                      <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="30.0" prefWidth="281.0" style="-fx-background-color: #6666; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Abmelden" textFill="WHITE" GridPane.columnIndex="1">
-                     <GridPane.margin>
-                        <Insets left="10.0" right="25.0" />
-                     </GridPane.margin>
-                  </Button>
-               </children>
-            </GridPane>
-            <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE" GridPane.halignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin></Label>
-            <ImageView fx:id="adminButton" fitHeight="56.0" fitWidth="198.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
-               <GridPane.margin>
-                  <Insets left="20.0" />
-               </GridPane.margin>
-               <image>
-                  <Image url="@../../../../settingsBtn.png" />
-               </image>
-            </ImageView>
-            </children>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
+                    nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="30.0"
+                    prefWidth="100.0"
+                    style="-fx-background-color: #a82b2b; -fx-background-radius: 31px; -fx-font-size: 18px;"
+                    text="Exit" textFill="WHITE"/>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
+                    nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="30.0" prefWidth="281.0"
+                    style="-fx-background-color: #6666; -fx-background-radius: 31px; -fx-font-size: 18px;"
+                    text="Abmelden" textFill="WHITE" GridPane.columnIndex="1">
+                <GridPane.margin>
+                    <Insets left="10.0" right="25.0"/>
+                </GridPane.margin>
+            </Button>
         </GridPane>
-    </children>
+        <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;"
+               text="Kellner: Name Name" textFill="WHITE" GridPane.halignment="CENTER">
+            <GridPane.margin>
+                <Insets left="20.0"/>
+            </GridPane.margin>
+        </Label>
+        <ImageView fx:id="adminButton" fitHeight="56.0" fitWidth="198.0" onMouseClicked="#openSettings"
+                   pickOnBounds="true" preserveRatio="true">
+            <GridPane.margin>
+                <Insets left="20.0"/>
+            </GridPane.margin>
+            <Image url="@../../../../settingsBtn.png"/>
+        </ImageView>
+    </GridPane>
 </VBox>
