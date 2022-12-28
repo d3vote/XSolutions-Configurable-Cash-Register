@@ -252,17 +252,13 @@ public class AppController implements Initializable {
             // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
             if (currentQuantity == 0) {
                 currentTable.removeUsedProducts(item);
-                currentTable.subtractFromSubtotal(item.getProductPrice());
-                totalPrice.setText(currentTable.getSubtotal() + "€");
             }
-            // If the product's quantity is greater than 0, update the total price and bill
-            else {
-                currentTable.subtractFromSubtotal(item.getProductPrice());
-                totalPrice.setText(currentTable.getSubtotal() + "€");
-            }
+            currentTable.subtractFromSubtotal(item.getProductPrice());
+            updateBill();
         }
         billText.setText(currentTable.getBill());
     }
+
     // Parse all Products into Grid
     @FXML
     private void addProductElementsToGrid(GridPane grid) {
@@ -367,7 +363,7 @@ public class AppController implements Initializable {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
         Tables currentTable = arrayTables[currentTableIndex];
         billText.setText(currentTable.getBill());
-        totalPrice.setText(currentTable.getSubtotal() + getCurrency());
+        totalPrice.setText(currentTable.getTotal() + getCurrency());
     }
 
     @FXML
@@ -378,6 +374,7 @@ public class AppController implements Initializable {
     @FXML
     void systemSettingsChangeTaxes(ActionEvent event) {
         setTaxes(Double.parseDouble(systemNewTaxesField.getText()));
+        updateBill();
     }
 
     // PRODUCT SETTINGS TAB METHODS
@@ -410,7 +407,6 @@ public class AppController implements Initializable {
         }
         updateProductsList(currentProduct);
     }
-
 
     @FXML
     void productsSettingsChangePrice(ActionEvent event) {
