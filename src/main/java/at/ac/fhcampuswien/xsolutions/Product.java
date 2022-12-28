@@ -97,7 +97,7 @@ public class Product {
     public static List<Product> filterProductsByName(String searchTerm) {
         List<Product> filteredProducts = new ArrayList<>();
         for (Product product : productsList) {
-            if (product.getProductTitle().contains(searchTerm)) {
+            if (product.getProductTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
                 filteredProducts.add(product);
             }
         }
