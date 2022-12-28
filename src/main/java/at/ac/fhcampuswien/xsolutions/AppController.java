@@ -201,6 +201,12 @@ public class AppController implements Initializable {
     private Button systemSettings;
 
     @FXML
+    private Pane paymentMethodsPane;
+
+    @FXML
+    private Pane paymentSuccessfulPane;
+
+    @FXML
     private ChoiceBox<Currency> systemNewCurrencySelector;
 
     // Set date in the Bill
@@ -257,6 +263,37 @@ public class AppController implements Initializable {
             updateBill();
         }
         billText.setText(currentTable.getBill());
+    }
+
+    @FXML
+    void showPaymentPane(ActionEvent event) {
+        paymentMethodsPane.setVisible(true);
+        paymentSuccessfulPane.setVisible(false);
+
+    }
+
+    @FXML
+    void closePaymentPane(ActionEvent event) {
+        paymentMethodsPane.setVisible(false);
+        paymentSuccessfulPane.setVisible(false);
+    }
+
+    @FXML
+    void payCard(ActionEvent event) {
+        resetBill();
+    }
+
+    @FXML
+    void payCash(ActionEvent event) {
+        resetBill();
+    }
+
+    void resetBill() {
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+        paymentSuccessfulPane.setVisible(true);
+        currentTable.resetBill();
+        updateBill();
     }
 
     // Parse all Products into Grid
@@ -560,19 +597,19 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
-        systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
-        systemNewCurrencySelector.setValue(currencies.get(0));
-        systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {
-            @Override
-            public String toString(Currency currency) {
-                return currency.getSymbol();
-            }
+            systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
+            systemNewCurrencySelector.setValue(currencies.get(0));
+            systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {
+                @Override
+                public String toString(Currency currency) {
+                    return currency.getSymbol();
+                }
 
-            @Override
-            public Currency fromString(String string) {
-                return null;
-            }
-        });
+                @Override
+                public Currency fromString(String string) {
+                    return null;
+                }
+            });
 
         ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
         ScrollPaneProducts.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);

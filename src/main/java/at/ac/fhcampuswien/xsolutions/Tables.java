@@ -144,4 +144,15 @@ public class Tables {
     public String getTotal() {
         return df.format(subtotal * (taxes / 100) + subtotal);
     }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public void resetBill() {
+        serverName = null;
+        serverSet = false;
+        usedProducts = new ArrayList<>();
+        setSubtotal(0);
+    }
 }

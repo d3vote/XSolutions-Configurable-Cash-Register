@@ -27,3 +27,34 @@
 .cartOptions-r {
   -fx-background-radius: 0 0 33 0;
 }
+
+.cardOptionButton {
+  -fx-background-image: url("https://i.imgur.com/nWBo0wz.png");
+}
+
+.cashOptionButton {
+-fx-background-image: url("https://i.imgur.com/6UKTfc1.png");
+}
+
+.paymentMethodButton {
+    -fx-background-color: white;
+    -fx-background-radius: 33;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-border-color: #D9D9D9;
+    -fx-border-radius: 33;
+    -fx-border-width: 3.5;
+}
+
+.paymentPane {
+    -fx-background-color: white;
+    -fx-background-radius: 7;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 50, 0, 0, 0);
+}
+
+.closeBtn {
+    -fx-background-color: white;
+    -fx-background-image: url("https://i.imgur.com/6r6VJDf.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
