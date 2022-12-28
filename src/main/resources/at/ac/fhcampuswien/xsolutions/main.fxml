@@ -318,7 +318,7 @@
             </VBox>
          </children>
       </Pane>
-      <Pane fx:id="paymentMethodsPane" prefHeight="1080.0" prefWidth="1920.0">
+      <Pane fx:id="paymentMethodsPane" prefHeight="1080.0" prefWidth="1920.0" visible="false">
          <children>
             <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" />
             <Pane layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css">
