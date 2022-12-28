@@ -42,6 +42,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -50,9 +51,9 @@
    <children>
       <VBox fx:id="bg" alignment="CENTER" onMouseClicked="#unfocusFields" prefHeight="200.0" prefWidth="100.0" styleClass="loginBG" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
          <children>
-            <HBox alignment="CENTER" prefHeight="205.0" prefWidth="1647.0">
+            <HBox alignment="CENTER" prefHeight="269.0" prefWidth="1647.0">
                <children>
-                  <GridPane alignment="CENTER" prefHeight="233.0" prefWidth="257.0">
+                  <GridPane alignment="CENTER" prefHeight="226.0" prefWidth="257.0">
                      <columnConstraints>
                         <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
@@ -61,6 +62,7 @@
                         <RowConstraints maxHeight="88.0" minHeight="10.0" prefHeight="68.0" vgrow="ALWAYS" />
                         <RowConstraints maxHeight="97.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="52.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="52.0" valignment="TOP" vgrow="NEVER" />
                         <RowConstraints maxHeight="58.0" minHeight="10.0" prefHeight="52.0" valignment="TOP" vgrow="NEVER" />
                      </rowConstraints>
                      <children>
@@ -73,6 +75,7 @@
                         </Label>
                         <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" text="Falscher Benutzername oder Passwort!" textFill="#a82b2b" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                         <Button alignment="CENTER" contentDisplay="RIGHT" maxHeight="28.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogin" prefHeight="28.0" prefWidth="169.0" style="-fx-background-color: #000000; -fx-background-radius: 31px; -fx-font-size: 15px;" text="Anmelden" textFill="WHITE" GridPane.rowIndex="3" />
+                        <Pane fx:id="loadingBar" prefHeight="78.0" prefWidth="257.0" styleClass="loadingGif" stylesheets="@styles.css" visible="false" GridPane.rowIndex="5" />
                      </children>
                   </GridPane>
                </children>
@@ -98,7 +101,7 @@
                   <Insets left="70.0" />
                </GridPane.margin>
             </Button>
-            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Schließen" textFill="WHITE" GridPane.columnIndex="3">
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="39.0" prefWidth="161.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Schließen" textFill="WHITE" GridPane.columnIndex="3">
                <GridPane.margin>
                   <Insets right="40.0" />
                </GridPane.margin>

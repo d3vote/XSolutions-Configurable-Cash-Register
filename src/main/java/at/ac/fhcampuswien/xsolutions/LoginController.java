@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -44,6 +45,9 @@ public class LoginController {
     private VBox bg;
 
     @FXML
+    private Pane loadingBar;
+
+    @FXML
     void unfocusFields(MouseEvent event) {
         passwordField.setFocusTraversable(false); //Unfocus the input fileds on click
         usernameField.setFocusTraversable(false);
@@ -61,6 +65,7 @@ public class LoginController {
                 loggedInUserName = usersList.get(i).getName();
                 errorLabel.setVisible(false);
                 isAdmin = usersList.get(i).getIsAdmin();
+                loadingBar.setVisible(true);
                 executeLogin(event);
                 return;
             }

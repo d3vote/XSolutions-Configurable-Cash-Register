@@ -239,6 +239,9 @@ public class AppController implements Initializable {
     @FXML
     private TextField tipField;
 
+    @FXML
+    private Pane productImagePreview;
+
     // Set date in the Bill
     @FXML
     void dateSetter(){
@@ -752,6 +755,7 @@ public class AppController implements Initializable {
                     productsSettingsDescription.setText("Description: " + productsList.get(currentProduct).getProductDescription());
                     productsSettingsURL.setText("Image URL: " + productsList.get(currentProduct).getProductImageUrl());
                     productsSettingsPrice.setText("Price: " + productsList.get(currentProduct).getProductPrice());
+                    productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
                 }
             }
         });

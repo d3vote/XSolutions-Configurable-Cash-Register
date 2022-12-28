@@ -72,7 +72,7 @@
                         </AnchorPane>
                         <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
                            <children>
-                              <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+                              <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
                                  <children>
                                     <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                                        <font>
@@ -112,7 +112,7 @@
                                           <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem" styleClass="settingsBtn" stylesheets="@styles.css" text="System Steuerung" />
                                        </children>
                                     </FlowPane>
-                                    <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0">
+                                    <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0" visible="false">
                                        <children>
                                           <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0" />
                                           <Label layoutY="334.0" prefHeight="27.0" prefWidth="212.0" style="-fx-font-size: 18;" text="Information about User:" />
@@ -145,7 +145,7 @@
                                           <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Information about Product:" />
                                           <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Produktname: Keine" />
                                           <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Beschreibung: Keine" />
-                                          <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="828.0" text="Bild-URL: Keine" />
+                                          <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="592.0" text="Bild-URL: Keine" />
                                           <Button layoutY="476.0" mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Produktname ändern" />
                                           <Button layoutY="507.0" mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Beschreibung ändern" />
                                           <Button layoutY="538.0" mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Bild-URL ändern" />
@@ -157,11 +157,12 @@
                                           <Button layoutY="569.0" mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Preis ändern" />
                                           <TextField fx:id="newProductPrice" layoutX="214.0" layoutY="569.0" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
                                           <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Preis: Keiner" />
+                                          <Pane fx:id="productImagePreview" layoutX="602.0" layoutY="317.0" prefHeight="142.0" prefWidth="212.0" />
                                        </children>
                                     </Pane>
                                  </children>
                               </Pane>
-                              <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <GridPane prefHeight="62.0" prefWidth="814.0">
                                        <columnConstraints>
@@ -193,7 +194,6 @@
                                           </Label>
                                        </children>
                                     </GridPane>
-                                    <Label fx:id="searchResult" alignment="CENTER" contentDisplay="CENTER" layoutY="60.0" prefHeight="930.0" prefWidth="868.0" text="Keine Produkte wurden gefunden" />
                                     <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0" style="-fx-vbar-unit-increment: 100;">
                                        <content>
                                           <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="915.0" prefWidth="865.0" vgap="20.0">

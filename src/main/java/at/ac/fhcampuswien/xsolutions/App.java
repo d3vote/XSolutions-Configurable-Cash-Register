@@ -53,8 +53,6 @@ public class App extends Application {
         //Sort Products List
         productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
 
-        filterProductsByName("Piz");
-
         launch();
     }
 }
