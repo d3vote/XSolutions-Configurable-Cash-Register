@@ -11,8 +11,7 @@ import java.util.Comparator;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.getTableCount;
 import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigTableCount;
-import static at.ac.fhcampuswien.xsolutions.Product.JSONtoProductList;
-import static at.ac.fhcampuswien.xsolutions.Product.productsList;
+import static at.ac.fhcampuswien.xsolutions.Product.*;
 import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
 public class App extends Application {
@@ -53,6 +52,9 @@ public class App extends Application {
         generateTables(getTableCount());
         //Sort Products List
         productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
+
+        filterProductsByName("Piz");
+
         launch();
     }
 }

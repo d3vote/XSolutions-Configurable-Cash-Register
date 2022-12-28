@@ -93,4 +93,14 @@ public class Product {
             productsList = objectMapper.readValue(productsListPath, typeFactory.constructCollectionType(List.class, Product.class));
         }
     }
+
+    public static List<Product> filterProductsByName(String searchTerm) {
+        List<Product> filteredProducts = new ArrayList<>();
+        for (Product product : productsList) {
+            if (product.getProductTitle().contains(searchTerm)) {
+                filteredProducts.add(product);
+            }
+        }
+        return filteredProducts;
+    }
 }

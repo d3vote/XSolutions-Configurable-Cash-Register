@@ -29,8 +29,7 @@ import static at.ac.fhcampuswien.xsolutions.App.*;
 import static at.ac.fhcampuswien.xsolutions.Configurator.setValue;
 import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
-import static at.ac.fhcampuswien.xsolutions.Product.productToJSON;
-import static at.ac.fhcampuswien.xsolutions.Product.productsList;
+import static at.ac.fhcampuswien.xsolutions.Product.*;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 import static at.ac.fhcampuswien.xsolutions.User.userToJson;
 import static at.ac.fhcampuswien.xsolutions.User.usersList;
@@ -267,8 +266,13 @@ public class AppController implements Initializable {
 
     @FXML
     void showPaymentPane(ActionEvent event) {
-        paymentMethodsPane.setVisible(true);
-        paymentSuccessfulPane.setVisible(false);
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+
+        if (Double.parseDouble(currentTable.getTotal()) > 0){
+            paymentMethodsPane.setVisible(true);
+            paymentSuccessfulPane.setVisible(false);
+        }
 
     }
 
@@ -298,7 +302,8 @@ public class AppController implements Initializable {
 
     // Parse all Products into Grid
     @FXML
-    private void addProductElementsToGrid(GridPane grid) {
+    private void addProductElementsToGrid(GridPane grid, List<Product> productsList) {
+        grid.getChildren().clear();
         int row = 0;
         int col = 0;
         for (Product item : productsList) {
@@ -624,7 +629,7 @@ public class AppController implements Initializable {
         }
 
         dateSetter();
-        addProductElementsToGrid(GridPaneProducts);
+        addProductElementsToGrid(GridPaneProducts, productsList);
 
         // Generate Lists of Tables, Products and Users
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
@@ -672,6 +677,11 @@ public class AppController implements Initializable {
                     productsSettingsPrice.setText("Price: " + productsList.get(currentProduct).getProductPrice());
                 }
             }
+        });
+
+        // Create a Search Field Listener and update Products Grid
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            addProductElementsToGrid(GridPaneProducts, filterProductsByName(newValue));
         });
 
     }
