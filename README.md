@@ -9,6 +9,8 @@ Welcome to the Configurable Cashier Register project! This project is an attempt
 - Customizable tax rates
 - Login system with username and password
 - Ability to add new users by the admin
+- Ability to add unlimited & customizable Products
+- 
 
 ## How to run
 1) Clone the file to your directory.
