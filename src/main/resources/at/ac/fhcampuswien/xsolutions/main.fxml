@@ -72,7 +72,7 @@
                         </AnchorPane>
                         <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
                            <children>
-                              <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+                              <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
                                  <children>
                                     <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                                        <font>
@@ -81,7 +81,7 @@
                                     </Label>
                                     <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="105.0" prefHeight="50.0" prefWidth="212.0" visible="false">
                                        <children>
-                                          <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 12;" text="Input Tables amount:">
+                                          <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 12;" text="Anzahl der Tische:">
                                              <VBox.margin>
                                                 <Insets bottom="4.0" top="4.0" />
                                              </VBox.margin>
@@ -112,56 +112,56 @@
                                           <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem" styleClass="settingsBtn" stylesheets="@styles.css" text="System Steuerung" />
                                        </children>
                                     </FlowPane>
-                                    <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0" visible="false">
+                                    <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0">
                                        <children>
                                           <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0" />
                                           <Label layoutY="334.0" prefHeight="27.0" prefWidth="212.0" style="-fx-font-size: 18;" text="Information about User:" />
-                                          <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0" prefWidth="212.0" text="Full Name: None" />
-                                          <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0" prefWidth="212.0" text="Username: None" />
-                                          <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0" prefWidth="212.0" text="Admin rights: None" />
-                                          <Button layoutY="455.0" mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Full Name" />
-                                          <Button layoutY="486.0" mnemonicParsing="false" onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Username" />
-                                          <Button layoutY="548.0" mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Toggle Admin Rights" />
-                                          <Button layoutY="517.0" mnemonicParsing="false" onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Password" />
-                                          <Button layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Delete User" />
-                                          <Button layoutX="145.0" layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Create New User" />
-                                          <TextField fx:id="newFullNameField" layoutX="160.0" layoutY="455.0" prefHeight="25.0" prefWidth="164.0" promptText="New Full Name" />
-                                          <TextField fx:id="newUsernameField" layoutX="160.0" layoutY="486.0" prefHeight="25.0" prefWidth="164.0" promptText="New Username" />
-                                          <TextField fx:id="newPasswordField" layoutX="160.0" layoutY="517.0" prefHeight="25.0" prefWidth="164.0" promptText="New Password" />
+                                          <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0" prefWidth="212.0" text="Vollständiger Name: Keiner" />
+                                          <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0" prefWidth="212.0" text="Benutzername: Keiner" />
+                                          <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0" prefWidth="212.0" text="Adminrechte: Keine" />
+                                          <Button layoutY="455.0" mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Name ändern" />
+                                          <Button layoutY="486.0" mnemonicParsing="false" onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Benutzernamen ändern" />
+                                          <Button layoutY="548.0" mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Administratorrechte umschalten" />
+                                          <Button layoutY="517.0" mnemonicParsing="false" onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Passwort ändern" />
+                                          <Button layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Benutzer löschen" />
+                                          <Button layoutX="214.0" layoutY="599.0" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Neuen Benutzer erstellen" />
+                                          <TextField fx:id="newFullNameField" layoutX="214.0" layoutY="452.0" prefHeight="25.0" prefWidth="164.0" promptText="Neuer vollständiger Name" />
+                                          <TextField fx:id="newUsernameField" layoutX="214.0" layoutY="486.0" prefHeight="25.0" prefWidth="164.0" promptText="Neuer Benutzername" />
+                                          <TextField fx:id="newPasswordField" layoutX="214.0" layoutY="518.0" prefHeight="25.0" prefWidth="164.0" promptText="Neues Kennwort" />
                                        </children>
                                     </Pane>
                                     <Pane fx:id="systemSettingsPane" layoutY="105.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="638.0" prefWidth="828.0" visible="false">
                                        <children>
                                           <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="System Steuerung:" />
-                                          <Button layoutY="34.0" mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Currency" />
-                                          <Button layoutY="63.0" mnemonicParsing="false" onAction="#systemSettingsChangeTaxes" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Taxes" />
-                                          <TextField fx:id="systemNewTaxesField" layoutX="160.0" layoutY="63.0" prefHeight="25.0" prefWidth="164.0" promptText="New Taxes" />
-                                          <ChoiceBox fx:id="systemNewCurrencySelector" layoutX="160.0" layoutY="34.0" prefWidth="164.0" />
+                                          <Button layoutY="34.0" mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Währung ändern" />
+                                          <Button layoutY="63.0" mnemonicParsing="false" onAction="#systemSettingsChangeTaxes" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Steuern ändern" />
+                                          <TextField fx:id="systemNewTaxesField" layoutX="213.0" layoutY="62.0" prefHeight="25.0" prefWidth="164.0" promptText="Neue Steuern" />
+                                          <ChoiceBox fx:id="systemNewCurrencySelector" layoutX="213.0" layoutY="33.0" prefWidth="164.0" />
                                        </children>
                                     </Pane>
                                     <Pane fx:id="productsSettingsPane" layoutY="115.0" prefHeight="663.0" prefWidth="828.0" visible="false">
                                        <children>
                                           <ListView fx:id="productsListViewSettings" layoutY="-10.0" prefHeight="311.0" prefWidth="828.0" />
                                           <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Information about Product:" />
-                                          <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Product Name: None" />
-                                          <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Description: None" />
-                                          <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="828.0" text="Image URL: None" />
-                                          <Button layoutY="476.0" mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Product Name" />
-                                          <Button layoutY="507.0" mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Description" />
-                                          <Button layoutY="538.0" mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Image URL" />
-                                          <Button layoutX="-1.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Delete Product" />
-                                          <Button layoutX="144.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Create New Product" />
-                                          <TextField fx:id="newProductName" layoutX="160.0" layoutY="476.0" prefHeight="25.0" prefWidth="669.0" promptText="New Product Name" />
-                                          <TextField fx:id="newProductDescription" layoutX="160.0" layoutY="507.0" prefHeight="25.0" prefWidth="669.0" promptText="New Description" />
-                                          <TextField fx:id="newURL" layoutX="160.0" layoutY="538.0" prefHeight="25.0" prefWidth="669.0" promptText="New Image URL" />
-                                          <Button layoutY="569.0" mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Price" />
-                                          <TextField fx:id="newProductPrice" layoutX="160.0" layoutY="569.0" prefHeight="25.0" prefWidth="669.0" promptText="New Price" />
-                                          <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Price: None" />
+                                          <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Produktname: Keine" />
+                                          <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Beschreibung: Keine" />
+                                          <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="828.0" text="Bild-URL: Keine" />
+                                          <Button layoutY="476.0" mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Produktname ändern" />
+                                          <Button layoutY="507.0" mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Beschreibung ändern" />
+                                          <Button layoutY="538.0" mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Bild-URL ändern" />
+                                          <Button layoutX="-1.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Produkt löschen" />
+                                          <Button layoutX="212.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Neues Produkt erstellen" />
+                                          <TextField fx:id="newProductName" layoutX="214.0" layoutY="476.0" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Produktname" />
+                                          <TextField fx:id="newProductDescription" layoutX="214.0" layoutY="507.0" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
+                                          <TextField fx:id="newURL" layoutX="214.0" layoutY="538.0" prefHeight="25.0" prefWidth="600.0" promptText="Neue Bild-URL" />
+                                          <Button layoutY="569.0" mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Preis ändern" />
+                                          <TextField fx:id="newProductPrice" layoutX="214.0" layoutY="569.0" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
+                                          <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Preis: Keiner" />
                                        </children>
                                     </Pane>
                                  </children>
                               </Pane>
-                              <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <GridPane prefHeight="62.0" prefWidth="814.0">
                                        <columnConstraints>
@@ -291,7 +291,7 @@
                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
                            <children>
-                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Exit" textFill="WHITE" />
+                              <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Schließen" textFill="WHITE" />
                               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="30.0" prefWidth="281.0" style="-fx-background-color: #6666; -fx-background-radius: 31px; -fx-font-size: 18px;" text="Abmelden" textFill="WHITE" GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" right="25.0" />
