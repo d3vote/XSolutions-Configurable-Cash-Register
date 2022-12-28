@@ -3,10 +3,8 @@ package at.ac.fhcampuswien.xsolutions;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.*;
 
 import static at.ac.fhcampuswien.xsolutions.App.getDate;
 import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigCurrency;
@@ -94,7 +92,7 @@ public class Tables {
                     System.lineSeparator() +
 
                     "Zwischensumme: " + getSubtotal() + currency + System.lineSeparator() +
-                    "Steuer (" + taxes + "%): " + calcuateTaxesAmount() + currency + System.lineSeparator() +
+                    "Steuer (" + taxes + "%): " + calculateTaxesAmount() + currency + System.lineSeparator() +
                     "Gesamtsumme: " + getTotal() + currency + System.lineSeparator();
         } else
             return "Rechnung ist leer";
@@ -110,7 +108,7 @@ public class Tables {
         df.format(subtotal += num);
     }
 
-    public String calcuateTaxesAmount(){
+    public String calculateTaxesAmount(){
         double taxesAmount = subtotal * (taxes /100);
         return df.format(taxesAmount);
     }

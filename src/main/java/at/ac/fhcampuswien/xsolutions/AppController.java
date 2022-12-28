@@ -356,7 +356,7 @@ public class AppController implements Initializable {
 
     // Tab Switching
     @FXML
-    void setupSystem(ActionEvent event) {
+    void setupSystem() {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(false);
         productsSettingsPane.setVisible(false);
@@ -364,7 +364,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void setupProducts(ActionEvent event) {
+    void setupProducts() {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(false);
         productsSettingsPane.setVisible(true);
@@ -372,7 +372,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void setupTables(ActionEvent event) {
+    void setupTables() {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(true);
         productsSettingsPane.setVisible(false);
@@ -380,7 +380,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void setupUsers(ActionEvent event) {
+    void setupUsers() {
         tablesSettingPane.setVisible(false);
         usersSettingsPane.setVisible(true);
         productsSettingsPane.setVisible(false);
@@ -389,7 +389,7 @@ public class AppController implements Initializable {
 
     // SYSTEM SETTINGS TAB METHODS
     @FXML
-    void systemSettingsChangeCurrency(ActionEvent event) throws IOException {
+    void systemSettingsChangeCurrency() throws IOException {
         String newCurrency = String.valueOf(systemNewCurrencySelector.getValue().getSymbol());
         setCurrency(newCurrency);
         setValue("currency", String.valueOf(newCurrency));
@@ -404,19 +404,19 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void systemSettingsChangeLanguage(ActionEvent event) {
+    void systemSettingsChangeLanguage() {
 
     }
 
     @FXML
-    void systemSettingsChangeTaxes(ActionEvent event) {
+    void systemSettingsChangeTaxes() {
         setTaxes(Double.parseDouble(systemNewTaxesField.getText()));
         updateBill();
     }
 
     // PRODUCT SETTINGS TAB METHODS
     @FXML
-    void productsSettingsChangeName(ActionEvent event) {
+    void productsSettingsChangeName() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newProductName.getText();
         if (!Objects.equals(text, ""))  {
@@ -426,7 +426,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void productsSettingsChangeURL(ActionEvent event) {
+    void productsSettingsChangeURL() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newURL.getText();
         if (!Objects.equals(text, ""))  {
@@ -436,7 +436,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void productsSettingsChangeDescription(ActionEvent event) {
+    void productsSettingsChangeDescription() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newProductDescription.getText();
         if (!Objects.equals(text, ""))  {
@@ -446,7 +446,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void productsSettingsChangePrice(ActionEvent event) {
+    void productsSettingsChangePrice() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         Double text = Double.valueOf(newProductPrice.getText());
         if (!Objects.equals(text, ""))  {
@@ -456,14 +456,14 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void productsSettingsCreateNew(MouseEvent event) throws IOException {
+    void productsSettingsCreateNew() throws IOException {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         new Product("New Product", 0, "description");
         updateProductsList(currentProduct);
     }
 
     @FXML
-    void productsSettingsDelete(MouseEvent event) {
+    void productsSettingsDelete() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         productsList.remove(currentProduct);
         updateProductsList(currentProduct);
@@ -485,7 +485,7 @@ public class AppController implements Initializable {
 
     // USER SETTINGS TAB METHODS
     @FXML
-    void userSettingsChangeName(ActionEvent event) {
+    void userSettingsChangeName() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         String text = newFullNameField.getText();
         if (!Objects.equals(text, ""))  {
@@ -495,7 +495,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void userSettingsChangePassword(ActionEvent event) {
+    void userSettingsChangePassword() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         String text = newPasswordField.getText();
         if (!Objects.equals(text, ""))  {
@@ -505,7 +505,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void userSettingsChangeUsername(ActionEvent event) {
+    void userSettingsChangeUsername() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         String text = newUsernameField.getText();
         if (!Objects.equals(text, ""))  {
@@ -515,21 +515,21 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void userSettingsToggleAdminRights(ActionEvent event) {
+    void userSettingsToggleAdminRights() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         usersList.get(currentUser).setAdmin(!usersList.get(currentUser).getIsAdmin());
         updateUsersList(currentUser);
     }
 
     @FXML
-    void userSettingsDeleteUser(MouseEvent event) {
+    void userSettingsDeleteUser() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         usersList.remove(currentUser);
         updateUsersList(currentUser);
     }
 
     @FXML
-    void userSettingsCreateNewUser(MouseEvent event) throws IOException {
+    void userSettingsCreateNewUser() throws IOException {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         new User("New User", false, "newuser");
         updateUsersList(currentUser);
@@ -554,7 +554,7 @@ public class AppController implements Initializable {
 
     // Update Table Amount inside JSON, update List and Config
     @FXML
-    void changeValue(ActionEvent event) throws IOException {
+    void changeValue() throws IOException {
         int newSize = Integer.parseInt(settingsInputField.getText());
 
         // Regenerate Tables
@@ -574,14 +574,14 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void openSettings(MouseEvent event) {
+    void openSettings() {
         settingsTab.setVisible(!settingsTab.isVisible());
         productsPane.setVisible(!productsPane.isVisible());
     }
 
     // "Crash" button
     @FXML
-    void exitButton(MouseEvent event) {
+    void exitButton() {
         System.exit(0);
     }
 
