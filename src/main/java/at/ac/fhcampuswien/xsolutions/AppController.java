@@ -477,7 +477,7 @@ public class AppController implements Initializable {
     void systemSettingsChangeCurrency() throws IOException {
         String newCurrency = String.valueOf(systemNewCurrencySelector.getValue().getSymbol());
         setCurrency(newCurrency);
-        setValue("currency", String.valueOf(newCurrency));
+        setValue("Währung", String.valueOf(newCurrency));
         updateBill();
     }
 
@@ -543,7 +543,7 @@ public class AppController implements Initializable {
     @FXML
     void productsSettingsCreateNew() throws IOException {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        new Product("New Product", 0, "description");
+        new Product("Neues Produkt", 0, "");
         updateProductsList(currentProduct);
     }
 
@@ -560,9 +560,9 @@ public class AppController implements Initializable {
             productsListViewSettings.getItems().add(product.getProductTitle());
         }
         if (currentProduct >= 0 && currentProduct < productsListViewSettings.getItems().size()){
-            productsSettingsName.setText("Product Name: " + productsList.get(currentProduct).getProductTitle());
-            productsSettingsDescription.setText("Description: " + productsList.get(currentProduct).getProductDescription());
-            productsSettingsURL.setText("Image URL: " + productsList.get(currentProduct).getProductImageUrl());
+            productsSettingsName.setText("Produkt Name: " + productsList.get(currentProduct).getProductTitle());
+            productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
+            productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
             productsListViewSettings.getSelectionModel().select(currentProduct);
         }
         productToJSON();
@@ -616,7 +616,7 @@ public class AppController implements Initializable {
     @FXML
     void userSettingsCreateNewUser() throws IOException {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
-        new User("New User", false, "newuser");
+        new User("Neuer Benutzer", false, "NeuerBenutzer");
         updateUsersList(currentUser);
     }
 
@@ -629,9 +629,9 @@ public class AppController implements Initializable {
         }
         // Update User Info
         if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
-            userSettingsFullName.setText("Full Name: " + usersList.get(currentUser).getName());
-            userSettingsUsername.setText("Username: " + usersList.get(currentUser).getUserName());
-            userSettingsAdminRights.setText("Admin rights: " + usersList.get(currentUser).getIsAdmin());
+            userSettingsFullName.setText("Name: " + usersList.get(currentUser).getName());
+            userSettingsUsername.setText("Benutzername: " + usersList.get(currentUser).getUserName());
+            userSettingsAdminRights.setText("Admin-Rechte: " + usersList.get(currentUser).getIsAdmin());
             usersListView.getSelectionModel().select(currentUser);
         }
         userToJson();
@@ -738,9 +738,9 @@ public class AppController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int currentUser = usersListView.getSelectionModel().getSelectedIndex();
                 if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
-                    userSettingsFullName.setText("Full Name: " + usersList.get(currentUser).getName());
-                    userSettingsUsername.setText("Username: " + usersList.get(currentUser).getUserName());
-                    userSettingsAdminRights.setText("Admin rights: " + usersList.get(currentUser).getIsAdmin());
+                    userSettingsFullName.setText("Name: " + usersList.get(currentUser).getName());
+                    userSettingsUsername.setText("Benutzername: " + usersList.get(currentUser).getUserName());
+                    userSettingsAdminRights.setText("Admin-Rechte: " + usersList.get(currentUser).getIsAdmin());
                 }
             }
         });
@@ -751,10 +751,10 @@ public class AppController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
                 if (currentProduct >= 0 && currentProduct < productsListViewSettings.getItems().size()){
-                    productsSettingsName.setText("Product Name: " + productsList.get(currentProduct).getProductTitle());
-                    productsSettingsDescription.setText("Description: " + productsList.get(currentProduct).getProductDescription());
-                    productsSettingsURL.setText("Image URL: " + productsList.get(currentProduct).getProductImageUrl());
-                    productsSettingsPrice.setText("Price: " + productsList.get(currentProduct).getProductPrice());
+                    productsSettingsName.setText("Produkt Name: " + productsList.get(currentProduct).getProductTitle());
+                    productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
+                    productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
+                    productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice());
                     productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
                 }
             }
