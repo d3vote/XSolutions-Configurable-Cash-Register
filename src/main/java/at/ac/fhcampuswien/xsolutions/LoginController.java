@@ -29,7 +29,7 @@ public class LoginController {
     public static boolean isAdmin;
 
     public static String getLoggedInUserName() {
-        return "Kellner: " + loggedInUserName;
+        return loggedInUserName;
     }
 
     public static boolean getIsAdminLogin() {

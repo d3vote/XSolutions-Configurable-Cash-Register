@@ -1,44 +1,31 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.StringReader;
 import java.net.URL;
-import java.nio.file.Paths;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import com.fasterxml.jackson.databind.type.TypeFactory;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 
-import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
-import static at.ac.fhcampuswien.xsolutions.App.updateTableCount;
+import static at.ac.fhcampuswien.xsolutions.App.*;
+import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.productToJSON;
 import static at.ac.fhcampuswien.xsolutions.Product.productsList;
@@ -198,10 +185,7 @@ public class AppController implements Initializable {
     // Set date in the Bill
     @FXML
     void dateSetter(){
-        LocalDate currentDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        String dateString = currentDate.format(formatter);
-        datum.setText(dateString);
+        datum.setText(getDate());
     }
 
     // Add Product into Bill of selected Table
@@ -223,8 +207,9 @@ public class AppController implements Initializable {
         // Add product to usedProducts list
         currentTable.addUsedProducts(item);
         // Update Total Price and Bill
-        currentTable.addToTotal(item.getProductPrice());
-        totalPrice.setText(currentTable.getAmountAfterTaxes() + "$");
+        currentTable.addToSubtotal(item.getProductPrice());
+        currentTable.setServerName(getLoggedInUserName());
+        totalPrice.setText(currentTable.getSubtotal() + "€");
         billText.setText(currentTable.getBill());
     }
 
@@ -244,8 +229,7 @@ public class AppController implements Initializable {
             // creates Tooltip that shows productDescription
             Tooltip tt = new Tooltip();
             tt.setText(item.productDescription);
-            tt.setShowDelay(Duration.millis(10));
-            tt.setHideDelay(Duration.ZERO);
+            tt.setShowDelay(Duration.millis(100));
             tt.setStyle("-fx-font: normal bold 12 Langdon; "
                     + "-fx-base: #AE3522; "
                     + "-fx-text-fill: orange;");
@@ -508,7 +492,7 @@ public class AppController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1){
         ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
         ScrollPaneProducts.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        kellnerLabel.setText(LoginController.getLoggedInUserName());
+        kellnerLabel.setText("Kellner: " + getLoggedInUserName());
         userSettings.setVisible(isAdmin);
         tablesSettings.setVisible(isAdmin);
         productsSettings.setVisible(isAdmin);
@@ -540,7 +524,7 @@ public class AppController implements Initializable {
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
                 billText.setText(arrayTables[currentTable].getBill());        //Setting the Info of the Bill
-                totalPrice.setText(arrayTables[currentTable].getAmountAfterTaxes() + "$");
+                totalPrice.setText(arrayTables[currentTable].getSubtotal() + "€");
             }
         });
 
