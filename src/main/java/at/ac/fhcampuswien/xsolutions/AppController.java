@@ -13,7 +13,6 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
@@ -43,6 +42,8 @@ public class AppController implements Initializable {
                                                 Currency.getInstance(Locale.GERMANY),
                                                 Currency.getInstance(Locale.UK),
                                                 Currency.getInstance(Locale.JAPAN));
+    double restMoney;
+
     @FXML
     private Label totalPrice;
 
@@ -208,6 +209,36 @@ public class AppController implements Initializable {
     @FXML
     private ChoiceBox<Currency> systemNewCurrencySelector;
 
+    @FXML
+    private Label paymentTotalBeforeAllLabel;
+
+    @FXML
+    private Label paymentTipLabel;
+
+    @FXML
+    private Label paymentTotalLabel;
+
+    @FXML
+    private Label restMoneyLabel;
+
+    @FXML
+    private TextField paymentAmountPayedField;
+
+    @FXML
+    private Button printBillButton;
+
+    @FXML
+    private Pane payCashPane;
+
+    @FXML
+    private Label restMoneyLabelSuccess;
+
+    @FXML
+    private Label errorLabel;
+
+    @FXML
+    private TextField tipField;
+
     // Set date in the Bill
     @FXML
     void dateSetter(){
@@ -265,7 +296,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void showPaymentPane(ActionEvent event) {
+    void showPaymentPane() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
         Tables currentTable = arrayTables[currentTableIndex];
 
@@ -277,25 +308,71 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void closePaymentPane(ActionEvent event) {
+    void closePaymentPane() {
         paymentMethodsPane.setVisible(false);
         paymentSuccessfulPane.setVisible(false);
+        payCashPane.setVisible(false);
+        restMoneyLabelSuccess.setText(" ");
+    }
+
+    @FXML
+    void setTipButton(ActionEvent event) {
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+
+        currentTable.setTip(Double.parseDouble(tipField.getText()));
     }
 
     @FXML
     void payCard(ActionEvent event) {
         resetBill();
+        paymentSuccessfulPane.setVisible(true);
     }
 
     @FXML
     void payCash(ActionEvent event) {
-        resetBill();
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+
+        paymentTotalBeforeAllLabel.setText("Gesammtsumme inkl. MWSt: " + currentTable.getTotal() + getCurrency());
+        paymentTipLabel.setText("Trinkgeld: " + currentTable.getTip() + getCurrency());
+        paymentTotalLabel.setText("Gesammtsumme inkl. Trinkgeld u. MWSt: " + df.format(Double.parseDouble(currentTable.getTotal()) + currentTable.getTip()) + getCurrency());
+        payCashPane.setVisible(true);
     }
+
+    @FXML
+    void confirmPaymentCash(ActionEvent event) {
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+
+        double totalAsDouble = Double.parseDouble(currentTable.getTotal());
+        double tip = currentTable.getTip();
+        double payed = Double.parseDouble(paymentAmountPayedField.getText());
+        double amountWithTip = totalAsDouble + tip;
+
+        if (payed >= amountWithTip) {
+            errorLabel.setVisible(false);
+            restMoney = payed - amountWithTip;
+            String formattedChange = df.format(restMoney);
+            resetBill();
+            payCashPane.setVisible(false);
+
+            if (restMoney != 0) {
+                restMoneyLabelSuccess.setText("Restgeld: " + String.valueOf(restMoney) + getCurrency());
+            }
+
+            paymentSuccessfulPane.setVisible(true);
+
+        } else {
+            errorLabel.setVisible(true);
+        }
+    }
+
+
 
     void resetBill() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
         Tables currentTable = arrayTables[currentTableIndex];
-        paymentSuccessfulPane.setVisible(true);
         currentTable.resetBill();
         updateBill();
     }

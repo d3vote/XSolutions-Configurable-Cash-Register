@@ -17,6 +17,7 @@ public class Tables {
     private int tableNumber;
     private static double taxes = 20;
     private static String currency;
+    private double tip;
 
     static {
         try {
@@ -26,7 +27,7 @@ public class Tables {
         }
     }
 
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+    public static final DecimalFormat df = new DecimalFormat("0.00");
     private static int count;
     private ArrayList<Product> usedProducts;
     private String serverName;
@@ -147,7 +148,16 @@ public class Tables {
         this.subtotal = subtotal;
     }
 
+    public double getTip() {
+        return tip;
+    }
+
+    public void setTip(double tip) {
+        this.tip = tip;
+    }
+
     public void resetBill() {
+        tip = 0;
         serverName = null;
         serverSet = false;
         usedProducts = new ArrayList<>();
