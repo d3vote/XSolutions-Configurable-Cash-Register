@@ -2,6 +2,7 @@ package at.ac.fhcampuswien.xsolutions;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,7 +15,7 @@ public class Tables {
     private double subtotal;
     private int tableNumber;
     final static double TAXES = 20;
-    private static final DecimalFormat df = new DecimalFormat("#.00");
+    private static DecimalFormat df = new DecimalFormat("0.00");
     private static int count;
     private ArrayList<Product> usedProducts;
     private String serverName;
@@ -99,5 +100,19 @@ public class Tables {
     public String calcuateTaxesAmount(){
         double taxesAmount = subtotal * (TAXES/100);
         return df.format(taxesAmount);
+    }
+
+    public ArrayList<Product> getUsedProducts() {
+        return usedProducts;
+    }
+
+    public void removeUsedProducts(Product item) {
+        usedProducts.remove(item);
+    }
+    public void subtractFromSubtotal(double num) {
+        // Check if subtracting num from subtotal would result in a negative value
+        if (subtotal - num >= 0) {
+            df.format(subtotal -= num);
+        }
     }
 }

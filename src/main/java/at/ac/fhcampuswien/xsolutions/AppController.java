@@ -213,6 +213,36 @@ public class AppController implements Initializable {
         billText.setText(currentTable.getBill());
     }
 
+    @FXML
+    void removeFromBillButton(Product item) {
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+
+        // Check if the product is in the map
+        if (currentTable.getProductCounter().containsKey(item) && currentTable.getUsedProducts().contains(item)) {
+            // If the product is in the map, decrease its quantity by 1
+            int currentQuantity = currentTable.getProductCounter().get(item);
+            if (currentQuantity != 0) {
+                currentQuantity--;
+            }
+
+            // Update the map with the updated quantity of the product
+            currentTable.getProductCounter().put(item, currentQuantity);
+
+            // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
+            if (currentQuantity == 0) {
+                currentTable.removeUsedProducts(item);
+                currentTable.subtractFromSubtotal(item.getProductPrice());
+                totalPrice.setText(currentTable.getSubtotal() + "€");
+            }
+            // If the product's quantity is greater than 0, update the total price and bill
+            else {
+                currentTable.subtractFromSubtotal(item.getProductPrice());
+                totalPrice.setText(currentTable.getSubtotal() + "€");
+            }
+        }
+        billText.setText(currentTable.getBill());
+    }
     // Parse all Products into Grid
     @FXML
     private void addProductElementsToGrid(GridPane grid) {
@@ -269,12 +299,6 @@ public class AppController implements Initializable {
                 grid.addRow(grid.getRowCount()+1);
             }
         }
-    }
-
-
-    @FXML
-    void removeFromBillButton(Product item){
-
     }
 
     // Tab Switching
