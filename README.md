@@ -9,6 +9,7 @@ Welcome to the Configurable Cashier Register project! This project is an attempt
 - Customizable tax rates
 - Login system with username and password
 - Ability to add new users by the admin
+- Ability to add unlimited & customizable Products
 
 ## How to run
 1) Clone the file to your directory.
@@ -26,6 +27,5 @@ Welcome to the Configurable Cashier Register project! This project is an attempt
 ## Authors
 - [Dmytro Shandra](https://www.github.com/d3vote)
 - [Tolga Topal](https://github.com/Torsoto)
-- [Theresa Sunitsch](https://github.com/misramful)
 - [Torgyn Zhamankulova](https://github.com/Tora-dotcom)
 - [Etrit Talla](https://github.com/EtrittallaFH)
