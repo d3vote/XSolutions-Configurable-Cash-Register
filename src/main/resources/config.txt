@@ -1,1 +1,2 @@
-tableCount = 12
+tableCount = 10
+currency = £

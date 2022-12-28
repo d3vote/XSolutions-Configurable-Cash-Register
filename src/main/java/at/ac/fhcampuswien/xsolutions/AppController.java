@@ -23,8 +23,10 @@ import java.util.*;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 import static at.ac.fhcampuswien.xsolutions.App.*;
+import static at.ac.fhcampuswien.xsolutions.Configurator.setValue;
 import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.productToJSON;
@@ -35,6 +37,13 @@ import static at.ac.fhcampuswien.xsolutions.User.usersList;
 
 
 public class AppController implements Initializable {
+    String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
+    ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
+    String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
+    List<Currency> currencies = Arrays.asList(Currency.getInstance(Locale.US),
+                                                Currency.getInstance(Locale.GERMANY),
+                                                Currency.getInstance(Locale.UK),
+                                                Currency.getInstance(Locale.JAPAN));
     @FXML
     private Label totalPrice;
 
@@ -49,10 +58,6 @@ public class AppController implements Initializable {
 
     @FXML
     private ListView<String> tablesListView;                // Left Panel
-
-    String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
-    ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
-    String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
 
     @FXML
     private ImageView adminButton;
@@ -176,11 +181,27 @@ public class AppController implements Initializable {
 
     @FXML
     private Label datum;
+
     @FXML
     private Button add;
+
     @FXML
     private Button remove;
 
+    @FXML
+    private Pane systemSettingsPane;
+
+    @FXML
+    private TextField systemNewCurrencyField;
+
+    @FXML
+    private TextField systemNewTaxesField;
+
+    @FXML
+    private Button systemSettings;
+
+    @FXML
+    private ChoiceBox<Currency> systemNewCurrencySelector;
 
     // Set date in the Bill
     @FXML
@@ -209,8 +230,7 @@ public class AppController implements Initializable {
         // Update Total Price and Bill
         currentTable.addToSubtotal(item.getProductPrice());
         currentTable.setServerName(getLoggedInUserName());
-        totalPrice.setText(currentTable.getSubtotal() + "€");
-        billText.setText(currentTable.getBill());
+        updateBill();
     }
 
     @FXML
@@ -303,10 +323,19 @@ public class AppController implements Initializable {
 
     // Tab Switching
     @FXML
+    void setupSystem(ActionEvent event) {
+        usersSettingsPane.setVisible(false);
+        tablesSettingPane.setVisible(false);
+        productsSettingsPane.setVisible(false);
+        systemSettingsPane.setVisible(true);
+    }
+
+    @FXML
     void setupProducts(ActionEvent event) {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(false);
         productsSettingsPane.setVisible(true);
+        systemSettingsPane.setVisible(false);
     }
 
     @FXML
@@ -314,6 +343,7 @@ public class AppController implements Initializable {
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(true);
         productsSettingsPane.setVisible(false);
+        systemSettingsPane.setVisible(false);
     }
 
     @FXML
@@ -321,13 +351,33 @@ public class AppController implements Initializable {
         tablesSettingPane.setVisible(false);
         usersSettingsPane.setVisible(true);
         productsSettingsPane.setVisible(false);
+        systemSettingsPane.setVisible(false);
+    }
+
+    // SYSTEM SETTINGS TAB METHODS
+    @FXML
+    void systemSettingsChangeCurrency(ActionEvent event) throws IOException {
+        String newCurrency = String.valueOf(systemNewCurrencySelector.getValue().getSymbol());
+        setCurrency(newCurrency);
+        setValue("currency", String.valueOf(newCurrency));
+        updateBill();
+    }
+
+    void updateBill(){
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+        billText.setText(currentTable.getBill());
+        totalPrice.setText(currentTable.getSubtotal() + getCurrency());
     }
 
     @FXML
-    void setupBill(ActionEvent event) {
-        usersSettingsPane.setVisible(false);
-        tablesSettingPane.setVisible(false);
-        productsSettingsPane.setVisible(false);
+    void systemSettingsChangeLanguage(ActionEvent event) {
+
+    }
+
+    @FXML
+    void systemSettingsChangeTaxes(ActionEvent event) {
+        setTaxes(Double.parseDouble(systemNewTaxesField.getText()));
     }
 
     // PRODUCT SETTINGS TAB METHODS
@@ -471,7 +521,7 @@ public class AppController implements Initializable {
 
     // Update Table Amount inside JSON, update List and Config
     @FXML
-    void changeValue(ActionEvent event) {
+    void changeValue(ActionEvent event) throws IOException {
         int newSize = Integer.parseInt(settingsInputField.getText());
 
         // Regenerate Tables
@@ -487,7 +537,7 @@ public class AppController implements Initializable {
         for (Tables arrayTable : arrayTables) {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
-        updateTableCount(newSize);
+        setValue("tableCount", String.valueOf(newSize));
     }
 
     @FXML
@@ -514,6 +564,20 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
+        systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
+        systemNewCurrencySelector.setValue(currencies.get(0));
+        systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {
+            @Override
+            public String toString(Currency currency) {
+                return currency.getSymbol();
+            }
+
+            @Override
+            public Currency fromString(String string) {
+                return null;
+            }
+        });
+
         ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
         ScrollPaneProducts.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         kellnerLabel.setText("Kellner: " + getLoggedInUserName());
@@ -546,9 +610,7 @@ public class AppController implements Initializable {
         tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int currentTable = tablesListView.getSelectionModel().getSelectedIndex();
-                billText.setText(arrayTables[currentTable].getBill());        //Setting the Info of the Bill
-                totalPrice.setText(arrayTables[currentTable].getSubtotal() + "€");
+                updateBill();
             }
         });
 

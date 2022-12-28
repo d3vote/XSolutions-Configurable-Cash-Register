@@ -1,12 +1,15 @@
 package at.ac.fhcampuswien.xsolutions;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.*;
 
 import static at.ac.fhcampuswien.xsolutions.App.getDate;
+import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigCurrency;
 
 
 public class Tables {
@@ -14,8 +17,18 @@ public class Tables {
     public Map<Product, Integer> productCounter;
     private double subtotal;
     private int tableNumber;
-    final static double TAXES = 20;
-    private static DecimalFormat df = new DecimalFormat("0.00");
+    private static double taxes = 20;
+    private static String currency;
+
+    static {
+        try {
+            readConfigCurrency();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static final DecimalFormat df = new DecimalFormat("0.00");
     private static int count;
     private ArrayList<Product> usedProducts;
     private String serverName;
@@ -67,7 +80,7 @@ public class Tables {
 
         // Recreate a new productsTotal List
         for (Product usedProduct : usedProducts){
-            productsTotal.append("\n").append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": $").append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct)));
+            productsTotal.append("\n").append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(currency).append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct)));
         }
 
         if (getServerName() != null){
@@ -80,9 +93,9 @@ public class Tables {
                     productsTotal + System.lineSeparator() +
                     System.lineSeparator() +
 
-                    "Zwischensumme: " + getSubtotal() + "€" + System.lineSeparator() +
-                    "Steuer (" + TAXES + "%): " + calcuateTaxesAmount() + "€" + System.lineSeparator() +
-                    "Gesamtsumme: " + getSubtotal() + "€" + System.lineSeparator();
+                    "Zwischensumme: " + getSubtotal() + currency + System.lineSeparator() +
+                    "Steuer (" + taxes + "%): " + calcuateTaxesAmount() + currency + System.lineSeparator() +
+                    "Gesamtsumme: " + getTotal() + currency + System.lineSeparator();
         } else
             return "Rechnung ist leer";
     }
@@ -98,7 +111,7 @@ public class Tables {
     }
 
     public String calcuateTaxesAmount(){
-        double taxesAmount = subtotal * (TAXES/100);
+        double taxesAmount = subtotal * (taxes /100);
         return df.format(taxesAmount);
     }
 
@@ -114,5 +127,21 @@ public class Tables {
         if (subtotal - num >= 0) {
             df.format(subtotal -= num);
         }
+    }
+
+    public static void setTaxes(double taxes) {
+        Tables.taxes = taxes;
+    }
+
+    public static String getCurrency() {
+        return currency;
+    }
+
+    public static void setCurrency(String currency) {
+        Tables.currency = currency;
+    }
+
+    public String getTotal() {
+        return df.format(subtotal * (taxes / 100) + subtotal);
     }
 }

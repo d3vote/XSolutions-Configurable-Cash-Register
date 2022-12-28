@@ -34,6 +34,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
@@ -66,7 +67,7 @@
                 </AnchorPane>
                 <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
                     <children>
-                  <Pane fx:id="settingsTab" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+                  <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
                      <children>
                         <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                            <font>
@@ -103,6 +104,7 @@
                               <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="settingsBtn" stylesheets="@styles.css" text="Nutzer bearbeiten" />
                               <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="settingsBtn" stylesheets="@styles.css" text="Prdoukte bearbeiten" />
                               <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables" styleClass="settingsBtn" stylesheets="@styles.css" text="Tische bearbeiten" />
+                              <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem" styleClass="settingsBtn" stylesheets="@styles.css" text="System Steuerung" />
                            </children>
                         </FlowPane>
                         <Pane fx:id="usersSettingsPane" layoutY="105.0" prefHeight="638.0" prefWidth="828.0" visible="false">
@@ -121,6 +123,17 @@
                               <TextField fx:id="newFullNameField" layoutX="160.0" layoutY="455.0" prefHeight="25.0" prefWidth="164.0" promptText="New Full Name" />
                               <TextField fx:id="newUsernameField" layoutX="160.0" layoutY="486.0" prefHeight="25.0" prefWidth="164.0" promptText="New Username" />
                               <TextField fx:id="newPasswordField" layoutX="160.0" layoutY="517.0" prefHeight="25.0" prefWidth="164.0" promptText="New Password" />
+                           </children>
+                        </Pane>
+                        <Pane fx:id="systemSettingsPane" layoutY="105.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="638.0" prefWidth="828.0" visible="false">
+                           <children>
+                              <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="System Steuerung:" />
+                              <Button layoutY="34.0" mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Currency" />
+                              <Button layoutY="63.0" mnemonicParsing="false" onAction="#systemSettingsChangeTaxes" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Taxes" />
+                              <TextField layoutX="160.0" layoutY="63.0" prefHeight="25.0" prefWidth="164.0" promptText="New Taxes" />
+                              <Button layoutY="92.0" mnemonicParsing="false" onAction="#systemSettingsChangeLanguage" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Change Language" />
+                              <ChoiceBox layoutX="160.0" layoutY="92.0" prefWidth="164.0" />
+                              <ChoiceBox fx:id="systemNewCurrencySelector" layoutX="160.0" layoutY="34.0" prefWidth="164.0" />
                            </children>
                         </Pane>
                         <Pane fx:id="productsSettingsPane" layoutY="115.0" prefHeight="663.0" prefWidth="828.0" visible="false">
