@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 import static at.ac.fhcampuswien.xsolutions.Tables.setCurrency;
+import static at.ac.fhcampuswien.xsolutions.Tables.setTaxes;
 
 public class Configurator {
     private static final String CONFIG_FILE = "src/main/resources/config.txt";
@@ -41,7 +42,21 @@ public class Configurator {
             }
         }
     }
+    public static void readConfigTaxes() throws IOException {
+        // Read the contents of the config.txt file
+        List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
+        // Iterate through the lines and split each line into a key-value pair
+        for (String line : lines) {
+            String[] parts = line.split("=");
+            String key = parts[0].trim();
+            String value = parts[1].trim();
 
+            // If the key is "currency", return the corresponding value
+            if (key.equals("taxes")) {
+                setTaxes(Double.parseDouble(value));
+            }
+        }
+    }
     public static void setValue(String key, String value) throws IOException {
         // Read the contents of the config.txt file
         List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));

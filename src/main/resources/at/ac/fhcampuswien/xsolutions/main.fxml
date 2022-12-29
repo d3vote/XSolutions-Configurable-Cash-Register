@@ -150,7 +150,7 @@
                                           <Button layoutY="507.0" mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Beschreibung ändern" />
                                           <Button layoutY="538.0" mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Bild-URL ändern" />
                                           <Button layoutX="-1.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Produkt löschen" />
-                                          <Button layoutX="212.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0" prefWidth="142.0" styleClass="settingsBtn" text="Neues Produkt erstellen" />
+                                          <Button layoutX="212.0" layoutY="626.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="25.0" prefWidth="200.0" styleClass="settingsBtn" text="Neues Produkt erstellen" />
                                           <TextField fx:id="newProductName" layoutX="214.0" layoutY="476.0" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Produktname" />
                                           <TextField fx:id="newProductDescription" layoutX="214.0" layoutY="507.0" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
                                           <TextField fx:id="newURL" layoutX="214.0" layoutY="538.0" prefHeight="25.0" prefWidth="600.0" promptText="Neue Bild-URL" />

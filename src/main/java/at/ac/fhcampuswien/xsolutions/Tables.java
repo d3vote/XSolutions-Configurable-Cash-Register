@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static at.ac.fhcampuswien.xsolutions.App.getDate;
 import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigCurrency;
+import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigTaxes;
 
 
 public class Tables {
@@ -15,7 +16,16 @@ public class Tables {
     public Map<Product, Integer> productCounter;
     private double subtotal;
     private int tableNumber;
-    private static double taxes = 20;
+    private static double taxes;
+
+    static {
+        try {
+            readConfigTaxes();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private static String currency;
     private double tip;
 
@@ -156,11 +166,16 @@ public class Tables {
         this.tip = tip;
     }
 
+    private void resetUsedProducts() {
+        usedProducts = new ArrayList<>();
+        productCounter = new HashMap<>();
+    }
+
     public void resetBill() {
         tip = 0;
         serverName = null;
         serverSet = false;
-        usedProducts = new ArrayList<>();
+        resetUsedProducts();
         setSubtotal(0);
     }
 }

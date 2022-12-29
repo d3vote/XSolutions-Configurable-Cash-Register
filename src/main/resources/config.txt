@@ -1,2 +1,3 @@
-tableCount = 12
+tableCount = 30
 currency = €
+taxes = 20

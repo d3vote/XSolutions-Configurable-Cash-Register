@@ -1,6 +1,8 @@
 package at.ac.fhcampuswien.xsolutions;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -50,6 +52,7 @@ public class App extends Application {
         JSONtoProductList();
         readConfigTableCount();
         generateTables(getTableCount());
+
         //Sort Products List
         productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
 

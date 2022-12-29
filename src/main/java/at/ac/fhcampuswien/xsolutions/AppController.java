@@ -295,6 +295,9 @@ public class AppController implements Initializable {
             currentTable.subtractFromSubtotal(item.getProductPrice());
             updateBill();
         }
+        if (currentTable.getUsedProducts().size() == 0) {
+            resetBill();
+        }
         billText.setText(currentTable.getBill());
     }
 
@@ -370,8 +373,6 @@ public class AppController implements Initializable {
             errorLabel.setVisible(true);
         }
     }
-
-
 
     void resetBill() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
@@ -494,8 +495,9 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void systemSettingsChangeTaxes() {
+    void systemSettingsChangeTaxes() throws IOException {
         setTaxes(Double.parseDouble(systemNewTaxesField.getText()));
+        setValue("taxes", systemNewTaxesField.getText());
         updateBill();
     }
 
@@ -535,7 +537,7 @@ public class AppController implements Initializable {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         Double text = Double.valueOf(newProductPrice.getText());
         if (!Objects.equals(text, ""))  {
-            productsList.get(currentProduct).setProductPrice(text);
+            productsList.get(currentProduct).setProductPrice(Double.parseDouble(text + getCurrency()));
         }
         updateProductsList(currentProduct);
     }
@@ -543,7 +545,26 @@ public class AppController implements Initializable {
     @FXML
     void productsSettingsCreateNew() throws IOException {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        new Product("Neues Produkt", 0, "");
+        
+        String productName = newProductName.getText();
+        String productPrice = newProductPrice.getText();
+        String productDescription = newProductDescription.getText();
+        String productURL = newURL.getText();
+
+        if (productName.isEmpty()) {
+            productName = "Neues Produkt";
+        }
+        if (productPrice.isEmpty()) {
+            productPrice = "0";
+        }
+        if (productDescription.isEmpty()) {
+            productURL = "Kein";
+        }
+        if (productURL.isEmpty()) {
+            productDescription = "Keine";
+        }
+        
+        new Product(productName, Double.parseDouble(productPrice), productDescription, productURL);
         updateProductsList(currentProduct);
     }
 
@@ -556,6 +577,10 @@ public class AppController implements Initializable {
 
     private void updateProductsList(int currentProduct) {
         productsListViewSettings.getItems().clear();
+
+        addProductElementsToGrid(GridPaneProducts, filterProductsByName(""));
+        productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
+
         for (Product product : productsList) {
             productsListViewSettings.getItems().add(product.getProductTitle());
         }
@@ -754,7 +779,7 @@ public class AppController implements Initializable {
                     productsSettingsName.setText("Produkt Name: " + productsList.get(currentProduct).getProductTitle());
                     productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
                     productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
-                    productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice());
+                    productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
                     productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
                 }
             }
