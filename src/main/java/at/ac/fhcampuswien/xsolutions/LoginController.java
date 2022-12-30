@@ -1,12 +1,10 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -65,12 +63,12 @@ public class LoginController implements Initializable {
 
     @FXML
     void userLogin(ActionEvent event) throws IOException { //Compare every "Row" of the list to the input
-        for (int i = 0; i < usersList.size(); i++) {
-            if (Objects.equals(usernameField.getText(), usersList.get(i).getUserName()) && Objects.equals(passwordField.getText(), usersList.get(i).getPassword())){
-                loggedInUserName = usersList.get(i).getName();
+        for (User user : usersList) {
+            if (Objects.equals(usernameField.getText(), user.getUserName()) && Objects.equals(passwordField.getText(), user.getPassword())) {
+                loggedInUserName = user.getName();
                 errorLabel.setVisible(false);
-                isAdmin = usersList.get(i).getIsAdmin();
-                loadingBar.setVisible(true);
+                isAdmin = user.getIsAdmin();
+                loadingBar.setVisible(false);
                 executeLogin(event);
                 return;
             }
@@ -80,7 +78,7 @@ public class LoginController implements Initializable {
 
     void executeLogin(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("main.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")))));
         stage.setFullScreenExitHint("");
         stage.setFullScreen(true); // Set to Full Screen Mode
         stage.show();

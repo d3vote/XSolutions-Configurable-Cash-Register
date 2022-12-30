@@ -45,6 +45,8 @@ public class AppController implements Initializable {
     double restMoney;
 
     @FXML
+    private Button resetBill;
+    @FXML
     private Label totalPrice;
 
     @FXML
@@ -242,6 +244,7 @@ public class AppController implements Initializable {
     @FXML
     private Pane productImagePreview;
 
+
     // Set date in the Bill
     @FXML
     void dateSetter(){
@@ -340,9 +343,9 @@ public class AppController implements Initializable {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
         Tables currentTable = arrayTables[currentTableIndex];
 
-        paymentTotalBeforeAllLabel.setText("Gesammtsumme inkl. MWSt: " + currentTable.getTotal() + getCurrency());
+        paymentTotalBeforeAllLabel.setText("Gesamtsumme inkl. MWSt: " + currentTable.getTotal() + getCurrency());
         paymentTipLabel.setText("Trinkgeld: " + currentTable.getTip() + getCurrency());
-        paymentTotalLabel.setText("Gesammtsumme inkl. Trinkgeld u. MWSt: " + df.format(Double.parseDouble(currentTable.getTotal()) + currentTable.getTip()) + getCurrency());
+        paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + df.format(Double.parseDouble(currentTable.getTotal()) + currentTable.getTip()) + getCurrency());
         payCashPane.setVisible(true);
     }
 
@@ -374,6 +377,7 @@ public class AppController implements Initializable {
         }
     }
 
+    @FXML
     void resetBill() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
         Tables currentTable = arrayTables[currentTableIndex];
@@ -399,6 +403,7 @@ public class AppController implements Initializable {
             Tooltip tt = new Tooltip();
             tt.setText(item.productDescription);
             tt.setShowDelay(Duration.millis(100));
+            tt.setHideDelay(Duration.ZERO);
             tt.setStyle("-fx-font: normal bold 12 Langdon; "
                     + "-fx-base: #AE3522; "
                     + "-fx-text-fill: orange;");
@@ -707,6 +712,16 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
+            //Creates ToolTip for Reset Button
+            Tooltip tt = new Tooltip();
+            tt.setText("Löscht die aktuelle Rechnung!");
+            tt.setShowDelay(Duration.millis(100));
+            tt.setHideDelay(Duration.ZERO);
+            tt.setStyle("-fx-font: normal bold 12 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+            resetBill.setTooltip(tt);
+
             systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
             systemNewCurrencySelector.setValue(currencies.get(0));
             systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {

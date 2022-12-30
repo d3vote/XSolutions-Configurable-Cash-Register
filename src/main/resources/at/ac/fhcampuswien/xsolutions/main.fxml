@@ -164,7 +164,7 @@
                               </Pane>
                               <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <GridPane prefHeight="62.0" prefWidth="814.0">
+                                    <GridPane prefHeight="62.0" prefWidth="841.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -187,11 +187,6 @@
                                                 <Insets />
                                              </GridPane.margin>
                                           </TextField>
-                                          <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" GridPane.columnIndex="2">
-                                             <font>
-                                                <Font size="18.0" />
-                                             </font>
-                                          </Label>
                                        </children>
                                     </GridPane>
                                     <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0" style="-fx-vbar-unit-increment: 100;">
@@ -267,6 +262,7 @@
                                     <Font name="Poor Richard" size="18.0" />
                                  </font>
                               </Label>
+                              <Button fx:id="resetBill" alignment="CENTER" layoutX="224.0" layoutY="13.0" mnemonicParsing="false" onAction="#resetBill" prefHeight="39.0" prefWidth="32.0" styleClass="resetButton" stylesheets="@styles.css" />
                            </children>
                         </AnchorPane>
                      </children>

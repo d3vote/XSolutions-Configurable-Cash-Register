@@ -65,3 +65,9 @@
     -fx-background-size: contain;
     -fx-background-position: center;
 }
+.resetButton {
+    -fx-background-image: url("https://i.imgur.com/zt31ath.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-color:  #D9D9D9;
+}
