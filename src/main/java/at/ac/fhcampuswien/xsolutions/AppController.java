@@ -39,9 +39,9 @@ public class AppController implements Initializable {
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
     List<Currency> currencies = Arrays.asList(Currency.getInstance(Locale.US),
-                                                Currency.getInstance(Locale.GERMANY),
-                                                Currency.getInstance(Locale.UK),
-                                                Currency.getInstance(Locale.JAPAN));
+            Currency.getInstance(Locale.GERMANY),
+            Currency.getInstance(Locale.UK),
+            Currency.getInstance(Locale.JAPAN));
     double restMoney;
 
     @FXML
@@ -550,7 +550,7 @@ public class AppController implements Initializable {
     @FXML
     void productsSettingsCreateNew() throws IOException {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        
+
         String productName = newProductName.getText();
         String productPrice = newProductPrice.getText();
         String productDescription = newProductDescription.getText();
@@ -568,7 +568,7 @@ public class AppController implements Initializable {
         if (productURL.isEmpty()) {
             productDescription = "Keine";
         }
-        
+
         new Product(productName, Double.parseDouble(productPrice), productDescription, productURL);
         updateProductsList(currentProduct);
     }
@@ -712,29 +712,29 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
-            //Creates ToolTip for Reset Button
-            Tooltip tt = new Tooltip();
-            tt.setText("Löscht die aktuelle Rechnung!");
-            tt.setShowDelay(Duration.millis(100));
-            tt.setHideDelay(Duration.ZERO);
-            tt.setStyle("-fx-font: normal bold 12 Langdon; "
+        //Creates ToolTip for Reset Button
+        Tooltip tt = new Tooltip();
+        tt.setText("Löscht die aktuelle Rechnung!");
+        tt.setShowDelay(Duration.millis(100));
+        tt.setHideDelay(Duration.ZERO);
+        tt.setStyle("-fx-font: normal bold 12 Langdon; "
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
-            resetBill.setTooltip(tt);
+        resetBill.setTooltip(tt);
 
-            systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
-            systemNewCurrencySelector.setValue(currencies.get(0));
-            systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {
-                @Override
-                public String toString(Currency currency) {
-                    return currency.getSymbol();
-                }
+        systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
+        systemNewCurrencySelector.setValue(currencies.get(0));
+        systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {
+            @Override
+            public String toString(Currency currency) {
+                return currency.getSymbol();
+            }
 
-                @Override
-                public Currency fromString(String string) {
-                    return null;
-                }
-            });
+            @Override
+            public Currency fromString(String string) {
+                return null;
+            }
+        });
 
         ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
         ScrollPaneProducts.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
