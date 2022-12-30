@@ -5,12 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static at.ac.fhcampuswien.xsolutions.Tables.setCurrency;
-import static at.ac.fhcampuswien.xsolutions.Tables.setTaxes;
+import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
 public class Configurator {
     private static final String CONFIG_FILE = "src/main/resources/config.txt";
     private static int tableCount;
+
     public static void readConfigTableCount() throws IOException {
         // Read the contents of the config.txt file
         List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
@@ -42,6 +42,7 @@ public class Configurator {
             }
         }
     }
+
     public static void readConfigTaxes() throws IOException {
         // Read the contents of the config.txt file
         List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
@@ -51,12 +52,29 @@ public class Configurator {
             String key = parts[0].trim();
             String value = parts[1].trim();
 
-            // If the key is "currency", return the corresponding value
+            // If the key is "taxes", return the corresponding value
             if (key.equals("taxes")) {
                 setTaxes(Double.parseDouble(value));
             }
         }
     }
+
+    public static void readConfigBillCounter() throws IOException {
+        // Read the contents of the config.txt file
+        List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
+        // Iterate through the lines and split each line into a key-value pair
+        for (String line : lines) {
+            String[] parts = line.split("=");
+            String key = parts[0].trim();
+            String value = parts[1].trim();
+
+            // If the key is "bill_nr", return the corresponding value
+            if (key.equals("bill_nr")) {
+                //setInitialBillNumber(Integer.parseInt(value));
+            }
+        }
+    }
+
     public static void setValue(String key, String value) throws IOException {
         // Read the contents of the config.txt file
         List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
@@ -77,7 +95,7 @@ public class Configurator {
         Files.write(Paths.get(CONFIG_FILE), lines);
     }
 
-    public static int getTableCount() {
+    public static int getTableConfig() {
         return tableCount;
     }
 }

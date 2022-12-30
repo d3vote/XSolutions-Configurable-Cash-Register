@@ -367,7 +367,7 @@ public class AppController implements Initializable {
             payCashPane.setVisible(false);
 
             if (restMoney != 0) {
-                restMoneyLabelSuccess.setText("Restgeld: " + String.valueOf(restMoney) + getCurrency());
+                restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
             }
 
             paymentSuccessfulPane.setVisible(true);

@@ -1,18 +1,14 @@
 package at.ac.fhcampuswien.xsolutions;
 import javafx.application.Application;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
 
-import static at.ac.fhcampuswien.xsolutions.Configurator.getTableCount;
-import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigTableCount;
+import static at.ac.fhcampuswien.xsolutions.Configurator.*;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
 import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
@@ -50,8 +46,13 @@ public class App extends Application {
     public static void main(String[] args) throws IOException {
         JSONtoUsersList(); //Convert the JSON File back to Objects in a List
         JSONtoProductList();
+
+        readConfigCurrency();
+        readConfigTaxes();
+        readConfigBillCounter();
         readConfigTableCount();
-        generateTables(getTableCount());
+
+        generateTables(getTableConfig());
 
         //Sort Products List
         productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));

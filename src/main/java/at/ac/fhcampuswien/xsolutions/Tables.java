@@ -1,42 +1,21 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static at.ac.fhcampuswien.xsolutions.App.getDate;
-import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigCurrency;
-import static at.ac.fhcampuswien.xsolutions.Configurator.readConfigTaxes;
 
 
 public class Tables {
-    private static int billNumber;
     public Map<Product, Integer> productCounter;
     private double subtotal;
     private int tableNumber;
+    private int billNumber;
     private static double taxes;
-
-    static {
-        try {
-            readConfigTaxes();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private static String currency;
     private double tip;
-
-    static {
-        try {
-            readConfigCurrency();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static final DecimalFormat df = new DecimalFormat("0.00");
     private static int count;
     private ArrayList<Product> usedProducts;
@@ -45,7 +24,6 @@ public class Tables {
 
     public Tables(){
         count++;
-        billNumber++;
         this.tableNumber = count;
         productCounter = new HashMap<>();
         usedProducts = new ArrayList<>();
@@ -94,6 +72,7 @@ public class Tables {
 
         if (getServerName() != null){
             return "Datum: " + getDate() + System.lineSeparator() +
+                    "Rechnung Nr.: " + getBillNumber() + System.lineSeparator() +
                     "Tisch: " + tableNumber + System.lineSeparator() +
                     "Kellner: " + getServerName() + System.lineSeparator() +
 
@@ -131,6 +110,7 @@ public class Tables {
     public void removeUsedProducts(Product item) {
         usedProducts.remove(item);
     }
+
     public void subtractFromSubtotal(double num) {
         // Check if subtracting num from subtotal would result in a negative value
         if (subtotal - num >= 0) {
@@ -164,6 +144,10 @@ public class Tables {
 
     public void setTip(double tip) {
         this.tip = tip;
+    }
+
+    private int getBillNumber() {
+        return billNumber;
     }
 
     private void resetUsedProducts() {

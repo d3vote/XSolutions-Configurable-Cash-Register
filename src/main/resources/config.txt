@@ -1,3 +1,4 @@
-tableCount = 30
+tableCount = 10
 currency = €
 taxes = 20
+bill_nr = 0

@@ -60,7 +60,7 @@
                <children>
                   <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0" prefWidth="1068.0" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
                      <children>
-                        <AnchorPane prefHeight="464.0" prefWidth="461.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+                        <AnchorPane prefHeight="464.0" prefWidth="515.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
                            <children>
                               <Label layoutX="21.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Tische" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
                                  <font>
@@ -164,7 +164,7 @@
                               </Pane>
                               <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
-                                    <GridPane prefHeight="62.0" prefWidth="841.0">
+                                    <GridPane prefHeight="62.0" prefWidth="814.0">
                                        <columnConstraints>
                                           <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                                           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -187,6 +187,11 @@
                                                 <Insets />
                                              </GridPane.margin>
                                           </TextField>
+                                          <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" GridPane.columnIndex="2">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </GridPane>
                                     <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0" style="-fx-vbar-unit-increment: 100;">
@@ -262,7 +267,6 @@
                                     <Font name="Poor Richard" size="18.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="resetBill" alignment="CENTER" layoutX="224.0" layoutY="13.0" mnemonicParsing="false" onAction="#resetBill" prefHeight="39.0" prefWidth="32.0" styleClass="resetButton" stylesheets="@styles.css" />
                            </children>
                         </AnchorPane>
                      </children>
@@ -354,6 +358,7 @@
                         <Insets left="10.0" top="5.0" />
                      </padding>
                   </Label>
+                  <Button layoutX="292.0" layoutY="312.0" mnemonicParsing="false" styleClass="settingsBtn" text="Print Reciept" />
                </children>
             </Pane>
             <Pane fx:id="payCashPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css" visible="false">
@@ -370,6 +375,106 @@
                   <Label fx:id="paymentTipLabel" layoutX="22.0" layoutY="92.0" prefHeight="17.0" prefWidth="237.0" text="Trinkgeld:" />
                   <Button layoutX="191.0" layoutY="143.0" mnemonicParsing="false" onAction="#confirmPaymentCash" styleClass="settingsBtn" text="Bezahlen" />
                   <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="177.0" text="Summe zu klein!" textFill="#a82b2b" visible="false" />
+               </children>
+            </Pane>
+            <Pane opacity="0.26" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" visible="false" />
+            <Pane layoutX="760.0" layoutY="300.0" prefHeight="499.0" prefWidth="430.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
+               <children>
+                  <Label layoutX="154.0" layoutY="39.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="RECHNUNG" />
+                  <Label layoutX="139.0" layoutY="71.0" text="Adresse: Favoritenstraße 226" />
+                  <Label layoutX="148.0" layoutY="88.0" text="Telefon: 01 60668776600" />
+                  <Label layoutY="129.0" prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <GridPane layoutX="-1.0" layoutY="146.0" prefHeight="17.0" prefWidth="430.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="439.0" text="Datum: 30/12/2022">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="20:36:00" GridPane.columnIndex="1">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label layoutY="163.0" prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="180.0" prefHeight="170.0" prefWidth="419.0" style="-fx-background-radius: 33;" text="Pizza Margheritta x 1: 10$">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="-5.0" layoutY="344.0" prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <GridPane layoutY="361.0" prefHeight="77.0" prefWidth="430.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="219.0" minWidth="10.0" prefWidth="209.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="221.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="439.0" text="Gesamtsumme:">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="10$" GridPane.columnIndex="1">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="439.0" text="Bezahlt:" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="25$" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="439.0" text="Restgeld:" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="15$" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <padding>
+                              <Insets left="20.0" right="20.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Label layoutY="429.0" prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="173.0" layoutY="446.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
+                  <Label layoutX="149.0" layoutY="105.0" text="Beleg Nummer: 1823761" />
+                  <Button layoutX="391.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="closeBtn" stylesheets="@styles.css" text="Button" />
                </children>
             </Pane>
          </children>
