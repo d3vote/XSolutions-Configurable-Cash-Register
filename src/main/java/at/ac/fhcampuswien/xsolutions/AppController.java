@@ -45,6 +45,8 @@ public class AppController implements Initializable {
     double restMoney;
 
     @FXML
+    private Button printReceiptButton;
+    @FXML
     private Button resetBill;
     @FXML
     private Label totalPrice;
@@ -240,9 +242,37 @@ public class AppController implements Initializable {
 
     @FXML
     private TextField tipField;
-
     @FXML
     private Pane productImagePreview;
+
+    @FXML
+    private Pane receiptPane;
+    @FXML
+    private Pane behindReceiptPane;
+    @FXML
+    private Label dateInReceipt;
+    @FXML
+    private Label timeInReceipt;
+    @FXML
+    private Label receiptBill;
+    @FXML
+    private Label receiptAddress;
+    @FXML
+    private Label receiptBillNumber;
+    @FXML
+    private Label receiptPayAmount;
+    @FXML
+    private Label receiptPayAmountText;
+    @FXML
+    private Label receiptRestMoney;
+    @FXML
+    private Label receiptRestMoneyText;
+    @FXML
+    private Label receiptTelefonNumber;
+    @FXML
+    private Label receiptTotal;
+    @FXML
+    private Label receiptTotalText;
 
 
     // Set date in the Bill
@@ -250,6 +280,7 @@ public class AppController implements Initializable {
     void dateSetter(){
         datum.setText(getDate());
     }
+
 
     // Add Product into Bill of selected Table
     @FXML
@@ -305,6 +336,31 @@ public class AppController implements Initializable {
     }
 
     @FXML
+    void printReceipt(){
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+        behindReceiptPane.setVisible(true);
+        receiptPane.setVisible(true);
+        //creates time format and gets the current local time
+        String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss").format(java.time.LocalTime.now());
+        timeInReceipt.setText(timeString);
+
+        dateInReceipt.setText(getDate());
+        receiptBill.setText(currentTable.getBill());
+        receiptTotal.setText(currentTable.getTotal() + getCurrency());
+        receiptPayAmount.setText(paymentAmountPayedField.getText() + getCurrency());
+        receiptRestMoney.setText(df.format(restMoney) + getCurrency());
+
+    }
+    @FXML
+    void closeReceipt(){
+        paymentMethodsPane.setVisible(false);
+        receiptPane.setVisible(false);
+        behindReceiptPane.setVisible(false);
+        resetBill();
+    }
+
+    @FXML
     void showPaymentPane() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
         Tables currentTable = arrayTables[currentTableIndex];
@@ -322,6 +378,7 @@ public class AppController implements Initializable {
         paymentSuccessfulPane.setVisible(false);
         payCashPane.setVisible(false);
         restMoneyLabelSuccess.setText(" ");
+        resetBill();
     }
 
     @FXML
@@ -363,7 +420,6 @@ public class AppController implements Initializable {
             errorLabel.setVisible(false);
             restMoney = payed - amountWithTip;
             String formattedChange = df.format(restMoney);
-            resetBill();
             payCashPane.setVisible(false);
 
             if (restMoney != 0) {

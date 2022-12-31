@@ -359,7 +359,7 @@
                         <Insets left="10.0" top="5.0" />
                      </padding>
                   </Label>
-                  <Button layoutX="292.0" layoutY="312.0" mnemonicParsing="false" styleClass="settingsBtn" text="Print Reciept" />
+                  <Button fx:id="printReceiptButton" layoutX="292.0" layoutY="312.0" mnemonicParsing="false" onAction="#printReceipt" styleClass="settingsBtn" text="Print Reciept" />
                </children>
             </Pane>
             <Pane fx:id="payCashPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css" visible="false">
@@ -378,11 +378,11 @@
                   <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="177.0" text="Summe zu klein!" textFill="#a82b2b" visible="false" />
                </children>
             </Pane>
-            <Pane opacity="0.26" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" visible="false" />
-            <Pane layoutX="760.0" layoutY="300.0" prefHeight="499.0" prefWidth="430.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
+            <Pane fx:id="behindReceiptPane" opacity="0.26" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" visible="false" />
+            <Pane fx:id="receiptPane" layoutX="760.0" layoutY="274.0" prefHeight="525.0" prefWidth="430.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
                <children>
                   <Label layoutX="154.0" layoutY="39.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="RECHNUNG" />
-                  <Label layoutX="139.0" layoutY="71.0" text="Adresse: Favoritenstraße 226" />
+                  <Label fx:id="receiptAddress" layoutX="139.0" layoutY="71.0" text="Adresse: Favoritenstraße 226" />
                   <Label layoutX="148.0" layoutY="88.0" text="Telefon: 01 60668776600" />
                   <Label layoutY="129.0" prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
                      <padding>
@@ -398,12 +398,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="439.0" text="Datum: 30/12/2022">
+                        <Label fx:id="dateInReceipt" prefHeight="17.0" prefWidth="439.0" text="Datum: 30/12/2022">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="20:36:00" GridPane.columnIndex="1">
+                        <Label fx:id="timeInReceipt" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="20:36:00" GridPane.columnIndex="1">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
@@ -415,7 +415,7 @@
                         <Insets left="20.0" right="20.0" />
                      </padding>
                   </Label>
-                  <Label alignment="TOP_LEFT" layoutX="4.0" layoutY="180.0" prefHeight="170.0" prefWidth="419.0" style="-fx-background-radius: 33;" text="Pizza Margheritta x 1: 10$">
+                  <Label fx:id="receiptBill" alignment="TOP_LEFT" layoutX="4.0" layoutY="180.0" prefHeight="170.0" prefWidth="419.0" style="-fx-background-radius: 33;">
                      <padding>
                         <Insets left="20.0" right="20.0" />
                      </padding>
@@ -436,32 +436,32 @@
                         <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Label prefHeight="17.0" prefWidth="439.0" text="Gesamtsumme:">
+                        <Label fx:id="receiptTotalText" prefHeight="17.0" prefWidth="439.0" text="Gesamtsumme:">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="10$" GridPane.columnIndex="1">
+                        <Label fx:id="receiptTotal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="10$" GridPane.columnIndex="1">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="439.0" text="Bezahlt:" GridPane.rowIndex="1">
+                        <Label fx:id="receiptPayAmountText" prefHeight="17.0" prefWidth="439.0" text="Bezahlt:" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="25$" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Label fx:id="receiptPayAmount" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="25$" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label prefHeight="17.0" prefWidth="439.0" text="Restgeld:" GridPane.rowIndex="2">
+                        <Label fx:id="receiptRestMoneyText" prefHeight="17.0" prefWidth="439.0" text="Restgeld:" GridPane.rowIndex="2">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
                         </Label>
-                        <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="15$" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Label fx:id="receiptRestMoney" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="15$" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <padding>
                               <Insets left="20.0" right="20.0" />
                            </padding>
@@ -473,9 +473,9 @@
                         <Insets left="20.0" right="20.0" />
                      </padding>
                   </Label>
-                  <Label layoutX="173.0" layoutY="446.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
-                  <Label layoutX="149.0" layoutY="105.0" text="Beleg Nummer: 1823761" />
-                  <Button layoutX="391.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" styleClass="closeBtn" stylesheets="@styles.css" text="Button" />
+                  <Label layoutX="173.0" layoutY="460.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
+                  <Label fx:id="receiptBillNumber" layoutX="149.0" layoutY="105.0" text="Beleg Nummer: 1823761" />
+                  <Button layoutX="391.0" layoutY="14.0" mnemonicParsing="false" onAction="#closeReceipt" prefHeight="25.0" prefWidth="25.0" styleClass="closeBtn" stylesheets="@styles.css" text="Button" />
                </children>
             </Pane>
          </children>

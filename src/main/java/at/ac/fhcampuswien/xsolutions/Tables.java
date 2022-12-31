@@ -162,4 +162,5 @@ public class Tables {
         resetUsedProducts();
         setSubtotal(0);
     }
+
 }
