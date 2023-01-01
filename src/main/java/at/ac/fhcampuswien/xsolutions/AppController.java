@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
@@ -29,6 +30,7 @@ import static at.ac.fhcampuswien.xsolutions.Configurator.setValue;
 import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
+import static at.ac.fhcampuswien.xsolutions.Receipt.*;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 import static at.ac.fhcampuswien.xsolutions.User.userToJson;
 import static at.ac.fhcampuswien.xsolutions.User.usersList;
@@ -246,7 +248,7 @@ public class AppController implements Initializable {
     private Pane productImagePreview;
 
     @FXML
-    private Pane receiptPane;
+    private AnchorPane receiptPane;
     @FXML
     private Pane behindReceiptPane;
     @FXML
@@ -254,7 +256,7 @@ public class AppController implements Initializable {
     @FXML
     private Label timeInReceipt;
     @FXML
-    private Label receiptBill;
+    private Text receiptBill;
     @FXML
     private Label receiptAddress;
     @FXML
@@ -274,6 +276,19 @@ public class AppController implements Initializable {
     @FXML
     private Label receiptTotalText;
 
+    private Tables getCurrentTable() {
+        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Tables currentTable = arrayTables[currentTableIndex];
+
+        return currentTable;
+    }
+
+    private Receipt getCurrentReceipt() {
+        int currentReceiptIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        Receipt currentReceipt = arrayReceipts.get(currentReceiptIndex);
+
+        return currentReceipt;
+    }
 
     // Set date in the Bill
     @FXML
@@ -285,69 +300,70 @@ public class AppController implements Initializable {
     // Add Product into Bill of selected Table
     @FXML
     void addToBillButton(Product item){
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
+        Tables currentTable = getCurrentTable();
 
         // If the product is already in the map, increase its quantity by 1
-        if (currentTable.getProductCounter().containsKey(item)) {
-            int currentQuantity = currentTable.getProductCounter().get(item);
-            currentTable.getProductCounter().put(item, currentQuantity + 1);
+        if (currentReceipt.getProductCounter().containsKey(item)) {
+            int currentQuantity = currentReceipt.getProductCounter().get(item);
+            currentReceipt.getProductCounter().put(item, currentQuantity + 1);
         }
         // Otherwise, add the product to the map with a quantity of 1
         else {
-            currentTable.getProductCounter().put(item, 1);
+            currentReceipt.getProductCounter().put(item, 1);
         }
 
         // Add product to usedProducts list
-        currentTable.addUsedProducts(item);
+        currentReceipt.addUsedProducts(item);
         // Update Total Price and Bill
-        currentTable.addToSubtotal(item.getProductPrice());
+        currentReceipt.addToSubtotal(item.getProductPrice());
         currentTable.setServerName(getLoggedInUserName());
         updateBill();
     }
 
     @FXML
     void removeFromBillButton(Product item) {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
+        Tables currentTable = getCurrentTable();
 
         // Check if the product is in the map
-        if (currentTable.getProductCounter().containsKey(item) && currentTable.getUsedProducts().contains(item)) {
+        if (currentReceipt.getProductCounter().containsKey(item) && currentReceipt.getUsedProducts().contains(item)) {
             // If the product is in the map, decrease its quantity by 1
-            int currentQuantity = currentTable.getProductCounter().get(item);
+            int currentQuantity = currentReceipt.getProductCounter().get(item);
             if (currentQuantity != 0) {
                 currentQuantity--;
             }
 
             // Update the map with the updated quantity of the product
-            currentTable.getProductCounter().put(item, currentQuantity);
+            currentReceipt.getProductCounter().put(item, currentQuantity);
 
             // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
             if (currentQuantity == 0) {
-                currentTable.removeUsedProducts(item);
+                currentReceipt.removeUsedProducts(item);
             }
-            currentTable.subtractFromSubtotal(item.getProductPrice());
+            currentReceipt.subtractFromSubtotal(item.getProductPrice());
             updateBill();
         }
-        if (currentTable.getUsedProducts().size() == 0) {
+        if (currentReceipt.getUsedProducts().size() == 0) {
             resetBill();
         }
-        billText.setText(currentTable.getBill());
+        billText.setText(currentReceipt.getFullReceipt());
     }
 
     @FXML
     void printReceipt(){
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
+
         behindReceiptPane.setVisible(true);
         receiptPane.setVisible(true);
         //creates time format and gets the current local time
-        String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss").format(java.time.LocalTime.now());
+        String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss  ").format(java.time.LocalTime.now());
         timeInReceipt.setText(timeString);
 
         dateInReceipt.setText(getDate());
-        receiptBill.setText(currentTable.getBill());
-        receiptTotal.setText(currentTable.getTotal() + getCurrency());
+        receiptBillNumber.setText("Belegnummer: " + String.valueOf(currentReceipt.getReceiptNumber()));
+        receiptBill.setText(currentReceipt.getShortReceipt());
+        receiptTotal.setText(currentReceipt.getTotal() + getCurrency());
         receiptPayAmount.setText(paymentAmountPayedField.getText() + getCurrency());
         receiptRestMoney.setText(df.format(restMoney) + getCurrency());
 
@@ -362,10 +378,9 @@ public class AppController implements Initializable {
 
     @FXML
     void showPaymentPane() {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
 
-        if (Double.parseDouble(currentTable.getTotal()) > 0){
+        if (Double.parseDouble(currentReceipt.getTotal()) > 0){
             paymentMethodsPane.setVisible(true);
             paymentSuccessfulPane.setVisible(false);
         }
@@ -383,10 +398,9 @@ public class AppController implements Initializable {
 
     @FXML
     void setTipButton(ActionEvent event) {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
 
-        currentTable.setTip(Double.parseDouble(tipField.getText()));
+        currentReceipt.setTip(Double.parseDouble(tipField.getText()));
     }
 
     @FXML
@@ -397,22 +411,20 @@ public class AppController implements Initializable {
 
     @FXML
     void payCash(ActionEvent event) {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
 
-        paymentTotalBeforeAllLabel.setText("Gesamtsumme inkl. MWSt: " + currentTable.getTotal() + getCurrency());
-        paymentTipLabel.setText("Trinkgeld: " + currentTable.getTip() + getCurrency());
-        paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + df.format(Double.parseDouble(currentTable.getTotal()) + currentTable.getTip()) + getCurrency());
+        paymentTotalBeforeAllLabel.setText("Gesamtsumme inkl. MWSt: " + currentReceipt.getTotal() + getCurrency());
+        paymentTipLabel.setText("Trinkgeld: " + currentReceipt.getTip() + getCurrency());
+        paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + df.format(Double.parseDouble(currentReceipt.getTotal()) + currentReceipt.getTip()) + getCurrency());
         payCashPane.setVisible(true);
     }
 
     @FXML
     void confirmPaymentCash(ActionEvent event) {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
+        Receipt currentReceipt = getCurrentReceipt();
 
-        double totalAsDouble = Double.parseDouble(currentTable.getTotal());
-        double tip = currentTable.getTip();
+        double totalAsDouble = Double.parseDouble(currentReceipt.getTotal());
+        double tip = currentReceipt.getTip();
         double payed = Double.parseDouble(paymentAmountPayedField.getText());
         double amountWithTip = totalAsDouble + tip;
 
@@ -435,9 +447,9 @@ public class AppController implements Initializable {
 
     @FXML
     void resetBill() {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
-        currentTable.resetBill();
+        Receipt currentReceipt = getCurrentReceipt();
+
+        currentReceipt.closeReceipt();
         updateBill();
     }
 
@@ -544,10 +556,10 @@ public class AppController implements Initializable {
     }
 
     void updateBill(){
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
-        billText.setText(currentTable.getBill());
-        totalPrice.setText(currentTable.getTotal() + getCurrency());
+        Receipt currentReceipt = getCurrentReceipt();
+
+        billText.setText(currentReceipt.getFullReceipt());
+        totalPrice.setText(currentReceipt.getTotal() + getCurrency());
     }
 
     @FXML

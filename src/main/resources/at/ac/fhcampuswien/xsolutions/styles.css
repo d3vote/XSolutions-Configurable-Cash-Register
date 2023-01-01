@@ -71,3 +71,13 @@
     -fx-background-size: cover;
     -fx-background-color:  #D9D9D9;
 }
+
+.resetScrollPane {
+    -fx-background-color: transparent, white;
+    -fx-background-insets: 0, 0;
+}
+
+.resetScrollPane:focused {
+    -fx-background-color: transparent, white;
+    -fx-background-insets: 0, 0;
+}

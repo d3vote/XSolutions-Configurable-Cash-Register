@@ -5,6 +5,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
+import static at.ac.fhcampuswien.xsolutions.Receipt.setCurrency;
+import static at.ac.fhcampuswien.xsolutions.Receipt.setTaxes;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 
 public class Configurator {
