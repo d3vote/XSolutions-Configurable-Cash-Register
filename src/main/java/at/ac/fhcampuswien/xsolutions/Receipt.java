@@ -7,23 +7,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static at.ac.fhcampuswien.xsolutions.App.getDate;
 import static at.ac.fhcampuswien.xsolutions.Configurator.setValue;
 
-public class Receipt {
-    public Map<Product, Integer> productCounter;
+
+public class Receipt{
     private double subtotal;
     private static int initialReceiptNumber;
+    private int count;
     private static double taxes;
     private static String currency;
     private double tip;
     private static String address;
     private static String tel;
     private static String message;
-    public static final DecimalFormat df = new DecimalFormat("0.00");
-    private ArrayList<Product> usedProducts;
     private Tables table;
+    private String date;
+    private String time;
+    private double changeMoney;
+    private double amountPayed;
+    public static final DecimalFormat df = new DecimalFormat("0.00");
+    private transient ArrayList<Product> usedProducts;
     public static List<Receipt> arrayReceipts = new ArrayList<>();
+    private transient Map<Product, Integer> productCounter;
+
 
     public Receipt(Tables table){
         this.table = table;
@@ -53,8 +59,7 @@ public class Receipt {
         }
 
         if (table.getServersName() != null){
-            return "Datum: " + getDate() + System.lineSeparator() +
-                    "Tisch: " + table.getTableNumberAsString() + System.lineSeparator() +
+            return  "Tisch: " + table.getTableNumberAsString() + System.lineSeparator() +
                     "Kellner: " + table.getServersName() + System.lineSeparator() +
 
                     System.lineSeparator() +
@@ -69,9 +74,10 @@ public class Receipt {
             return "Rechnung ist leer";
     }
 
-    public String getShortReceipt() throws IOException {
-        initialReceiptNumber++;
-        setValue("bill_nr", String.valueOf(initialReceiptNumber));
+    public String getShortReceipt() {
+
+        date = App.getDate();
+        time = java.time.format.DateTimeFormatter.ofPattern("HH:mm").format(java.time.LocalTime.now());
 
         StringBuilder productsTotal = new StringBuilder();
         // Clear productsTotal List
@@ -79,10 +85,16 @@ public class Receipt {
 
         // Recreate a new productsTotal List
         for (Product usedProduct : usedProducts){
-            productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(currency).append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct))).append("\n");
+            productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct))).append(currency).append("\n");
         }
 
         return productsTotal.toString();
+    }
+
+    public void increaseBillNumber() throws IOException {
+        initialReceiptNumber++;
+        count = initialReceiptNumber;
+        setValue("bill_nr", String.valueOf(initialReceiptNumber));
     }
 
     public void addUsedProducts(Product item) {
@@ -147,6 +159,10 @@ public class Receipt {
         return initialReceiptNumber;
     }
 
+    public int getCount() {
+        return count;
+    }
+
     private void resetUsedProducts() {
         usedProducts = new ArrayList<>();
         productCounter = new HashMap<>();
@@ -192,5 +208,29 @@ public class Receipt {
 
     public String getTotalWithTip(){
         return df.format(Double.parseDouble(getTotal()) + getTip());
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public double getAmountPayed() {
+        return amountPayed;
+    }
+
+    public double getChangeAmount() {
+        return changeMoney;
+    }
+
+    public void setChangeMoney(Double changeMoney) {
+        this.changeMoney = changeMoney;
+    }
+
+    public void setAmountPayed(Double amountPayed) {
+        this.amountPayed = amountPayed;
     }
 }

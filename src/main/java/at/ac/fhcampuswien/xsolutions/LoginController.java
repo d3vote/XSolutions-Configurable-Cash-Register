@@ -80,8 +80,8 @@ public class LoginController implements Initializable {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")))));
         stage.setFullScreenExitHint("");
-        stage.setFullScreen(true); // Set to Full Screen Mode
         stage.show();
+        stage.setFullScreen(true); // Set to Full Screen Mode
     }
 
     @Override

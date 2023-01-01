@@ -31,6 +31,8 @@ import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
 import static at.ac.fhcampuswien.xsolutions.Receipt.*;
+import static at.ac.fhcampuswien.xsolutions.ReceiptHistory.addToReceiptHistory;
+import static at.ac.fhcampuswien.xsolutions.ReceiptHistory.getFromReceiptHistory;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 import static at.ac.fhcampuswien.xsolutions.User.userToJson;
 import static at.ac.fhcampuswien.xsolutions.User.usersList;
@@ -44,7 +46,6 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.GERMANY),
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
-    double restMoney;
 
     @FXML
     private Button printReceiptButton;
@@ -115,6 +116,12 @@ public class AppController implements Initializable {
 
     @FXML
     private Pane settingsTab;
+
+    @FXML
+    private Pane findReceiptPane;
+
+    @FXML
+    private FlowPane receiptPreview;
 
     @FXML
     private Button userSettings;
@@ -301,6 +308,30 @@ public class AppController implements Initializable {
     private Text receiptTelefonNumber;
     @FXML
     private Label receiptTotal;
+
+    @FXML
+    private TextField receiptNumberField;
+    @FXML
+    private Text receiptAddressFound;
+    @FXML
+    private Text receiptTelefonNumberFound;
+    @FXML
+    private Text receiptBillNumberFound;
+    @FXML
+    private Label dateInReceiptFound;
+    @FXML
+    private Label timeInReceiptFound;
+    @FXML
+    private Text receiptBillFound;
+    @FXML
+    private Label receiptTotalFound;
+    @FXML
+    private Label receiptPayAmountFound;
+    @FXML
+    private Label receiptRestMoneyFound;
+    @FXML
+    private Text receiptMessageFound;
+
     @FXML
     private Label receiptTotalText;
 
@@ -385,9 +416,9 @@ public class AppController implements Initializable {
         paymentSelectionPane.setVisible(false);
         paymentSuccessfulPane.setVisible(false);
         receiptPane.setVisible(true);
-        //creates time format and gets the current local time
-        String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm").format(java.time.LocalTime.now());
-        timeInReceipt.setText(timeString);
+
+        currentReceipt.increaseBillNumber();
+        timeInReceipt.setText(currentReceipt.getTime());
 
         dateInReceipt.setText(getDate());
         receiptBill.setText(currentReceipt.getShortReceipt());
@@ -396,7 +427,10 @@ public class AppController implements Initializable {
         receiptBillNumber.setText("Belegnummer: " + String.valueOf(currentReceipt.getInitialReceiptNumber()));
         receiptMessage.setText(getMessage());
         receiptTotal.setText(currentReceipt.getTotalWithTip() + getCurrency());
-        receiptRestMoney.setText(df.format(restMoney) + getCurrency());
+        receiptRestMoney.setText(df.format(currentReceipt.getChangeAmount()) + getCurrency());
+
+        SimpleReceipt refactoredReceipt = new SimpleReceipt(String.valueOf(currentReceipt.getCount()), currentReceipt.getDate(), currentReceipt.getTime(), currentReceipt.getShortReceipt(), currentReceipt.getTotalWithTip(), String.valueOf(currentReceipt.getAmountPayed()), df.format(currentReceipt.getChangeAmount()));
+        addToReceiptHistory(refactoredReceipt);
 
         resetBill();
     }
@@ -421,6 +455,13 @@ public class AppController implements Initializable {
 
     @FXML
     void closePaymentPane() {
+        if (paymentSuccessfulPane.isVisible()) {
+            Receipt currentReceipt = getCurrentReceipt();
+            SimpleReceipt refactoredReceipt = new SimpleReceipt(String.valueOf(currentReceipt.getCount()), currentReceipt.getDate(), currentReceipt.getTime(), currentReceipt.getShortReceipt(), currentReceipt.getTotalWithTip(), String.valueOf(currentReceipt.getAmountPayed()), df.format(currentReceipt.getChangeAmount()));
+            addToReceiptHistory(refactoredReceipt);
+            resetBill();
+        }
+
         paymentMethodsPane.setVisible(false);
         paymentSuccessfulPane.setVisible(false);
         payCashPane.setVisible(false);
@@ -437,7 +478,9 @@ public class AppController implements Initializable {
     @FXML
     void payCard(ActionEvent event) {
         Receipt currentReceipt = getCurrentReceipt();
-        receiptPayAmount.setText(currentReceipt.getTotal() + getCurrency());
+        String payed = df.format((Double.parseDouble(currentReceipt.getTotal()) + currentReceipt.getTip()));
+
+        receiptPayAmount.setText(payed + getCurrency());
         paymentSuccessfulPane.setVisible(true);
     }
 
@@ -463,8 +506,8 @@ public class AppController implements Initializable {
 
         if (payed >= amountWithTip) {
             errorLabel.setVisible(false);
-            restMoney = payed - amountWithTip;
-            String formattedChange = df.format(restMoney);
+            currentReceipt.setChangeMoney(payed - amountWithTip);
+            double restMoney = currentReceipt.getChangeAmount();
             payCashPane.setVisible(false);
 
             if (restMoney != 0) {
@@ -476,13 +519,13 @@ public class AppController implements Initializable {
         } else {
             errorLabel.setVisible(true);
         }
-        receiptPayAmount.setText(paymentAmountPayedField.getText() + getCurrency());
+        currentReceipt.setAmountPayed(Double.valueOf(paymentAmountPayedField.getText()));
+        receiptPayAmount.setText(currentReceipt.getAmountPayed() + getCurrency());
     }
 
     @FXML
     void resetBill() {
         Receipt currentReceipt = getCurrentReceipt();
-
         currentReceipt.closeReceipt();
         updateBill();
     }
@@ -547,51 +590,70 @@ public class AppController implements Initializable {
         }
     }
 
-    // Tab Switching
-    @FXML
-    void setupSystem() {
+    private void setAllSettingsPanesInvisible() {
+        findReceiptPane.setVisible(false);
         usersSettingsPane.setVisible(false);
         tablesSettingPane.setVisible(false);
         productsSettingsPane.setVisible(false);
-        systemSettingsPane.setVisible(true);
+        systemSettingsPane.setVisible(false);
         billSettingsPane.setVisible(false);
+    }
+
+    // Tab Switching
+    @FXML
+    void setupSystem() {
+        setAllSettingsPanesInvisible();
+        systemSettingsPane.setVisible(true);
     }
 
     @FXML
     void setupProducts() {
-        usersSettingsPane.setVisible(false);
-        tablesSettingPane.setVisible(false);
+        setAllSettingsPanesInvisible();
         productsSettingsPane.setVisible(true);
-        systemSettingsPane.setVisible(false);
-        billSettingsPane.setVisible(false);
     }
 
     @FXML
     void setupTables() {
-        usersSettingsPane.setVisible(false);
+        setAllSettingsPanesInvisible();
         tablesSettingPane.setVisible(true);
-        productsSettingsPane.setVisible(false);
-        systemSettingsPane.setVisible(false);
-        billSettingsPane.setVisible(false);
     }
 
     @FXML
     void setupUsers() {
-        tablesSettingPane.setVisible(false);
+        setAllSettingsPanesInvisible();
         usersSettingsPane.setVisible(true);
-        productsSettingsPane.setVisible(false);
-        systemSettingsPane.setVisible(false);
-        billSettingsPane.setVisible(false);
+    }
+
+    @FXML
+    void showFindReceiptPane() {
+        setAllSettingsPanesInvisible();
+        findReceiptPane.setVisible(true);
+    }
+
+    @FXML
+    void startSearchReceipt() throws IOException {
+        SimpleReceipt foundReceipt = getFromReceiptHistory(Integer.parseInt(receiptNumberField.getText()));
+
+        if (foundReceipt != null) {
+            receiptPreview.setVisible(true);
+
+            receiptAddressFound.setText("Adresse: " + getAddress());
+            receiptTelefonNumberFound.setText("Telefon: " + getTel());
+            receiptBillNumberFound.setText(String.valueOf("Belegnummer: " + foundReceipt.getCount()));
+            dateInReceiptFound.setText("Datum: " +foundReceipt.getDate());
+            timeInReceiptFound.setText(foundReceipt.getTime());
+            receiptBillFound.setText(foundReceipt.getProductsList());
+            receiptTotalFound.setText(foundReceipt.getTotal() + getCurrency());
+            receiptPayAmountFound.setText(foundReceipt.getPayed() + getCurrency());
+            receiptRestMoneyFound.setText(foundReceipt.getChangeMoney() + getCurrency());
+            receiptMessageFound.setText(getMessage());
+        }
     }
 
     @FXML
     void setupBill(ActionEvent event) {
-        tablesSettingPane.setVisible(false);
-        usersSettingsPane.setVisible(false);
-        productsSettingsPane.setVisible(false);
-        systemSettingsPane.setVisible(false);
+        setAllSettingsPanesInvisible();
         billSettingsPane.setVisible(true);
-
         updateBillInfo();
     }
 
@@ -635,11 +697,6 @@ public class AppController implements Initializable {
 
         billText.setText(currentReceipt.getFullReceipt());
         totalPrice.setText(currentReceipt.getTotal() + getCurrency());
-    }
-
-    @FXML
-    void systemSettingsChangeLanguage() {
-
     }
 
     @FXML
