@@ -183,6 +183,25 @@ public class AppController implements Initializable {
     private TextField newProductPrice;
 
     @FXML
+    private TextField newProductNamePreview;
+
+    @FXML
+    private TextField newTelField;
+    @FXML
+    private TextField newAdressField;
+    @FXML
+    private TextField newMessageField;
+
+    @FXML
+    private Text previewAdress;
+
+    @FXML
+    private Text previewTel;
+
+    @FXML
+    private Text previewMessage;
+
+    @FXML
     private TextField newURL;
 
     @FXML
@@ -198,10 +217,16 @@ public class AppController implements Initializable {
     private Pane systemSettingsPane;
 
     @FXML
+    private Pane billSettingsPane;
+
+    @FXML
     private TextField systemNewCurrencyField;
 
     @FXML
     private TextField systemNewTaxesField;
+
+    @FXML
+    private TextField systemNewBillNrField;
 
     @FXML
     private Button systemSettings;
@@ -211,6 +236,9 @@ public class AppController implements Initializable {
 
     @FXML
     private Pane paymentSuccessfulPane;
+
+    @FXML
+    private Pane paymentSelectionPane;
 
     @FXML
     private ChoiceBox<Currency> systemNewCurrencySelector;
@@ -250,19 +278,19 @@ public class AppController implements Initializable {
     @FXML
     private AnchorPane receiptPane;
     @FXML
-    private Pane behindReceiptPane;
-    @FXML
     private Label dateInReceipt;
     @FXML
     private Label timeInReceipt;
     @FXML
     private Text receiptBill;
     @FXML
-    private Label receiptAddress;
+    private Text receiptAddress;
     @FXML
-    private Label receiptBillNumber;
+    private Text receiptBillNumber;
     @FXML
     private Label receiptPayAmount;
+    @FXML
+    private Text receiptMessage;
     @FXML
     private Label receiptPayAmountText;
     @FXML
@@ -270,7 +298,7 @@ public class AppController implements Initializable {
     @FXML
     private Label receiptRestMoneyText;
     @FXML
-    private Label receiptTelefonNumber;
+    private Text receiptTelefonNumber;
     @FXML
     private Label receiptTotal;
     @FXML
@@ -351,28 +379,31 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void printReceipt(){
+    void printReceipt() throws IOException {
         Receipt currentReceipt = getCurrentReceipt();
 
-        behindReceiptPane.setVisible(true);
+        paymentSelectionPane.setVisible(false);
+        paymentSuccessfulPane.setVisible(false);
         receiptPane.setVisible(true);
         //creates time format and gets the current local time
         String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss  ").format(java.time.LocalTime.now());
         timeInReceipt.setText(timeString);
 
         dateInReceipt.setText(getDate());
-        receiptBillNumber.setText("Belegnummer: " + String.valueOf(currentReceipt.getReceiptNumber()));
         receiptBill.setText(currentReceipt.getShortReceipt());
-        receiptTotal.setText(currentReceipt.getTotal() + getCurrency());
-        receiptPayAmount.setText(paymentAmountPayedField.getText() + getCurrency());
+        receiptAddress.setText("Addresse: " + getAddress());
+        receiptTelefonNumber.setText("Telefon: " + getTel());
+        receiptBillNumber.setText("Belegnummer: " + String.valueOf(currentReceipt.getInitialReceiptNumber()));
+        receiptMessage.setText(getMessage());
+        receiptTotal.setText(currentReceipt.getTotalWithTip() + getCurrency());
         receiptRestMoney.setText(df.format(restMoney) + getCurrency());
 
+        resetBill();
     }
     @FXML
     void closeReceipt(){
         paymentMethodsPane.setVisible(false);
         receiptPane.setVisible(false);
-        behindReceiptPane.setVisible(false);
         resetBill();
     }
 
@@ -382,6 +413,7 @@ public class AppController implements Initializable {
 
         if (Double.parseDouble(currentReceipt.getTotal()) > 0){
             paymentMethodsPane.setVisible(true);
+            paymentSelectionPane.setVisible(true);
             paymentSuccessfulPane.setVisible(false);
         }
 
@@ -393,7 +425,6 @@ public class AppController implements Initializable {
         paymentSuccessfulPane.setVisible(false);
         payCashPane.setVisible(false);
         restMoneyLabelSuccess.setText(" ");
-        resetBill();
     }
 
     @FXML
@@ -405,7 +436,8 @@ public class AppController implements Initializable {
 
     @FXML
     void payCard(ActionEvent event) {
-        resetBill();
+        Receipt currentReceipt = getCurrentReceipt();
+        receiptPayAmount.setText(currentReceipt.getTotal() + getCurrency());
         paymentSuccessfulPane.setVisible(true);
     }
 
@@ -415,7 +447,8 @@ public class AppController implements Initializable {
 
         paymentTotalBeforeAllLabel.setText("Gesamtsumme inkl. MWSt: " + currentReceipt.getTotal() + getCurrency());
         paymentTipLabel.setText("Trinkgeld: " + currentReceipt.getTip() + getCurrency());
-        paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + df.format(Double.parseDouble(currentReceipt.getTotal()) + currentReceipt.getTip()) + getCurrency());
+        paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + currentReceipt.getTotalWithTip() + getCurrency());
+
         payCashPane.setVisible(true);
     }
 
@@ -443,6 +476,7 @@ public class AppController implements Initializable {
         } else {
             errorLabel.setVisible(true);
         }
+        receiptPayAmount.setText(paymentAmountPayedField.getText() + getCurrency());
     }
 
     @FXML
@@ -520,6 +554,7 @@ public class AppController implements Initializable {
         tablesSettingPane.setVisible(false);
         productsSettingsPane.setVisible(false);
         systemSettingsPane.setVisible(true);
+        billSettingsPane.setVisible(false);
     }
 
     @FXML
@@ -528,6 +563,7 @@ public class AppController implements Initializable {
         tablesSettingPane.setVisible(false);
         productsSettingsPane.setVisible(true);
         systemSettingsPane.setVisible(false);
+        billSettingsPane.setVisible(false);
     }
 
     @FXML
@@ -536,6 +572,7 @@ public class AppController implements Initializable {
         tablesSettingPane.setVisible(true);
         productsSettingsPane.setVisible(false);
         systemSettingsPane.setVisible(false);
+        billSettingsPane.setVisible(false);
     }
 
     @FXML
@@ -544,6 +581,37 @@ public class AppController implements Initializable {
         usersSettingsPane.setVisible(true);
         productsSettingsPane.setVisible(false);
         systemSettingsPane.setVisible(false);
+        billSettingsPane.setVisible(false);
+    }
+
+    @FXML
+    void setupBill(ActionEvent event) {
+        tablesSettingPane.setVisible(false);
+        usersSettingsPane.setVisible(false);
+        productsSettingsPane.setVisible(false);
+        systemSettingsPane.setVisible(false);
+        billSettingsPane.setVisible(true);
+
+        updateBillInfo();
+    }
+
+    @FXML
+    void saveBillinfo(ActionEvent event) throws IOException {
+        setAddress(newAdressField.getText());
+        setTel(newTelField.getText());
+        setMessage(newMessageField.getText());
+
+        updateBillInfo();
+    }
+
+    void updateBillInfo() {
+        newAdressField.setText(getAddress());
+        newTelField.setText(getTel());
+        newMessageField.setText(getMessage());
+
+        previewAdress.setText("Addresse: " + getAddress());
+        previewTel.setText("Telefon: " + getTel());
+        previewMessage.setText(getMessage());
     }
 
     // SYSTEM SETTINGS TAB METHODS
@@ -551,7 +619,14 @@ public class AppController implements Initializable {
     void systemSettingsChangeCurrency() throws IOException {
         String newCurrency = String.valueOf(systemNewCurrencySelector.getValue().getSymbol());
         setCurrency(newCurrency);
-        setValue("Währung", String.valueOf(newCurrency));
+        setValue("currency", String.valueOf(newCurrency));
+        updateBill();
+    }
+
+    @FXML
+    void systemSettingsChangeBillNr(ActionEvent event) throws IOException {
+        setReceiptNumber(Integer.parseInt(systemNewBillNrField.getText()));
+        setValue("bill_nr", systemNewBillNrField.getText());
         updateBill();
     }
 
@@ -780,6 +855,9 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
+
+        updateBillInfo();
+
         //Creates ToolTip for Reset Button
         Tooltip tt = new Tooltip();
         tt.setText("Löscht die aktuelle Rechnung!");

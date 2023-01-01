@@ -5,13 +5,21 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static at.ac.fhcampuswien.xsolutions.Receipt.setCurrency;
-import static at.ac.fhcampuswien.xsolutions.Receipt.setTaxes;
-import static at.ac.fhcampuswien.xsolutions.Tables.*;
+import static at.ac.fhcampuswien.xsolutions.Receipt.*;
 
 public class Configurator {
     private static final String CONFIG_FILE = "src/main/resources/config.txt";
     private static int tableCount;
+
+    public static void readConfig() throws IOException {
+        readConfigCurrency();
+        readConfigTaxes();
+        readConfigBillCounter();
+        readConfigTableCount();
+        readConfigBillAddress();
+        readConfigBillTel();
+        readConfigBillMessage();
+    }
 
     public static void readConfigTableCount() throws IOException {
         // Read the contents of the config.txt file
@@ -72,7 +80,55 @@ public class Configurator {
 
             // If the key is "bill_nr", return the corresponding value
             if (key.equals("bill_nr")) {
-                //setInitialBillNumber(Integer.parseInt(value));
+                setReceiptNumber(Integer.parseInt(value));
+            }
+        }
+    }
+
+    public static void readConfigBillAddress() throws IOException {
+        // Read the contents of the config.txt file
+        List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
+        // Iterate through the lines and split each line into a key-value pair
+        for (String line : lines) {
+            String[] parts = line.split("=");
+            String key = parts[0].trim();
+            String value = parts[1].trim();
+
+            // If the key is "bill_address", return the corresponding value
+            if (key.equals("bill_address")) {
+                setAddress(value);
+            }
+        }
+    }
+
+    public static void readConfigBillTel() throws IOException {
+        // Read the contents of the config.txt file
+        List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
+        // Iterate through the lines and split each line into a key-value pair
+        for (String line : lines) {
+            String[] parts = line.split("=");
+            String key = parts[0].trim();
+            String value = parts[1].trim();
+
+            // If the key is "bill_tel", return the corresponding value
+            if (key.equals("bill_tel")) {
+                setTel(value);
+            }
+        }
+    }
+
+    public static void readConfigBillMessage() throws IOException {
+        // Read the contents of the config.txt file
+        List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE));
+        // Iterate through the lines and split each line into a key-value pair
+        for (String line : lines) {
+            String[] parts = line.split("=");
+            String key = parts[0].trim();
+            String value = parts[1].trim();
+
+            // If the key is "bill_msg", return the corresponding value
+            if (key.equals("bill_msg")) {
+                setMessage(value);
             }
         }
     }
