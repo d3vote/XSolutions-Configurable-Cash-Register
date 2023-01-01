@@ -597,6 +597,7 @@ public class AppController implements Initializable {
         productsSettingsPane.setVisible(false);
         systemSettingsPane.setVisible(false);
         billSettingsPane.setVisible(false);
+        receiptPreview.setVisible(false);
     }
 
     // Tab Switching
@@ -628,6 +629,7 @@ public class AppController implements Initializable {
     void showFindReceiptPane() {
         setAllSettingsPanesInvisible();
         findReceiptPane.setVisible(true);
+        receiptPreview.setVisible(true);
     }
 
     @FXML

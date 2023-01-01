@@ -73,7 +73,7 @@
                         </AnchorPane>
                         <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
                            <children>
-                              <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+                              <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
                                  <children>
                                     <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                                        <font>
@@ -182,7 +182,7 @@
                                           <TextField fx:id="systemNewBillNrField" layoutX="14.0" layoutY="207.0" prefHeight="25.0" prefWidth="170.0" promptText="Neue Letzte Belegnummer" />
                                        </children>
                                     </Pane>
-                                    <Pane fx:id="findReceiptPane" layoutY="115.0" prefHeight="153.0" prefWidth="828.0">
+                                    <Pane fx:id="findReceiptPane" layoutY="115.0" prefHeight="153.0" prefWidth="828.0" visible="false">
                                        <children>
                                           <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Finden:" />
                                           <VBox layoutX="395.0" layoutY="77.0" prefHeight="56.0" prefWidth="170.0" />
@@ -192,7 +192,7 @@
                                     </Pane>
                                     <AnchorPane layoutX="14.0" layoutY="210.0" prefHeight="681.0" prefWidth="307.0">
                                        <children>
-                                          <FlowPane fx:id="receiptPreview" prefHeight="681.0" prefWidth="356.0" style="-fx-background-color: white; -fx-background-radius: 8;">
+                                          <FlowPane fx:id="receiptPreview" prefHeight="681.0" prefWidth="356.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
                                              <children>
                                                 <Pane prefHeight="43.0" prefWidth="442.0" />
                                                 <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="442.0">
@@ -306,7 +306,7 @@
                                     </AnchorPane>
                                  </children>
                               </Pane>
-                              <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <children>
                                     <GridPane prefHeight="62.0" prefWidth="868.0">
                                        <columnConstraints>
