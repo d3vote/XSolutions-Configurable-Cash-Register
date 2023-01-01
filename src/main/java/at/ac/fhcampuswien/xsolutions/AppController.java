@@ -386,7 +386,7 @@ public class AppController implements Initializable {
         paymentSuccessfulPane.setVisible(false);
         receiptPane.setVisible(true);
         //creates time format and gets the current local time
-        String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss  ").format(java.time.LocalTime.now());
+        String timeString = java.time.format.DateTimeFormatter.ofPattern("HH:mm").format(java.time.LocalTime.now());
         timeInReceipt.setText(timeString);
 
         dateInReceipt.setText(getDate());
