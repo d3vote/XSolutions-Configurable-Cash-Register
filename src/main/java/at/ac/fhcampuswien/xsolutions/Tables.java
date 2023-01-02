@@ -1,10 +1,5 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 
 public class Tables{
     private int tableNumber;
@@ -27,8 +22,12 @@ public class Tables{
         return count;
     }
 
-    public String getTableNumberAsString(){
+    public String getTableName(){
         return "Tisch " + tableNumber;
+    }
+
+    public String getTableNumberAsString(){
+        return "Tisch: " + tableNumber;
     }
 
     public String getServersName() {

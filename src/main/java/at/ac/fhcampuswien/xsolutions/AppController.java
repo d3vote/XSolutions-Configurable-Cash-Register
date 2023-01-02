@@ -19,8 +19,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
@@ -33,7 +31,6 @@ import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
 import static at.ac.fhcampuswien.xsolutions.Receipt.*;
-import static at.ac.fhcampuswien.xsolutions.ReceiptHistory.addToReceiptHistory;
 import static at.ac.fhcampuswien.xsolutions.ReceiptHistory.getFromReceiptHistory;
 import static at.ac.fhcampuswien.xsolutions.Tables.*;
 import static at.ac.fhcampuswien.xsolutions.User.userToJson;
@@ -70,9 +67,6 @@ public class AppController implements Initializable {
 
     @FXML
     private ImageView adminButton;
-
-    @FXML
-    private ScrollPane bill;
 
     @FXML
     private Label billText;
@@ -214,7 +208,7 @@ public class AppController implements Initializable {
     private TextField newURL;
 
     @FXML
-    private Label datum;
+    private Text datum;
 
     @FXML
     private Button add;
@@ -335,9 +329,19 @@ public class AppController implements Initializable {
     private Label receiptRestMoneyFound;
     @FXML
     private Text receiptMessageFound;
-
     @FXML
     private Label receiptTotalText;
+    @FXML
+    private Pane emptyReceiptPane;
+    @FXML
+    private Text tableNumberText;
+    @FXML
+    private Label subTotalLabel;
+    @FXML
+    private Label taxesTitleLabel;
+    @FXML
+    private Label totalTaxesBill;
+
 
     private Tables getCurrentTable() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
@@ -527,6 +531,7 @@ public class AppController implements Initializable {
 
     @FXML
     void resetBill() {
+        emptyReceiptPane.setVisible(true);
         Receipt currentReceipt = getCurrentReceipt();
         currentReceipt.closeReceipt();
         updateBill();
@@ -541,12 +546,14 @@ public class AppController implements Initializable {
         for (Product item : productsList) {
             // Create the elements
             Pane imagePane = new Pane();
-            imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
+            imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
             Label productTitleLabel = new Label(item.getProductTitle());
-            Button addButton = new Button("Hinzufügen");
-            Button removeButton = new Button("Entfernen");
-            addButton.setStyle("-fx-font-weight: 700; -fx-font-size: 12px");
-            removeButton.setStyle("-fx-font-weight: 700; -fx-font-size: 12px");
+            Button addButton = new Button();
+            Button removeButton = new Button();
+
+            addButton.getStyleClass().add("plus");
+            removeButton.getStyleClass().add("minus");
+
             // creates Tooltip that shows productDescription
             Tooltip tt = new Tooltip();
             tt.setText(item.productDescription);
@@ -561,19 +568,25 @@ public class AppController implements Initializable {
             removeButton.getStyleClass().add("cartOptions-r");
 
             // Sets size of new elements
-            imagePane.setMinSize(200, 120);
+            imagePane.setMinSize(180, 100);
             imagePane.setMaxSize(220, 135);
-            productTitleLabel.setMinSize(215, 30);
-            addButton.setMinSize(90, 25);
-            removeButton.setMinSize(90, 25);
+            productTitleLabel.setMinSize(150, 30);
+            addButton.setMinSize(65, 40);
+            removeButton.setMinSize(65, 40);
 
             // sets positions of new elements
             HBox buttonBox = new HBox();
             buttonBox.getChildren().addAll(addButton, removeButton);
+            buttonBox.setMinSize(180,40);
+            addButton.setAlignment(Pos.CENTER);
+            removeButton.setAlignment(Pos.CENTER);
             buttonBox.setAlignment(Pos.BASELINE_CENTER);
             VBox productPane = new VBox();
             productTitleLabel.setAlignment(Pos.CENTER);
+            productPane.setAlignment(Pos.CENTER);
             productPane.getChildren().addAll(productTitleLabel, imagePane, buttonBox);
+            productPane.getStyleClass().addAll("product-vbox");
+            imagePane.getStyleClass().addAll("productImage");
 
             // Set the properties of the elements
             addButton.setOnAction(event -> addToBillButton(item));
@@ -591,6 +604,8 @@ public class AppController implements Initializable {
                 grid.addRow(grid.getRowCount()+1);
             }
         }
+        grid.setVgap(20);
+        grid.setHgap(20);
     }
 
     private void setAllSettingsPanesInvisible() {
@@ -702,6 +717,16 @@ public class AppController implements Initializable {
 
         billText.setText(currentReceipt.getFullReceipt());
         totalPrice.setText(currentReceipt.getTotal() + getCurrency());
+        tableNumberText.setText(getCurrentTable().getTableNumberAsString());
+        subTotalLabel.setText(currentReceipt.getSubtotal() + getCurrency());
+        taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
+        totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
+
+        if (currentReceipt.getFullReceipt().equals("")) {
+            emptyReceiptPane.setVisible(true);
+        } else {
+            emptyReceiptPane.setVisible(false);
+        }
     }
 
     @FXML
@@ -888,7 +913,7 @@ public class AppController implements Initializable {
         tablesListView.getItems().clear();
         // Recreating Tables ListView
         for (Tables arrayTable : arrayTables) {
-            tablesListView.getItems().add(arrayTable.getTableNumberAsString());
+            tablesListView.getItems().add(arrayTable.getTableName());
         }
         setValue("tableCount", String.valueOf(newSize));
     }
@@ -961,7 +986,7 @@ public class AppController implements Initializable {
 
         // Generate Lists of Tables, Products and Users
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
-            tablesListView.getItems().add(arrayTable.getTableNumberAsString());
+            tablesListView.getItems().add(arrayTable.getTableName());
         }
 
         for (Product product : productsList) {
