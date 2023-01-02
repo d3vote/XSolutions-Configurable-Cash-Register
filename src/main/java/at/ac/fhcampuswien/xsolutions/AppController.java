@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
@@ -541,9 +543,10 @@ public class AppController implements Initializable {
             Pane imagePane = new Pane();
             imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
             Label productTitleLabel = new Label(item.getProductTitle());
-            Button addButton = new Button("Add");
-            Button removeButton = new Button("Remove");
-
+            Button addButton = new Button("Hinzufügen");
+            Button removeButton = new Button("Entfernen");
+            addButton.setStyle("-fx-font-weight: 700; -fx-font-size: 12px");
+            removeButton.setStyle("-fx-font-weight: 700; -fx-font-size: 12px");
             // creates Tooltip that shows productDescription
             Tooltip tt = new Tooltip();
             tt.setText(item.productDescription);
