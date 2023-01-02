@@ -1,7 +1,7 @@
 tableCount = 30
 currency = €
 taxes = 20
-bill_nr = 3
+bill_nr = 10
 bill_address = Favoritenstraße 226
 bill_tel = 01 11111111
 bill_msg = Danke!

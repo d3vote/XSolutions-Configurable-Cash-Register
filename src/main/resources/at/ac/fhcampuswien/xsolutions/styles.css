@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap');
 
 .text {
-    -fx-font-family: 'Ubuntu', sans-serif;
+    font-family: 'Quicksand';
 }
 
 .leftList {
@@ -21,29 +21,66 @@
 }
 
 .cartOptions-l {
-  -fx-background-radius: 0 0 0 33;
+  -fx-background-radius: 0 0 0 8;
 }
 
 .cartOptions-r {
-  -fx-background-radius: 0 0 33 0;
+  -fx-background-radius: 0 0 8 0;
 }
 
 .cardOptionButton {
-  -fx-background-image: url("https://i.imgur.com/nWBo0wz.png");
+  -fx-background-image: url("https://i.imgur.com/q5d1uzp.png");
 }
 
 .cashOptionButton {
--fx-background-image: url("https://i.imgur.com/6UKTfc1.png");
+-fx-background-image: url("https://i.imgur.com/O2haVjP.png");
+}
+
+.product-vbox {
+  -fx-background-color: #EAF0F0;
+  -fx-background-radius: 8;
+  -fx-border-radius: 8;
+}
+
+.productImage {
+  -fx-background-radius: 8 8 0 0;
+  -fx-border-radius: 8 8 0 0;
+  -fx-background-size: contain;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: center center;
+}
+
+.minus {
+    -fx-background-color: transparent;
+    -fx-background-image: url("https://i.imgur.com/tu0fMom.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-size: 23 24;
+    -fx-background-position: center center;
+}
+
+.plus {
+    -fx-background-color: transparent;
+    -fx-background-image: url("https://i.imgur.com/c5GHR31.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-size: 23 24;
+    -fx-background-position: center center;
 }
 
 .paymentMethodButton {
-    -fx-background-color: white;
-    -fx-background-radius: 33;
+    -fx-background-color: transparent;
+    -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
-    -fx-border-color: #D9D9D9;
-    -fx-border-radius: 33;
-    -fx-border-width: 3.5;
+    -fx-background-position: center center;
+}
+
+.paymentMethodPane {
+    -fx-background-radius: 8;
+    -fx-background-color: #EAF0F0;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
 }
 
 .paymentPane {
@@ -65,11 +102,75 @@
     -fx-background-size: contain;
     -fx-background-position: center;
 }
+
 .resetButton {
-    -fx-background-image: url("https://i.imgur.com/zt31ath.png");
+    -fx-background-image: url("https://i.imgur.com/fQC9B36.png");
     -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
-    -fx-background-color:  #D9D9D9;
+    -fx-background-size: contain;
+    -fx-background-color: transparent;
+}
+
+.callendar {
+    -fx-background-image: url("https://i.imgur.com/MU6w7RP.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-size: 16 18;
+}
+
+.table {
+    -fx-background-image: url("https://i.imgur.com/Iurq5pG.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-color: transparent;
+    -fx-background-position: center;
+    -fx-background-size: 16 16;
+}
+
+
+.noReceipt {
+    -fx-background-image: url("https://i.imgur.com/sx4Cq6t.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-size: 88 88;
+}
+
+.search-field {
+    -fx-background-radius: 8;
+    -fx-background-image:url('https://i.imgur.com/LfXDSl3.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right 20px center;
+    -fx-background-size: 20 20;
+    -fx-font-size: 14;
+    -fx-background-color: #EAF0F0;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-prompt-text-fill: #89928E;
+}
+
+.text-field {
+    -fx-background-radius: 8;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right 20px center;
+    -fx-background-size: 20 20;
+    -fx-font-size: 14;
+    -fx-background-color: #EAF0F0;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-prompt-text-fill: #89928E;
+}
+
+.choice-box {
+  -fx-background-radius: 8;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: right 20px center;
+  -fx-background-size: 20 20;
+  -fx-font-size: 14;
+  -fx-background-color: #EAF0F0;
+  -fx-background-insets: 0;
+  -fx-border-color: transparent;
+  -fx-prompt-text-fill: #89928E;
 }
 
 .resetScrollPane > .viewport {
@@ -84,4 +185,26 @@
 .resetScrollPane:focused {
     -fx-background-color: white;
     -fx-background-insets: 0, 0;
+}
+
+.acceptBtn {
+    -fx-background-color: #4A5C2F;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.deleteBtn {
+    -fx-background-color:  #a82b2b;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+}
+
+.list-view .list-cell:filled:selected {
+  -fx-background: #B1CED4;
+}
+
+.tabBtn {
+    -fx-background-color: #B1CED4;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
 }

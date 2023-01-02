@@ -26,9 +26,9 @@ public class Receipt{
     private double changeMoney;
     private double amountPayed;
     public static final DecimalFormat df = new DecimalFormat("0.00");
-    private static ArrayList<Product> usedProducts;
+    private ArrayList<Product> usedProducts;
     public static List<Receipt> arrayReceipts = new ArrayList<>();
-    private static Map<Product, Integer> productCounter;
+    private Map<Product, Integer> productCounter;
 
 
     public Receipt(Tables table){
@@ -55,23 +55,13 @@ public class Receipt{
 
         // Recreate a new productsTotal List
         for (Product usedProduct : usedProducts){
-            productsTotal.append("\n").append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(currency).append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct)));
+            productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(currency).append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct))).append("\n");
         }
 
         if (table.getServersName() != null){
-            return  "Tisch: " + table.getTableNumberAsString() + System.lineSeparator() +
-                    "Kellner: " + table.getServersName() + System.lineSeparator() +
-
-                    System.lineSeparator() +
-                    "Produkte bestellt: " + System.lineSeparator() +
-                    productsTotal + System.lineSeparator() +
-                    System.lineSeparator() +
-
-                    "Zwischensumme: " + getSubtotal() + currency + System.lineSeparator() +
-                    "Steuer (" + taxes + "%): " + calculateTaxesAmount() + currency + System.lineSeparator() +
-                    "Gesamtsumme inkl. Trinkgeld: " + getTotalWithTip() + currency + System.lineSeparator();
+            return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
         } else
-            return "Rechnung ist leer";
+            return "";
     }
 
     public String getShortReceipt() {
@@ -232,5 +222,9 @@ public class Receipt{
 
     public void setAmountPayed(Double amountPayed) {
         this.amountPayed = amountPayed;
+    }
+
+    public static double getTaxes() {
+        return taxes;
     }
 }
