@@ -26,9 +26,9 @@ public class Receipt{
     private double changeMoney;
     private double amountPayed;
     public static final DecimalFormat df = new DecimalFormat("0.00");
-    private transient ArrayList<Product> usedProducts;
+    private static ArrayList<Product> usedProducts;
     public static List<Receipt> arrayReceipts = new ArrayList<>();
-    private transient Map<Product, Integer> productCounter;
+    private static Map<Product, Integer> productCounter;
 
 
     public Receipt(Tables table){

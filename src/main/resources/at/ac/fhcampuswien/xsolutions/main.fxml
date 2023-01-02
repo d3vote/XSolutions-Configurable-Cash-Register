@@ -190,25 +190,40 @@
                                           <Button layoutX="232.0" layoutY="51.0" mnemonicParsing="false" onAction="#startSearchReceipt" prefHeight="25.0" prefWidth="73.0" styleClass="settingsBtn" stylesheets="@styles.css" text="Suchen" />
                                        </children>
                                     </Pane>
-                                    <AnchorPane layoutX="14.0" layoutY="210.0" prefHeight="681.0" prefWidth="307.0">
+                                    <Pane layoutX="3.0" layoutY="202.0" prefHeight="761.0" prefWidth="503.0">
                                        <children>
-                                          <FlowPane fx:id="receiptPreview" prefHeight="681.0" prefWidth="356.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
+                                          <FlowPane fx:id="receiptPreview" prefHeight="681.0" prefWidth="438.0" style="-fx-background-color: white; -fx-background-radius: 8;" visible="false">
                                              <children>
                                                 <Pane prefHeight="43.0" prefWidth="442.0" />
                                                 <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="442.0">
                                                    <children>
-                                                      <Label style="-fx-font-size: 22; -fx-font-weight: 700;" text="RECHNUNG" />
-                                                      <Text fx:id="receiptAddressFound" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: " />
-                                                      <Text fx:id="receiptTelefonNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon: " />
-                                                      <Text fx:id="receiptBillNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" text="Beleg Nummer: " />
+                                                      <Label fx:id="receiptPrevierwTitle" style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;" styleClass="billTitle" stylesheets="@styles.css" text="RECHNUNG">
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font></Label>
+                                                      <Text fx:id="receiptAddressFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Adresse: ">
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font></Text>
+                                                      <Text fx:id="receiptTelefonNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Telefon: ">
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font></Text>
+                                                      <Text fx:id="receiptBillNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Beleg Nummer: ">
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font></Text>
                                                    </children>
                                                 </VBox>
-                                                <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="441.0" text="----------------------------------------------------------------------------------">
+                                                <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                                                    <padding>
                                                       <Insets left="20.0" right="20.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="Calibri" size="12.0" />
+                                                   </font>
                                                 </Label>
-                                                <GridPane prefHeight="22.0" prefWidth="416.0">
+                                                <GridPane prefHeight="24.0" prefWidth="443.0">
                                                    <columnConstraints>
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -222,32 +237,41 @@
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
                                                       </Label>
-                                                      <Label fx:id="timeInReceiptFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="169.0" GridPane.columnIndex="1">
+                                                      <Label fx:id="timeInReceiptFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="210.0" GridPane.columnIndex="1">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
                                                       </Label>
                                                    </children>
                                                 </GridPane>
-                                                <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="436.0" text="----------------------------------------------------------------------------------">
+                                                <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                                                    <padding>
                                                       <Insets left="20.0" right="20.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="Calibri" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <ScrollPane prefHeight="289.0" prefWidth="395.0" styleClass="resetScrollPane" stylesheets="@styles.css">
                                                    <FlowPane.margin>
                                                       <Insets left="20.0" />
                                                    </FlowPane.margin>
                                                    <content>
-                                                      <Text fx:id="receiptBillFound" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="380.13671875" />
+                                                      <Text fx:id="receiptBillFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" wrappingWidth="380.13671875">
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font></Text>
                                                    </content>
                                                 </ScrollPane>
-                                                <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="442.0" text="----------------------------------------------------------------------------------">
+                                                <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                                                    <padding>
                                                       <Insets left="20.0" right="20.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="Calibri" size="12.0" />
+                                                   </font>
                                                 </Label>
-                                                <GridPane prefHeight="73.0" prefWidth="415.0">
+                                                <GridPane prefHeight="73.0" prefWidth="429.0">
                                                    <columnConstraints>
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="223.0" />
                                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="207.0" />
@@ -258,52 +282,76 @@
                                                       <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                                                    </rowConstraints>
                                                    <children>
-                                                      <Label prefHeight="17.0" prefWidth="439.0" text="Gesamtsumme inkl. Trinkgeld:">
+                                                      <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Gesamtsumme inkl. Trinkgeld:">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font>
                                                       </Label>
-                                                      <Label fx:id="receiptTotalFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" GridPane.columnIndex="1">
+                                                      <Label fx:id="receiptTotalFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font>
                                                       </Label>
-                                                      <Label prefHeight="17.0" prefWidth="439.0" text="Bezahlt:" GridPane.rowIndex="1">
+                                                      <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Bezahlt:" GridPane.rowIndex="1">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font>
                                                       </Label>
-                                                      <Label fx:id="receiptPayAmountFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                      <Label fx:id="receiptPayAmountFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font>
                                                       </Label>
-                                                      <Label prefHeight="17.0" prefWidth="439.0" text="Restgeld:" GridPane.rowIndex="2">
+                                                      <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Restgeld:" GridPane.rowIndex="2">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font>
                                                       </Label>
-                                                      <Label fx:id="receiptRestMoneyFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                      <Label fx:id="receiptRestMoneyFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                                          <padding>
                                                             <Insets left="20.0" right="20.0" />
                                                          </padding>
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font>
                                                       </Label>
                                                    </children>
                                                 </GridPane>
-                                                <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
+                                                <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                                                    <padding>
                                                       <Insets left="20.0" right="20.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="Calibri" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <HBox alignment="CENTER" prefHeight="100.0" prefWidth="441.0">
                                                    <children>
-                                                      <Text fx:id="receiptMessageFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="Danke!" />
+                                                      <Text fx:id="receiptMessageFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;" text="Danke!">
+                                                         <font>
+                                                            <Font name="Calibri" size="12.0" />
+                                                         </font></Text>
                                                    </children>
                                                 </HBox>
                                              </children>
                                           </FlowPane>
                                        </children>
-                                    </AnchorPane>
+                                    </Pane>
                                  </children>
                               </Pane>
                               <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

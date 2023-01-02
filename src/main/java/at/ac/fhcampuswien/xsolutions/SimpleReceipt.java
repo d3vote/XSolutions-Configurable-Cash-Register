@@ -3,6 +3,8 @@ package at.ac.fhcampuswien.xsolutions;
 import java.io.Serializable;
 import java.util.Objects;
 
+import static at.ac.fhcampuswien.xsolutions.ReceiptHistory.addToReceiptHistory;
+
 public class SimpleReceipt implements Serializable {
     private String count;
     private String date;
@@ -30,6 +32,8 @@ public class SimpleReceipt implements Serializable {
         } else {
             this.changeMoney = changeMoney;
         }
+
+        addToReceiptHistory(this);
     }
 
     public String getCount() {

@@ -314,6 +314,8 @@ public class AppController implements Initializable {
     @FXML
     private Text receiptAddressFound;
     @FXML
+    private Label receiptPrevierwTitle;
+    @FXML
     private Text receiptTelefonNumberFound;
     @FXML
     private Text receiptBillNumberFound;
@@ -430,7 +432,6 @@ public class AppController implements Initializable {
         receiptRestMoney.setText(df.format(currentReceipt.getChangeAmount()) + getCurrency());
 
         SimpleReceipt refactoredReceipt = new SimpleReceipt(String.valueOf(currentReceipt.getCount()), currentReceipt.getDate(), currentReceipt.getTime(), currentReceipt.getShortReceipt(), currentReceipt.getTotalWithTip(), String.valueOf(currentReceipt.getAmountPayed()), df.format(currentReceipt.getChangeAmount()));
-        addToReceiptHistory(refactoredReceipt);
 
         resetBill();
     }
@@ -458,7 +459,6 @@ public class AppController implements Initializable {
         if (paymentSuccessfulPane.isVisible()) {
             Receipt currentReceipt = getCurrentReceipt();
             SimpleReceipt refactoredReceipt = new SimpleReceipt(String.valueOf(currentReceipt.getCount()), currentReceipt.getDate(), currentReceipt.getTime(), currentReceipt.getShortReceipt(), currentReceipt.getTotalWithTip(), String.valueOf(currentReceipt.getAmountPayed()), df.format(currentReceipt.getChangeAmount()));
-            addToReceiptHistory(refactoredReceipt);
             resetBill();
         }
 
