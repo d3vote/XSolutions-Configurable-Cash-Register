@@ -126,8 +126,8 @@
                                              <children>
                                                 <Button mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Name ändern" />
                                                 <Button mnemonicParsing="false" onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Benutzernamen ändern" />
-                                                <Button mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Administratorrechte umschalten" />
                                                 <Button mnemonicParsing="false" onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Passwort ändern" />
+                                                <Button mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Administratorrechte umschalten" />
                                              </children>
                                           </VBox>
                                           <VBox layoutX="231.0" layoutY="452.0" prefHeight="189.0" prefWidth="243.0" spacing="5.0">
@@ -150,8 +150,8 @@
                                           <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="System Steuerung:" />
                                           <VBox layoutY="34.0" prefHeight="113.0" prefWidth="200.0" spacing="10.0">
                                              <children>
-                                                <Button mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Währung ändern" />
                                                 <Button mnemonicParsing="false" onAction="#systemSettingsChangeTaxes" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Steuern ändern" />
+                                                <Button mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Währung ändern" />
                                              </children>
                                           </VBox>
                                           <VBox layoutX="217.0" layoutY="34.0" prefHeight="73.0" prefWidth="212.0" spacing="10.0">

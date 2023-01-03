@@ -1,9 +1,12 @@
 package at.ac.fhcampuswien.xsolutions;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +15,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -37,7 +43,7 @@ import static at.ac.fhcampuswien.xsolutions.User.userToJson;
 import static at.ac.fhcampuswien.xsolutions.User.usersList;
 
 
-public class AppController implements Initializable {
+public class AppController extends Task implements Initializable {
     String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
     ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
     String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
@@ -385,6 +391,7 @@ public class AppController implements Initializable {
         // Update Total Price and Bill
         currentReceipt.addToSubtotal(item.getProductPrice());
         currentTable.setServerName(getLoggedInUserName());
+        System.out.println(currentTable.getServersName());
         updateBill();
     }
 
@@ -433,9 +440,9 @@ public class AppController implements Initializable {
         receiptAddress.setText("Addresse: " + getAddress());
         receiptTelefonNumber.setText("Telefon: " + getTel());
         receiptBillNumber.setText("Belegnummer: " + String.valueOf(currentReceipt.getInitialReceiptNumber()));
-        receiptMessage.setText(getMessage());
-        receiptTotal.setText(currentReceipt.getTotalWithTip() + getCurrency());
-        receiptRestMoney.setText(df.format(currentReceipt.getChangeAmount()) + getCurrency());
+        receiptMessage.setText(Receipt.getMessage());
+        receiptTotal.setText((currentReceipt.getTotalWithTip() + getCurrency()).replace(",", "."));
+        receiptRestMoney.setText((df.format(currentReceipt.getChangeAmount()) + getCurrency()).replace(",", "."));
 
         SimpleReceipt refactoredReceipt = new SimpleReceipt(String.valueOf(currentReceipt.getCount()), currentReceipt.getDate(), currentReceipt.getTime(), currentReceipt.getShortReceipt(), currentReceipt.getTotalWithTip(), String.valueOf(currentReceipt.getAmountPayed()), df.format(currentReceipt.getChangeAmount()));
 
@@ -487,6 +494,7 @@ public class AppController implements Initializable {
         String payed = df.format((Double.parseDouble(currentReceipt.getTotal()) + currentReceipt.getTip()));
 
         receiptPayAmount.setText(payed + getCurrency());
+
         paymentSuccessfulPane.setVisible(true);
     }
 
@@ -498,6 +506,7 @@ public class AppController implements Initializable {
         paymentTipLabel.setText("Trinkgeld: " + currentReceipt.getTip() + getCurrency());
         paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + currentReceipt.getTotalWithTip() + getCurrency());
 
+        restMoneyLabelSuccess.setVisible(false);
         payCashPane.setVisible(true);
     }
 
@@ -543,10 +552,44 @@ public class AppController implements Initializable {
         grid.getChildren().clear();
         int row = 0;
         int col = 0;
+        Executor executor = Executors.newFixedThreadPool(8);
         for (Product item : productsList) {
             // Create the elements
             Pane imagePane = new Pane();
-            imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
+            Service<Void> imageLoadingService = new Service<Void>() {
+                @Override
+                protected Task<Void> createTask() {
+                    return new Task<Void>() {
+                        @Override
+                        protected Void call() throws Exception {
+                            Image image = new Image(item.getProductImageUrl());
+                            return null;
+                        }
+                    };
+                }
+            };
+
+            imageLoadingService.setExecutor(executor);
+            imageLoadingService.setOnSucceeded(event -> {
+                Service<Void> imageLoadingService2 = new Service<Void>() {
+                    @Override
+                    protected Task<Void> createTask() {
+                        return new Task<Void>() {
+                            @Override
+                            protected Void call() throws Exception {
+                                imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
+                                return null;
+                            }
+                        };
+                    }
+                };
+                imageLoadingService2.setExecutor(executor);
+                imageLoadingService2.start();
+            });
+
+            // Start the service
+            imageLoadingService.start();
+
             Label productTitleLabel = new Label(item.getProductTitle());
             Button addButton = new Button();
             Button removeButton = new Button();
@@ -659,14 +702,14 @@ public class AppController implements Initializable {
 
             receiptAddressFound.setText("Adresse: " + getAddress());
             receiptTelefonNumberFound.setText("Telefon: " + getTel());
-            receiptBillNumberFound.setText(String.valueOf("Belegnummer: " + foundReceipt.getCount()));
+            receiptBillNumberFound.setText("Belegnummer: " + foundReceipt.getCount());
             dateInReceiptFound.setText("Datum: " +foundReceipt.getDate());
             timeInReceiptFound.setText(foundReceipt.getTime());
             receiptBillFound.setText(foundReceipt.getProductsList());
             receiptTotalFound.setText(foundReceipt.getTotal() + getCurrency());
             receiptPayAmountFound.setText(foundReceipt.getPayed() + getCurrency());
-            receiptRestMoneyFound.setText(foundReceipt.getChangeMoney() + getCurrency());
-            receiptMessageFound.setText(getMessage());
+            receiptRestMoneyFound.setText((foundReceipt.getChangeMoney() + getCurrency()).replace(",", "."));
+            receiptMessageFound.setText(Receipt.getMessage());
         }
     }
 
@@ -689,11 +732,11 @@ public class AppController implements Initializable {
     void updateBillInfo() {
         newAdressField.setText(getAddress());
         newTelField.setText(getTel());
-        newMessageField.setText(getMessage());
+        newMessageField.setText(Receipt.getMessage());
 
         previewAdress.setText("Addresse: " + getAddress());
         previewTel.setText("Telefon: " + getTel());
-        previewMessage.setText(getMessage());
+        previewMessage.setText(Receipt.getMessage());
     }
 
     // SYSTEM SETTINGS TAB METHODS
@@ -715,18 +758,15 @@ public class AppController implements Initializable {
     void updateBill(){
         Receipt currentReceipt = getCurrentReceipt();
 
+
         billText.setText(currentReceipt.getFullReceipt());
         totalPrice.setText(currentReceipt.getTotal() + getCurrency());
         tableNumberText.setText(getCurrentTable().getTableNumberAsString());
         subTotalLabel.setText(currentReceipt.getSubtotal() + getCurrency());
-        taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
+        taxesTitleLabel.setText(("Steuer(" + getTaxes() + "%)").replace(",","."));
         totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
 
-        if (currentReceipt.getFullReceipt().equals("")) {
-            emptyReceiptPane.setVisible(true);
-        } else {
-            emptyReceiptPane.setVisible(false);
-        }
+        emptyReceiptPane.setVisible(currentReceipt.getFullReceipt().equals(""));
     }
 
     @FXML
@@ -901,6 +941,7 @@ public class AppController implements Initializable {
     @FXML
     void changeValue() throws IOException {
         int newSize = Integer.parseInt(settingsInputField.getText());
+        resetReceipts();
 
         // Regenerate Tables
         Tables[] newArray = new Tables[newSize];
@@ -943,6 +984,7 @@ public class AppController implements Initializable {
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
 
+        addProductElementsToGrid(GridPaneProducts, productsList);
         updateBillInfo();
 
         //Creates ToolTip for Reset Button
@@ -982,7 +1024,6 @@ public class AppController implements Initializable {
         }
 
         dateSetter();
-        addProductElementsToGrid(GridPaneProducts, productsList);
 
         // Generate Lists of Tables, Products and Users
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
@@ -1038,5 +1079,10 @@ public class AppController implements Initializable {
             addProductElementsToGrid(GridPaneProducts, filterProductsByName(newValue));
         });
 
+    }
+
+    @Override
+    protected Object call() throws Exception {
+        return null;
     }
 }

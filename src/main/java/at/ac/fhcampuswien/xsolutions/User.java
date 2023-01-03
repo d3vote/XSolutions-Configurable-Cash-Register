@@ -83,7 +83,7 @@ public class User {
     public static void userToJson() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            java.nio.file.Path path = Paths.get("src/main/java/usersList.json");
+            java.nio.file.Path path = Paths.get("C:\\Users\\fedga\\IdeaProjects\\testingGradle\\src\\main\\java\\usersList.json");
             objectMapper.writeValue(path.toFile(), usersList);
         } catch (IOException e) {
             e.printStackTrace();

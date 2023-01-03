@@ -23,8 +23,12 @@ tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
+ext {
+    javaMainClass = "at.ac.fhcampuswien.xsolutions.App"
+}
+
 application {
-    mainModule = 'at.ac.fhcampuswien.xsolutions'
+    mainModule = 'com.example.testinggradle'
     mainClass = 'at.ac.fhcampuswien.xsolutions.App'
 }
 
