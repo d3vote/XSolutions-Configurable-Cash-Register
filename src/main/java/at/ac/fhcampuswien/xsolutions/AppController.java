@@ -487,6 +487,8 @@ public class AppController implements Initializable {
         String payed = df.format((Double.parseDouble(currentReceipt.getTotal()) + currentReceipt.getTip()));
 
         receiptPayAmount.setText(payed + getCurrency());
+        restMoneyLabelSuccess.setVisible(false);
+        currentReceipt.setChangeMoney((double) 0);
         paymentSuccessfulPane.setVisible(true);
     }
 
@@ -498,6 +500,7 @@ public class AppController implements Initializable {
         paymentTipLabel.setText("Trinkgeld: " + currentReceipt.getTip() + getCurrency());
         paymentTotalLabel.setText("Gesamtsumme inkl. Trinkgeld u. MWSt: " + currentReceipt.getTotalWithTip() + getCurrency());
 
+        restMoneyLabelSuccess.setVisible(true);
         payCashPane.setVisible(true);
     }
 
@@ -518,6 +521,7 @@ public class AppController implements Initializable {
 
             if (restMoney != 0) {
                 restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
+                restMoneyLabelSuccess.setVisible(true);
             }
 
             paymentSuccessfulPane.setVisible(true);
