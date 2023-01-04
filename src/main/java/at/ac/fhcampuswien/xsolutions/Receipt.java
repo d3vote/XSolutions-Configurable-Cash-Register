@@ -40,7 +40,7 @@ public class Receipt{
     }
 
     public String getSubtotal() {
-        return df.format(subtotal);
+        return df.format(subtotal).replace(",",".");
     }
 
     public Map<Product, Integer> getProductCounter(){
@@ -75,7 +75,7 @@ public class Receipt{
 
         // Recreate a new productsTotal List
         for (Product usedProduct : usedProducts){
-            productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct))).append(currency).append("\n");
+            productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct)).replace(",",".")).append(currency).append("\n");
         }
 
         return productsTotal.toString();
@@ -130,7 +130,7 @@ public class Receipt{
     }
 
     public String getTotal() {
-        return df.format(subtotal * (taxes / 100) + subtotal);
+        return df.format(subtotal * (taxes / 100) + subtotal).replace(",", ".");
     }
 
     public void setSubtotal(double subtotal) {
@@ -197,7 +197,7 @@ public class Receipt{
     }
 
     public String getTotalWithTip(){
-        return df.format(Double.parseDouble(getTotal()) + getTip());
+        return df.format(Double.parseDouble(getTotal()) + getTip()).replace(",", ".");
     }
 
     public String getDate() {
@@ -226,5 +226,9 @@ public class Receipt{
 
     public static double getTaxes() {
         return taxes;
+    }
+
+    public static void resetReceipts() {
+        arrayReceipts = new ArrayList<>();
     }
 }
