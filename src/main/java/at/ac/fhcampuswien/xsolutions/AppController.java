@@ -1,9 +1,6 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,40 +11,34 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
-import javafx.scene.control.Tooltip;
-import javafx.util.Duration;
-import javafx.util.StringConverter;
-
-import static at.ac.fhcampuswien.xsolutions.App.*;
+import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
+import static at.ac.fhcampuswien.xsolutions.App.getDate;
 import static at.ac.fhcampuswien.xsolutions.Configurator.setValue;
 import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
 import static at.ac.fhcampuswien.xsolutions.Receipt.*;
 import static at.ac.fhcampuswien.xsolutions.ReceiptHistory.getFromReceiptHistory;
-import static at.ac.fhcampuswien.xsolutions.Tables.*;
+import static at.ac.fhcampuswien.xsolutions.Tables.setTablesCount;
 import static at.ac.fhcampuswien.xsolutions.User.userToJson;
 import static at.ac.fhcampuswien.xsolutions.User.usersList;
 
 
 public class AppController implements Initializable {
-    String[] tablesListAsString = new String[Tables.getCount()];   //Array of Tables on the Left Panel
-    ObservableList<String> observableList = FXCollections.observableArrayList(tablesListAsString);
-    String[] productsListAsString = new String[Product.getCount()];   //Array of Tables on the Left Panel
     List<Currency> currencies = Arrays.asList(Currency.getInstance(Locale.US),
             Currency.getInstance(Locale.GERMANY),
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
 
-    @FXML
-    private Button printReceiptButton;
     @FXML
     private Button resetBill;
     @FXML
@@ -55,9 +46,6 @@ public class AppController implements Initializable {
 
     @FXML
     private ListView<String> usersListView;
-
-    @FXML
-    private ListView<String> productsListView;
 
     @FXML
     private ListView<String> productsListViewSettings;
@@ -72,43 +60,16 @@ public class AppController implements Initializable {
     private Label billText;
 
     @FXML
-    private Button pay_btn;
-
-    @FXML
     private TextField searchField;
 
     @FXML
-    private GridPane user;
-
-    @FXML
     private Label kellnerLabel;
-
-    @FXML
-    private ImageView productImgHolder;
-
-    @FXML
-    private Label productTitle;
-
-    @FXML
-    private VBox vboxProduct;
-
-    @FXML
-    private FlowPane flowpaneProducts;
-
-    @FXML
-    private Label productTitleInGrid;
 
     @FXML
     private GridPane GridPaneProducts;
 
     @FXML
     private ScrollPane ScrollPaneProducts;
-
-    @FXML
-    private Pane imageForProduct;
-
-    @FXML
-    private Label searchResult;
 
     @FXML
     private Pane settingsTab;
@@ -186,9 +147,6 @@ public class AppController implements Initializable {
     private TextField newProductPrice;
 
     @FXML
-    private TextField newProductNamePreview;
-
-    @FXML
     private TextField newTelField;
     @FXML
     private TextField newAdressField;
@@ -209,12 +167,6 @@ public class AppController implements Initializable {
 
     @FXML
     private Text datum;
-
-    @FXML
-    private Button add;
-
-    @FXML
-    private Button remove;
 
     @FXML
     private Pane systemSettingsPane;
@@ -342,19 +294,20 @@ public class AppController implements Initializable {
     @FXML
     private Label totalTaxesBill;
 
+    public AppController() {
+    }
+
 
     private Tables getCurrentTable() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Tables currentTable = arrayTables[currentTableIndex];
 
-        return currentTable;
+        return arrayTables[currentTableIndex];
     }
 
     private Receipt getCurrentReceipt() {
         int currentReceiptIndex = tablesListView.getSelectionModel().getSelectedIndex();
-        Receipt currentReceipt = arrayReceipts.get(currentReceiptIndex);
 
-        return currentReceipt;
+        return arrayReceipts.get(currentReceiptIndex);
     }
 
     // Set date in the Bill
@@ -391,7 +344,6 @@ public class AppController implements Initializable {
     @FXML
     void removeFromBillButton(Product item) {
         Receipt currentReceipt = getCurrentReceipt();
-        Tables currentTable = getCurrentTable();
 
         // Check if the product is in the map
         if (currentReceipt.getProductCounter().containsKey(item) && currentReceipt.getUsedProducts().contains(item)) {
@@ -430,9 +382,9 @@ public class AppController implements Initializable {
 
         dateInReceipt.setText(getDate());
         receiptBill.setText(currentReceipt.getShortReceipt());
-        receiptAddress.setText("Addresse: " + getAddress());
+        receiptAddress.setText("Adresse: " + getAddress());
         receiptTelefonNumber.setText("Telefon: " + getTel());
-        receiptBillNumber.setText("Belegnummer: " + String.valueOf(currentReceipt.getInitialReceiptNumber()));
+        receiptBillNumber.setText("Belegnummer: " + currentReceipt.getInitialReceiptNumber());
         receiptMessage.setText(getMessage());
         receiptTotal.setText(currentReceipt.getTotalWithTip() + getCurrency());
         receiptRestMoney.setText(df.format(currentReceipt.getChangeAmount()) + getCurrency());
@@ -655,7 +607,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void startSearchReceipt() throws IOException {
+    void startSearchReceipt() {
         SimpleReceipt foundReceipt = getFromReceiptHistory(Integer.parseInt(receiptNumberField.getText()));
 
         if (foundReceipt != null) {
@@ -663,7 +615,7 @@ public class AppController implements Initializable {
 
             receiptAddressFound.setText("Adresse: " + getAddress());
             receiptTelefonNumberFound.setText("Telefon: " + getTel());
-            receiptBillNumberFound.setText(String.valueOf("Belegnummer: " + foundReceipt.getCount()));
+            receiptBillNumberFound.setText("Belegnummer: " + foundReceipt.getCount());
             dateInReceiptFound.setText("Datum: " +foundReceipt.getDate());
             timeInReceiptFound.setText(foundReceipt.getTime());
             receiptBillFound.setText(foundReceipt.getProductsList());
@@ -726,11 +678,7 @@ public class AppController implements Initializable {
         taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
         totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
 
-        if (currentReceipt.getFullReceipt().equals("")) {
-            emptyReceiptPane.setVisible(true);
-        } else {
-            emptyReceiptPane.setVisible(false);
-        }
+        emptyReceiptPane.setVisible(currentReceipt.getFullReceipt().equals(""));
     }
 
     @FXML
@@ -775,9 +723,7 @@ public class AppController implements Initializable {
     void productsSettingsChangePrice() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         Double text = Double.valueOf(newProductPrice.getText());
-        if (!Objects.equals(text, ""))  {
-            productsList.get(currentProduct).setProductPrice(Double.parseDouble(text + getCurrency()));
-        }
+        productsList.get(currentProduct).setProductPrice(Double.parseDouble(text + getCurrency()));
         updateProductsList(currentProduct);
     }
 
@@ -938,7 +884,7 @@ public class AppController implements Initializable {
     @FXML
     void userLogout(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("login.fxml"))));
+        stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("login.fxml")))));
         stage.setFullScreenExitHint("");
         stage.setFullScreen(true); // Set to Full Screen Mode
         stage.show();
@@ -961,7 +907,7 @@ public class AppController implements Initializable {
 
         systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
         systemNewCurrencySelector.setValue(currencies.get(0));
-        systemNewCurrencySelector.setConverter(new StringConverter<Currency>() {
+        systemNewCurrencySelector.setConverter(new StringConverter<>() {
             @Override
             public String toString(Currency currency) {
                 return currency.getSymbol();
@@ -1002,45 +948,32 @@ public class AppController implements Initializable {
         }
 
         // Check if ListView Selection changed (Tables)
-        tablesListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                updateBill();
-            }
-        });
+        tablesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateBill());
 
         // Check if ListView Selection changed (Users)
-        usersListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int currentUser = usersListView.getSelectionModel().getSelectedIndex();
-                if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
-                    userSettingsFullName.setText("Name: " + usersList.get(currentUser).getName());
-                    userSettingsUsername.setText("Benutzername: " + usersList.get(currentUser).getUserName());
-                    userSettingsAdminRights.setText("Admin-Rechte: " + usersList.get(currentUser).getIsAdmin());
-                }
+        usersListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            int currentUser = usersListView.getSelectionModel().getSelectedIndex();
+            if (currentUser >= 0 && currentUser < usersListView.getItems().size()){
+                userSettingsFullName.setText("Name: " + usersList.get(currentUser).getName());
+                userSettingsUsername.setText("Benutzername: " + usersList.get(currentUser).getUserName());
+                userSettingsAdminRights.setText("Admin-Rechte: " + usersList.get(currentUser).getIsAdmin());
             }
         });
 
         // Check if ListView Selection changed (Products)
-        productsListViewSettings.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-                if (currentProduct >= 0 && currentProduct < productsListViewSettings.getItems().size()){
-                    productsSettingsName.setText("Produkt Name: " + productsList.get(currentProduct).getProductTitle());
-                    productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
-                    productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
-                    productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
-                    productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
-                }
+        productsListViewSettings.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+            if (currentProduct >= 0 && currentProduct < productsListViewSettings.getItems().size()){
+                productsSettingsName.setText("Produkt Name: " + productsList.get(currentProduct).getProductTitle());
+                productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
+                productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
+                productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
+                productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
             }
         });
 
         // Create a Search Field Listener and update Products Grid
-        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
-            addProductElementsToGrid(GridPaneProducts, filterProductsByName(newValue));
-        });
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> addProductElementsToGrid(GridPaneProducts, filterProductsByName(newValue)));
 
     }
 }

@@ -52,7 +52,6 @@ public class Configurator {
         for (int i = 0; i < lines.size(); i++) {
             String[] parts = lines.get(i).split("=");
             String k = parts[0].trim();
-            String v = parts[1].trim();
 
             // If the key is "tableCount" or "currency", update the value
             if (k.equals(key)) {

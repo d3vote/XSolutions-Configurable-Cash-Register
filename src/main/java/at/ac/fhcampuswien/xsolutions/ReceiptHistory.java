@@ -12,8 +12,6 @@ public class ReceiptHistory implements Serializable {
              ObjectInputStream ois = new ObjectInputStream(fis)) {
             receiptsHistory = (HashMap<Integer, SimpleReceipt>) ois.readObject();
 
-            ois.close();
-            fis.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -24,7 +22,6 @@ public class ReceiptHistory implements Serializable {
         try (FileOutputStream fos = new FileOutputStream("receipts.dat");
              ObjectOutputStream oos = new ObjectOutputStream(fos)) {
             oos.writeObject(receiptsHistory);
-            oos.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
