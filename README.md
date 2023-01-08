@@ -29,7 +29,7 @@ Instruction for IDE (e.g. IntelliJ):
 6) Run App.java to test the Application
 
 Prerequisites for installing the .exe:
-- [Java Runtime Environment](https://www.java.com/de/download/manual.jsp)
+- [Java Runtime Environment](https://www.java.com/de/download/)
 
 Instruction for .exe (Windows only):
 1) Download Installer from [here](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)
