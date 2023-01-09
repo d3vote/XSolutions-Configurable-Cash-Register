@@ -50,7 +50,8 @@ During the use of the app, three configuration files will be created in the AppD
 | Tora Dotcom | tosha | test | Yes |
 | Theresa Sunitsch | theresa | test | Yes |
 | Etrit Talla | etrit | test | Yes |
-| Fake User | user | user | No |
+| User | user | user | No |
+| Admin User | admin | admin | Yes |
 
 
 ## Authors
