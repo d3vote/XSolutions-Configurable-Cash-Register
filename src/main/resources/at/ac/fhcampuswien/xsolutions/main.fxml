@@ -53,920 +53,665 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
+<AnchorPane prefHeight="200.0" prefWidth="200.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
    <Pane prefHeight="1080.0" prefWidth="1920.0">
       <VBox prefHeight="1080.0" prefWidth="1920.0">
-         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0"
-               prefWidth="1068.0" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
-            <AnchorPane prefHeight="464.0" prefWidth="515.0" style="-fx-background-color: #D9D9D9;"
-                        styleClass="text" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
-               <Label layoutX="21.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text"
-                      stylesheets="@styles.css" text="Tische" AnchorPane.leftAnchor="20.0"
-                      AnchorPane.topAnchor="14.0">
+         <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="526.0" prefWidth="1068.0" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
+            <AnchorPane prefHeight="464.0" prefWidth="515.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css" HBox.hgrow="ALWAYS">
+               <Label layoutX="21.0" layoutY="14.0" prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Tische" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="14.0">
                   <font>
-                     <Font size="18.0"/>
+                     <Font size="18.0" />
                   </font>
                </Label>
-               <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="201.0"
-                         prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;"
-                         styleClass="l" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                         AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0"/>
+               <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="201.0" prefWidth="233.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
             </AnchorPane>
             <AnchorPane maxWidth="872.0" prefHeight="676.0" prefWidth="868.0">
-               <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0"
-                     visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
-                     AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
-                  <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css"
-                         text="Einstellungen">
+               <Pane fx:id="settingsTab" layoutX="20.0" layoutY="14.0" prefHeight="871.0" prefWidth="734.0" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+                  <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                      <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="140.0"
-                        prefHeight="57.0" prefWidth="273.0" visible="false">
-                     <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0"
-                            style="-fx-font-size: 18;" text="Anzahl der Tische:">
+                  <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="140.0" prefHeight="57.0" prefWidth="273.0" visible="false">
+                     <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 18;" text="Anzahl der Tische:">
                         <VBox.margin>
-                           <Insets bottom="4.0" top="4.0"/>
+                           <Insets bottom="4.0" top="4.0" />
                         </VBox.margin>
                         <font>
-                           <Font size="18.0"/>
+                           <Font size="18.0" />
                         </font>
                      </Label>
                      <HBox prefHeight="32.0" prefWidth="299.0">
                         <VBox.margin>
-                           <Insets/>
+                           <Insets />
                         </VBox.margin>
-                        <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="32.0"
-                                   prefWidth="172.0"/>
-                        <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="30.0"
-                                prefWidth="66.0" styleClass="acceptBtn" text="OK">
+                        <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="32.0" prefWidth="172.0" />
+                        <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="30.0" prefWidth="66.0" styleClass="acceptBtn" text="OK">
                            <HBox.margin>
-                              <Insets left="20.0"/>
+                              <Insets left="20.0" />
                            </HBox.margin>
                         </Button>
                      </HBox>
                   </VBox>
-                  <FlowPane columnHalignment="CENTER" hgap="5.0" layoutX="3.0" layoutY="63.0"
-                            nodeOrientation="LEFT_TO_RIGHT" prefHeight="32.0" prefWidth="822.0"
-                            vgap="10.0">
-                     <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers"
-                             styleClass="tabBtn" stylesheets="@styles.css" text="Nutzer bearbeiten"/>
-                     <Button fx:id="productsSettings" mnemonicParsing="false"
-                             onAction="#setupProducts" styleClass="tabBtn" stylesheets="@styles.css"
-                             text="Produkte bearbeiten"/>
-                     <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables"
-                             styleClass="tabBtn" stylesheets="@styles.css" text="Tische bearbeiten"/>
-                     <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem"
-                             styleClass="tabBtn" stylesheets="@styles.css" text="System Steuerung"/>
-                     <Button mnemonicParsing="false" onAction="#setupBill" styleClass="tabBtn"
-                             stylesheets="@styles.css" text="Rechnung Steuerung"/>
-                     <Button mnemonicParsing="false" onAction="#showFindReceiptPane"
-                             styleClass="tabBtn" stylesheets="@styles.css" text="Rechnung Finden"/>
+                  <FlowPane columnHalignment="CENTER" hgap="5.0" layoutX="3.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="32.0" prefWidth="822.0" vgap="10.0">
+                     <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="tabBtn" stylesheets="@styles.css" text="Nutzer bearbeiten" />
+                     <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="tabBtn" stylesheets="@styles.css" text="Produkte bearbeiten" />
+                     <Button fx:id="tablesSettings" mnemonicParsing="false" onAction="#setupTables" styleClass="tabBtn" stylesheets="@styles.css" text="Tische bearbeiten" />
+                     <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem" styleClass="tabBtn" stylesheets="@styles.css" text="System Steuerung" />
+                     <Button mnemonicParsing="false" onAction="#setupBill" styleClass="tabBtn" stylesheets="@styles.css" text="Rechnung Steuerung" />
+                     <Button mnemonicParsing="false" onAction="#showFindReceiptPane" styleClass="tabBtn" stylesheets="@styles.css" text="Rechnung Finden" />
                   </FlowPane>
-                  <Pane fx:id="usersSettingsPane" layoutY="140.0" prefHeight="681.0" prefWidth="828.0"
-                        visible="false">
-                     <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0"/>
-                     <Label layoutY="334.0" prefHeight="27.0" prefWidth="253.0"
-                            style="-fx-font-size: 18;" text="Informationen zum Benutzer:"/>
-                     <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0"
-                            prefWidth="212.0" text="Vollständiger Name: Keiner"/>
-                     <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0"
-                            prefWidth="212.0" text="Benutzername: Keiner"/>
-                     <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0"
-                            prefWidth="212.0" text="Adminrechte: Keine"/>
+                  <Pane fx:id="usersSettingsPane" layoutY="140.0" prefHeight="681.0" prefWidth="828.0" visible="false">
+                     <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0" />
+                     <Label layoutY="334.0" prefHeight="27.0" prefWidth="253.0" style="-fx-font-size: 18;" text="Informationen zum Benutzer:" />
+                     <Label fx:id="userSettingsFullName" layoutY="371.0" prefHeight="27.0" prefWidth="212.0" text="Vollständiger Name: Keiner" />
+                     <Label fx:id="userSettingsUsername" layoutY="398.0" prefHeight="27.0" prefWidth="212.0" text="Benutzername: Keiner" />
+                     <Label fx:id="userSettingsAdminRights" layoutY="425.0" prefHeight="27.0" prefWidth="212.0" text="Adminrechte: Keine" />
                      <VBox layoutY="452.0" prefHeight="189.0" prefWidth="223.0" spacing="7.0">
-                        <Button mnemonicParsing="false" onAction="#userSettingsChangeName"
-                                prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn"
-                                text="Name ändern"/>
-                        <Button mnemonicParsing="false" onAction="#userSettingsChangeUsername"
-                                prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn"
-                                text="Benutzernamen ändern"/>
-                        <Button mnemonicParsing="false" onAction="#userSettingsChangePassword"
-                                prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn"
-                                text="Passwort ändern"/>
-                        <Button mnemonicParsing="false" onAction="#userSettingsToggleAdminRights"
-                                prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn"
-                                text="Administratorrechte umschalten"/>
+                        <Button mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Name ändern" />
+                        <Button mnemonicParsing="false" onAction="#userSettingsChangeUsername" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Benutzernamen ändern" />
+                        <Button mnemonicParsing="false" onAction="#userSettingsChangePassword" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Passwort ändern" />
+                        <Button mnemonicParsing="false" onAction="#userSettingsToggleAdminRights" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Administratorrechte umschalten" />
                      </VBox>
-                     <VBox layoutX="231.0" layoutY="452.0" prefHeight="189.0" prefWidth="243.0"
-                           spacing="5.0">
-                        <TextField fx:id="newFullNameField" prefHeight="25.0" prefWidth="164.0"
-                                   promptText="Neuer vollständiger Name"/>
-                        <TextField fx:id="newUsernameField" prefHeight="25.0" prefWidth="164.0"
-                                   promptText="Neuer Benutzername"/>
-                        <TextField fx:id="newPasswordField" prefHeight="25.0" prefWidth="164.0"
-                                   promptText="Neues Kennwort"/>
+                     <VBox layoutX="231.0" layoutY="452.0" prefHeight="189.0" prefWidth="243.0" spacing="5.0">
+                        <TextField fx:id="newFullNameField" prefHeight="25.0" prefWidth="164.0" promptText="Neuer vollständiger Name" />
+                        <TextField fx:id="newUsernameField" prefHeight="25.0" prefWidth="164.0" promptText="Neuer Benutzername" />
+                        <TextField fx:id="newPasswordField" prefHeight="25.0" prefWidth="164.0" promptText="Neues Kennwort" />
                      </VBox>
                      <HBox layoutY="614.0" prefHeight="37.0" prefWidth="480.0" spacing="10.0">
-                        <Button mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser"
-                                prefHeight="30.0" prefWidth="217.0" styleClass="deleteBtn"
-                                text="Benutzer löschen"/>
-                        <Button alignment="CENTER" mnemonicParsing="false"
-                                onMouseReleased="#userSettingsCreateNewUser" prefHeight="30.0"
-                                prefWidth="229.0" styleClass="acceptBtn"
-                                text="Neuen Benutzer erstellen"/>
+                        <Button mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="30.0" prefWidth="217.0" styleClass="deleteBtn" text="Benutzer löschen" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="30.0" prefWidth="229.0" styleClass="acceptBtn" text="Neuen Benutzer erstellen" />
                      </HBox>
                   </Pane>
-                  <Pane fx:id="systemSettingsPane" layoutY="140.0" nodeOrientation="LEFT_TO_RIGHT"
-                        prefHeight="638.0" prefWidth="828.0" visible="false">
-                     <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0"
-                            style="-fx-font-size: 18;" text="System Steuerung:"/>
+                  <Pane fx:id="systemSettingsPane" layoutY="140.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="638.0" prefWidth="828.0" visible="false">
+                     <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="System Steuerung:" />
                      <VBox layoutY="34.0" prefHeight="113.0" prefWidth="200.0" spacing="10.0">
-                        <Button mnemonicParsing="false" onAction="#systemSettingsChangeTaxes"
-                                prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn"
-                                text="Steuern ändern"/>
-                        <Button mnemonicParsing="false" onAction="#systemSettingsChangeCurrency"
-                                prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn"
-                                text="Währung ändern"/>
+                        <Button mnemonicParsing="false" onAction="#systemSettingsChangeTaxes" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Steuern ändern" />
+                        <Button mnemonicParsing="false" onAction="#systemSettingsChangeCurrency" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Währung ändern" />
                      </VBox>
-                     <VBox layoutX="217.0" layoutY="34.0" prefHeight="73.0" prefWidth="212.0"
-                           spacing="10.0">
-                        <TextField fx:id="systemNewTaxesField" prefHeight="25.0" prefWidth="164.0"
-                                   promptText="Neue Steuern"/>
-                        <ChoiceBox fx:id="systemNewCurrencySelector" prefHeight="32.0"
-                                   prefWidth="212.0"/>
+                     <VBox layoutX="217.0" layoutY="34.0" prefHeight="73.0" prefWidth="212.0" spacing="10.0">
+                        <TextField fx:id="systemNewTaxesField" prefHeight="25.0" prefWidth="164.0" promptText="Neue Steuern" />
+                        <ChoiceBox fx:id="systemNewCurrencySelector" prefHeight="32.0" prefWidth="212.0" />
                      </VBox>
                   </Pane>
-                  <Pane fx:id="productsSettingsPane" layoutY="140.0" prefHeight="817.0" prefWidth="828.0"
-                        visible="false">
-                     <ListView fx:id="productsListViewSettings" prefHeight="311.0" prefWidth="828.0"/>
-                     <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0"
-                            style="-fx-font-size: 18;" text="Informationen zum Produkt:"/>
-                     <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0"
-                            prefWidth="828.0" text="Produktname: Keine"/>
-                     <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0"
-                            prefWidth="828.0" text="Beschreibung: Keine"/>
-                     <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0"
-                            prefWidth="592.0" text="Bild-URL: Keine"/>
+                  <Pane fx:id="productsSettingsPane" layoutY="140.0" prefHeight="817.0" prefWidth="828.0" visible="false">
+                     <ListView fx:id="productsListViewSettings" prefHeight="311.0" prefWidth="828.0" />
+                     <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Informationen zum Produkt:" />
+                     <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Produktname: Keine" />
+                     <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Beschreibung: Keine" />
+                     <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="592.0" text="Bild-URL: Keine" />
                      <VBox layoutY="476.0" prefHeight="153.0" prefWidth="217.0" spacing="12.0">
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeName"
-                                prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn"
-                                text="Produktname ändern"/>
-                        <Button mnemonicParsing="false"
-                                onAction="#productsSettingsChangeDescription" prefHeight="25.0"
-                                prefWidth="200.0" styleClass="acceptBtn"
-                                text="Beschreibung ändern"/>
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeURL"
-                                prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn"
-                                text="Bild-URL ändern"/>
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangePrice"
-                                prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn"
-                                text="Preis ändern"/>
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Produktname ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Beschreibung ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Bild-URL ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Preis ändern" />
                      </VBox>
-                     <Button layoutX="-1.0" layoutY="670.0" mnemonicParsing="false"
-                             onMouseReleased="#productsSettingsDelete" prefHeight="25.0"
-                             prefWidth="200.0" styleClass="deleteBtn" text="Produkt löschen"/>
-                     <Button layoutX="212.0" layoutY="670.0" mnemonicParsing="false"
-                             onMouseReleased="#productsSettingsCreateNew" prefHeight="30.0"
-                             prefWidth="223.0" styleClass="acceptBtn" text="Neues Produkt erstellen"/>
-                     <VBox layoutX="213.0" layoutY="476.0" prefHeight="159.0" prefWidth="222.0"
-                           spacing="10.0">
-                        <TextField fx:id="newProductName" prefHeight="25.0" prefWidth="600.0"
-                                   promptText="Neuer Produktname"/>
-                        <TextField fx:id="newProductDescription" prefHeight="25.0"
-                                   prefWidth="600.0" promptText="Neue Beschreibung"/>
-                        <TextField fx:id="newURL" prefHeight="25.0" prefWidth="600.0"
-                                   promptText="Neue Bild-URL"/>
-                        <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0"
-                                   promptText="Neuer Preis"/>
+                     <Button layoutX="-1.0" layoutY="670.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="200.0" styleClass="deleteBtn" text="Produkt löschen" />
+                     <Button layoutX="212.0" layoutY="670.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="30.0" prefWidth="223.0" styleClass="acceptBtn" text="Neues Produkt erstellen" />
+                     <VBox layoutX="213.0" layoutY="476.0" prefHeight="159.0" prefWidth="222.0" spacing="10.0">
+                        <TextField fx:id="newProductName" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Produktname" />
+                        <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
+                        <TextField fx:id="newURL" prefHeight="25.0" prefWidth="600.0" promptText="Neue Bild-URL" />
+                        <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
                      </VBox>
-                     <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0"
-                            prefWidth="828.0" text="Preis: Keiner"/>
-                     <Pane fx:id="productImagePreview" layoutX="602.0" layoutY="317.0"
-                           prefHeight="142.0" prefWidth="212.0"/>
+                     <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Preis: Keiner" />
+                     <Pane fx:id="productImagePreview" layoutX="602.0" layoutY="317.0" prefHeight="142.0" prefWidth="212.0" />
                   </Pane>
-                  <Pane fx:id="billSettingsPane" layoutY="140.0" prefHeight="638.0" prefWidth="828.0"
-                        visible="false">
-                     <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0"
-                            style="-fx-font-size: 18;" text="Rechnung Steuerung:"/>
-                     <Label layoutX="401.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0"
-                            text="Ansicht:">
+                  <Pane fx:id="billSettingsPane" layoutY="140.0" prefHeight="638.0" prefWidth="828.0" visible="false">
+                     <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Steuerung:" />
+                     <Label layoutX="401.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0" text="Ansicht:">
                         <font>
-                           <Font size="18.0"/>
+                           <Font size="18.0" />
                         </font>
                      </Label>
-                     <Pane layoutX="401.0" layoutY="45.0" prefHeight="113.0" prefWidth="253.0"
-                           style="-fx-background-radius: 8; -fx-background-color: #B1CED4;">
+                     <Pane layoutX="401.0" layoutY="45.0" prefHeight="120.0" prefWidth="423.0" style="-fx-background-radius: 8; -fx-background-color: #B1CED4;">
                         <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                         </padding>
                         <VBox layoutY="1.0" prefHeight="84.0" prefWidth="170.0">
                            <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
-                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0"
-                                 text="Adresse: Favoritenstraße 226"/>
-                           <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0"
-                                 text="Telefon: 01 60668776600"/>
-                           <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0"
-                                 style="-fx-font-size: 22; -fx-font-weight: 700;"
-                                 text="DANKE!"/>
+                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: Favoritenstraße 226" />
+                           <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon: 01 60668776600" />
+                           <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
                         </VBox>
                      </Pane>
-                     <VBox layoutX="3.0" layoutY="47.0" prefHeight="239.0" prefWidth="378.0"
-                           spacing="10.0">
-                        <TextField fx:id="newAdressField" prefHeight="25.0" prefWidth="356.0"
-                                   promptText="Neue Adresse"/>
-                        <TextField fx:id="newTelField" prefHeight="25.0" prefWidth="356.0"
-                                   promptText="Neuer Telefonnummer"/>
-                        <TextField fx:id="newMessageField" prefHeight="25.0" prefWidth="356.0"
-                                   promptText="Neue Nachricht"/>
-                        <Button mnemonicParsing="false" onAction="#saveBillinfo" prefHeight="25.0"
-                                prefWidth="96.0" styleClass="acceptBtn" text="Speichern"/>
-                        <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="378.0"
-                              spacing="15.0">
-                           <Button mnemonicParsing="false"
-                                   onAction="#systemSettingsChangeBillNr" prefHeight="25.0"
-                                   prefWidth="170.0" styleClass="acceptBtn"
-                                   text="Belegnummer ändern"/>
-                           <TextField fx:id="systemNewBillNrField" prefHeight="32.0"
-                                      prefWidth="198.0" promptText="Neue Letzte Belegnummer"/>
+                     <VBox layoutX="3.0" layoutY="47.0" prefHeight="239.0" prefWidth="378.0" spacing="10.0">
+                        <TextField fx:id="newAdressField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Adresse" />
+                        <TextField fx:id="newTelField" prefHeight="25.0" prefWidth="356.0" promptText="Neuer Telefonnummer" />
+                        <TextField fx:id="newMessageField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Nachricht" />
+                        <Button mnemonicParsing="false" onAction="#saveBillinfo" prefHeight="25.0" prefWidth="96.0" styleClass="acceptBtn" text="Speichern" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="378.0" spacing="15.0">
+                           <Button mnemonicParsing="false" onAction="#systemSettingsChangeBillNr" prefHeight="25.0" prefWidth="170.0" styleClass="acceptBtn" text="Belegnummer ändern" />
+                           <TextField fx:id="systemNewBillNrField" prefHeight="32.0" prefWidth="198.0" promptText="Neue Letzte Belegnummer" />
                         </HBox>
                      </VBox>
                   </Pane>
-                  <Pane fx:id="findReceiptPane" layoutY="140.0" prefHeight="858.0" prefWidth="828.0"
-                        visible="false">
+                  <Pane fx:id="findReceiptPane" layoutY="140.0" prefHeight="858.0" prefWidth="828.0" visible="false">
                      <Pane prefHeight="153.0" prefWidth="828.0">
-                        <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0"
-                               style="-fx-font-size: 18;" text="Rechnung Finden:"/>
-                        <VBox layoutX="395.0" layoutY="77.0" prefHeight="56.0" prefWidth="170.0"/>
-                        <Button layoutX="232.0" layoutY="51.0" mnemonicParsing="false"
-                                onAction="#startSearchReceipt" prefHeight="25.0" prefWidth="73.0"
-                                styleClass="acceptBtn" stylesheets="@styles.css" text="Suchen"/>
-                        <TextField fx:id="receiptNumberField" layoutX="14.0" layoutY="51.0"
-                                   prefHeight="25.0" prefWidth="207.0"
-                                   promptText="Rechnung Nummer"/>
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Finden:" />
+                        <VBox layoutX="395.0" layoutY="77.0" prefHeight="56.0" prefWidth="170.0" />
+                        <Button layoutX="232.0" layoutY="51.0" mnemonicParsing="false" onAction="#startSearchReceipt" prefHeight="25.0" prefWidth="73.0" styleClass="acceptBtn" stylesheets="@styles.css" text="Suchen" />
+                        <TextField fx:id="receiptNumberField" layoutX="14.0" layoutY="51.0" prefHeight="25.0" prefWidth="207.0" promptText="Rechnung Nummer" />
                      </Pane>
-                     <FlowPane fx:id="receiptPreview" layoutX="14.0" layoutY="95.0" prefHeight="681.0"
-                               prefWidth="438.0"
-                               style="-fx-background-color: white; -fx-background-radius: 8;">
-                        <Pane prefHeight="43.0" prefWidth="442.0"/>
+                     <FlowPane fx:id="receiptPreview" layoutX="14.0" layoutY="95.0" prefHeight="681.0" prefWidth="438.0" style="-fx-background-color: white; -fx-background-radius: 8;">
+                        <Pane prefHeight="43.0" prefWidth="442.0" />
                         <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="442.0">
-                           <Label fx:id="receiptPrevierwTitle"
-                                  style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;"
-                                  styleClass="billTitle" stylesheets="@styles.css"
-                                  text="RECHNUNG">
+                           <Label fx:id="receiptPrevierwTitle" style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;" stylesheets="@styles.css" text="RECHNUNG">
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
-                           <Text fx:id="receiptAddressFound" strokeType="OUTSIDE"
-                                 strokeWidth="0.0" style="-fx-font-family: Agency FB;"
-                                 text="Adresse: ">
+                           <Text fx:id="receiptAddressFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Adresse: ">
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Text>
-                           <Text fx:id="receiptTelefonNumberFound" strokeType="OUTSIDE"
-                                 strokeWidth="0.0" style="-fx-font-family: Agency FB;"
-                                 text="Telefon: ">
+                           <Text fx:id="receiptTelefonNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Telefon: ">
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Text>
-                           <Text fx:id="receiptBillNumberFound" strokeType="OUTSIDE"
-                                 strokeWidth="0.0" style="-fx-font-family: Agency FB;"
-                                 text="Beleg Nummer: ">
+                           <Text fx:id="receiptBillNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Beleg Nummer: ">
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Text>
                         </VBox>
-                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0"
-                               prefHeight="17.0" prefWidth="434.0"
-                               style="-fx-font-family: Agency FB;"
-                               text="----------------------------------------------------------------------------------">
+                        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                            <padding>
-                              <Insets left="20.0" right="20.0"/>
+                              <Insets left="20.0" right="20.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="12.0"/>
+                              <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
                         <GridPane prefHeight="24.0" prefWidth="443.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                                 prefWidth="100.0"/>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0"
-                                                 prefWidth="100.0"/>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0"
-                                              vgrow="SOMETIMES"/>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                            </rowConstraints>
-                           <Label fx:id="dateInReceiptFound" prefHeight="17.0" prefWidth="439.0"
-                                  text="Datum: ">
+                           <Label fx:id="dateInReceiptFound" prefHeight="17.0" prefWidth="439.0" text="Datum: ">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                            </Label>
-                           <Label fx:id="timeInReceiptFound" alignment="CENTER_RIGHT"
-                                  contentDisplay="RIGHT" prefHeight="16.0" prefWidth="210.0"
-                                  GridPane.columnIndex="1">
+                           <Label fx:id="timeInReceiptFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="210.0" GridPane.columnIndex="1">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                            </Label>
                         </GridPane>
-                        <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0"
-                               prefWidth="434.0" style="-fx-font-family: Agency FB;"
-                               text="----------------------------------------------------------------------------------">
+                        <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                            <padding>
-                              <Insets left="20.0" right="20.0"/>
+                              <Insets left="20.0" right="20.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="12.0"/>
+                              <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
-                        <ScrollPane prefHeight="289.0" prefWidth="395.0"
-                                    styleClass="resetScrollPane" stylesheets="@styles.css">
+                        <ScrollPane prefHeight="289.0" prefWidth="395.0" styleClass="resetScrollPane" stylesheets="@styles.css">
                            <FlowPane.margin>
-                              <Insets left="20.0"/>
+                              <Insets left="20.0" />
                            </FlowPane.margin>
-                           <Text fx:id="receiptBillFound" strokeType="OUTSIDE" strokeWidth="0.0"
-                                 style="-fx-font-family: Agency FB;"
-                                 wrappingWidth="380.13671875">
+                           <Text fx:id="receiptBillFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" wrappingWidth="380.13671875">
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Text>
                         </ScrollPane>
-                        <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0"
-                               prefWidth="434.0" style="-fx-font-family: Agency FB;"
-                               text="----------------------------------------------------------------------------------">
+                        <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                            <padding>
-                              <Insets left="20.0" right="20.0"/>
+                              <Insets left="20.0" right="20.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="12.0"/>
+                              <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
                         <GridPane prefHeight="73.0" prefWidth="429.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0"
-                                                 prefWidth="223.0"/>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0"
-                                                 prefWidth="207.0"/>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="223.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="207.0" />
                            </columnConstraints>
                            <rowConstraints>
-                              <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0"
-                                              vgrow="SOMETIMES"/>
-                              <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0"
-                                              vgrow="SOMETIMES"/>
-                              <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0"
-                                              vgrow="SOMETIMES"/>
+                              <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                            </rowConstraints>
-                           <Label prefHeight="17.0" prefWidth="439.0"
-                                  style="-fx-font-family: Agency FB;"
-                                  text="Gesamtsumme inkl. Trinkgeld:">
+                           <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Gesamtsumme inkl. Trinkgeld:">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
-                           <Label fx:id="receiptTotalFound" alignment="CENTER_RIGHT"
-                                  contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0"
-                                  style="-fx-font-family: Agency FB;" GridPane.columnIndex="1">
+                           <Label fx:id="receiptTotalFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
-                           <Label prefHeight="17.0" prefWidth="439.0"
-                                  style="-fx-font-family: Agency FB;" text="Bezahlt:"
-                                  GridPane.rowIndex="1">
+                           <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Bezahlt:" GridPane.rowIndex="1">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
-                           <Label fx:id="receiptPayAmountFound" alignment="CENTER_RIGHT"
-                                  contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0"
-                                  style="-fx-font-family: Agency FB;" GridPane.columnIndex="1"
-                                  GridPane.rowIndex="1">
+                           <Label fx:id="receiptPayAmountFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
-                           <Label prefHeight="17.0" prefWidth="439.0"
-                                  style="-fx-font-family: Agency FB;" text="Restgeld:"
-                                  GridPane.rowIndex="2">
+                           <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Restgeld:" GridPane.rowIndex="2">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
-                           <Label fx:id="receiptRestMoneyFound" alignment="CENTER_RIGHT"
-                                  contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0"
-                                  style="-fx-font-family: Agency FB;" GridPane.columnIndex="1"
-                                  GridPane.rowIndex="2">
+                           <Label fx:id="receiptRestMoneyFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                               <padding>
-                                 <Insets left="20.0" right="20.0"/>
+                                 <Insets left="20.0" right="20.0" />
                               </padding>
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Label>
                         </GridPane>
-                        <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0"
-                               prefWidth="434.0" style="-fx-font-family: Agency FB;"
-                               text="----------------------------------------------------------------------------------">
+                        <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
                            <padding>
-                              <Insets left="20.0" right="20.0"/>
+                              <Insets left="20.0" right="20.0" />
                            </padding>
                            <font>
-                              <Font name="Calibri" size="12.0"/>
+                              <Font name="Calibri" size="12.0" />
                            </font>
                         </Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="441.0">
-                           <Text fx:id="receiptMessageFound" strokeType="OUTSIDE"
-                                 strokeWidth="0.0"
-                                 style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;"
-                                 text="Danke!">
+                           <Text fx:id="receiptMessageFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;" text="Danke!">
                               <font>
-                                 <Font name="Calibri" size="12.0"/>
+                                 <Font name="Calibri" size="12.0" />
                               </font>
                            </Text>
                         </HBox>
                      </FlowPane>
                   </Pane>
                </Pane>
-               <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <Pane fx:id="productsPane" prefHeight="990.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <GridPane prefHeight="62.0" prefWidth="868.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0"
-                                           prefWidth="100.0"/>
+                        <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
-                     <Label prefHeight="36.0" prefWidth="114.0" styleClass="text"
-                            stylesheets="@styles.css" text="Produkte">
+                     <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" text="Produkte">
                         <font>
-                           <Font size="18.0"/>
+                           <Font size="18.0" />
                         </font>
                         <GridPane.margin>
-                           <Insets left="20.0"/>
+                           <Insets left="20.0" />
                         </GridPane.margin>
                      </Label>
-                     <TextField fx:id="searchField" maxWidth="400.0" prefHeight="37.0"
-                                prefWidth="400.0" promptText="Produkt suchen"
-                                styleClass="search-field" GridPane.columnIndex="1"
-                                GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <TextField fx:id="searchField" maxWidth="400.0" prefHeight="37.0" prefWidth="400.0" promptText="Produkt suchen" styleClass="search-field" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                         <GridPane.margin>
-                           <Insets/>
+                           <Insets />
                         </GridPane.margin>
                      </TextField>
-                     <Label prefHeight="36.0" prefWidth="114.0" styleClass="text"
-                            stylesheets="@styles.css" GridPane.columnIndex="2">
+                     <Label prefHeight="36.0" prefWidth="114.0" styleClass="text" stylesheets="@styles.css" GridPane.columnIndex="2">
                         <font>
-                           <Font size="18.0"/>
+                           <Font size="18.0" />
                         </font>
                      </Label>
                   </GridPane>
-                  <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0"
-                              prefWidth="868.0" style="-fx-vbar-unit-increment: 100;">
-                     <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="915.0"
-                               prefWidth="865.0" vgap="20.0">
+                  <ScrollPane fx:id="ScrollPaneProducts" layoutY="59.0" prefHeight="930.0" prefWidth="868.0" style="-fx-vbar-unit-increment: 100;">
+                     <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="915.0" prefWidth="865.0" vgap="20.0">
                         <columnConstraints>
-                           <ColumnConstraints fillWidth="false" hgrow="ALWAYS" minWidth="10.0"
-                                              prefWidth="100.0"/>
-                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
-                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
-                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                           <ColumnConstraints fillWidth="false" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                           <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                         </columnConstraints>
                         <rowConstraints>
-                           <RowConstraints maxHeight="190.0" minHeight="155.0" prefHeight="190.0"
-                                           vgrow="NEVER"/>
+                           <RowConstraints maxHeight="190.0" minHeight="155.0" prefHeight="190.0" vgrow="NEVER" />
                         </rowConstraints>
                         <padding>
-                           <Insets bottom="20.0" left="13.0" right="24.0" top="20.0"/>
+                           <Insets bottom="20.0" left="13.0" right="24.0" top="20.0" />
                         </padding>
                      </GridPane>
                   </ScrollPane>
                </Pane>
             </AnchorPane>
-            <AnchorPane prefHeight="464.0" prefWidth="479.0"
-                        style="-fx-background-color: white; -fx-border-radius: 50%;">
-               <Button id="pay_btn" fx:id="pay_btn" layoutX="79.0" layoutY="597.0" mnemonicParsing="false"
-                       onAction="#showPaymentPane" prefHeight="30.0" prefWidth="327.0"
-                       style="-fx-background-color: #4A5C2F; -fx-font-weight: 700; -fx-background-radius: 8; -fx-font-size: 18px; -fx-text-fill: #ffffff;"
-                       stylesheets="@styles.css" text="Bezahlen" textFill="WHITE"
-                       AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0"
-                       AnchorPane.rightAnchor="20.0">
+            <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: white; -fx-border-radius: 50%;">
+               <Button id="pay_btn" layoutX="79.0" layoutY="597.0" mnemonicParsing="false" onAction="#showPaymentPane" prefHeight="30.0" prefWidth="327.0" style="-fx-background-color: #4A5C2F; -fx-font-weight: 700; -fx-background-radius: 8; -fx-font-size: 18px; -fx-text-fill: #ffffff;" stylesheets="@styles.css" text="Bezahlen" textFill="WHITE" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
                   <font>
-                     <Font size="18.0"/>
+                     <Font size="18.0" />
                   </font>
                </Button>
-               <Label layoutX="60.0" layoutY="14.0" prefHeight="36.0" prefWidth="128.0" styleClass="text"
-                      stylesheets="@styles.css" text="Rechnung" AnchorPane.leftAnchor="60.0"
-                      AnchorPane.topAnchor="14.0">
+               <Label layoutX="60.0" layoutY="14.0" prefHeight="36.0" prefWidth="128.0" styleClass="text" stylesheets="@styles.css" text="Rechnung" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="14.0">
                   <font>
-                     <Font size="18.0"/>
+                     <Font size="18.0" />
                   </font>
                </Label>
-               <Label fx:id="billText" alignment="TOP_LEFT" layoutY="115.0"
-                      maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
-                      prefHeight="702.0" prefWidth="480.0" style="-fx-font-size: 14;" wrapText="true">
+               <Label fx:id="billText" alignment="TOP_LEFT" layoutY="115.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="702.0" prefWidth="480.0" style="-fx-font-size: 14;" wrapText="true">
                   <font>
-                     <Font name="Arial Bold" size="25.0"/>
+                     <Font name="Arial Bold" size="25.0" />
                   </font>
                   <padding>
-                     <Insets left="20.0" top="20.0"/>
+                     <Insets left="20.0" top="20.0" />
                   </padding>
                </Label>
                <Pane fx:id="emptyReceiptPane" layoutY="275.0" prefHeight="364.0" prefWidth="480.0">
-                  <Pane layoutX="197.0" layoutY="137.0" prefHeight="90.0" prefWidth="87.0"
-                        styleClass="noReceipt"/>
-                  <Text layoutX="133.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                        style="-fx-font-weight: 400; -fx-font-size: 18;"
-                        text="Keine Produkte in diesem Moment hinzugefügt" textAlignment="CENTER"
-                        wrappingWidth="215.0"/>
+                  <Pane layoutX="197.0" layoutY="137.0" prefHeight="90.0" prefWidth="87.0" styleClass="noReceipt" />
+                  <Text layoutX="133.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 400; -fx-font-size: 18;" text="Keine Produkte in diesem Moment hinzugefügt" textAlignment="CENTER" wrappingWidth="215.0" />
                </Pane>
-               <GridPane layoutX="31.0" layoutY="576.0" prefHeight="84.0" prefWidth="433.0"
-                         AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="31.0"
-                         AnchorPane.rightAnchor="22.0">
+               <GridPane layoutX="31.0" layoutY="576.0" prefHeight="84.0" prefWidth="433.0" AnchorPane.bottomAnchor="80.0" AnchorPane.leftAnchor="31.0" AnchorPane.rightAnchor="22.0">
                   <columnConstraints>
-                     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0"
-                                        prefWidth="101.0"/>
-                     <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308"
-                                        minWidth="10.0" prefWidth="113.0"/>
+                     <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="101.0" />
+                     <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="113.0" />
                   </columnConstraints>
                   <rowConstraints>
-                     <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-                     <RowConstraints minHeight="10.0" prefHeight="30.0"/>
-                     <RowConstraints minHeight="10.0" prefHeight="30.0"/>
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     <RowConstraints minHeight="10.0" prefHeight="30.0" />
                   </rowConstraints>
-                  <Label prefHeight="36.0" prefWidth="124.0"
-                         style="-fx-font-size: 15px; -fx-font-weight: 700;" text="Gesamtsumme:"
-                         GridPane.rowIndex="2">
+                  <Label prefHeight="36.0" prefWidth="124.0" style="-fx-font-size: 15px; -fx-font-weight: 700;" text="Gesamtsumme:" GridPane.rowIndex="2">
                      <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="totalPrice" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="150.0"
-                         style="-fx-font-size: 15px; -fx-font-weight: 700;" text="0$"
-                         textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <Label fx:id="totalPrice" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="150.0" style="-fx-font-size: 15px; -fx-font-weight: 700;" text="0$" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
-                        <Font size="17.0"/>
+                        <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="taxesTitleLabel" prefHeight="36.0" prefWidth="124.0"
-                         style="-fx-font-size: 15px;" text="Steuer(%)" GridPane.rowIndex="1">
+                  <Label fx:id="taxesTitleLabel" prefHeight="36.0" prefWidth="124.0" style="-fx-font-size: 15px;" text="Steuer(%)" GridPane.rowIndex="1">
                      <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="subTotalLabel" alignment="CENTER_RIGHT" prefHeight="36.0"
-                         prefWidth="150.0" style="-fx-font-size: 15px;" text="0$" textAlignment="RIGHT"
-                         GridPane.columnIndex="1">
+                  <Label fx:id="subTotalLabel" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="150.0" style="-fx-font-size: 15px;" text="0$" textAlignment="RIGHT" GridPane.columnIndex="1">
                      <font>
-                        <Font size="17.0"/>
+                        <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="totalTaxesBill" alignment="CENTER_RIGHT" prefHeight="36.0"
-                         prefWidth="150.0" style="-fx-font-size: 15px;" text="0$" textAlignment="RIGHT"
-                         GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="totalTaxesBill" alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="150.0" style="-fx-font-size: 15px;" text="0$" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
-                        <Font size="17.0"/>
+                        <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label prefHeight="50.0" prefWidth="124.0" style="-fx-font-size: 15px;"
-                         text="Zwischensumme:">
+                  <Label prefHeight="50.0" prefWidth="124.0" style="-fx-font-size: 15px;" text="Zwischensumme:">
                      <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                      </font>
                   </Label>
                </GridPane>
-               <HBox alignment="CENTER_RIGHT" layoutX="157.0" nodeOrientation="LEFT_TO_RIGHT"
-                     prefHeight="62.0" prefWidth="323.0">
-                  <Pane prefHeight="62.0" prefWidth="38.0" styleClass="calendar"/>
-                  <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text"
-                        text="Datum:">
+               <HBox alignment="CENTER_RIGHT" layoutX="157.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="62.0" prefWidth="323.0">
+                  <Pane prefHeight="62.0" prefWidth="38.0" styleClass="calendar" />
+                  <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Datum:">
                      <font>
-                        <Font size="18.0"/>
+                        <Font size="18.0" />
                      </font>
                      <HBox.margin>
-                        <Insets right="20.0"/>
+                        <Insets right="20.0" />
                      </HBox.margin>
                   </Text>
                </HBox>
-               <Button fx:id="resetBill" layoutX="20.0" layoutY="15.0" mnemonicParsing="false"
-                       onAction="#resetBill" prefHeight="34.0" prefWidth="28.0" styleClass="resetButton"
-                       stylesheets="@styles.css"/>
+               <Button fx:id="resetBill" layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#resetBill" prefHeight="34.0" prefWidth="28.0" styleClass="resetButton" stylesheets="@styles.css" />
                <VBox layoutY="58.0" prefHeight="56.0" prefWidth="480.0">
                   <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="480.0">
                      <padding>
-                        <Insets left="20.0"/>
+                        <Insets left="20.0" />
                      </padding>
-                     <Pane prefHeight="56.0" prefWidth="34.0" styleClass="table"/>
-                     <Text fx:id="tableNumberText" strokeType="OUTSIDE" strokeWidth="0.0"
-                           text="Tisch:" wrappingWidth="68.220703125">
+                     <Pane prefHeight="56.0" prefWidth="34.0" styleClass="table" />
+                     <Text fx:id="tableNumberText" strokeType="OUTSIDE" strokeWidth="0.0" text="Tisch:" wrappingWidth="68.220703125">
                         <font>
-                           <Font size="16.0"/>
+                           <Font size="16.0" />
                         </font>
                      </Text>
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="1.0" prefWidth="480.0">
-                     <Pane prefHeight="2.0" prefWidth="433.0" style="-fx-background-color: gray;"/>
+                     <Pane prefHeight="2.0" prefWidth="433.0" style="-fx-background-color: gray;" />
                   </HBox>
                </VBox>
                <HBox alignment="CENTER" layoutX="6.0" layoutY="817.0" prefHeight="1.0" prefWidth="480.0">
-                  <Pane prefHeight="2.0" prefWidth="433.0" style="-fx-background-color: gray;"/>
+                  <Pane prefHeight="2.0" prefWidth="433.0" style="-fx-background-color: gray;" />
                </HBox>
             </AnchorPane>
          </HBox>
-         <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0"
-                   prefWidth="1067.0" style="-fx-background-color: #000000;">
+         <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0" prefWidth="1067.0" style="-fx-background-color: #000000;">
             <columnConstraints>
-               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="582.0" minWidth="10.0"
-                                  prefWidth="567.0"/>
-               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1306.0" minWidth="10.0"
-                                  prefWidth="693.0"/>
-               <ColumnConstraints hgrow="ALWAYS" maxWidth="1615.0" minWidth="10.0" prefWidth="660.0"/>
+               <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="582.0" minWidth="10.0" prefWidth="567.0" />
+               <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1306.0" minWidth="10.0" prefWidth="693.0" />
+               <ColumnConstraints hgrow="ALWAYS" maxWidth="1615.0" minWidth="10.0" prefWidth="660.0" />
             </columnConstraints>
             <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <GridPane prefHeight="90.0" prefWidth="717.0" GridPane.columnIndex="2">
                <columnConstraints>
-                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
-                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
-               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
-                       nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="39.0"
-                       prefWidth="150.0"
-                       style="-fx-background-color: #a82b2b; -fx-background-radius: 8; -fx-font-size: 18px;"
-                       text="Schließen" textFill="WHITE"/>
-               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false"
-                       nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="39.0"
-                       prefWidth="346.0"
-                       style="-fx-background-color: #6666; -fx-background-radius: 8; -fx-font-size: 18px;"
-                       text="Abmelden" textFill="WHITE" GridPane.columnIndex="1">
+               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 8; -fx-font-size: 18px;" text="Schließen" textFill="WHITE" />
+               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="39.0" prefWidth="346.0" style="-fx-background-color: #6666; -fx-background-radius: 8; -fx-font-size: 18px;" text="Abmelden" textFill="WHITE" GridPane.columnIndex="1">
                   <GridPane.margin>
-                     <Insets left="10.0" right="25.0"/>
+                     <Insets left="10.0" right="25.0" />
                   </GridPane.margin>
                </Button>
             </GridPane>
-            <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;"
-                   text="Kellner: Name Name" textFill="WHITE" GridPane.halignment="CENTER">
+            <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE" GridPane.halignment="CENTER">
                <GridPane.margin>
-                  <Insets left="20.0"/>
+                  <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <ImageView fx:id="adminButton" fitHeight="56.0" fitWidth="198.0" onMouseClicked="#openSettings"
-                       pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="adminButton" fitHeight="56.0" fitWidth="198.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
                <GridPane.margin>
-                  <Insets left="20.0"/>
+                  <Insets left="20.0" />
                </GridPane.margin>
-               <Image url="@../../../../settingsBtn.png"/>
+               <Image url="@../../../../settingsBtn.png" />
             </ImageView>
          </GridPane>
       </VBox>
    </Pane>
    <Pane fx:id="paymentMethodsPane" prefHeight="1080.0" prefWidth="1920.0" visible="false">
-      <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;"/>
-      <Pane fx:id="paymentSelectionPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0"
-            styleClass="paymentPane" stylesheets="@styles.css">
+      <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" />
+      <Pane fx:id="paymentSelectionPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css">
          <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 18;" text="Zahlungsmethode auswählen">
             <padding>
-               <Insets left="10.0" top="5.0"/>
+               <Insets left="10.0" top="5.0" />
             </padding>
          </Label>
-         <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane"
-                 prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn">
+         <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane" prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn">
             <graphic>
-               <Label text="Karte"/>
+               <Label text="Karte" />
             </graphic>
          </Button>
          <Pane layoutX="77.0" layoutY="95.0" prefHeight="200.0" prefWidth="200.0" styleClass="paymentMethodPane">
-            <Button layoutX="38.0" layoutY="17.0" mnemonicParsing="false" onAction="#payCard"
-                    prefHeight="142.0" prefWidth="123.0" stylesheets="@styles.css">
+            <Button layoutX="38.0" layoutY="17.0" mnemonicParsing="false" onAction="#payCard" prefHeight="142.0" prefWidth="123.0" stylesheets="@styles.css">
                <styleClass>
-                  <String fx:value="cardOptionButton"/>
-                  <String fx:value="paymentMethodButton"/>
+                  <String fx:value="cardOptionButton" />
+                  <String fx:value="paymentMethodButton" />
                </styleClass>
             </Button>
             <Label layoutX="79.0" layoutY="159.0" text="Karte">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
          </Pane>
          <Pane layoutX="392.0" layoutY="95.0" prefHeight="200.0" prefWidth="200.0" styleClass="paymentMethodPane">
-            <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#payCash"
-                    prefHeight="142.0" prefWidth="149.0" stylesheets="@styles.css">
+            <Button layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#payCash" prefHeight="142.0" prefWidth="149.0" stylesheets="@styles.css">
                <styleClass>
-                  <String fx:value="cashOptionButton"/>
-                  <String fx:value="paymentMethodButton"/>
+                  <String fx:value="cashOptionButton" />
+                  <String fx:value="paymentMethodButton" />
                </styleClass>
             </Button>
             <Label layoutX="70.0" layoutY="157.0" text="Bargeld">
                <font>
-                  <Font size="18.0"/>
+                  <Font size="18.0" />
                </font>
             </Label>
          </Pane>
-         <TextField fx:id="tipField" layoutX="248.0" layoutY="329.0" promptText="Trinkgeld"
-                    styleClass="text-field"/>
-         <Button layoutX="293.0" layoutY="370.0" mnemonicParsing="false" onAction="#setTipButton"
-                 styleClass="acceptBtn" text="Annehmen">
+         <TextField fx:id="tipField" layoutX="248.0" layoutY="329.0" promptText="Trinkgeld" styleClass="text-field" />
+         <Button layoutX="293.0" layoutY="370.0" mnemonicParsing="false" onAction="#setTipButton" styleClass="acceptBtn" text="Annehmen">
             <font>
-               <Font size="14.0"/>
+               <Font size="14.0" />
             </font>
          </Button>
       </Pane>
-      <Pane fx:id="payCashPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0"
-            styleClass="paymentPane" stylesheets="@styles.css" visible="false">
-         <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane"
-                 prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn"/>
+      <Pane fx:id="payCashPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css" visible="false">
+         <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane" prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn" />
          <Label layoutX="14.0" layoutY="14.0" style="-fx-font-size: 18;" text="Bargeld Zahlung">
             <padding>
-               <Insets left="10.0" top="5.0"/>
+               <Insets left="10.0" top="5.0" />
             </padding>
          </Label>
-         <TextField fx:id="paymentAmountPayedField" layoutX="22.0" layoutY="143.0" prefHeight="24.0"
-                    prefWidth="156.0" promptText="Bezahlt" styleClass="text-field"/>
-         <Label fx:id="paymentTotalBeforeAllLabel" layoutX="22.0" layoutY="66.0" prefHeight="17.0"
-                prefWidth="356.0" text="Gesamtsumme inkl MWSt:"/>
-         <Label fx:id="paymentTotalLabel" layoutX="22.0" layoutY="118.0" prefHeight="17.0" prefWidth="523.0"
-                text="Gesamtsumme inkl. Trinkgeld u. MWSt: "/>
-         <Label fx:id="paymentTipLabel" layoutX="22.0" layoutY="92.0" prefHeight="17.0" prefWidth="237.0"
-                text="Trinkgeld:"/>
-         <Button layoutX="191.0" layoutY="143.0" mnemonicParsing="false" onAction="#confirmPaymentCash"
-                 prefHeight="32.0" prefWidth="83.0" styleClass="acceptBtn" text="Bezahlen">
+         <TextField fx:id="paymentAmountPayedField" layoutX="22.0" layoutY="143.0" prefHeight="24.0" prefWidth="156.0" promptText="Bezahlt" styleClass="text-field" />
+         <Label fx:id="paymentTotalBeforeAllLabel" layoutX="22.0" layoutY="66.0" prefHeight="17.0" prefWidth="356.0" text="Gesamtsumme inkl MWSt:" />
+         <Label fx:id="paymentTotalLabel" layoutX="22.0" layoutY="118.0" prefHeight="17.0" prefWidth="523.0" text="Gesamtsumme inkl. Trinkgeld u. MWSt: " />
+         <Label fx:id="paymentTipLabel" layoutX="22.0" layoutY="92.0" prefHeight="17.0" prefWidth="237.0" text="Trinkgeld:" />
+         <Button layoutX="191.0" layoutY="143.0" mnemonicParsing="false" onAction="#confirmPaymentCash" prefHeight="32.0" prefWidth="83.0" styleClass="acceptBtn" text="Bezahlen">
             <font>
-               <Font size="14.0"/>
+               <Font size="14.0" />
             </font>
          </Button>
-         <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="177.0"
-                text="Summe zu klein!" textFill="#a82b2b" visible="false"/>
+         <Label fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="56.0" layoutY="177.0" text="Summe zu klein!" textFill="#a82b2b" visible="false" />
       </Pane>
-      <Pane fx:id="paymentSuccessfulPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0"
-            styleClass="paymentPane" stylesheets="@styles.css" visible="false">
-         <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane"
-                 prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn"/>
-         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="240.0" layoutY="172.0" prefHeight="32.0"
-                prefWidth="188.0" style="-fx-font-size: 18;" text="Zahlung erfolgreich!" textAlignment="CENTER">
+      <Pane fx:id="paymentSuccessfulPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css" visible="false">
+         <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane" prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn" />
+         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="240.0" layoutY="172.0" prefHeight="32.0" prefWidth="188.0" style="-fx-font-size: 18;" text="Zahlung erfolgreich!" textAlignment="CENTER">
             <padding>
-               <Insets left="10.0" top="5.0"/>
+               <Insets left="10.0" top="5.0" />
             </padding>
          </Label>
-         <Label fx:id="restMoneyLabelSuccess" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0"
-                layoutY="234.0" prefHeight="32.0" prefWidth="559.0" style="-fx-font-size: 18;"
-                textAlignment="CENTER">
+         <Label fx:id="restMoneyLabelSuccess" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="234.0" prefHeight="32.0" prefWidth="559.0" style="-fx-font-size: 18;" textAlignment="CENTER">
             <padding>
-               <Insets left="10.0" top="5.0"/>
+               <Insets left="10.0" top="5.0" />
             </padding>
          </Label>
-         <Button fx:id="printReceiptButton" layoutX="286.0" layoutY="306.0" mnemonicParsing="false"
-                 onAction="#printReceipt" styleClass="acceptBtn" text="Print Reciept">
+         <Button layoutX="286.0" layoutY="306.0" mnemonicParsing="false" onAction="#printReceipt" styleClass="acceptBtn" text="Print Reciept">
             <font>
-               <Font size="14.0"/>
+               <Font size="14.0" />
             </font>
          </Button>
       </Pane>
       <AnchorPane fx:id="receiptPane" prefHeight="1080.0" prefWidth="1920.0" visible="false">
-         <FlowPane layoutX="739.0" layoutY="200.0" prefHeight="681.0" prefWidth="442.0"
-                   style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="739.0"
-                   AnchorPane.rightAnchor="739.0">
+         <FlowPane layoutX="739.0" layoutY="200.0" prefHeight="681.0" prefWidth="442.0" style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="739.0" AnchorPane.rightAnchor="739.0">
             <Pane prefHeight="43.0" prefWidth="442.0">
-               <Button layoutX="394.0" layoutY="13.0" mnemonicParsing="false" onAction="#closeReceipt"
-                       prefHeight="25.0" prefWidth="25.0" styleClass="closeBtn" stylesheets="@styles.css"
-                       text="Button"/>
+               <Button layoutX="394.0" layoutY="13.0" mnemonicParsing="false" onAction="#closeReceipt" prefHeight="25.0" prefWidth="25.0" styleClass="closeBtn" stylesheets="@styles.css" text="Button" />
             </Pane>
             <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="442.0">
-               <Label style="-fx-font-size: 22; -fx-font-weight: 700;" text="RECHNUNG"/>
-               <Text fx:id="receiptAddress" strokeType="OUTSIDE" strokeWidth="0.0"
-                     text="Adresse: Favoritenstraße 226"/>
-               <Text fx:id="receiptTelefonNumber" strokeType="OUTSIDE" strokeWidth="0.0"
-                     text="Telefon: 01 60668776600"/>
-               <Text fx:id="receiptBillNumber" strokeType="OUTSIDE" strokeWidth="0.0"
-                     text="Beleg Nummer: 1823761"/>
+               <Label style="-fx-font-size: 22; -fx-font-weight: 700;" text="RECHNUNG" />
+               <Text fx:id="receiptAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: Favoritenstraße 226" />
+               <Text fx:id="receiptTelefonNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon: 01 60668776600" />
+               <Text fx:id="receiptBillNumber" strokeType="OUTSIDE" strokeWidth="0.0" text="Beleg Nummer: 1823761" />
             </VBox>
-            <Label prefHeight="17.0" prefWidth="438.0"
-                   text="----------------------------------------------------------------------------------">
+            <Label prefHeight="17.0" prefWidth="438.0" text="----------------------------------------------------------------------------------">
                <padding>
-                  <Insets left="20.0" right="20.0"/>
+                  <Insets left="20.0" right="20.0" />
                </padding>
             </Label>
             <GridPane prefHeight="17.0" prefWidth="430.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <Label fx:id="dateInReceipt" prefHeight="17.0" prefWidth="439.0" text="Datum: 30/12/2022">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
-               <Label fx:id="timeInReceipt" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                      prefHeight="17.0" prefWidth="215.0" text="20:36:00" GridPane.columnIndex="1">
+               <Label fx:id="timeInReceipt" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="215.0" text="20:36:00" GridPane.columnIndex="1">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
             </GridPane>
-            <Label prefHeight="17.0" prefWidth="436.0"
-                   text="----------------------------------------------------------------------------------">
+            <Label prefHeight="17.0" prefWidth="436.0" text="----------------------------------------------------------------------------------">
                <padding>
-                  <Insets left="20.0" right="20.0"/>
+                  <Insets left="20.0" right="20.0" />
                </padding>
             </Label>
-            <ScrollPane prefHeight="289.0" prefWidth="395.0" styleClass="resetScrollPane"
-                        stylesheets="@styles.css">
+            <ScrollPane prefHeight="289.0" prefWidth="395.0" styleClass="resetScrollPane" stylesheets="@styles.css">
                <FlowPane.margin>
-                  <Insets left="20.0"/>
+                  <Insets left="20.0" />
                </FlowPane.margin>
-               <Text fx:id="receiptBill" strokeType="OUTSIDE" strokeWidth="0.0"
-                     wrappingWidth="380.13671875"/>
+               <Text fx:id="receiptBill" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="380.13671875" />
             </ScrollPane>
-            <Label prefHeight="17.0" prefWidth="442.0"
-                   text="----------------------------------------------------------------------------------">
+            <Label prefHeight="17.0" prefWidth="442.0" text="----------------------------------------------------------------------------------">
                <padding>
-                  <Insets left="20.0" right="20.0"/>
+                  <Insets left="20.0" right="20.0" />
                </padding>
             </Label>
             <GridPane prefHeight="77.0" prefWidth="430.0">
                <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="223.0"/>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="207.0"/>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="223.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="207.0" />
                </columnConstraints>
                <rowConstraints>
-                  <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES"/>
-                  <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES"/>
-                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES"/>
+                  <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
                </rowConstraints>
-               <Label fx:id="receiptTotalText" prefHeight="17.0" prefWidth="439.0"
-                      text="Gesamtsumme inkl. Trinkgeld:">
+               <Label fx:id="receiptTotalText" prefHeight="17.0" prefWidth="439.0" text="Gesamtsumme inkl. Trinkgeld:">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
-               <Label fx:id="receiptTotal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0"
-                      prefWidth="439.0" text="10$" GridPane.columnIndex="1">
+               <Label fx:id="receiptTotal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="10$" GridPane.columnIndex="1">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
-               <Label fx:id="receiptPayAmountText" prefHeight="17.0" prefWidth="439.0" text="Bezahlt:"
-                      GridPane.rowIndex="1">
+               <Label fx:id="receiptPayAmountText" prefHeight="17.0" prefWidth="439.0" text="Bezahlt:" GridPane.rowIndex="1">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
-               <Label fx:id="receiptPayAmount" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                      prefHeight="17.0" prefWidth="439.0" text="25$" GridPane.columnIndex="1"
-                      GridPane.rowIndex="1">
+               <Label fx:id="receiptPayAmount" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="25$" GridPane.columnIndex="1" GridPane.rowIndex="1">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
-               <Label fx:id="receiptRestMoneyText" prefHeight="17.0" prefWidth="439.0" text="Restgeld:"
-                      GridPane.rowIndex="2">
+               <Label fx:id="receiptRestMoneyText" prefHeight="17.0" prefWidth="439.0" text="Restgeld:" GridPane.rowIndex="2">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
-               <Label fx:id="receiptRestMoney" alignment="CENTER_RIGHT" contentDisplay="RIGHT"
-                      prefHeight="17.0" prefWidth="439.0" text="15$" GridPane.columnIndex="1"
-                      GridPane.rowIndex="2">
+               <Label fx:id="receiptRestMoney" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" text="15$" GridPane.columnIndex="1" GridPane.rowIndex="2">
                   <padding>
-                     <Insets left="20.0" right="20.0"/>
+                     <Insets left="20.0" right="20.0" />
                   </padding>
                </Label>
             </GridPane>
-            <Label prefHeight="17.0" prefWidth="439.0"
-                   text="----------------------------------------------------------------------------------">
+            <Label prefHeight="17.0" prefWidth="439.0" text="----------------------------------------------------------------------------------">
                <padding>
-                  <Insets left="20.0" right="20.0"/>
+                  <Insets left="20.0" right="20.0" />
                </padding>
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="441.0">
-               <Text fx:id="receiptMessage" strokeType="OUTSIDE" strokeWidth="0.0"
-                     style="-fx-font-size: 22; -fx-font-weight: 700;" text="Danke!"/>
+               <Text fx:id="receiptMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="Danke!" />
             </HBox>
          </FlowPane>
       </AnchorPane>

@@ -32,11 +32,11 @@ public class Configurator {
             writerConfigFile.newLine();
             writerConfigFile.write("taxes = 20");
             writerConfigFile.newLine();
-            writerConfigFile.write("bill_nr = 1");
+            writerConfigFile.write("bill_nr = 0");
             writerConfigFile.newLine();
-            writerConfigFile.write("bill_address = Favoritenstra\u00DFe 228");
+            writerConfigFile.write("bill_address = Favoritenstra\u00DFe 226");
             writerConfigFile.newLine();
-            writerConfigFile.write("bill_tel = 1337 13371337");
+            writerConfigFile.write("bill_tel = 01 60668776600");
             writerConfigFile.newLine();
             writerConfigFile.write("bill_msg = Danke f\u00FCr Ihren Besuch!");
             writerConfigFile.close();
@@ -54,7 +54,7 @@ public class Configurator {
             writerProducts.close();
 
 
-            URL urlUserList = new URL("https://pastebin.com/raw/yzWcRhLt");
+            URL urlUserList = new URL("https://pastebin.com/raw/1TTGBvmp");
             BufferedReader reader2 = new BufferedReader(new InputStreamReader(urlUserList.openStream(), StandardCharsets.UTF_8));
             BufferedWriter writerUsers = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(usersListPath), StandardCharsets.UTF_8));
             while ((line = reader2.readLine()) != null) {

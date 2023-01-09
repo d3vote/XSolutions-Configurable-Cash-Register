@@ -294,10 +294,6 @@ public class AppController implements Initializable {
     @FXML
     private Label totalTaxesBill;
 
-    public AppController() {
-    }
-
-
     private Tables getCurrentTable() {
         int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
 
