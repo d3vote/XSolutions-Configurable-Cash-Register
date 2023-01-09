@@ -43,8 +43,9 @@ public class App extends Application {
     }
 
 
-
     public static void main(String[] args) throws IOException {
+        createAppData();
+
         JSONtoUsersList(); //Convert the JSON File back to Objects in a List
         JSONtoProductList();
 

@@ -8,6 +8,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static at.ac.fhcampuswien.xsolutions.Configurator.getUsersListPath;
+
 public class User {
     public String name;
 
@@ -15,7 +17,6 @@ public class User {
 
     public String userName;
     public boolean isAdmin;
-    static File usersListPath = new File("src/main/java/usersList.json");
     public static List<User> usersList = new ArrayList<>();    // UserList
 
     public User(){
@@ -83,7 +84,7 @@ public class User {
     public static void userToJson() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            java.nio.file.Path path = Paths.get("C:\\Users\\fedga\\IdeaProjects\\testingGradle\\src\\main\\java\\usersList.json");
+            java.nio.file.Path path = Paths.get(getUsersListPath().toURI());
             objectMapper.writeValue(path.toFile(), usersList);
         } catch (IOException e) {
             e.printStackTrace();
@@ -93,7 +94,7 @@ public class User {
         if (usersList != null){
             ObjectMapper objectMapper = new ObjectMapper();
             TypeFactory typeFactory = objectMapper.getTypeFactory();
-            usersList = objectMapper.readValue(usersListPath, typeFactory.constructCollectionType(List.class, User.class));
+            usersList = objectMapper.readValue(getUsersListPath(), typeFactory.constructCollectionType(List.class, User.class));
         }
     }
 }

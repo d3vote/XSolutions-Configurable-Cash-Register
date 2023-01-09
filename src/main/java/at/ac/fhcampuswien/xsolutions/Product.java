@@ -8,12 +8,13 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+import static at.ac.fhcampuswien.xsolutions.Configurator.getProductsListPath;
+
 public class Product {
     public String productTitle;
     public double productPrice;
     public String productDescription;
     public String productImageUrl;
-    static File productsListPath = new File("src/main/java/productsList.json");
     public static List<Product> productsList = new ArrayList<>();    // ProductList
     private static int count;
 
@@ -79,7 +80,7 @@ public class Product {
     public static void productToJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
-            java.nio.file.Path path = Paths.get("src/main/java/productsList.json");
+            java.nio.file.Path path = Paths.get(getProductsListPath().toURI());
             objectMapper.writeValue(path.toFile(), productsList);
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,7 +91,7 @@ public class Product {
         if (productsList != null){
             ObjectMapper objectMapper = new ObjectMapper();
             TypeFactory typeFactory = objectMapper.getTypeFactory();
-            productsList = objectMapper.readValue(productsListPath, typeFactory.constructCollectionType(List.class, Product.class));
+            productsList = objectMapper.readValue(getProductsListPath(), typeFactory.constructCollectionType(List.class, Product.class));
         }
     }
 
