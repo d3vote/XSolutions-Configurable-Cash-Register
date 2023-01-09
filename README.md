@@ -61,3 +61,7 @@ During the use of the app, three configuration files will be created in the AppD
 - [Dmytro Shandra](https://www.github.com/d3vote)
 - [Torgyn Zhamankulova](https://github.com/Tora-dotcom)
 - [Etrit Talla](https://github.com/EtrittallaFH)
+
+Copyright (c) 2023 FH Campus Wien
+
+This project, XSolutions-Configurable-Cash-Register, is the property of FH Campus Wien and is protected by copyright laws. It is made available on GitHub for educational and reference purposes only. Any unauthorized use, reproduction, or distribution of this project is strictly prohibited.
