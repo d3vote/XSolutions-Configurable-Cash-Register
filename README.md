@@ -49,7 +49,7 @@ During the use of the app, three configuration files will be created in the AppD
 | Admin User | admin | admin | Yes |
 
 ## Authors
+- [Tolga Topal](https://github.com/Torsoto) __Team-Lead__
 - [Dmytro Shandra](https://www.github.com/d3vote)
-- [Tolga Topal](https://github.com/Torsoto) **Team-Lead
 - [Torgyn Zhamankulova](https://github.com/Tora-dotcom)
 - [Etrit Talla](https://github.com/EtrittallaFH)
