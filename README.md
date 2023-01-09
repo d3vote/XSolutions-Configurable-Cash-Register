@@ -12,7 +12,7 @@ Welcome to the Configurable Cashier Register project! This project is an attempt
 - Ability to add unlimited & customizable Products
 
 ## How to run
-There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual .exe from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)Register/releases
+There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual .exe from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)
 
 Instruction for IDE (e.g. IntelliJ):
 
