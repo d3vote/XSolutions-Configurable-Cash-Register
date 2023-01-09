@@ -39,7 +39,7 @@ Instruction for .exe (Windows only):
 3) Launch it.
 
 ## Info about Configuration Files
-During the use of the app, three configuration files will be created in the AppData/XSolutions-POS directory: usersList.json, productsList.json, and config.txt. It is important that these files are not empty, as the app will not function properly if any of these files are empty.
+During the use of the app, three configuration files will be created in the AppData/XSolutions-POS directory: usersList.json, productsList.json, and config.txt. It is important that the directory & files are not empty, as the app will not function properly if any of these files are empty.
 
 ## User Data (Username, Password, Rights)
 
