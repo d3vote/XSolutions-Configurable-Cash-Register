@@ -12,7 +12,7 @@ Welcome to the Configurable Cashier Register project! This project is an attempt
 - Ability to add unlimited & customizable Products
 
 ## How to run
-There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual .exe from here: https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases
+There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual .exe from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)Register/releases
 
 Instruction for IDE (e.g. IntelliJ):
 
@@ -40,6 +40,18 @@ Instruction for .exe (Windows only):
 
 ## Info about Configuration Files
 During the use of the app, three configuration files will be created in the AppData/XSolutions-POS directory: usersList.json, productsList.json, and config.txt. It is important that these files are not empty, as the app will not function properly if any of these files are empty.
+
+## User Data (Username, Password, Rights)
+
+| Name | Username | Password | Admin right |
+|------|----------|----------|-------------|
+| Dmytro Shandra | d3vote | 1111 | Yes |
+| Tolga Topal | tolga | 123 | Yes |
+| Tora Dotcom | tosha | test | Yes |
+| Theresa Sunitsch | theresa | test | Yes |
+| Etrit Talla | etrit | test | Yes |
+| Fake User | user | user | No |
+
 
 ## Authors
 - [Dmytro Shandra](https://www.github.com/d3vote)
