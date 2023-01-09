@@ -1,15 +1,23 @@
 
-# Configurable Cash Register
+### Configurable Cash Register
 
-Welcome to the Configurable Cashier Register project! This project is an attempt to create a configurable, modular cash register system that can be easily tailored to the needs of various restaurants. This project is implemented in Java.
+Welcome to the Configurable Cashier Register project! This app offers a range of features to make managing a restaurant easier.
 
 ## Features
-- Customizable product list
-- Customizable number of tables
-- Customizable tax rates
-- Login system with username and password
-- Ability to add new users by the admin
-- Ability to add unlimited & customizable Products
+__User-Features:__
+
+- Customization of the number of tables
+- Addition and removal of products from receipts
+- Automatic receipt creation and saving
+- Payment options including cash and card
+- Virtual receipt printing
+
+__Admin-Features:__
+
+- Adjustment of tax rates
+- Implementation of a login system with username and password
+- The ability to add new users
+- Unlimited, customizable product list with Title, Price, Description, and an Image
 
 ## How to run
 There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual release from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)
