@@ -121,7 +121,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-color: transparent;
     -fx-background-position: center;
-    -fx-background-size: 16 16, contain;
+    -fx-background-size: 16 17, contain;
 }
 
 
@@ -129,6 +129,7 @@
     -fx-background-image: url("https://i.imgur.com/sx4Cq6t.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: 88 88, contain;
+    -fx-background-position: center center;
 }
 
 .search-field {

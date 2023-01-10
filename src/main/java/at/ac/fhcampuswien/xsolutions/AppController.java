@@ -96,7 +96,10 @@ public class AppController implements Initializable {
     private Label settingsLabelParameter;
 
     @FXML
-    private Pane productsPane;
+    private VBox productsPane;
+
+    @FXML
+    private ScrollPane billScroll;
 
     @FXML
     private VBox tablesSettingPane;
@@ -284,7 +287,7 @@ public class AppController implements Initializable {
     @FXML
     private Label receiptTotalText;
     @FXML
-    private Pane emptyReceiptPane;
+    private VBox emptyReceiptPane;
     @FXML
     private Text tableNumberText;
     @FXML
@@ -484,6 +487,7 @@ public class AppController implements Initializable {
     @FXML
     void resetBill() {
         emptyReceiptPane.setVisible(true);
+        billScroll.setVisible(false);
         Receipt currentReceipt = getCurrentReceipt();
         currentReceipt.closeReceipt();
         updateBill();
@@ -675,6 +679,7 @@ public class AppController implements Initializable {
         totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
 
         emptyReceiptPane.setVisible(currentReceipt.getFullReceipt().equals(""));
+        billScroll.setVisible(!currentReceipt.getFullReceipt().equals(""));
     }
 
     @FXML
@@ -916,7 +921,6 @@ public class AppController implements Initializable {
         });
 
         ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
-        ScrollPaneProducts.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         kellnerLabel.setText("Kellner: " + getLoggedInUserName());
         userSettings.setVisible(isAdmin);
         tablesSettings.setVisible(isAdmin);
@@ -970,6 +974,5 @@ public class AppController implements Initializable {
 
         // Create a Search Field Listener and update Products Grid
         searchField.textProperty().addListener((observable, oldValue, newValue) -> addProductElementsToGrid(GridPaneProducts, filterProductsByName(newValue)));
-
     }
 }
