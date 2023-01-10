@@ -10,14 +10,27 @@ import java.util.List;
 import static at.ac.fhcampuswien.xsolutions.Receipt.*;
 
 public class Configurator {
-    private static final String appDataPath = System.getenv("APPDATA");
-    private static final File xSolutionsPosFolder = new File(appDataPath + File.separator + "XSolutions-POS");
-    private static final File CONFIG_FILE = new File(xSolutionsPosFolder + File.separator + "config.txt");
-    private static final File productsListPath = new File(xSolutionsPosFolder + File.separator + "productsList.json");
-    private static final File usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
+    private static String appDataPath = System.getenv("APPDATA");
+    private static File xSolutionsPosFolder = new File(appDataPath + File.separator + "XSolutions-POS");
+    private static File CONFIG_FILE = new File(xSolutionsPosFolder + File.separator + "config.txt");
+    private static File productsListPath = new File(xSolutionsPosFolder + File.separator + "productsList.json");
+    private static File usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
     private static int tableCount;
 
+    static void getAppDataPath(){
+        String systemName = System.getProperty("os.name");
+        if(!(systemName.equals("Windows 11") || systemName.equals("Windows 10"))){
+            appDataPath = System.getProperty("user.home") + "/Library/Application Support";
+            xSolutionsPosFolder = new File(appDataPath + File.separator + "XSolutions-POS");
+            CONFIG_FILE = new File(xSolutionsPosFolder + File.separator + "config.txt");
+            productsListPath = new File(xSolutionsPosFolder + File.separator + "productsList.json");
+            usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
+        }
+        System.out.println(appDataPath);
+    }
+
     public static void createAppData() throws IOException {
+        getAppDataPath();
         if (!xSolutionsPosFolder.exists()) {
 
             xSolutionsPosFolder.mkdir();

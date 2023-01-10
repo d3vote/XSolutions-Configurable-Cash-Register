@@ -190,7 +190,7 @@ public class AppController implements Initializable {
     private Button systemSettings;
 
     @FXML
-    private Pane paymentMethodsPane;
+    private FlowPane paymentMethodsPane;
 
     @FXML
     private Pane paymentSuccessfulPane;
