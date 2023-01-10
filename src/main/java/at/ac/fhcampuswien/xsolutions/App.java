@@ -16,7 +16,8 @@ import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 public class App extends Application {
     public static Tables[] arrayTables;
 
-    //Creating JavaFX UI
+    /** GUI start
+     */
     @Override
     public void start(Stage stage) throws IOException {
         stage.getIcons().add(new Image("file:src/main/resources/icon.png"));
@@ -29,6 +30,8 @@ public class App extends Application {
         stage.show();
     }
 
+    /** Generates an amount of Tables and adds them to an array of tables (arrayTables)
+     */
     public static void generateTables(int amount){
         arrayTables = new Tables[amount];
         for(int i = 0;i < amount; i++){
@@ -42,7 +45,10 @@ public class App extends Application {
         return currentDate.format(formatter);
     }
 
-
+    /** Initializes everything needed for the App to function
+     * <p>(Settings, credentials, table generation from config.txt,
+     * products sorting and receipt history loading and GUI starting)</p>
+     */
     public static void main(String[] args) throws IOException {
         createAppData();
 

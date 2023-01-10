@@ -7,6 +7,11 @@ public class Tables{
     private String serverName;
     private boolean serverSet = false;
 
+    /** Constructor for a Table object. <p>
+     * static counter is being increased by 1 <p>
+     * non-static counter = static counter <p>
+     * Receipt created <p>
+     */
     public Tables(){
         count++;
         this.tableNumber = count;
@@ -16,10 +21,6 @@ public class Tables{
 
     public static void setTablesCount(int count) {
         Tables.count = count;
-    }
-
-    public static int getCount(){
-        return count;
     }
 
     public String getTableName(){

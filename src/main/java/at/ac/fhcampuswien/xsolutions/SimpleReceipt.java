@@ -14,6 +14,13 @@ public class SimpleReceipt implements Serializable {
     private String payed;
     private String changeMoney;
 
+    /** Constructor of SimpleReceipt exists to simplify the Receipt saving and make it quicker.
+     * @param count - Receipt number
+     * @param date - Date of receipt creation
+     * @param time - Time of receipt creation
+     * @param productsList - Short list of products
+     * @param total - Total receipt price
+     */
     public SimpleReceipt(String count, String date, String time, String productsList, String total, String payed, String changeMoney) {
         this.count = count;
         this.date = date;

@@ -50,19 +50,25 @@ public class LoginController implements Initializable {
     @FXML
     private Pane loadingBar;
 
+    /** Just a little UI/UX Feature to set all credentials fields unfocused
+     */
     @FXML
     void unfocusFields(MouseEvent event) {
         passwordField.setFocusTraversable(false); // Unfocus the input fileds on click
         usernameField.setFocusTraversable(false);
     }
 
+    /** Closes the App
+     */
     @FXML
     void exitButton(MouseEvent event) {
         System.exit(0);
     }
 
+    /** Compares the inputs to the usersList array for matching. Gains access to main.fxml when matched and sets Server's Name label and whether he is admin or not.
+     */
     @FXML
-    void userLogin(ActionEvent event) throws IOException { //Compare every "Row" of the list to the input
+    void userLogin(ActionEvent event) throws IOException {
         for (User user : usersList) {
             if (Objects.equals(usernameField.getText(), user.getUserName()) && Objects.equals(passwordField.getText(), user.getPassword())) {
                 loggedInUserName = user.getName();
@@ -76,6 +82,8 @@ public class LoginController implements Initializable {
         errorLabel.setVisible(true);
     }
 
+    /** Switches Scene to Main
+     */
     void executeLogin(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.setScene(new Scene(FXMLLoader.load(Objects.requireNonNull(getClass().getResource("main.fxml")))));

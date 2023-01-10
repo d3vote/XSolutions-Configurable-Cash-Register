@@ -30,7 +30,11 @@ public class Receipt{
     public static List<Receipt> arrayReceipts = new ArrayList<>();
     private Map<Product, Integer> productCounter;
 
-
+     /** @param table Receipt is being assigned to a table by its table count
+     * <p>"productCounter" is used to count products inside the Cart</p>
+     * <p>"usedProducts" is used to define products that are in the cart (keys for productCounter)</p>
+     * <p>Lastly the Receipt is being added to the array of all receipts and can be found by its [index]</p>
+     */
     public Receipt(Tables table){
         this.table = table;
         productCounter = new HashMap<>();
@@ -47,7 +51,10 @@ public class Receipt{
         return productCounter;
     }
 
-
+    /** So the products list doesn't stack on every call, it is being set to empty and then recreated.
+     * <p>Than it is simple. By giving the key of "usedProducts" to the "productCounter" HashMap you receive all carted items back as a String.</p>
+     * @return Products List if Server's Name is set. It is implemented for the right Cart Pane with "Producs ordered:" in the start
+     */
     public String getFullReceipt(){
         StringBuilder productsTotal = new StringBuilder();
         // Clear productsTotal List
@@ -64,6 +71,10 @@ public class Receipt{
             return "";
     }
 
+    /** So the products list doesn't stack on every call, it is being set to empty and then recreated.
+     * <p>Than it is simple. By giving the key of "usedProducts" to the "productCounter" HashMap you receive all carted items back as a String.</p>
+     * @return Just the Products List without the "Products ordered:" label. Is implemented in the Receipt Pane shown after Payment.
+     */
     public String getShortReceipt() {
 
         date = App.getDate();
@@ -153,6 +164,9 @@ public class Receipt{
         return count;
     }
 
+
+    /** Basically resets the cart
+     */
     private void resetUsedProducts() {
         usedProducts = new ArrayList<>();
         productCounter = new HashMap<>();
@@ -189,6 +203,8 @@ public class Receipt{
         setValue("bill_msg", newMessage);
     }
 
+    /** Ends receipt
+     */
     public void closeReceipt() {
         tip = 0;
         table.resetServer();
@@ -226,9 +242,5 @@ public class Receipt{
 
     public static double getTaxes() {
         return taxes;
-    }
-
-    public static void resetReceipts() {
-        arrayReceipts = new ArrayList<>();
     }
 }

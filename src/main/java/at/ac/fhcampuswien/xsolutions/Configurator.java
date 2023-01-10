@@ -17,6 +17,10 @@ public class Configurator {
     private static File usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
     private static int tableCount;
 
+    /** Get AppData depending on the System OS.
+     * If macOS: Path should be User/username/Library/Application Support
+     * If Windows: Path should be %appdata%
+     */
     static void getAppDataPath(){
         String systemName = System.getProperty("os.name");
         if(!(systemName.equals("Windows 11") || systemName.equals("Windows 10"))){
@@ -29,6 +33,8 @@ public class Configurator {
         System.out.println(appDataPath);
     }
 
+    /** This code is responsible for creating files in the "AppData" directory. The data for config.txt is hardcoded and for productsList and usersList it is being pulled from a raw pastebin link.
+     */
     public static void createAppData() throws IOException {
         getAppDataPath();
         if (!xSolutionsPosFolder.exists()) {
@@ -80,6 +86,8 @@ public class Configurator {
         }
     }
 
+    /** Parses the config.txt file and sets values.
+     */
     public static void readConfig() throws IOException {
         // Read the contents of the config.txt file
         List<String> lines = Files.readAllLines(CONFIG_FILE.toPath(), StandardCharsets.UTF_8);
@@ -113,6 +121,8 @@ public class Configurator {
         }
     }
 
+    /** Sets values into the config.txt
+     */
     public static void setValue(String key, String value) throws IOException {
         // Read the contents of the config.txt file
         List<String> lines = Files.readAllLines(Paths.get(CONFIG_FILE.toURI()));

@@ -19,7 +19,15 @@ public class Product {
     private static int count;
 
     public Product() {
+        super();
     }
+
+    /** Constructor of Product object
+     * @param productTitle - Name of the product
+     * @param productPrice - Price of the product
+     * @param productDescription - Description of the product
+     * @param productImageUrl - Image URL
+     */
     public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) throws IOException {
         count++;
         this.productImageUrl = productImageUrl;
@@ -40,7 +48,10 @@ public class Product {
         this.productPrice = productPrice;
         initializeProducts();
     }
-    private void initializeProducts() throws IOException {
+
+    /** Adds product to productsList array and updates the JSON File
+     */
+    private void initializeProducts() {
         productsList.add(this);
         productToJSON();
     }
@@ -77,6 +88,9 @@ public class Product {
         this.productImageUrl = productImageUrl;
     }
 
+    /**
+     * productsList (List of all parsed products) is being put in a single JSON File.
+     */
     public static void productToJSON() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
@@ -86,7 +100,10 @@ public class Product {
             e.printStackTrace();
         }
     }
-    //Convert the JSON File back to Objects in a List
+
+    /**
+     * productsList is being recreated from a JSON File.
+     */
     public static void JSONtoProductList() throws IOException {
         if (productsList != null){
             ObjectMapper objectMapper = new ObjectMapper();
@@ -95,6 +112,9 @@ public class Product {
         }
     }
 
+    /**
+     * Search bar: shows a new array of sorted products by the search term
+     */
     public static List<Product> filterProductsByName(String searchTerm) {
         List<Product> filteredProducts = new ArrayList<>();
         for (Product product : productsList) {

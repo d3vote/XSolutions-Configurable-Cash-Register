@@ -2,7 +2,7 @@ package at.ac.fhcampuswien.xsolutions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -12,23 +12,29 @@ import static at.ac.fhcampuswien.xsolutions.Configurator.getUsersListPath;
 
 public class User {
     public String name;
-
     public String password;
-
     public String userName;
     public boolean isAdmin;
     public static List<User> usersList = new ArrayList<>();    // UserList
 
     public User(){
-
+        super();
     }
 
+    /**
+     * Constructor for a User object.
+     *
+     * @param name    Full Name of the user
+     * @param isAdmin        Is the user admin?
+     * @param userName       Login "username" credentials
+     * @param password       Login "password" credentials
+     */
     public User(String name, boolean isAdmin, String userName, String password) throws IOException {
         this.name = name;
         this.isAdmin = isAdmin;
         this.userName = userName;
         this.password = password;
-        intializeUsers();
+        initializeUsers();
     }
 
     public User(String name, boolean isAdmin, String userName) throws IOException {
@@ -36,10 +42,14 @@ public class User {
         this.isAdmin = isAdmin;
         this.userName = userName;
         this.password = "admin";
-        intializeUsers();
+        initializeUsers();
     }
 
-    private void intializeUsers() throws IOException{
+    /**
+     * User object is being added to a usersList within running Code,
+     * but also saved in a JSON file.
+     */
+    private void initializeUsers() throws IOException{
         usersList.add(this);        //Adding new User to UsersList
         userToJson();               //Converting it to JSON
     }
@@ -50,10 +60,6 @@ public class User {
 
     public String getUserName() {
         return userName;
-    }
-
-    public static List<User> getUsersList(){
-        return usersList;
     }
 
     public boolean getIsAdmin() {
@@ -80,7 +86,9 @@ public class User {
         isAdmin = admin;
     }
 
-    //Converting UsersList Objects to JSON
+    /**
+     * userList (List of all parsed users) is being put in a single JSON File.
+     */
     public static void userToJson() {
         ObjectMapper objectMapper = new ObjectMapper();
         try{
@@ -90,6 +98,10 @@ public class User {
             e.printStackTrace();
         }
     }
+
+    /**
+     * userList is being recreated from a JSON File.
+     */
     public static void JSONtoUsersList() throws IOException {
         if (usersList != null){
             ObjectMapper objectMapper = new ObjectMapper();
