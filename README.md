@@ -30,11 +30,15 @@ Instruction for IDE (e.g. IntelliJ):
 
 3) Try to build the project, if it fails follow the steps bellow.
 
-4) Look at the top left corner and click on "Download coretto-11.0.7".
+4) Look in the top left corner and click on "Download coretto-11.0.7".
 
 5) Wait until the JDK has been installed.
 
-6) Run App.java to test the Application
+6) Press on Elephant with reloading symbol in the right top corner
+
+7) Run App.java to test the Application
+
+If still having some issues, try to manually select corretto-11.0.7 as JDK
 
 Prerequisites for installing the release:
 - [Java Runtime Environment](https://www.java.com/de/download/)
@@ -57,7 +61,7 @@ During the use of the app, three configuration files will be created in the AppD
 | Admin User | admin | admin | Yes |
 
 ## Authors
-- [Tolga Topal](https://github.com/Torsoto) __Team-Lead__
+- [Tolga Topal](https://github.com/Torsoto) __[Team-Lead]__
 - [Dmytro Shandra](https://www.github.com/d3vote)
 - [Torgyn Zhamankulova](https://github.com/Tora-dotcom)
 - [Etrit Talla](https://github.com/EtrittallaFH)
