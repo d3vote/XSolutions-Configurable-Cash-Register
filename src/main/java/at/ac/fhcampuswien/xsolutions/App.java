@@ -21,6 +21,16 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         stage.getIcons().add(new Image("file:src/main/resources/icon.png"));
+
+        FXMLLoader fxmlLoaderMain = new FXMLLoader(App.class.getResource("main.fxml"));
+        Scene sceneMain = new Scene(fxmlLoaderMain.load(), 1200, 800);
+        stage.setTitle("Configurable Cash Register");
+        stage.setScene(sceneMain);
+        stage.setFullScreenExitHint("");
+        stage.setFullScreen(true); // Set to Full Screen Mode
+        stage.show();
+        stage.hide();
+
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
         stage.setTitle("Configurable Cash Register");
@@ -29,7 +39,6 @@ public class App extends Application {
         stage.setFullScreen(true); // Set to Full Screen Mode
         stage.show();
     }
-
     /** Generates an amount of Tables and adds them to an array of tables (arrayTables)
      */
     public static void generateTables(int amount){

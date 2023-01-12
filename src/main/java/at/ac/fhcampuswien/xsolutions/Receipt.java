@@ -42,7 +42,9 @@ public class Receipt{
 
         arrayReceipts.add(this);
     }
-
+    public static String getStaticTime(){
+        return java.time.format.DateTimeFormatter.ofPattern("HH:mm").format(java.time.LocalTime.now());
+    }
     public String getSubtotal() {
         return df.format(subtotal).replace(",",".");
     }

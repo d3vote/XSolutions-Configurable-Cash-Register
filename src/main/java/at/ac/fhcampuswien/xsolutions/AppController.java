@@ -377,7 +377,7 @@ public class AppController implements Initializable {
         receiptPane.setVisible(true);
 
         currentReceipt.increaseBillNumber();
-        timeInReceipt.setText(currentReceipt.getTime());
+        timeInReceipt.setText(getStaticTime());
 
         dateInReceipt.setText(getDate());
         receiptBill.setText(currentReceipt.getShortReceipt());
