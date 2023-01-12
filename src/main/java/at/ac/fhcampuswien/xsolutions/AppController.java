@@ -392,6 +392,7 @@ public class AppController implements Initializable {
 
         resetBill();
     }
+
     @FXML
     void closeReceipt(){
         paymentMethodsPane.setVisible(false);
