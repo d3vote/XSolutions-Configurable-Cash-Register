@@ -62,15 +62,20 @@ public class App extends Application {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
 
-                loader = new FXMLLoader(getClass().getResource("login.fxml"));
-                root = loader.load();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.setFullScreenExitHint("");
-                stage.setX(0);
-                stage.setY(0);
-                stage.setMaximized(true);
-                stage.setFullScreen(true);
+                FXMLLoader newLoader = new FXMLLoader(getClass().getResource("login.fxml"));
+                Parent root2 = newLoader.load();
+                Stage newStage = new Stage();
+                scene = new Scene(root2);
+                newStage.getIcons().add(new Image("file:src/main/resources/icon.png"));
+
+                newStage.setScene(scene);
+                newStage.setFullScreenExitHint("");
+                newStage.setX(0);
+                newStage.setY(0);
+                newStage.setMaximized(true);
+                newStage.setFullScreen(true);
+                stage.hide();
+                newStage.show();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
