@@ -6,11 +6,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -18,6 +21,7 @@ import javafx.util.StringConverter;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
@@ -496,6 +500,7 @@ public class AppController implements Initializable {
     // Parse all Products into Grid
     @FXML
     private void addProductElementsToGrid(GridPane grid, List<Product> productsList) {
+        DecimalFormat df = new DecimalFormat("#.00");
         grid.getChildren().clear();
         int row = 0;
         int col = 0;
@@ -504,6 +509,7 @@ public class AppController implements Initializable {
             Pane imagePane = new Pane();
             imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
             Label productTitleLabel = new Label(item.getProductTitle());
+            Label productPriceInGrid = new Label(String.valueOf(df.format(item.getProductPrice()) + " " +getCurrency()));
             Button addButton = new Button();
             Button removeButton = new Button();
 
@@ -538,11 +544,16 @@ public class AppController implements Initializable {
             removeButton.setAlignment(Pos.CENTER);
             buttonBox.setAlignment(Pos.BASELINE_CENTER);
             VBox productPane = new VBox();
+            productPriceInGrid.setStyle("-fx-font-size: 15;-fx-font-weight: 600;-fx-text-fill: black");
+            productTitleLabel.setStyle("-fx-font-size: 17;-fx-font-weight: 600;-fx-text-fill: black");
             productTitleLabel.setAlignment(Pos.CENTER);
             productPane.setAlignment(Pos.CENTER);
-            productPane.getChildren().addAll(productTitleLabel, imagePane, buttonBox);
+            productPane.getChildren().addAll(productTitleLabel, imagePane, buttonBox, productPriceInGrid);
             productPane.getStyleClass().addAll("product-vbox");
             imagePane.getStyleClass().addAll("productImage");
+
+            RowConstraints rowConstraints = grid.getRowConstraints().get(0);
+            rowConstraints.setMinHeight(200);
 
             // Set the properties of the elements
             addButton.setOnAction(event -> addToBillButton(item));
