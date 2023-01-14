@@ -416,7 +416,7 @@
                   <VBox.margin>
                      <Insets top="5.0" />
                   </VBox.margin>
-                  <Label fx:id="billText" />
+                  <Label fx:id="billText" style="-fx-font-size: 17; -fx-font-weight: 500;" styleClass="text" stylesheets="@styles.css" />
                </ScrollPane>
                <HBox alignment="CENTER" prefHeight="1.0" prefWidth="480.0">
                   <Pane prefHeight="2.0" prefWidth="433.0" style="-fx-background-color: gray;" />
