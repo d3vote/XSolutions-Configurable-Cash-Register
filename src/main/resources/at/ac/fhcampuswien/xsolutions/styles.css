@@ -20,6 +20,13 @@
     -fx-background-position: 20 20;
 }
 
+.splashBG{
+    -fx-background-image: url("https://i.imgur.com/HbMZomN.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    -fx-background-size: contain;
+}
+
 .cartOptions-l {
   -fx-background-radius: 0 0 0 8;
 }

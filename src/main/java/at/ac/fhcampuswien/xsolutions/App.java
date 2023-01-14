@@ -1,12 +1,17 @@
 package at.ac.fhcampuswien.xsolutions;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.*;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
@@ -15,30 +20,64 @@ import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
 public class App extends Application {
     public static Tables[] arrayTables;
+    public static Scene scene = null;
+    public static Stage stage = null;
 
     /** GUI start
      */
     @Override
     public void start(Stage stage) throws IOException {
-        stage.getIcons().add(new Image("file:src/main/resources/icon.png"));
-
-        FXMLLoader fxmlLoaderMain = new FXMLLoader(App.class.getResource("main.fxml"));
-        Scene sceneMain = new Scene(fxmlLoaderMain.load(), 1200, 800);
-        stage.setTitle("Configurable Cash Register");
-        stage.setScene(sceneMain);
-        stage.setFullScreenExitHint("");
-        stage.setFullScreen(true); // Set to Full Screen Mode
-        stage.show();
-        stage.hide();
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1200, 800);
-        stage.setTitle("Configurable Cash Register");
-        stage.setScene(scene);
-        stage.setFullScreenExitHint("");
-        stage.setFullScreen(true); // Set to Full Screen Mode
-        stage.show();
+        this.stage = stage;
+        showSplashScreen();
+        loadMainStage();
     }
+
+    private void showSplashScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("splashscreen.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            stage.getIcons().add(new Image("file:src/main/resources/icon.png"));
+            stage.initStyle(StageStyle.UNDECORATED);
+            stage.setScene(scene);
+            stage.setAlwaysOnTop(true);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadMainStage() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                updateProgress(0.5, 1.0);
+                return null;
+            }
+        };
+        task.setOnSucceeded(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+
+                loader = new FXMLLoader(getClass().getResource("login.fxml"));
+                root = loader.load();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.setFullScreenExitHint("");
+                stage.setX(0);
+                stage.setY(0);
+                stage.setMaximized(true);
+                stage.setFullScreen(true);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+        new Thread(task).start();
+    }
+
     /** Generates an amount of Tables and adds them to an array of tables (arrayTables)
      */
     public static void generateTables(int amount){
