@@ -904,7 +904,10 @@ public class AppController implements Initializable {
 
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
-
+        totalPrice.setText("0.00" + getCurrency());
+        subTotalLabel.setText("0.00" + getCurrency());
+        totalTaxesBill.setText("0.00" + getCurrency());
+        taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
         updateBillInfo();
 
         //Creates ToolTip for Reset Button
