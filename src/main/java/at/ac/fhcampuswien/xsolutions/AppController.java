@@ -910,6 +910,7 @@ public class AppController implements Initializable {
         taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
         updateBillInfo();
 
+
         //Creates ToolTip for Reset Button
         Tooltip tt = new Tooltip();
         tt.setText("Löscht die aktuelle Rechnung!");
