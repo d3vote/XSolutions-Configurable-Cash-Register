@@ -302,14 +302,23 @@ public class AppController implements Initializable {
     private Label totalTaxesBill;
 
     private Tables getCurrentTable() {
-        int currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        int currentTableIndex;
+        if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
+            currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        } else {
+            currentTableIndex = 0;
+        }
 
         return arrayTables[currentTableIndex];
     }
 
     private Receipt getCurrentReceipt() {
-        int currentReceiptIndex = tablesListView.getSelectionModel().getSelectedIndex();
-
+        int currentReceiptIndex;
+        if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
+            currentReceiptIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        } else {
+            currentReceiptIndex = 0;
+        }
         return arrayReceipts.get(currentReceiptIndex);
     }
 
@@ -498,6 +507,7 @@ public class AppController implements Initializable {
     }
 
     // Parse all Products into Grid
+
     @FXML
     private void addProductElementsToGrid(GridPane grid, List<Product> productsList) {
         DecimalFormat df = new DecimalFormat("#.00");
@@ -669,7 +679,9 @@ public class AppController implements Initializable {
         String newCurrency = String.valueOf(systemNewCurrencySelector.getValue().getSymbol());
         setCurrency(newCurrency);
         setValue("currency", String.valueOf(newCurrency));
+        updateReceiptPane();
         updateBill();
+        addProductElementsToGrid(GridPaneProducts, productsList);
     }
 
     @FXML
@@ -682,15 +694,17 @@ public class AppController implements Initializable {
     void updateBill(){
         Receipt currentReceipt = getCurrentReceipt();
 
-        billText.setText(currentReceipt.getFullReceipt());
-        totalPrice.setText(currentReceipt.getTotal() + getCurrency());
-        tableNumberText.setText(getCurrentTable().getTableNumberAsString());
-        subTotalLabel.setText(currentReceipt.getSubtotal() + getCurrency());
-        taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
-        totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
+        if (currentReceipt != null){
+            billText.setText(currentReceipt.getFullReceipt());
+            totalPrice.setText(currentReceipt.getTotal() + getCurrency());
+            tableNumberText.setText(getCurrentTable().getTableNumberAsString());
+            subTotalLabel.setText(currentReceipt.getSubtotal() + getCurrency());
+            taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
+            totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
 
-        emptyReceiptPane.setVisible(currentReceipt.getFullReceipt().equals(""));
-        billScroll.setVisible(!currentReceipt.getFullReceipt().equals(""));
+            emptyReceiptPane.setVisible(currentReceipt.getFullReceipt().equals(""));
+            billScroll.setVisible(!currentReceipt.getFullReceipt().equals(""));
+        }
     }
 
     @FXML
@@ -754,10 +768,10 @@ public class AppController implements Initializable {
         if (productPrice.isEmpty()) {
             productPrice = "0";
         }
-        if (productDescription.isEmpty()) {
+        if (productURL.isEmpty()) {
             productURL = "Kein";
         }
-        if (productURL.isEmpty()) {
+        if (productDescription.isEmpty()) {
             productDescription = "Keine";
         }
 
@@ -902,12 +916,16 @@ public class AppController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    public void initialize(URL arg0, ResourceBundle arg1){
+    private void updateReceiptPane() {
         totalPrice.setText("0.00" + getCurrency());
         subTotalLabel.setText("0.00" + getCurrency());
         totalTaxesBill.setText("0.00" + getCurrency());
         taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
+    }
+
+    @FXML
+    public void initialize(URL arg0, ResourceBundle arg1){
+        updateReceiptPane();
         updateBillInfo();
 
 
