@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: FCFDFD;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" style="-fx-background-color: FCFDFD;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
    <children>
       <Pane layoutX="50.0" layoutY="21.0" prefHeight="200.0" prefWidth="200.0" styleClass="splashBG" stylesheets="@styles.css" />
       <Text layoutX="104.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22;" text="Loading..." AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="104.0" AnchorPane.rightAnchor="104.0" AnchorPane.topAnchor="242.0" />

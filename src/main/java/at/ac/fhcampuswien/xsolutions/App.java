@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.*;
@@ -112,8 +113,8 @@ public class App extends Application {
 
         generateTables(getTableConfig());
 
-        //Sort Products List
-        productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
+        //Sort Products List by their Category
+        productsList.sort(Comparator.comparingInt(p -> getCategoryOrder(p.getCategory())));
 
         loadReceiptHistory();
 
