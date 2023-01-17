@@ -34,33 +34,12 @@
          </AnchorPane>
          <AnchorPane prefHeight="990.0" prefWidth="1129.0" HBox.hgrow="ALWAYS">
             <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <Pane fx:id="settingsTab" layoutX="30.0" layoutY="24.0" prefHeight="891.0" prefWidth="734.0" stylesheets="@styles.css" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
+               <Pane fx:id="settingsTab" layoutX="30.0" layoutY="24.0" prefHeight="891.0" prefWidth="734.0" stylesheets="@styles.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
                   <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="140.0" prefHeight="57.0" prefWidth="273.0" visible="false">
-                     <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 18;" text="Anzahl der Tische:">
-                        <VBox.margin>
-                           <Insets bottom="4.0" top="4.0" />
-                        </VBox.margin>
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <HBox prefHeight="32.0" prefWidth="299.0">
-                        <VBox.margin>
-                           <Insets />
-                        </VBox.margin>
-                        <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="32.0" prefWidth="172.0" />
-                        <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="30.0" prefWidth="66.0" styleClass="acceptBtn" text="OK">
-                           <HBox.margin>
-                              <Insets left="20.0" />
-                           </HBox.margin>
-                        </Button>
-                     </HBox>
-                  </VBox>
                   <FlowPane columnHalignment="CENTER" hgap="5.0" layoutX="3.0" layoutY="63.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="32.0" prefWidth="822.0" vgap="10.0">
                      <Button fx:id="userSettings" mnemonicParsing="false" onAction="#setupUsers" styleClass="tabBtn" stylesheets="@styles.css" text="Nutzer bearbeiten" />
                      <Button fx:id="productsSettings" mnemonicParsing="false" onAction="#setupProducts" styleClass="tabBtn" stylesheets="@styles.css" text="Produkte bearbeiten" />
@@ -91,6 +70,53 @@
                         <Button alignment="CENTER" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="30.0" prefWidth="229.0" styleClass="acceptBtn" text="Neuen Benutzer erstellen" />
                      </HBox>
                   </Pane>
+                  <Pane fx:id="productsSettingsPane" layoutY="140.0" prefHeight="817.0" prefWidth="828.0">
+                     <ListView fx:id="productsListViewSettings" prefHeight="311.0" prefWidth="828.0" />
+                     <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Informationen zum Produkt:" />
+                     <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Produktname: Keine" />
+                     <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Beschreibung: Keine" />
+                     <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="592.0" text="Bild-URL: Keine" />
+                     <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Preis: Keiner" />
+                     <Label fx:id="productsSettingsCategory" layoutY="469.0" prefHeight="27.0" prefWidth="828.0" text="Kategorie: Keine" />
+                     <Pane fx:id="productImagePreview" layoutX="602.0" layoutY="317.0" prefHeight="142.0" prefWidth="212.0" />
+                     <VBox layoutX="1.0" layoutY="509.0" prefHeight="153.0" prefWidth="217.0" spacing="12.0">
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Produktname ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Beschreibung ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Bild-URL ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Preis ändern" />
+                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeCategory" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Kategorie ändern" />
+                     </VBox>
+                     <Button layoutY="732.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="200.0" styleClass="deleteBtn" text="Produkt löschen" />
+                     <Button layoutX="213.0" layoutY="732.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="30.0" prefWidth="223.0" styleClass="acceptBtn" text="Neues Produkt erstellen" />
+                     <VBox layoutX="214.0" layoutY="509.0" prefHeight="159.0" prefWidth="222.0" spacing="10.0">
+                        <TextField fx:id="newProductName" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Produktname" />
+                        <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
+                        <TextField fx:id="newURL" prefHeight="25.0" prefWidth="600.0" promptText="Neue Bild-URL" />
+                        <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
+                        <ChoiceBox fx:id="newProductCategory" prefHeight="32.0" prefWidth="224.0" />
+                     </VBox>
+                  </Pane>
+                  <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="140.0" prefHeight="57.0" prefWidth="273.0" visible="false">
+                     <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 18;" text="Anzahl der Tische:">
+                        <VBox.margin>
+                           <Insets bottom="4.0" top="4.0" />
+                        </VBox.margin>
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                     <HBox prefHeight="32.0" prefWidth="299.0">
+                        <VBox.margin>
+                           <Insets />
+                        </VBox.margin>
+                        <TextField fx:id="settingsInputField" alignment="CENTER" prefHeight="32.0" prefWidth="172.0" />
+                        <Button mnemonicParsing="false" onAction="#changeValue" prefHeight="30.0" prefWidth="66.0" styleClass="acceptBtn" text="OK">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Button>
+                     </HBox>
+                  </VBox>
                   <Pane fx:id="systemSettingsPane" layoutY="140.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="638.0" prefWidth="828.0" visible="false">
                      <Label layoutY="1.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="System Steuerung:" />
                      <VBox layoutY="34.0" prefHeight="113.0" prefWidth="200.0" spacing="10.0">
@@ -100,60 +126,6 @@
                      <VBox layoutX="217.0" layoutY="34.0" prefHeight="73.0" prefWidth="212.0" spacing="10.0">
                         <TextField fx:id="systemNewTaxesField" prefHeight="25.0" prefWidth="164.0" promptText="Neue Steuern" />
                         <ChoiceBox fx:id="systemNewCurrencySelector" prefHeight="32.0" prefWidth="212.0" />
-                     </VBox>
-                  </Pane>
-                  <Pane fx:id="productsSettingsPane" layoutY="140.0" prefHeight="817.0" prefWidth="828.0" visible="false">
-                     <ListView fx:id="productsListViewSettings" prefHeight="311.0" prefWidth="828.0" />
-                     <Label layoutY="324.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Informationen zum Produkt:" />
-                     <Label fx:id="productsSettingsName" layoutY="361.0" prefHeight="27.0" prefWidth="828.0" text="Produktname: Keine" />
-                     <Label fx:id="productsSettingsDescription" layoutY="388.0" prefHeight="27.0" prefWidth="828.0" text="Beschreibung: Keine" />
-                     <Label fx:id="productsSettingsURL" layoutY="415.0" prefHeight="27.0" prefWidth="592.0" text="Bild-URL: Keine" />
-                     <VBox layoutY="476.0" prefHeight="153.0" prefWidth="217.0" spacing="12.0">
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Produktname ändern" />
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Beschreibung ändern" />
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Bild-URL ändern" />
-                        <Button mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Preis ändern" />
-                     </VBox>
-                     <Button layoutX="-1.0" layoutY="670.0" mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="200.0" styleClass="deleteBtn" text="Produkt löschen" />
-                     <Button layoutX="212.0" layoutY="670.0" mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="30.0" prefWidth="223.0" styleClass="acceptBtn" text="Neues Produkt erstellen" />
-                     <VBox layoutX="213.0" layoutY="476.0" prefHeight="159.0" prefWidth="222.0" spacing="10.0">
-                        <TextField fx:id="newProductName" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Produktname" />
-                        <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
-                        <TextField fx:id="newURL" prefHeight="25.0" prefWidth="600.0" promptText="Neue Bild-URL" />
-                        <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
-                     </VBox>
-                     <Label fx:id="productsSettingsPrice" layoutY="442.0" prefHeight="27.0" prefWidth="828.0" text="Preis: Keiner" />
-                     <Pane fx:id="productImagePreview" layoutX="602.0" layoutY="317.0" prefHeight="142.0" prefWidth="212.0" />
-                  </Pane>
-                  <Pane fx:id="billSettingsPane" layoutY="140.0" prefHeight="638.0" prefWidth="828.0" visible="false">
-                     <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Steuerung:" />
-                     <Label layoutX="401.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0" text="Ansicht:">
-                        <font>
-                           <Font size="18.0" />
-                        </font>
-                     </Label>
-                     <Pane layoutX="401.0" layoutY="45.0" prefHeight="120.0" prefWidth="423.0" style="-fx-background-radius: 8; -fx-background-color: #B1CED4;">
-                        <padding>
-                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                        </padding>
-                        <VBox layoutY="1.0" prefHeight="84.0" prefWidth="170.0">
-                           <padding>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                           </padding>
-                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: Favoritenstraße 226" />
-                           <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon: 01 60668776600" />
-                           <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
-                        </VBox>
-                     </Pane>
-                     <VBox layoutX="3.0" layoutY="47.0" prefHeight="239.0" prefWidth="378.0" spacing="10.0">
-                        <TextField fx:id="newAdressField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Adresse" />
-                        <TextField fx:id="newTelField" prefHeight="25.0" prefWidth="356.0" promptText="Neuer Telefonnummer" />
-                        <TextField fx:id="newMessageField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Nachricht" />
-                        <Button mnemonicParsing="false" onAction="#saveBillinfo" prefHeight="25.0" prefWidth="96.0" styleClass="acceptBtn" text="Speichern" />
-                        <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="378.0" spacing="15.0">
-                           <Button mnemonicParsing="false" onAction="#systemSettingsChangeBillNr" prefHeight="25.0" prefWidth="170.0" styleClass="acceptBtn" text="Belegnummer ändern" />
-                           <TextField fx:id="systemNewBillNrField" prefHeight="32.0" prefWidth="198.0" promptText="Neue Letzte Belegnummer" />
-                        </HBox>
                      </VBox>
                   </Pane>
                   <Pane fx:id="findReceiptPane" layoutY="140.0" prefHeight="858.0" prefWidth="828.0" visible="false">
@@ -316,8 +288,39 @@
                         </HBox>
                      </FlowPane>
                   </Pane>
+                  <Pane fx:id="billSettingsPane" layoutY="140.0" prefHeight="638.0" prefWidth="828.0" visible="false">
+                     <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Steuerung:" />
+                     <Label layoutX="401.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0" text="Ansicht:">
+                        <font>
+                           <Font size="18.0" />
+                        </font>
+                     </Label>
+                     <Pane layoutX="401.0" layoutY="45.0" prefHeight="120.0" prefWidth="423.0" style="-fx-background-radius: 8; -fx-background-color: #B1CED4;">
+                        <padding>
+                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </padding>
+                        <VBox layoutY="1.0" prefHeight="84.0" prefWidth="170.0">
+                           <padding>
+                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                           </padding>
+                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: Favoritenstraße 226" />
+                           <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon: 01 60668776600" />
+                           <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
+                        </VBox>
+                     </Pane>
+                     <VBox layoutX="3.0" layoutY="47.0" prefHeight="239.0" prefWidth="378.0" spacing="10.0">
+                        <TextField fx:id="newAdressField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Adresse" />
+                        <TextField fx:id="newTelField" prefHeight="25.0" prefWidth="356.0" promptText="Neuer Telefonnummer" />
+                        <TextField fx:id="newMessageField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Nachricht" />
+                        <Button mnemonicParsing="false" onAction="#saveBillinfo" prefHeight="25.0" prefWidth="96.0" styleClass="acceptBtn" text="Speichern" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="378.0" spacing="15.0">
+                           <Button mnemonicParsing="false" onAction="#systemSettingsChangeBillNr" prefHeight="25.0" prefWidth="170.0" styleClass="acceptBtn" text="Belegnummer ändern" />
+                           <TextField fx:id="systemNewBillNrField" prefHeight="32.0" prefWidth="198.0" promptText="Neue Letzte Belegnummer" />
+                        </HBox>
+                     </VBox>
+                  </Pane>
                </Pane>
-               <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <AnchorPane prefHeight="44.0" prefWidth="909.0">
                      <GridPane alignment="CENTER" minWidth="62.0" prefHeight="62.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columnConstraints>

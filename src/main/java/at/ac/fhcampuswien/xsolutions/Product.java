@@ -5,7 +5,9 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.getProductsListPath;
 
@@ -14,6 +16,8 @@ public class Product {
     public double productPrice;
     public String productDescription;
     public String productImageUrl;
+    public String category;
+    private static List<String> categories = Arrays.asList("Italian","Asian","Seafood","Taco","Grilled","Fried","Vegetarian","Poultry","Beverages","Salad","Soup","Burger","Pizza","Desert","Non-Alcoholic Beverages","Alcoholic Beverages");
     public static List<Product> productsList = new ArrayList<>();    // ProductList
     private static int count;
 
@@ -27,15 +31,28 @@ public class Product {
      * @param productDescription - Description of the product
      * @param productImageUrl - Image URL
      */
+    public Product(String productTitle, double productPrice, String productDescription, String category, String productImageUrl) throws IOException {
+        count++;
+        this.productImageUrl = productImageUrl;
+        this.productTitle = productTitle;
+        this.productPrice = productPrice;
+        this.productDescription = productDescription;
+        if (Objects.equals(category, "null")){
+            this.category = "Nicht zugeordnet";
+        } else {
+            this.category = category;
+        }
+        initializeProducts();
+    }
     public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) throws IOException {
         count++;
         this.productImageUrl = productImageUrl;
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.category = "Nicht zugeordnet";
         initializeProducts();
     }
-
     public Product(String productTitle, double productPrice, String productDescription) throws IOException {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
@@ -54,6 +71,23 @@ public class Product {
         productsList.add(this);
         productToJSON();
     }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public static List<String> getCategories() {
+        return categories;
+    }
+
+    public static int getCategoryOrder(String category) {
+        return categories.indexOf(category);
+    }
+
     public String getProductTitle() {
         return productTitle;
     }
@@ -65,10 +99,6 @@ public class Product {
     }
     public String getProductImageUrl() {
         return productImageUrl;
-    }
-
-    public static int getCount() {
-        return count;
     }
 
     public void setProductTitle(String productTitle) {

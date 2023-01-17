@@ -145,6 +145,9 @@ public class AppController implements Initializable {
     private Label productsSettingsPrice;
 
     @FXML
+    private Label productsSettingsCategory;
+
+    @FXML
     private TextField newProductDescription;
 
     @FXML
@@ -204,6 +207,9 @@ public class AppController implements Initializable {
 
     @FXML
     private ChoiceBox<Currency> systemNewCurrencySelector;
+
+    @FXML
+    private ChoiceBox<String> newProductCategory;
 
     @FXML
     private Label paymentTotalBeforeAllLabel;
@@ -754,6 +760,16 @@ public class AppController implements Initializable {
     }
 
     @FXML
+    void productsSettingsChangeCategory() {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        String text = newProductCategory.getValue();
+        if (!Objects.equals(text, ""))  {
+            productsList.get(currentProduct).setCategory(text);
+        }
+        updateProductsList(currentProduct);
+    }
+
+    @FXML
     void productsSettingsCreateNew() throws IOException {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
 
@@ -761,6 +777,7 @@ public class AppController implements Initializable {
         String productPrice = newProductPrice.getText();
         String productDescription = newProductDescription.getText();
         String productURL = newURL.getText();
+        String productCategory = newProductCategory.getValue();
 
         if (productName.isEmpty()) {
             productName = "Neues Produkt";
@@ -774,8 +791,11 @@ public class AppController implements Initializable {
         if (productDescription.isEmpty()) {
             productDescription = "Keine";
         }
+        if (productCategory == null) {
+            productCategory = "Keine";
+        }
 
-        new Product(productName, Double.parseDouble(productPrice), productDescription, productURL);
+        new Product(productName, Double.parseDouble(productPrice), productDescription, productCategory, productURL);
         updateProductsList(currentProduct);
     }
 
@@ -799,6 +819,7 @@ public class AppController implements Initializable {
             productsSettingsName.setText("Produkt Name: " + productsList.get(currentProduct).getProductTitle());
             productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
             productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
+            productsSettingsCategory.setText("Kategorie: " + productsList.get(currentProduct).getCategory());
             productsListViewSettings.getSelectionModel().select(currentProduct);
         }
         productToJSON();
@@ -939,6 +960,8 @@ public class AppController implements Initializable {
                 + "-fx-text-fill: orange;");
         resetBill.setTooltip(tt);
 
+        newProductCategory.getItems().addAll(getCategories());
+
         systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
         systemNewCurrencySelector.setValue(currencies.get(0));
         systemNewCurrencySelector.setConverter(new StringConverter<>() {
@@ -1001,6 +1024,7 @@ public class AppController implements Initializable {
                 productsSettingsDescription.setText("Beschreibung: " + productsList.get(currentProduct).getProductDescription());
                 productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
                 productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
+                productsSettingsCategory.setText("Kategorie: " + productsList.get(currentProduct).getCategory());
                 productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
             }
         });
