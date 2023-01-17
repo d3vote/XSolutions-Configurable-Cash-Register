@@ -97,6 +97,7 @@ public class Product {
     public String getProductDescription() {
         return productDescription;
     }
+
     public String getProductImageUrl() {
         return productImageUrl;
     }
