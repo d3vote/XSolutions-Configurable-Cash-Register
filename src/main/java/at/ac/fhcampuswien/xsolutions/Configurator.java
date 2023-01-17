@@ -61,7 +61,7 @@ public class Configurator {
             writerConfigFile.close();
 
 
-            URL urlProductsList = new URL("https://pastebin.com/raw/uaTdJJXf");
+            URL urlProductsList = new URL("https://raw.githubusercontent.com/d3vote/ConfigFiles/main/productsList.json");
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlProductsList.openStream(), StandardCharsets.UTF_8));
             BufferedWriter writerProducts = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(productsListPath), StandardCharsets.UTF_8));
             String line;
@@ -73,7 +73,7 @@ public class Configurator {
             writerProducts.close();
 
 
-            URL urlUserList = new URL("https://pastebin.com/raw/1TTGBvmp");
+            URL urlUserList = new URL("https://raw.githubusercontent.com/d3vote/ConfigFiles/main/usersList.json");
             BufferedReader reader2 = new BufferedReader(new InputStreamReader(urlUserList.openStream(), StandardCharsets.UTF_8));
             BufferedWriter writerUsers = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(usersListPath), StandardCharsets.UTF_8));
             while ((line = reader2.readLine()) != null) {
