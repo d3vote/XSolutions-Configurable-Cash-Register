@@ -115,6 +115,14 @@
     -fx-background-color: transparent;
 }
 
+.resetCategory {
+    -fx-background-image: url("https://i.imgur.com/oBmlDzJ.png");
+    -fx-font-size: 15;
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-color: transparent;
+}
+
 .calendar {
     -fx-background-image: url("https://i.imgur.com/MU6w7RP.png");
     -fx-background-repeat: no-repeat;

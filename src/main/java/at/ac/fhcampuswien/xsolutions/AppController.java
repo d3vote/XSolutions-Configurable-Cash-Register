@@ -6,14 +6,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -306,6 +303,12 @@ public class AppController implements Initializable {
     private Label taxesTitleLabel;
     @FXML
     private Label totalTaxesBill;
+
+    @FXML
+    private ChoiceBox<String> choiceBox;
+
+    @FXML
+    private Button resetCategory;
 
     private Tables getCurrentTable() {
         int currentTableIndex;
@@ -943,22 +946,48 @@ public class AppController implements Initializable {
         totalTaxesBill.setText("0.00" + getCurrency());
         taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
     }
-
+    @FXML
+    private void resetCategory(){
+        addProductElementsToGrid(GridPaneProducts, productsList);
+        choiceBox.getSelectionModel().clearSelection();
+    }
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
         updateReceiptPane();
         updateBillInfo();
 
+        //ChoiceBox
+        List<Product> selectedItems = new ArrayList<>();
+        selectedItems.add(productsList.get(0));
+        choiceBox.getItems().addAll(getCategories());
+        try {
+            choiceBox.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
 
-        //Creates ToolTip for Reset Button
+                if (choiceBox.getSelectionModel().getSelectedItem().equals(getCategories().get(0))){
+                    addProductElementsToGrid(GridPaneProducts,selectedItems);
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        //Creates ToolTip for resetBill and resetCategory button
         Tooltip tt = new Tooltip();
-        tt.setText("Löscht die aktuelle Rechnung!");
+        tt.setText("Löscht die aktuelle Rechnung");
         tt.setShowDelay(Duration.millis(100));
         tt.setHideDelay(Duration.ZERO);
         tt.setStyle("-fx-font: normal bold 12 Langdon; "
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
         resetBill.setTooltip(tt);
+        Tooltip tt1 = new Tooltip();
+        tt1.setText("Setzt Kategorie-auswahl zurück");
+        tt1.setShowDelay(Duration.millis(100));
+        tt1.setHideDelay(Duration.ZERO);
+        tt1.setStyle("-fx-font: normal bold 12 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+        resetCategory.setTooltip(tt1);
 
         newProductCategory.getItems().addAll(getCategories());
 
