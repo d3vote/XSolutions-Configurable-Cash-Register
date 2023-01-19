@@ -22,9 +22,14 @@ __Admin-Features:__
 ## How to run
 There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual release from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)
 
-__Instruction for IDE (e.g. IntelliJ):__
+__Set display-scaling to 100%__ and we suggest using the resolution: 1920x1080 ! <br />
 
-Disable display-scaling and we suggest using the resolution: 1920x1080 !
+How-To:
+ - Open Windows Display Settings -> Right-click on the Desktop and select Display Settings.
+ - Select the display you want to change.
+ - Under Scaling and Layout select 100%
+
+__Instruction for IDE (e.g. IntelliJ):__
 
 1) Clone the file to your directory.
 
