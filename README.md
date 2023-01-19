@@ -22,9 +22,9 @@ __Admin-Features:__
 ## How to run
 There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual release from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)
 
-Instruction for IDE (e.g. IntelliJ): 
+__Instruction for IDE (e.g. IntelliJ):__
 
-__Disable display-scaling and we suggest using the resolution: 1920x1080 !__
+Disable display-scaling and we suggest using the resolution: 1920x1080 !
 
 1) Clone the file to your directory.
 
