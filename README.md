@@ -24,10 +24,10 @@ There are two ways to run the Application: From IDE (e.g. IntelliJ) or to instal
 
 __Set display-scaling to 100%__ and we suggest using the resolution: 1920x1080 ! <br />
 
-How-To:
- - Open Windows Display Settings -> Right-click on the Desktop and select Display Settings.
- - Select the display you want to change.
- - Under Scaling and Layout select 100%
+How-To change Scaling:
+- [Windows](https://support.microsoft.com/en-us/windows/view-display-settings-in-windows-37f0e05e-98a9-474c-317a-e85422daa8bb)
+- [Mac](https://support.apple.com/de-at/guide/mac-help/mchl86d72b76/mac)
+
 
 __Instruction for IDE (e.g. IntelliJ):__
 
