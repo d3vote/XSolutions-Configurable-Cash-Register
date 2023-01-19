@@ -22,7 +22,9 @@ __Admin-Features:__
 ## How to run
 There are two ways to run the Application: From IDE (e.g. IntelliJ) or to install an actual release from [here.](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases)
 
-Instruction for IDE (e.g. IntelliJ):
+Instruction for IDE (e.g. IntelliJ): 
+
+__Disable display-scaling and we suggest using the resolution: 1920x1080 !__
 
 1) Clone the file to your directory.
 
@@ -40,10 +42,12 @@ Instruction for IDE (e.g. IntelliJ):
 
 If still having some issues, try to manually select corretto-11.0.7 as JDK
 
+
 Prerequisites for installing the release:
 - [Java Runtime Environment](https://www.java.com/de/download/)
 
 Instruction for .zip and .exe can be found in each [Release](https://github.com/d3vote/XSolutions-Configurable-Cash-Register/releases) README (Windows only)
+
 
 ## Info about Configuration Files
 During the use of the app, three configuration files will be created in the AppData/XSolutions-POS directory: usersList.json, productsList.json, and config.txt. It is important that the directory & files are not empty, as the app will not function properly if any of these files are empty.
