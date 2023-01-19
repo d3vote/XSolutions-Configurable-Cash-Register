@@ -13,11 +13,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
-
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -952,6 +952,8 @@ public class AppController implements Initializable {
     private void resetCategory(){
         addProductElementsToGrid(GridPaneProducts, productsList);
         choiceBox.getSelectionModel().clearSelection();
+        choiceBox.setValue("Kategorie");
+
     }
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
@@ -960,11 +962,13 @@ public class AppController implements Initializable {
 
         //ChoiceBox
         choiceBox.getItems().addAll(getCategories());
+        choiceBox.setValue("Kategorie");
+        choiceBox.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
         choiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number old_selection, Number new_selection) {
-                addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(choiceBox.getItems().get((Integer) new_selection)));
-                System.out.println(choiceBox.getItems().get((Integer) new_selection));
+                    addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(choiceBox.getItems().get((Integer) new_selection)));
+                    System.out.println(choiceBox.getItems().get((Integer) new_selection));
             }
         });
 
