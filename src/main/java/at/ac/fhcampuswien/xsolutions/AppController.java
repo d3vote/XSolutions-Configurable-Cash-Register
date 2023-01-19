@@ -1,5 +1,7 @@
 package at.ac.fhcampuswien.xsolutions;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -957,19 +959,14 @@ public class AppController implements Initializable {
         updateBillInfo();
 
         //ChoiceBox
-        List<Product> selectedItems = new ArrayList<>();
-        selectedItems.add(productsList.get(0));
         choiceBox.getItems().addAll(getCategories());
-        try {
-            choiceBox.getSelectionModel().selectedItemProperty().addListener((Observable, oldValue, newValue) -> {
-
-                if (choiceBox.getSelectionModel().getSelectedItem().equals(getCategories().get(0))){
-                    addProductElementsToGrid(GridPaneProducts,selectedItems);
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number old_selection, Number new_selection) {
+                addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(choiceBox.getItems().get((Integer) new_selection)));
+                System.out.println(choiceBox.getItems().get((Integer) new_selection));
+            }
+        });
 
         //Creates ToolTip for resetBill and resetCategory button
         Tooltip tt = new Tooltip();
