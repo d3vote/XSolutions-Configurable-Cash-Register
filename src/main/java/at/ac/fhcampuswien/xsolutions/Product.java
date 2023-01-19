@@ -4,10 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import java.io.IOException;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.getProductsListPath;
 
@@ -16,7 +13,7 @@ public class Product {
     public double productPrice;
     public String productDescription;
     public String productImageUrl;
-    public String category;
+    public ArrayList<String> category = new ArrayList<>();
     private static List<String> categories = Arrays.asList("Italian","Asian","Seafood","Taco","Grilled","Fried","Vegetarian","Poultry","Beverages","Salad","Soup","Burger","Pizza","Desert","Non-Alcoholic Beverages","Alcoholic Beverages");
     public static List<Product> productsList = new ArrayList<>();    // ProductList
     private static int count;
@@ -30,6 +27,7 @@ public class Product {
      * @param productPrice - Price of the product
      * @param productDescription - Description of the product
      * @param productImageUrl - Image URL
+     * @param category - Product Category
      */
     public Product(String productTitle, double productPrice, String productDescription, String category, String productImageUrl) throws IOException {
         count++;
@@ -37,10 +35,10 @@ public class Product {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
-        if (Objects.equals(category, "null")){
-            this.category = "Nicht zugeordnet";
+        if ((Objects.equals(this.category, "") || Objects.equals(this.category, "Nicht zugeordnet") || Objects.equals(this.category, "null"))){
+            this.category.add("Nicht zugeordnet");
         } else {
-            this.category = category;
+            this.category.addAll(Arrays.asList(category.split(",")));
         }
         initializeProducts();
     }
@@ -50,18 +48,20 @@ public class Product {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
-        this.category = "Nicht zugeordnet";
+        this.category.add("Nicht zugeordnet");
         initializeProducts();
     }
     public Product(String productTitle, double productPrice, String productDescription) throws IOException {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productDescription = productDescription;
+        this.category.add("Nicht zugeordnet");
         initializeProducts();
     }
     public Product(String productTitle, double productPrice) throws IOException {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
+        this.category.add("Nicht zugeordnet");
         initializeProducts();
     }
 
@@ -73,11 +73,21 @@ public class Product {
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        if (!(Objects.equals(this.category, "") || Objects.equals(this.category, "Nicht zugeordnet") || Objects.equals(this.category, "null"))) {
+            this.category.add(category);
+        } else {
+            this.category.clear();
+            this.category.add(category);
+        }
+    }
+
+    public static void sortProducts(){
+        //Sort Products List by their Category
+        productsList.sort(Comparator.comparingInt(p -> getCategoryOrder(p.getCategory())));
     }
 
     public String getCategory() {
-        return category;
+        return Arrays.toString(category.toArray()).replace("[", "").replace("]", "");
     }
 
     public static List<String> getCategories() {
@@ -149,6 +159,16 @@ public class Product {
         List<Product> filteredProducts = new ArrayList<>();
         for (Product product : productsList) {
             if (product.getProductTitle().toLowerCase().contains(searchTerm.toLowerCase())) {
+                filteredProducts.add(product);
+            }
+        }
+        return filteredProducts;
+    }
+
+    public static List<Product> filterProductsByCategory(String searchTerm) {
+        List<Product> filteredProducts = new ArrayList<>();
+        for (Product product : productsList) {
+            if (product.getCategory().contains(searchTerm)) {
                 filteredProducts.add(product);
             }
         }
