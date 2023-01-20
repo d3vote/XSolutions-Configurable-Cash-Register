@@ -316,6 +316,27 @@ public class AppController implements Initializable {
     @FXML
     private Button resetPreview;
 
+    @FXML
+    private Button categorySettings;
+
+    @FXML
+    private Pane categorySettingPane;
+
+    @FXML
+    private ListView<String> categoryListView;
+
+    @FXML
+    private Label categoryLabelSettings;
+
+    @FXML
+    private TextField categorySettingsField;
+
+    @FXML
+    private ChoiceBox<String> newCategoryBox;
+
+    @FXML
+    private TextField categoryNameField;
+
     private Tables getCurrentTable() {
         int currentTableIndex;
         if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
@@ -608,6 +629,7 @@ public class AppController implements Initializable {
         systemSettingsPane.setVisible(false);
         billSettingsPane.setVisible(false);
         receiptPreview.setVisible(false);
+        categorySettingPane.setVisible(false);
     }
 
     // Tab Switching
@@ -1011,6 +1033,63 @@ public class AppController implements Initializable {
         choiceBox.getSelectionModel().clearSelection();
         choiceBox.setValue("Kategorie");
     }
+
+    @FXML
+    private void openCategorySettings(){
+        setAllSettingsPanesInvisible();
+        categorySettingPane.setVisible(true);
+    }
+
+    @FXML
+    private void newCategoryAdd(){
+        categories.add(categorySettingsField.getText());
+
+        categoryListView.getItems().clear();
+        categoryListView.getItems().addAll(getCategories());
+
+        newProductCategory.getItems().clear();
+        newProductCategory.getItems().addAll(getCategories());
+
+        choiceBox.getItems().clear();
+        choiceBox.getItems().addAll(getCategories());
+
+        newCategoryBox.getItems().clear();
+        newCategoryBox.getItems().addAll(getCategories());
+
+        categorySettingsField.clear();
+    }
+
+    @FXML
+    private void newCategoryRemove(){
+        getCategories().remove(categorySettingsField.getText());
+        categoryListView.getItems().remove(categorySettingsField.getText());
+        newProductCategory.getItems().remove(categorySettingsField.getText());
+        choiceBox.getItems().remove(categorySettingsField.getText());
+        categorySettingsField.clear();
+    }
+
+    @FXML
+    private void changeCategoryName(){
+        int currentCategory = categoryListView.getSelectionModel().getSelectedIndex();
+        if (currentCategory >= 0 && currentCategory < categoryListView.getItems().size()){
+            getCategories().remove(getCategories().get(currentCategory));
+            getCategories().add(categoryNameField.getText());
+        }
+
+        categoryListView.getItems().clear();
+        categoryListView.getItems().addAll(getCategories());
+
+        newProductCategory.getItems().clear();
+        newProductCategory.getItems().addAll(getCategories());
+
+        choiceBox.getItems().clear();
+        choiceBox.getItems().addAll(getCategories());
+
+        newCategoryBox.getItems().clear();
+        newCategoryBox.getItems().addAll(getCategories());
+
+    }
+
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
         updateReceiptPane();
@@ -1062,8 +1141,14 @@ public class AppController implements Initializable {
                 + "-fx-text-fill: orange;");
         resetPreview.setTooltip(tt3);
 
+        //Category ChoiceBox in Products-Settings
         newProductCategory.setValue("Kategorien");
         newProductCategory.getItems().addAll(getCategories());
+
+        //CategorySettings
+        categoryListView.getItems().addAll(getCategories());
+        newCategoryBox.getItems().addAll(getCategories());
+        newCategoryBox.setValue("Kategorie");
 
         systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
         systemNewCurrencySelector.setValue(currencies.get(0));
@@ -1129,6 +1214,14 @@ public class AppController implements Initializable {
                 productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
                 productsSettingsCategory.setText("Kategorie: " + productsList.get(currentProduct).getCategory());
                 productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
+            }
+        });
+
+        //Check if ListView Selection changed (Categories)
+        categoryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+            int currentCategory = categoryListView.getSelectionModel().getSelectedIndex();
+            if (currentCategory >= 0 && currentCategory < categoryListView.getItems().size()){
+                categoryLabelSettings.setText(getCategories().get(currentCategory));
             }
         });
 

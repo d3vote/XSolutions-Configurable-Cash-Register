@@ -48,6 +48,7 @@
                      <Button fx:id="systemSettings" mnemonicParsing="false" onAction="#setupSystem" styleClass="tabBtn" stylesheets="@styles.css" text="System Steuerung" />
                      <Button mnemonicParsing="false" onAction="#setupBill" styleClass="tabBtn" stylesheets="@styles.css" text="Rechnung Steuerung" />
                      <Button mnemonicParsing="false" onAction="#showFindReceiptPane" styleClass="tabBtn" stylesheets="@styles.css" text="Rechnung Finden" />
+                     <Button fx:id="categorySettings" mnemonicParsing="false" onAction="#openCategorySettings" styleClass="tabBtn" stylesheets="@styles.css" text="Kategorien bearbeiten" />
                   </FlowPane>
                   <Pane fx:id="usersSettingsPane" layoutY="140.0" prefHeight="681.0" prefWidth="828.0" visible="false">
                      <ListView fx:id="usersListView" prefHeight="311.0" prefWidth="828.0" />
@@ -355,6 +356,19 @@
                         </HBox>
                      </VBox>
                      <Button fx:id="resetPreview" layoutX="115.0" layoutY="172.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetPreview" prefHeight="30.0" prefWidth="25.0" styleClass="resetButton" stylesheets="@styles.css" />
+                  </Pane>
+                  <Pane fx:id="categorySettingPane" layoutY="140.0" prefHeight="681.0" prefWidth="828.0" visible="false">
+                     <children>
+                        <ListView fx:id="categoryListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="828.0" />
+                        <Label layoutY="340.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 18; -fx-font-weight: 700;" text="Kategorie:" />
+                        <Label fx:id="categoryLabelSettings" layoutX="100.0" layoutY="340.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="250.0" style="-fx-font-size: 18;" />
+                        <Button layoutY="380.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryAdd" prefHeight="30.0" prefWidth="140.0" styleClass="acceptBtn" text="Hinzufügen" />
+                        <TextField fx:id="categorySettingsField" layoutX="150.0" layoutY="380.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neue Kategorie" />
+                        <Button layoutY="420.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryRemove" prefHeight="30.0" prefWidth="140.0" styleClass="acceptBtn" text="Entfernen" />
+                        <ChoiceBox fx:id="newCategoryBox" layoutX="150.0" layoutY="420.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" />
+                        <Button layoutY="460.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeCategoryName" prefHeight="30.0" prefWidth="140.0" styleClass="acceptBtn" text="Name ändern" />
+                        <TextField fx:id="categoryNameField" layoutX="150.0" layoutY="460.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neuer Name" />
+                     </children>
                   </Pane>
                </Pane>
                <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
