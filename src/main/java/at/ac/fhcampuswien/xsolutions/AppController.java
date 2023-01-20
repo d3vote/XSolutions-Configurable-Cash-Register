@@ -780,8 +780,8 @@ public class AppController implements Initializable {
     @FXML
     void productsSettingsChangePrice() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        Double text = Double.valueOf(newProductPrice.getText());
-        productsList.get(currentProduct).setProductPrice(Double.parseDouble(text+getCurrency()));
+        double textFromNewProductPrice = Double.parseDouble(newProductPrice.getText());
+        productsList.get(currentProduct).setProductPrice(textFromNewProductPrice);
         updateProductsList(currentProduct);
         newProductPrice.clear();
     }
