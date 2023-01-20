@@ -309,6 +309,8 @@ public class AppController implements Initializable {
     private ChoiceBox<String> choiceBox;
 
     @FXML
+    private Button resetCategoryMain;
+    @FXML
     private Button resetCategory;
     @FXML
     private Button resetCategoryTrash;
@@ -1081,7 +1083,7 @@ public class AppController implements Initializable {
 
     private static Tooltip createToolTip(String text){
         Tooltip tt = new Tooltip();
-        tt.setText("Löscht die aktuelle Rechnung");
+        tt.setText(text);
         tt.setShowDelay(Duration.millis(100));
         tt.setHideDelay(Duration.ZERO);
         tt.setStyle("-fx-font: normal bold 12 Langdon; "
@@ -1095,7 +1097,7 @@ public class AppController implements Initializable {
         updateReceiptPane();
         updateBillInfo();
 
-        /*ChoiceBox
+
         choiceBox.getItems().addAll(getCategories());
         choiceBox.setValue("Kategorie");
         choiceBox.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
@@ -1106,13 +1108,14 @@ public class AppController implements Initializable {
                     System.out.println(choiceBox.getItems().get((Integer) new_selection));
             }
         });
-        */
 
-        //Creates ToolTip for resetBill and resetCategory button
-        resetBill.setTooltip(createToolTip("Löscht die aktuelle Rechnung"));
-        resetCategory.setTooltip(createToolTip("Setzt Kategorie-auswahl zurück"));
+
+        //Creates ToolTips
+        resetBill.setTooltip(createToolTip("Löscht die aktuelle Rechnung!"));
+        resetCategory.setTooltip(createToolTip("Setzt Kategorie-auswahl zurück!"));
         resetCategoryTrash.setTooltip(createToolTip("Löscht alle Kategorien!"));
         resetPreview.setTooltip(createToolTip("Löscht Eingabe und Ansicht!"));
+        resetCategoryMain.setTooltip(createToolTip("Setzt Produkt-Sortierung und Kategorie-Auswahl zurück!"));
 
         //Category ChoiceBox in Products-Settings
         newProductCategory.setValue("Kategorien");
@@ -1191,7 +1194,7 @@ public class AppController implements Initializable {
         });
 
         //Check if ListView Selection changed (Categories)
-        categoryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue)->{
+        categoryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             int currentCategory = categoryListView.getSelectionModel().getSelectedIndex();
             if (currentCategory >= 0 && currentCategory < categoryListView.getItems().size()){
                 categoryLabelSettings.setText(getCategories().get(currentCategory));

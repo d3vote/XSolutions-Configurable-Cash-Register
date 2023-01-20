@@ -100,7 +100,7 @@ public class Product {
         return Arrays.toString(category.toArray()).replace("[", "").replace("]", "");
     }
 
-    public static List<String> getCategories() {
+    public static ArrayList<String> getCategories() {
         return categories;
     }
 

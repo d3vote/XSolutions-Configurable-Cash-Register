@@ -35,7 +35,7 @@
          </AnchorPane>
          <AnchorPane prefHeight="990.0" prefWidth="1129.0" HBox.hgrow="ALWAYS">
             <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <Pane fx:id="settingsTab" prefHeight="891.0" prefWidth="734.0" stylesheets="@styles.css" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+               <Pane fx:id="settingsTab" prefHeight="891.0" prefWidth="734.0" stylesheets="@styles.css" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
                   <children>
                      <Label prefHeight="36.0" prefWidth="150.0" styleClass="text" stylesheets="@styles.css" text="Einstellungen">
                         <font>
@@ -412,7 +412,7 @@
                            <Button fx:id="resetPreview" layoutX="115.0" layoutY="172.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetPreview" prefHeight="30.0" prefWidth="25.0" styleClass="resetButton" stylesheets="@styles.css" />
                         </children>
                      </Pane>
-                     <Pane fx:id="categorySettingPane" layoutY="140.0" prefHeight="681.0" prefWidth="828.0">
+                     <Pane fx:id="categorySettingPane" layoutY="140.0" prefHeight="681.0" prefWidth="828.0" visible="false">
                         <children>
                            <ListView fx:id="categoryListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="828.0" />
                            <Label layoutY="340.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="100.0" style="-fx-font-size: 18; -fx-font-weight: 700;" text="Kategorie:" />
@@ -428,7 +428,7 @@
                      </Pane>
                   </children>
                </Pane>
-               <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                   <AnchorPane prefHeight="44.0" prefWidth="909.0">
                      <GridPane alignment="CENTER" minWidth="62.0" prefHeight="62.0" prefWidth="868.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <columnConstraints>
@@ -457,7 +457,12 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox prefHeight="25.0" prefWidth="168.0" stylesheets="@styles.css" GridPane.columnIndex="2" />
+                        <ChoiceBox fx:id="choiceBox" prefHeight="25.0" prefWidth="168.0" stylesheets="@styles.css" GridPane.columnIndex="2" />
+                        <Button fx:id="resetCategoryMain" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetCategory" prefHeight="30.0" prefWidth="30.0" styleClass="resetCategory" stylesheets="@styles.css" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="900.0" />
+                           </GridPane.margin>
+                        </Button>
                      </GridPane>
                   </AnchorPane>
                   <ScrollPane fx:id="ScrollPaneProducts" prefHeight="898.0" prefWidth="868.0">
