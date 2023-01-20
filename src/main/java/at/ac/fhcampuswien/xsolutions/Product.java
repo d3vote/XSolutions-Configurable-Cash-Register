@@ -14,7 +14,7 @@ public class Product {
     public String productDescription;
     public String productImageUrl;
     public ArrayList<String> category = new ArrayList<>();
-    private static List<String> categories = Arrays.asList("Italian","Asian","Seafood","Taco","Grilled","Fried","Vegetarian","Poultry","Beverages","Salad","Soup","Burger","Pizza","Desert","Non-Alcoholic Beverages","Alcoholic Beverages");
+    private static List<String> categories = Arrays.asList("Italienische K\u00FCche","Internationale K\u00FCche","Vegetarisch","Desserts","Salate","Fischgerichte","Suppen","Alkoholfreie Getr\u00E4nke","Alkoholische Getr\u00E4nke");
     public static List<Product> productsList = new ArrayList<>();    // ProductList
     private static int count;
 
@@ -81,6 +81,12 @@ public class Product {
         }
     }
 
+    public void removeCategory(String category) {
+        this.category.remove(category);
+    }
+    public void clearCategory(){
+        this.category.clear();
+    }
     public static void sortProducts(){
         //Sort Products List by their Category
         productsList.sort(Comparator.comparingInt(p -> getCategoryOrder(p.getCategory())));

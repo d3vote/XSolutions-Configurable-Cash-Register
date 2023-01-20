@@ -13,7 +13,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -311,6 +310,8 @@ public class AppController implements Initializable {
 
     @FXML
     private Button resetCategory;
+    @FXML
+    private Button resetCategoryTrash;
 
     private Tables getCurrentTable() {
         int currentTableIndex;
@@ -765,7 +766,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void productsSettingsChangeCategory() {
+    void productsSettingsAddCategory() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newProductCategory.getValue();
         if (!Objects.equals(text, ""))  {
@@ -773,7 +774,20 @@ public class AppController implements Initializable {
         }
         updateProductsList(currentProduct);
     }
+    @FXML
+    void productsSettingsRemoveCategory() {
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        String text = newProductCategory.getValue();
+        productsList.get(currentProduct).removeCategory(text);
+        updateProductsList(currentProduct);
+    }
 
+    @FXML
+    void clearCategoryInSettings(){
+        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        productsList.get(currentProduct).clearCategory();
+        updateProductsList(currentProduct);
+    }
     @FXML
     void productsSettingsCreateNew() throws IOException {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
@@ -989,7 +1003,16 @@ public class AppController implements Initializable {
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
         resetCategory.setTooltip(tt1);
+        Tooltip tt2 = new Tooltip();
+        tt2.setText("Löscht alle Kategorien!");
+        tt2.setShowDelay(Duration.millis(100));
+        tt2.setHideDelay(Duration.ZERO);
+        tt2.setStyle("-fx-font: normal bold 12 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+        resetCategoryTrash.setTooltip(tt2);
 
+        newProductCategory.setValue("Kategorien");
         newProductCategory.getItems().addAll(getCategories());
 
         systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
