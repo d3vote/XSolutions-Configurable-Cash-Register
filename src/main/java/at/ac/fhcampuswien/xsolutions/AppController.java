@@ -313,6 +313,9 @@ public class AppController implements Initializable {
     @FXML
     private Button resetCategoryTrash;
 
+    @FXML
+    private Button resetPreview;
+
     private Tables getCurrentTable() {
         int currentTableIndex;
         if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
@@ -668,19 +671,32 @@ public class AppController implements Initializable {
 
     @FXML
     void saveBillinfo(ActionEvent event) throws IOException {
-        setAddress(newAdressField.getText());
-        setTel(newTelField.getText());
-        setMessage(newMessageField.getText());
+        if (!newAdressField.getText().isEmpty()){
+            setAddress(newAdressField.getText());
+        }
+        if (!newTelField.getText().isEmpty()){
+            setTel(newTelField.getText());
+        }
+        if (!newMessageField.getText().isEmpty()){
+            setMessage(newMessageField.getText());
+        }
+
+        newAdressField.clear();
+        newTelField.clear();
+        newMessageField.clear();
+
+        if (Objects.equals(getAddress(), "Adresse: ")){
+            setAddress("");
+        }
+        if (Objects.equals(getTel(), "Telefon: ")){
+            setTel("");
+        }
 
         updateBillInfo();
     }
 
     void updateBillInfo() {
-        newAdressField.setText(getAddress());
-        newTelField.setText(getTel());
-        newMessageField.setText(getMessage());
-
-        previewAdress.setText("Addresse: " + getAddress());
+        previewAdress.setText("Adresse: " + getAddress());
         previewTel.setText("Telefon: " + getTel());
         previewMessage.setText(getMessage());
     }
@@ -701,6 +717,7 @@ public class AppController implements Initializable {
         setReceiptNumber(Integer.parseInt(systemNewBillNrField.getText()));
         setValue("bill_nr", systemNewBillNrField.getText());
         updateBill();
+        systemNewBillNrField.clear();
     }
 
     void updateBill(){
@@ -735,6 +752,7 @@ public class AppController implements Initializable {
             productsList.get(currentProduct).setProductTitle(text);
         }
         updateProductsList(currentProduct);
+        newProductName.clear();
     }
 
     @FXML
@@ -745,6 +763,7 @@ public class AppController implements Initializable {
             productsList.get(currentProduct).setProductImageUrl(text);
         }
         updateProductsList(currentProduct);
+        newURL.clear();
     }
 
     @FXML
@@ -755,14 +774,16 @@ public class AppController implements Initializable {
             productsList.get(currentProduct).setProductDescription(text);
         }
         updateProductsList(currentProduct);
+        newProductDescription.clear();
     }
 
     @FXML
     void productsSettingsChangePrice() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         Double text = Double.valueOf(newProductPrice.getText());
-        productsList.get(currentProduct).setProductPrice(Double.parseDouble(text + getCurrency()));
+        productsList.get(currentProduct).setProductPrice(Double.parseDouble(text+getCurrency()));
         updateProductsList(currentProduct);
+        newProductPrice.clear();
     }
 
     @FXML
@@ -853,6 +874,7 @@ public class AppController implements Initializable {
             usersList.get(currentUser).setFullName(text);
         }
         updateUsersList(currentUser);
+        newFullNameField.clear();
     }
 
     @FXML
@@ -863,6 +885,7 @@ public class AppController implements Initializable {
             usersList.get(currentUser).setPassword(text);
         }
         updateUsersList(currentUser);
+        newPasswordField.clear();
     }
 
     @FXML
@@ -873,6 +896,7 @@ public class AppController implements Initializable {
             usersList.get(currentUser).setUserName(text);
         }
         updateUsersList(currentUser);
+        newUsernameField.clear();
     }
 
     @FXML
@@ -889,6 +913,23 @@ public class AppController implements Initializable {
         updateUsersList(currentUser);
     }
 
+    @FXML
+    void resetPreview(){
+        previewMessage.setText("");
+        previewAdress.setText("Adresse: ");
+        previewTel.setText("Telefon: ");
+        try {
+            setAddress(previewAdress.getText());
+            setTel(previewTel.getText());
+            setMessage(previewMessage.getText());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        newAdressField.clear();
+        newTelField.clear();
+        newMessageField.clear();
+
+    }
     @FXML
     void userSettingsCreateNewUser() throws IOException {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
@@ -932,12 +973,14 @@ public class AppController implements Initializable {
             tablesListView.getItems().add(arrayTable.getTableName());
         }
         setValue("tableCount", String.valueOf(newSize));
+        settingsInputField.clear();
     }
 
     @FXML
     void openSettings() {
         settingsTab.setVisible(!settingsTab.isVisible());
         productsPane.setVisible(!productsPane.isVisible());
+        newProductCategory.setValue("Kategorie");
     }
 
     // "Crash" button
@@ -967,7 +1010,6 @@ public class AppController implements Initializable {
         addProductElementsToGrid(GridPaneProducts, productsList);
         choiceBox.getSelectionModel().clearSelection();
         choiceBox.setValue("Kategorie");
-
     }
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
@@ -1011,6 +1053,14 @@ public class AppController implements Initializable {
                 + "-fx-base: #AE3522; "
                 + "-fx-text-fill: orange;");
         resetCategoryTrash.setTooltip(tt2);
+        Tooltip tt3 = new Tooltip();
+        tt3.setText("Löscht Eingabe und Ansicht!");
+        tt3.setShowDelay(Duration.millis(100));
+        tt3.setHideDelay(Duration.ZERO);
+        tt3.setStyle("-fx-font: normal bold 12 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+        resetPreview.setTooltip(tt3);
 
         newProductCategory.setValue("Kategorien");
         newProductCategory.getItems().addAll(getCategories());

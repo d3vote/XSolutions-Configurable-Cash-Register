@@ -119,16 +119,16 @@
                         <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
                         <ChoiceBox fx:id="newProductCategory" prefHeight="32.0" prefWidth="232.0" />
                      </VBox>
+                     <VBox layoutX="435.0" layoutY="660.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" spacing="10.0">
+                        <children>
+                           <Button fx:id="resetCategoryTrash" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css">
+                              <VBox.margin>
+                                 <Insets left="13.0" top="18.0" />
+                              </VBox.margin>
+                           </Button>
+                        </children>
+                     </VBox>
                   </Pane>
-                  <VBox layoutX="450.0" layoutY="800.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" spacing="10.0">
-                     <children>
-                        <Button fx:id="resetCategoryTrash" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css">
-                           <VBox.margin>
-                              <Insets left="13.0" top="18.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
                   <VBox fx:id="tablesSettingPane" fillWidth="false" layoutX="3.0" layoutY="140.0" prefHeight="57.0" prefWidth="273.0" visible="false">
                      <Label fx:id="settingsLabelParameter" prefHeight="17.0" prefWidth="410.0" style="-fx-font-size: 18;" text="Anzahl der Tische:">
                         <VBox.margin>
@@ -322,7 +322,7 @@
                      </FlowPane>
                   </Pane>
                   <Pane fx:id="billSettingsPane" layoutY="140.0" prefHeight="638.0" prefWidth="828.0" visible="false">
-                     <Label layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Steuerung:" />
+                     <Label layoutX="10.0" layoutY="14.0" prefHeight="27.0" prefWidth="281.0" style="-fx-font-size: 18;" text="Rechnung Steuerung:" />
                      <Label layoutX="401.0" layoutY="14.0" prefHeight="27.0" prefWidth="85.0" text="Ansicht:">
                         <font>
                            <Font size="18.0" />
@@ -336,21 +336,25 @@
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
-                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse: Favoritenstraße 226" />
-                           <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefon: 01 60668776600" />
-                           <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 22; -fx-font-weight: 700;" text="DANKE!" />
+                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Adresse: Favoritenstraße 226" />
+                           <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Telefon: 01 60668776600" />
+                           <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: 700;" text="DANKE!" />
                         </VBox>
                      </Pane>
-                     <VBox layoutX="3.0" layoutY="47.0" prefHeight="239.0" prefWidth="378.0" spacing="10.0">
+                     <VBox layoutX="3.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="375.0" spacing="10.0">
                         <TextField fx:id="newAdressField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Adresse" />
                         <TextField fx:id="newTelField" prefHeight="25.0" prefWidth="356.0" promptText="Neuer Telefonnummer" />
-                        <TextField fx:id="newMessageField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Nachricht" />
+                        <TextField fx:id="newMessageField" prefHeight="32.0" prefWidth="21.0" promptText="Neue Nachricht" />
                         <Button mnemonicParsing="false" onAction="#saveBillinfo" prefHeight="25.0" prefWidth="96.0" styleClass="acceptBtn" text="Speichern" />
-                        <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="378.0" spacing="15.0">
-                           <Button mnemonicParsing="false" onAction="#systemSettingsChangeBillNr" prefHeight="25.0" prefWidth="170.0" styleClass="acceptBtn" text="Belegnummer ändern" />
-                           <TextField fx:id="systemNewBillNrField" prefHeight="32.0" prefWidth="198.0" promptText="Neue Letzte Belegnummer" />
+                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="350.0" spacing="15.0">
+                           <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#systemSettingsChangeBillNr" prefHeight="30.0" prefWidth="180.0" styleClass="acceptBtn" text="Belegnummer ändern" />
+                           <TextField fx:id="systemNewBillNrField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Letzte Belegnummer">
+                              <HBox.margin>
+                                 <Insets />
+                              </HBox.margin></TextField>
                         </HBox>
                      </VBox>
+                     <Button fx:id="resetPreview" layoutX="115.0" layoutY="172.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetPreview" prefHeight="30.0" prefWidth="25.0" styleClass="resetButton" stylesheets="@styles.css" />
                   </Pane>
                </Pane>
                <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
