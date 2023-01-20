@@ -1,7 +1,5 @@
 package at.ac.fhcampuswien.xsolutions;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -477,14 +475,14 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void setTipButton(ActionEvent event) {
+    void setTipButton() {
         Receipt currentReceipt = getCurrentReceipt();
 
         currentReceipt.setTip(Double.parseDouble(tipField.getText()));
     }
 
     @FXML
-    void payCard(ActionEvent event) {
+    void payCard() {
         Receipt currentReceipt = getCurrentReceipt();
         String payed = df.format((Double.parseDouble(currentReceipt.getTotal()) + currentReceipt.getTip()));
 
@@ -495,7 +493,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void payCash(ActionEvent event) {
+    void payCash() {
         Receipt currentReceipt = getCurrentReceipt();
 
         paymentTotalBeforeAllLabel.setText("Gesamtsumme inkl. MWSt: " + currentReceipt.getTotal() + getCurrency());
@@ -507,7 +505,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void confirmPaymentCash(ActionEvent event) {
+    void confirmPaymentCash() {
         Receipt currentReceipt = getCurrentReceipt();
 
         double totalAsDouble = Double.parseDouble(currentReceipt.getTotal());
@@ -557,7 +555,7 @@ public class AppController implements Initializable {
             Pane imagePane = new Pane();
             imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
             Label productTitleLabel = new Label(item.getProductTitle());
-            Label productPriceInGrid = new Label(String.valueOf(df.format(item.getProductPrice()) + " " +getCurrency()));
+            Label productPriceInGrid = new Label(df.format(item.getProductPrice()) + " " + getCurrency());
             Button addButton = new Button();
             Button removeButton = new Button();
 
@@ -687,14 +685,14 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void setupBill(ActionEvent event) {
+    void setupBill() {
         setAllSettingsPanesInvisible();
         billSettingsPane.setVisible(true);
         updateBillInfo();
     }
 
     @FXML
-    void saveBillinfo(ActionEvent event) throws IOException {
+    void saveBillinfo() throws IOException {
         if (!newAdressField.getText().isEmpty()){
             setAddress(newAdressField.getText());
         }
@@ -737,7 +735,7 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void systemSettingsChangeBillNr(ActionEvent event) throws IOException {
+    void systemSettingsChangeBillNr() throws IOException {
         setReceiptNumber(Integer.parseInt(systemNewBillNrField.getText()));
         setValue("bill_nr", systemNewBillNrField.getText());
         updateBill();
@@ -1096,17 +1094,15 @@ public class AppController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1){
         updateReceiptPane();
         updateBillInfo();
+        updateBill();
 
 
         choiceBox.getItems().addAll(getCategories());
         choiceBox.setValue("Kategorie");
         choiceBox.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
-        choiceBox.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number old_selection, Number new_selection) {
-                    addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(choiceBox.getItems().get((Integer) new_selection)));
-                    System.out.println(choiceBox.getItems().get((Integer) new_selection));
-            }
+        choiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, old_selection, new_selection) -> {
+            addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(choiceBox.getItems().get((Integer) new_selection)));
+            System.out.println(choiceBox.getItems().get((Integer) new_selection));
         });
 
 

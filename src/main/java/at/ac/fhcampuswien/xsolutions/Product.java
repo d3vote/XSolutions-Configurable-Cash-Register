@@ -29,7 +29,7 @@ public class Product {
      * @param productImageUrl - Image URL
      * @param category - Product Category
      */
-    public Product(String productTitle, double productPrice, String productDescription, String category, String productImageUrl) throws IOException {
+    public Product(String productTitle, double productPrice, String productDescription, String category, String productImageUrl) {
         count++;
         this.productImageUrl = productImageUrl;
         this.productTitle = productTitle;
@@ -42,7 +42,7 @@ public class Product {
         }
         initializeProducts();
     }
-    public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) throws IOException {
+    public Product(String productTitle, double productPrice, String productDescription, String productImageUrl) {
         count++;
         this.productImageUrl = productImageUrl;
         this.productTitle = productTitle;
@@ -51,7 +51,7 @@ public class Product {
         this.category.add("Nicht zugeordnet");
         initializeProducts();
     }
-    public Product(String productTitle, double productPrice, String productDescription) throws IOException {
+    public Product(String productTitle, double productPrice, String productDescription) {
         this.productTitle = productTitle;
         this.productPrice = productPrice;
         this.productDescription = productDescription;

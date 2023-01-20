@@ -29,7 +29,7 @@ public class User {
      * @param userName       Login "username" credentials
      * @param password       Login "password" credentials
      */
-    public User(String name, boolean isAdmin, String userName, String password) throws IOException {
+    public User(String name, boolean isAdmin, String userName, String password) {
         this.name = name;
         this.isAdmin = isAdmin;
         this.userName = userName;
@@ -37,7 +37,7 @@ public class User {
         initializeUsers();
     }
 
-    public User(String name, boolean isAdmin, String userName) throws IOException {
+    public User(String name, boolean isAdmin, String userName) {
         this.name = name;
         this.isAdmin = isAdmin;
         this.userName = userName;
@@ -49,7 +49,7 @@ public class User {
      * User object is being added to a usersList within running Code,
      * but also saved in a JSON file.
      */
-    private void initializeUsers() throws IOException{
+    private void initializeUsers() {
         usersList.add(this);        //Adding new User to UsersList
         userToJson();               //Converting it to JSON
     }

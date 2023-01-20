@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c13070c1-1365-427d-bdd0-029bd337dd1b" name="Changes" comment="added Kategorie in Settings ( Buttons not working currently )">
+    <list default="true" id="c13070c1-1365-427d-bdd0-029bd337dd1b" name="Changes" comment="fixed few things">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/at/ac/fhcampuswien/xsolutions/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/ac/fhcampuswien/xsolutions/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +28,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2Kb5NZuTANbEEbJPvU1x24T8RD9" />
   <component name="ProjectViewState">
@@ -52,6 +57,26 @@
       <recent name="C:\Users\PC\IdeaProjects\XSolutions-Configurable-Cash-Register\src\main\resources\at\ac\fhcampuswien\xsolutions" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="at.ac.fhcampuswien.xsolutions.App" />
+      <module name="testingGradle.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="at.ac.fhcampuswien.xsolutions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,6 +86,7 @@
       <option name="presentableId" value="Default" />
       <updated>1674230404826</updated>
       <workItem from="1674230407550" duration="9480000" />
+      <workItem from="1674255730206" duration="1888000" />
     </task>
     <task id="LOCAL-00001" summary="added Kategorie in Settings ( Buttons not working currently )">
       <created>1674240557590</created>
@@ -69,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674240557590</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixed few things">
+      <created>1674249719393</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1674249719393</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -88,6 +121,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added Kategorie in Settings ( Buttons not working currently )" />
-    <option name="LAST_COMMIT_MESSAGE" value="added Kategorie in Settings ( Buttons not working currently )" />
+    <MESSAGE value="fixed few things" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed few things" />
   </component>
 </project>

@@ -11,8 +11,6 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Comparator;
-import java.util.concurrent.atomic.AtomicReference;
 
 import static at.ac.fhcampuswien.xsolutions.Configurator.*;
 import static at.ac.fhcampuswien.xsolutions.Product.*;
@@ -21,13 +19,12 @@ import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 
 public class App extends Application {
     public static Tables[] arrayTables;
-    public static Scene scene = null;
     public static Stage stage = null;
 
     /** GUI start
      */
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         App.stage = stage;
         showSplashScreen();
         loadMainStage();
@@ -49,9 +46,9 @@ public class App extends Application {
     }
 
     private void loadMainStage() {
-        Task<Void> task = new Task<Void>() {
+        Task<Void> task = new Task<>() {
             @Override
-            protected Void call() throws Exception {
+            protected Void call() {
                 updateProgress(0.5, 1.0);
                 return null;
             }

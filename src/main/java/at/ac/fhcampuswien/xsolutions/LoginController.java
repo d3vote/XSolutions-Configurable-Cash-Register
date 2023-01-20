@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -53,7 +52,7 @@ public class LoginController implements Initializable {
     /** Just a little UI/UX Feature to set all credentials fields unfocused
      */
     @FXML
-    void unfocusFields(MouseEvent event) {
+    void unfocusFields() {
         passwordField.setFocusTraversable(false); // Unfocus the input fileds on click
         usernameField.setFocusTraversable(false);
     }
@@ -61,7 +60,7 @@ public class LoginController implements Initializable {
     /** Closes the App
      */
     @FXML
-    void exitButton(MouseEvent event) {
+    void exitButton() {
         System.exit(0);
     }
 
