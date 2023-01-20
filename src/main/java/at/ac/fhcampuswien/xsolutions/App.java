@@ -114,7 +114,7 @@ public class App extends Application {
         generateTables(getTableConfig());
 
         //Sort Products List by their Category
-        productsList.sort(Comparator.comparingInt(p -> getCategoryOrder(p.getCategory())));
+        sortProducts();
 
         loadReceiptHistory();
 

@@ -1042,19 +1042,9 @@ public class AppController implements Initializable {
 
     @FXML
     private void newCategoryAdd(){
-        categories.add(categorySettingsField.getText());
+        addCategory(categorySettingsField.getText());
+        updateNewProductChoiceBox();
 
-        categoryListView.getItems().clear();
-        categoryListView.getItems().addAll(getCategories());
-
-        newProductCategory.getItems().clear();
-        newProductCategory.getItems().addAll(getCategories());
-
-        choiceBox.getItems().clear();
-        choiceBox.getItems().addAll(getCategories());
-
-        newCategoryBox.getItems().clear();
-        newCategoryBox.getItems().addAll(getCategories());
 
         categorySettingsField.clear();
     }
@@ -1064,7 +1054,7 @@ public class AppController implements Initializable {
         getCategories().remove(categorySettingsField.getText());
         categoryListView.getItems().remove(categorySettingsField.getText());
         newProductCategory.getItems().remove(categorySettingsField.getText());
-        choiceBox.getItems().remove(categorySettingsField.getText());
+        updateNewProductChoiceBox();
         categorySettingsField.clear();
     }
 
@@ -1075,19 +1065,29 @@ public class AppController implements Initializable {
             getCategories().remove(getCategories().get(currentCategory));
             getCategories().add(categoryNameField.getText());
         }
+        updateNewProductChoiceBox();
+    }
 
+    private void updateNewProductChoiceBox(){
         categoryListView.getItems().clear();
         categoryListView.getItems().addAll(getCategories());
 
         newProductCategory.getItems().clear();
         newProductCategory.getItems().addAll(getCategories());
 
-        choiceBox.getItems().clear();
-        choiceBox.getItems().addAll(getCategories());
-
         newCategoryBox.getItems().clear();
         newCategoryBox.getItems().addAll(getCategories());
+    }
 
+    private static Tooltip createToolTip(String text){
+        Tooltip tt = new Tooltip();
+        tt.setText("Löscht die aktuelle Rechnung");
+        tt.setShowDelay(Duration.millis(100));
+        tt.setHideDelay(Duration.ZERO);
+        tt.setStyle("-fx-font: normal bold 12 Langdon; "
+                + "-fx-base: #AE3522; "
+                + "-fx-text-fill: orange;");
+        return tt;
     }
 
     @FXML
@@ -1095,7 +1095,7 @@ public class AppController implements Initializable {
         updateReceiptPane();
         updateBillInfo();
 
-        //ChoiceBox
+        /*ChoiceBox
         choiceBox.getItems().addAll(getCategories());
         choiceBox.setValue("Kategorie");
         choiceBox.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
@@ -1106,40 +1106,13 @@ public class AppController implements Initializable {
                     System.out.println(choiceBox.getItems().get((Integer) new_selection));
             }
         });
+        */
 
         //Creates ToolTip for resetBill and resetCategory button
-        Tooltip tt = new Tooltip();
-        tt.setText("Löscht die aktuelle Rechnung");
-        tt.setShowDelay(Duration.millis(100));
-        tt.setHideDelay(Duration.ZERO);
-        tt.setStyle("-fx-font: normal bold 12 Langdon; "
-                + "-fx-base: #AE3522; "
-                + "-fx-text-fill: orange;");
-        resetBill.setTooltip(tt);
-        Tooltip tt1 = new Tooltip();
-        tt1.setText("Setzt Kategorie-auswahl zurück");
-        tt1.setShowDelay(Duration.millis(100));
-        tt1.setHideDelay(Duration.ZERO);
-        tt1.setStyle("-fx-font: normal bold 12 Langdon; "
-                + "-fx-base: #AE3522; "
-                + "-fx-text-fill: orange;");
-        resetCategory.setTooltip(tt1);
-        Tooltip tt2 = new Tooltip();
-        tt2.setText("Löscht alle Kategorien!");
-        tt2.setShowDelay(Duration.millis(100));
-        tt2.setHideDelay(Duration.ZERO);
-        tt2.setStyle("-fx-font: normal bold 12 Langdon; "
-                + "-fx-base: #AE3522; "
-                + "-fx-text-fill: orange;");
-        resetCategoryTrash.setTooltip(tt2);
-        Tooltip tt3 = new Tooltip();
-        tt3.setText("Löscht Eingabe und Ansicht!");
-        tt3.setShowDelay(Duration.millis(100));
-        tt3.setHideDelay(Duration.ZERO);
-        tt3.setStyle("-fx-font: normal bold 12 Langdon; "
-                + "-fx-base: #AE3522; "
-                + "-fx-text-fill: orange;");
-        resetPreview.setTooltip(tt3);
+        resetBill.setTooltip(createToolTip("Löscht die aktuelle Rechnung"));
+        resetCategory.setTooltip(createToolTip("Setzt Kategorie-auswahl zurück"));
+        resetCategoryTrash.setTooltip(createToolTip("Löscht alle Kategorien!"));
+        resetPreview.setTooltip(createToolTip("Löscht Eingabe und Ansicht!"));
 
         //Category ChoiceBox in Products-Settings
         newProductCategory.setValue("Kategorien");
