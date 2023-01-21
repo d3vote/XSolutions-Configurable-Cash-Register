@@ -459,8 +459,14 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2">
                            <children>
-                              <Button fx:id="resetCategoryMain" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetCategory" prefHeight="30.0" prefWidth="30.0" styleClass="resetCategory" stylesheets="@styles.css" />
-                              <ChoiceBox fx:id="categoryBoxMain" prefHeight="25.0" prefWidth="168.0" stylesheets="@styles.css" />
+                              <Button fx:id="resetCategoryMain" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetCategory" prefHeight="25.0" prefWidth="25.0" styleClass="resetCategory" stylesheets="@styles.css">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></Button>
+                              <ChoiceBox fx:id="categoryBoxMain" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" stylesheets="@styles.css">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin></ChoiceBox>
                            </children>
                         </HBox>
                      </GridPane>
