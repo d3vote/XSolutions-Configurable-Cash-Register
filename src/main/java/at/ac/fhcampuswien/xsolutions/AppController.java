@@ -587,7 +587,7 @@ public class AppController implements Initializable {
             // Create the elements
             Pane imagePane = new Pane();
             imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
-            Text productTitleLabel = new Text(item.getProductTitle());
+            Label productTitleLabel = new Label(item.getProductTitle());
             Label productPriceInGrid = new Label(df.format(item.getProductPrice()) + " " + getCurrency());
             Button addButton = new Button();
             Button removeButton = new Button();
@@ -623,6 +623,7 @@ public class AppController implements Initializable {
             VBox productPane = new VBox();
             productPriceInGrid.setStyle("-fx-font-size: 15;-fx-font-weight: 600;-fx-text-fill: black");
             productTitleLabel.setStyle("-fx-font-size: 17;-fx-font-weight: 600;-fx-text-fill: black");
+            //productTitleLabel.setWrappingWidth(200);
             productPane.setAlignment(Pos.CENTER);
             productPane.getChildren().addAll(imagePane, productTitleLabel, buttonBox, productPriceInGrid);
             //imagePane.setTooltip(tt);
@@ -644,7 +645,7 @@ public class AppController implements Initializable {
                 col = 0;
                 row++;
             }
-            for (int i = 0;i<30; i++) {
+            for (int i = 0;i<productsList.size(); i++) {
                 grid.addRow(grid.getRowCount()+1);
             }
         }

@@ -96,6 +96,12 @@ public class App extends Application {
         return currentDate.format(formatter);
     }
 
+    public static String getShortDate() {
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd. MMMM");
+        return currentDate.format(formatter);
+    }
+
     /** Initializes everything needed for the App to function
      * <p>(Settings, credentials, table generation from config.txt,
      * products sorting and receipt history loading and GUI starting)</p>
