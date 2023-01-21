@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <HBox prefHeight="984.0" prefWidth="1680.0" VBox.vgrow="ALWAYS">
          <AnchorPane prefHeight="990.0" prefWidth="234.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css">
@@ -616,6 +616,7 @@
                   <Font size="14.0" />
                </font>
             </Button>
+            <Label fx:id="tipSuccessful" alignment="CENTER" contentDisplay="CENTER" layoutX="265.0" layoutY="410.0" text="Erfolgreich angenommen!" textAlignment="CENTER" textFill="#4fc62b" visible="false" />
          </Pane>
          <Pane fx:id="payCashPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css" visible="false">
             <Button layoutX="622.0" layoutY="16.0" mnemonicParsing="false" onAction="#closePaymentPane" prefHeight="26.0" prefWidth="26.0" styleClass="closeBtn" />

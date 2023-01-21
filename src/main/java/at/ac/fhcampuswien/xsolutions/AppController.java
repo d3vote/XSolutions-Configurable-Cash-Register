@@ -1,5 +1,6 @@
 package at.ac.fhcampuswien.xsolutions;
 
+import javafx.animation.*;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.*;
@@ -334,6 +336,9 @@ public class AppController implements Initializable {
     @FXML
     private TextField categoryNameField;
 
+    @FXML
+    private Label tipSuccessful;
+
     private Tables getCurrentTable() {
         int currentTableIndex;
         if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
@@ -472,9 +477,34 @@ public class AppController implements Initializable {
     }
 
     @FXML
+    private void addAnimation(Label ID){
+        ID.setVisible(true);
+        PauseTransition pt = new PauseTransition(Duration.seconds(1.5));
+        FadeTransition ft = new FadeTransition(Duration.seconds(1), ID);
+        SequentialTransition sequentialTransition = new SequentialTransition(pt, ft);
+        ft.setFromValue(1.0);
+        ft.setToValue(0.0);
+        sequentialTransition.play();
+        ft.setOnFinished(event -> ID.setVisible(false));
+    }
+
+    @FXML
     void setTipButton() {
         Receipt currentReceipt = getCurrentReceipt();
-
+        //Checks if tipField are Numbers or not
+        if (tipField.getText().matches("[0-9]+")){
+            tipSuccessful.setText("Erfolgreich angenommen!");
+            tipSuccessful.setStyle("-fx-text-fill: #4fc62b");
+            addAnimation(tipSuccessful);
+        }else {
+            try {
+                tipSuccessful.setText("Bitte geben Sie eine Zahl ein!");
+                tipSuccessful.setStyle("-fx-text-fill: #a82b2b");
+                addAnimation(tipSuccessful);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
         currentReceipt.setTip(Double.parseDouble(tipField.getText()));
     }
 
@@ -524,7 +554,7 @@ public class AppController implements Initializable {
             paymentSuccessfulPane.setVisible(true);
 
         } else {
-            errorLabel.setVisible(true);
+            addAnimation(errorLabel);
         }
         currentReceipt.setAmountPayed(Double.valueOf(paymentAmountPayedField.getText()));
         receiptPayAmount.setText(currentReceipt.getAmountPayed() + getCurrency());
