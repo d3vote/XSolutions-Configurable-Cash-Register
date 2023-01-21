@@ -205,7 +205,7 @@ public class AppController implements Initializable {
     private ChoiceBox<Currency> systemNewCurrencySelector;
 
     @FXML
-    private ChoiceBox<String> newProductCategory;
+    private ChoiceBox<String> categoryBoxSettings;
 
     @FXML
     private Label paymentTotalBeforeAllLabel;
@@ -304,12 +304,12 @@ public class AppController implements Initializable {
     private Label totalTaxesBill;
 
     @FXML
-    private ChoiceBox<String> choiceBox;
+    private ChoiceBox<String> categoryBoxMain;
 
     @FXML
     private Button resetCategoryMain;
     @FXML
-    private Button resetCategory;
+    private Button resetCategorySettings;
     @FXML
     private Button resetCategoryTrash;
 
@@ -808,7 +808,7 @@ public class AppController implements Initializable {
     @FXML
     void productsSettingsAddCategory() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        String text = newProductCategory.getValue();
+        String text = categoryBoxSettings.getValue();
         if (!Objects.equals(text, ""))  {
             productsList.get(currentProduct).setCategory(text);
         }
@@ -817,16 +817,18 @@ public class AppController implements Initializable {
     @FXML
     void productsSettingsRemoveCategory() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        String text = newProductCategory.getValue();
+        String text = categoryBoxSettings.getValue();
         productsList.get(currentProduct).removeCategory(text);
         updateProductsList(currentProduct);
     }
 
     @FXML
     void clearCategoryInSettings(){
+        /*
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         productsList.get(currentProduct).clearCategory();
         updateProductsList(currentProduct);
+        */
     }
     @FXML
     void productsSettingsCreateNew() throws IOException {
@@ -836,7 +838,7 @@ public class AppController implements Initializable {
         String productPrice = newProductPrice.getText();
         String productDescription = newProductDescription.getText();
         String productURL = newURL.getText();
-        String productCategory = newProductCategory.getValue();
+        String productCategory = categoryBoxSettings.getValue();
 
         if (productName.isEmpty()) {
             productName = "Neues Produkt";
@@ -999,7 +1001,7 @@ public class AppController implements Initializable {
     void openSettings() {
         settingsTab.setVisible(!settingsTab.isVisible());
         productsPane.setVisible(!productsPane.isVisible());
-        newProductCategory.setValue("Kategorie");
+        categoryBoxSettings.setValue("Kategorie");
     }
 
     // "Crash" button
@@ -1027,8 +1029,8 @@ public class AppController implements Initializable {
     @FXML
     private void resetCategory(){
         addProductElementsToGrid(GridPaneProducts, productsList);
-        choiceBox.getSelectionModel().clearSelection();
-        choiceBox.setValue("Kategorie");
+        categoryBoxMain.getSelectionModel().clearSelection();
+        categoryBoxMain.setValue("Kategorie");
     }
 
     @FXML
@@ -1058,8 +1060,11 @@ public class AppController implements Initializable {
     }
 
     private void updateNewProductChoiceBox(){
-        newProductCategory.getItems().clear();
-        newProductCategory.getItems().addAll(getCategories());
+        categoryBoxSettings.getItems().clear();
+        categoryBoxSettings.getItems().addAll(getCategories());
+
+        categoryBoxMain.getItems().clear();
+        categoryBoxMain.getItems().addAll(getCategories());
 
         categoryListView.getItems().clear();
         categoryListView.getItems().addAll(getCategories());
@@ -1083,25 +1088,25 @@ public class AppController implements Initializable {
         updateBill();
 
 
-        choiceBox.getItems().addAll(getCategories());
-        choiceBox.setValue("Kategorie");
-        choiceBox.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
-        choiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, old_selection, new_selection) -> {
-            addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(choiceBox.getItems().get((Integer) new_selection)));
-            System.out.println(choiceBox.getItems().get((Integer) new_selection));
+        categoryBoxMain.getItems().addAll(getCategories());
+        categoryBoxMain.setValue("Kategorie");
+        categoryBoxMain.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
+        categoryBoxMain.getSelectionModel().selectedIndexProperty().addListener((observableValue, old_selection, new_selection) -> {
+            addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(categoryBoxMain.getItems().get((Integer) new_selection)));
+            System.out.println(categoryBoxMain.getItems().get((Integer) new_selection));
         });
 
 
         //Creates ToolTips
         resetBill.setTooltip(createToolTip("Löscht die aktuelle Rechnung!"));
-        resetCategory.setTooltip(createToolTip("Setzt Kategorie-auswahl zurück!"));
+        resetCategorySettings.setTooltip(createToolTip("Refreshed Kategorien & Auswahl"));
         resetCategoryTrash.setTooltip(createToolTip("Löscht alle Kategorien!"));
         resetPreview.setTooltip(createToolTip("Löscht Eingabe und Ansicht!"));
         resetCategoryMain.setTooltip(createToolTip("Setzt Produkt-Sortierung und Kategorie-Auswahl zurück!"));
 
         //Category ChoiceBox in Products-Settings
-        newProductCategory.setValue("Kategorien");
-        newProductCategory.getItems().addAll(getCategories());
+        categoryBoxSettings.setValue("Kategorien");
+        categoryBoxSettings.getItems().addAll(getCategories());
 
         //CategorySettings
         categoryListView.getItems().addAll(getCategories());

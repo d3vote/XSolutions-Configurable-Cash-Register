@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c13070c1-1365-427d-bdd0-029bd337dd1b" name="Changes" comment="fixed few things">
+    <list default="true" id="c13070c1-1365-427d-bdd0-029bd337dd1b" name="Changes" comment="cleaned up code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/at/ac/fhcampuswien/xsolutions/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/at/ac/fhcampuswien/xsolutions/main.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/at/ac/fhcampuswien/xsolutions/main.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +82,9 @@
       <option name="presentableId" value="Default" />
       <updated>1674230404826</updated>
       <workItem from="1674230407550" duration="9480000" />
-      <workItem from="1674255730206" duration="1888000" />
+      <workItem from="1674255730206" duration="2015000" />
+      <workItem from="1674257762991" duration="39000" />
+      <workItem from="1674302435604" duration="1816000" />
     </task>
     <task id="LOCAL-00001" summary="added Kategorie in Settings ( Buttons not working currently )">
       <created>1674240557590</created>
@@ -102,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674249719393</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="cleaned up code">
+      <created>1674257741235</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1674257741235</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +127,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added Kategorie in Settings ( Buttons not working currently )" />
     <MESSAGE value="fixed few things" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed few things" />
+    <MESSAGE value="cleaned up code" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleaned up code" />
   </component>
 </project>

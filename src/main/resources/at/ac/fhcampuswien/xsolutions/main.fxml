@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <HBox prefHeight="984.0" prefWidth="1680.0" VBox.vgrow="ALWAYS">
          <AnchorPane prefHeight="990.0" prefWidth="234.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css">
@@ -117,7 +117,7 @@
                         <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
                         <TextField fx:id="newURL" prefHeight="32.0" prefWidth="156.0" promptText="Neue Bild-URL" />
                         <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
-                        <ChoiceBox fx:id="newProductCategory" prefHeight="32.0" prefWidth="232.0" />
+                        <ChoiceBox fx:id="categoryBoxSettings" prefHeight="32.0" prefWidth="232.0" />
                      </VBox>
                      <VBox layoutX="435.0" layoutY="660.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" spacing="10.0">
                         <Button fx:id="resetCategoryTrash" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css">
@@ -364,7 +364,7 @@
                      <Button layoutY="455.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryRemove" prefHeight="30.0" prefWidth="140.0" styleClass="acceptBtn" text="Entfernen" />
                      <Button layoutY="418.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeCategoryName" prefHeight="30.0" prefWidth="140.0" styleClass="acceptBtn" text="Name ändern" />
                      <TextField fx:id="categoryNameField" layoutX="150.0" layoutY="418.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neuer Name" />
-                     <Button fx:id="resetCategory" layoutX="354.0" layoutY="379.0" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css" />
+                     <Button fx:id="resetCategorySettings" layoutX="354.0" layoutY="379.0" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetCategory" stylesheets="@styles.css" />
                   </Pane>
                </Pane>
                <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -396,7 +396,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <ChoiceBox fx:id="choiceBox" prefHeight="25.0" prefWidth="168.0" stylesheets="@styles.css" GridPane.columnIndex="2" />
+                        <ChoiceBox fx:id="categoryBoxMain" prefHeight="25.0" prefWidth="168.0" stylesheets="@styles.css" GridPane.columnIndex="2" />
                         <Button fx:id="resetCategoryMain" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetCategory" prefHeight="30.0" prefWidth="30.0" styleClass="resetCategory" stylesheets="@styles.css" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="900.0" />
