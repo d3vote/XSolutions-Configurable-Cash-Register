@@ -96,6 +96,10 @@ public class Product {
         productsList.sort(Comparator.comparingInt(p -> getCategoryOrder(p.getCategory())));
     }
 
+    public static void deleteCategory(String name){
+        categories.remove(name);
+    }
+
     public String getCategory() {
         return Arrays.toString(category.toArray()).replace("[", "").replace("]", "");
     }

@@ -332,9 +332,6 @@ public class AppController implements Initializable {
     private TextField categorySettingsField;
 
     @FXML
-    private ChoiceBox<String> newCategoryBox;
-
-    @FXML
     private TextField categoryNameField;
 
     private Tables getCurrentTable() {
@@ -1043,40 +1040,29 @@ public class AppController implements Initializable {
     @FXML
     private void newCategoryAdd(){
         addCategory(categorySettingsField.getText());
-        updateNewProductChoiceBox();
-
-
         categorySettingsField.clear();
+        updateNewProductChoiceBox();
     }
 
     @FXML
     private void newCategoryRemove(){
-        getCategories().remove(categorySettingsField.getText());
-        categoryListView.getItems().remove(categorySettingsField.getText());
-        newProductCategory.getItems().remove(categorySettingsField.getText());
+        deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
         updateNewProductChoiceBox();
-        categorySettingsField.clear();
     }
 
     @FXML
     private void changeCategoryName(){
-        int currentCategory = categoryListView.getSelectionModel().getSelectedIndex();
-        if (currentCategory >= 0 && currentCategory < categoryListView.getItems().size()){
-            getCategories().remove(getCategories().get(currentCategory));
-            getCategories().add(categoryNameField.getText());
-        }
+        getCategories().set(categoryListView.getSelectionModel().getSelectedIndex(), categoryNameField.getText());
+        categoryNameField.clear();
         updateNewProductChoiceBox();
     }
 
     private void updateNewProductChoiceBox(){
-        categoryListView.getItems().clear();
-        categoryListView.getItems().addAll(getCategories());
-
         newProductCategory.getItems().clear();
         newProductCategory.getItems().addAll(getCategories());
 
-        newCategoryBox.getItems().clear();
-        newCategoryBox.getItems().addAll(getCategories());
+        categoryListView.getItems().clear();
+        categoryListView.getItems().addAll(getCategories());
     }
 
     private static Tooltip createToolTip(String text){
@@ -1119,8 +1105,6 @@ public class AppController implements Initializable {
 
         //CategorySettings
         categoryListView.getItems().addAll(getCategories());
-        newCategoryBox.getItems().addAll(getCategories());
-        newCategoryBox.setValue("Kategorie");
 
         systemNewCurrencySelector.setItems(FXCollections.observableArrayList(currencies));
         systemNewCurrencySelector.setValue(currencies.get(0));
