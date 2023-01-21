@@ -74,7 +74,7 @@ public class AppController implements Initializable {
     private ScrollPane ScrollPaneProducts;
 
     @FXML
-    private Pane settingsTab;
+    private AnchorPane settingsTab;
 
     @FXML
     private Pane findReceiptPane;
@@ -1205,14 +1205,6 @@ public class AppController implements Initializable {
                 productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
                 productsSettingsCategory.setText("Kategorie: " + productsList.get(currentProduct).getCategory());
                 productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
-            }
-        });
-
-        //Check if ListView Selection changed (Categories)
-        categoryListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            int currentCategory = categoryListView.getSelectionModel().getSelectedIndex();
-            if (currentCategory >= 0 && currentCategory < categoryListView.getItems().size()){
-                categoryLabelSettings.setText(getCategories().get(currentCategory));
             }
         });
 
