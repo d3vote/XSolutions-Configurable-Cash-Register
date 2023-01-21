@@ -1134,7 +1134,7 @@ public class AppController implements Initializable {
 
         categoryBoxMain.getItems().addAll(getCategories());
         categoryBoxMain.setValue("Kategorie");
-        categoryBoxMain.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
+        //categoryBoxMain.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
         categoryBoxMain.getSelectionModel().selectedIndexProperty().addListener((observableValue, old_selection, new_selection) -> {
             addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(categoryBoxMain.getItems().get((Integer) new_selection)));
             System.out.println(categoryBoxMain.getItems().get((Integer) new_selection));
