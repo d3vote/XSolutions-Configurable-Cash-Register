@@ -55,7 +55,9 @@ Instruction for .zip and .exe can be found in each [Release](https://github.com/
 
 
 ## Info about Configuration Files
-During the use of the app, three configuration files will be created in the AppData/XSolutions-POS directory: usersList.json, productsList.json, and config.txt. It is important that the directory & files are not empty, as the app will not function properly if any of these files are empty.
+When using the app, three configuration files will be created in the AppData/XSolutions-POS directory: __usersList.json__, __productsList.json__, __categoryList.json__ and __config.txt__. It is essential that these files and the directory are not empty, as the app will not function properly without them.
+
+[Config-Files](https://github.com/d3vote/ConfigFiles) <- Github Repository where Files are stored
 
 ## User Data (Username, Password, Rights)
 
