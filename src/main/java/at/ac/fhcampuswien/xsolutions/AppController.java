@@ -595,14 +595,15 @@ public class AppController implements Initializable {
             addButton.getStyleClass().add("plus");
             removeButton.getStyleClass().add("minus");
 
-            // creates Tooltip that shows productDescription
+            // creates Tooltip that shows productDescription on productTitle
             Tooltip tt = new Tooltip();
             tt.setText(item.productDescription);
             tt.setShowDelay(Duration.millis(100));
             tt.setHideDelay(Duration.ZERO);
-            tt.setStyle("-fx-font: normal bold 12 Langdon; "
-                    + "-fx-base: #AE3522; "
-                    + "-fx-text-fill: orange;");
+            tt.setStyle("-fx-font: normal 14 Langdon; "
+                    + "-fx-base: black; "
+                    + "-fx-text-fill: white;");
+            productTitleLabel.setTooltip(tt);
 
             addButton.getStyleClass().add("cartOptions-l");
             removeButton.getStyleClass().add("cartOptions-r");
@@ -1110,9 +1111,9 @@ public class AppController implements Initializable {
         tt.setText(text);
         tt.setShowDelay(Duration.millis(100));
         tt.setHideDelay(Duration.ZERO);
-        tt.setStyle("-fx-font: normal bold 12 Langdon; "
-                + "-fx-base: #AE3522; "
-                + "-fx-text-fill: orange;");
+        tt.setStyle("-fx-font: normal 14 Langdon; "
+                + "-fx-base: black; "
+                + "-fx-text-fill: white;");
         return tt;
     }
 
