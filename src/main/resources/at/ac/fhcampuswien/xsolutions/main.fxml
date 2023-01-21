@@ -59,7 +59,7 @@
                               <Label fx:id="userSettingsFullName" prefHeight="27.0" prefWidth="212.0" text="Vollständiger Name: Keiner" />
                               <Label fx:id="userSettingsUsername" prefHeight="27.0" prefWidth="212.0" text="Benutzername: Keiner" />
                               <Label fx:id="userSettingsAdminRights" prefHeight="27.0" prefWidth="212.0" text="Adminrechte: Keine" />
-                              <HBox prefHeight="152.0" prefWidth="1167.0" spacing="10.0">
+                              <HBox prefHeight="149.0" prefWidth="1167.0" spacing="10.0">
                                  <children>
                                     <VBox prefHeight="152.0" prefWidth="221.0" spacing="7.0">
                                        <Button mnemonicParsing="false" onAction="#userSettingsChangeName" prefHeight="25.0" prefWidth="220.0" styleClass="acceptBtn" text="Name ändern" />
@@ -75,8 +75,8 @@
                                  </children>
                               </HBox>
                               <HBox prefHeight="37.0" prefWidth="480.0" spacing="10.0">
-                                 <Button mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="30.0" prefWidth="217.0" styleClass="deleteBtn" text="Benutzer löschen" />
-                                 <Button alignment="CENTER" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="30.0" prefWidth="229.0" styleClass="acceptBtn" text="Neuen Benutzer erstellen" />
+                                 <Button alignment="CENTER" mnemonicParsing="false" onMouseReleased="#userSettingsCreateNewUser" prefHeight="30.0" prefWidth="220.0" styleClass="acceptBtn" text="Neuen Benutzer erstellen" />
+                                 <Button mnemonicParsing="false" onMouseReleased="#userSettingsDeleteUser" prefHeight="30.0" prefWidth="245.0" styleClass="deleteBtn" text="Benutzer löschen" />
                               </HBox>
                            </children>
                         </VBox>
@@ -139,7 +139,7 @@
                                        <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
                                        <TextField fx:id="newURL" prefHeight="32.0" prefWidth="156.0" promptText="Neue Bild-URL" />
                                        <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
-                                       <ChoiceBox fx:id="categoryBoxSettings" prefHeight="32.0" prefWidth="232.0" />
+                                       <ChoiceBox fx:id="categoryBoxSettings" prefHeight="32.0" prefWidth="240.0" />
                                     </VBox>
                                     <Button fx:id="resetCategoryTrash" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css" />
                                  </children>
@@ -472,8 +472,8 @@
                         </HBox>
                      </GridPane>
                   </AnchorPane>
-                  <ScrollPane fx:id="ScrollPaneProducts" prefHeight="898.0" prefWidth="1018.0">
-                     <HBox alignment="TOP_CENTER" prefHeight="891.0" prefWidth="1205.0">
+                  <ScrollPane fx:id="ScrollPaneProducts" prefHeight="954.0" prefWidth="1207.0">
+                     <HBox alignment="TOP_CENTER" prefHeight="930.0" prefWidth="1184.0">
                         <children>
                            <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="891.0" prefWidth="1018.0" stylesheets="@styles.css" vgap="20.0">
                               <columnConstraints>
@@ -516,19 +516,11 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Label prefHeight="36.0" prefWidth="170.0" styleClass="text" stylesheets="@styles.css" text="Rechnung">
+                  <Label alignment="CENTER" prefHeight="36.0" prefWidth="367.0" styleClass="text" stylesheets="@styles.css" text="Rechnung" textAlignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text" text="Datum:" textAlignment="RIGHT" wrappingWidth="235.4716796875">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Text>
                </HBox>
                <VBox prefHeight="56.0" prefWidth="480.0">
                   <HBox alignment="CENTER_LEFT" minHeight="31.0" prefHeight="31.0" prefWidth="404.0" VBox.vgrow="ALWAYS">
@@ -594,7 +586,7 @@
                      </font>
                   </Label>
                </GridPane>
-               <Button id="pay_btn" mnemonicParsing="false" onAction="#showPaymentPane" prefHeight="39.0" prefWidth="2355.0" style="-fx-background-color: #4A5C2F; -fx-font-weight: 700; -fx-background-radius: 8; -fx-font-size: 18px; -fx-text-fill: #ffffff;" stylesheets="@styles.css" text="Bezahlen" textFill="WHITE" VBox.vgrow="ALWAYS">
+               <Button id="pay_btn" mnemonicParsing="false" onAction="#showPaymentPane" prefHeight="39.0" prefWidth="2355.0" style="-fx-font-size: 16;" styleClass="acceptBtn" stylesheets="@styles.css" text="Bezahlen" textFill="WHITE" VBox.vgrow="ALWAYS">
                   <font>
                      <Font size="18.0" />
                   </font>
@@ -605,41 +597,39 @@
             </VBox>
          </AnchorPane>
       </HBox>
-      <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="90.0" prefHeight="159.0" prefWidth="1067.0" style="-fx-background-color: #000000;">
+      <GridPane alignment="BOTTOM_CENTER" maxHeight="90.0" minHeight="64.0" prefHeight="64.0" prefWidth="1920.0" style="-fx-background-color: white;">
          <columnConstraints>
             <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="582.0" minWidth="10.0" prefWidth="567.0" />
             <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="1306.0" minWidth="10.0" prefWidth="693.0" />
-            <ColumnConstraints hgrow="ALWAYS" maxWidth="1615.0" minWidth="10.0" prefWidth="660.0" />
+            <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" maxWidth="1615.0" minWidth="10.0" prefWidth="660.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
-         <GridPane prefHeight="90.0" prefWidth="717.0" GridPane.columnIndex="2">
-            <columnConstraints>
-               <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-               <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            </rowConstraints>
-            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #a82b2b; -fx-background-radius: 8; -fx-font-size: 18px;" text="Schließen" textFill="WHITE" />
-            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="39.0" prefWidth="346.0" style="-fx-background-color: #6666; -fx-background-radius: 8; -fx-font-size: 18px;" text="Abmelden" textFill="WHITE" GridPane.columnIndex="1">
-               <GridPane.margin>
-                  <Insets left="10.0" right="25.0" />
-               </GridPane.margin>
-            </Button>
-         </GridPane>
-         <Label fx:id="kellnerLabel" style="-fx-background-color: #000000; -fx-font-size: 18px;" text="Kellner: Name Name" textFill="WHITE" GridPane.halignment="CENTER">
-            <GridPane.margin>
-               <Insets left="20.0" />
-            </GridPane.margin>
-         </Label>
-         <ImageView fx:id="adminButton" fitHeight="56.0" fitWidth="198.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
-            <GridPane.margin>
-               <Insets left="20.0" />
-            </GridPane.margin>
-            <Image url="@../../../../settingsBtn.png" />
-         </ImageView>
+         <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="2">
+            <children>
+               <VBox alignment="CENTER" prefHeight="64.0" prefWidth="78.0" spacing="5.0">
+                  <children>
+                     <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="DD.MM.YY" />
+                     <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="HH:mm:ss" />
+                  </children>
+               </VBox>
+               <VBox alignment="CENTER" prefHeight="64.0" prefWidth="98.0" spacing="5.0">
+                  <children>
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Kellner:" />
+                     <Text fx:id="kellnerLabel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Name Name" textAlignment="CENTER" />
+                  </children>
+               </VBox>
+               <ImageView fx:id="adminButton" fitHeight="42.0" fitWidth="41.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../../../settingsBtn.png" />
+               </ImageView>
+               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="42.0" prefWidth="40.0" styleClass="logoutBtn" stylesheets="@styles.css" textFill="WHITE" />
+               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="39.0" prefWidth="41.0" styleClass="exitBtn" stylesheets="@styles.css" textFill="WHITE" />
+            </children>
+            <padding>
+               <Insets right="20.0" />
+            </padding>
+         </HBox>
       </GridPane>
    </VBox>
    <FlowPane fx:id="paymentMethodsPane" alignment="CENTER" columnHalignment="CENTER" prefHeight="1080.0" prefWidth="1394.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

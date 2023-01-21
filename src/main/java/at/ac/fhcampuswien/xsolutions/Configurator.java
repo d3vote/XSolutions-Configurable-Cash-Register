@@ -30,7 +30,6 @@ public class Configurator {
             productsListPath = new File(xSolutionsPosFolder + File.separator + "productsList.json");
             usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
         }
-        System.out.println(appDataPath);
     }
 
     /** This code is responsible for creating files in the "AppData" directory. The data for config.txt is hardcoded and for productsList and usersList it is being pulled from a raw pastebin link.

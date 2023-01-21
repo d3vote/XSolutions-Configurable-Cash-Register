@@ -19,11 +19,13 @@ import javafx.util.StringConverter;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
+import java.text.BreakIterator;
 import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static at.ac.fhcampuswien.xsolutions.App.arrayTables;
-import static at.ac.fhcampuswien.xsolutions.App.getDate;
+import static at.ac.fhcampuswien.xsolutions.App.*;
 import static at.ac.fhcampuswien.xsolutions.Configurator.setValue;
 import static at.ac.fhcampuswien.xsolutions.LoginController.getLoggedInUserName;
 import static at.ac.fhcampuswien.xsolutions.LoginController.isAdmin;
@@ -59,13 +61,16 @@ public class AppController implements Initializable {
     private ImageView adminButton;
 
     @FXML
+    private Text time;
+
+    @FXML
     private Label billText;
 
     @FXML
     private TextField searchField;
 
     @FXML
-    private Label kellnerLabel;
+    private Text kellnerLabel;
 
     @FXML
     private GridPane GridPaneProducts;
@@ -363,7 +368,8 @@ public class AppController implements Initializable {
     // Set date in the Bill
     @FXML
     void dateSetter(){
-        datum.setText(getDate());
+        datum.setText(getShortDate());
+        time.setText(LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm")));
     }
 
 
@@ -581,7 +587,7 @@ public class AppController implements Initializable {
             // Create the elements
             Pane imagePane = new Pane();
             imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
-            Label productTitleLabel = new Label(item.getProductTitle());
+            Text productTitleLabel = new Text(item.getProductTitle());
             Label productPriceInGrid = new Label(df.format(item.getProductPrice()) + " " + getCurrency());
             Button addButton = new Button();
             Button removeButton = new Button();
@@ -597,15 +603,13 @@ public class AppController implements Initializable {
             tt.setStyle("-fx-font: normal bold 12 Langdon; "
                     + "-fx-base: #AE3522; "
                     + "-fx-text-fill: orange;");
-            productTitleLabel.setTooltip(tt);
 
             addButton.getStyleClass().add("cartOptions-l");
             removeButton.getStyleClass().add("cartOptions-r");
 
             // Sets size of new elements
-            imagePane.setMinSize(180, 100);
-            imagePane.setMaxSize(220, 135);
-            productTitleLabel.setMinSize(150, 30);
+            imagePane.setMinSize(240, 135);
+            imagePane.setMaxSize(240, 135);
             addButton.setMinSize(65, 40);
             removeButton.setMinSize(65, 40);
 
@@ -619,9 +623,9 @@ public class AppController implements Initializable {
             VBox productPane = new VBox();
             productPriceInGrid.setStyle("-fx-font-size: 15;-fx-font-weight: 600;-fx-text-fill: black");
             productTitleLabel.setStyle("-fx-font-size: 17;-fx-font-weight: 600;-fx-text-fill: black");
-            productTitleLabel.setAlignment(Pos.CENTER);
             productPane.setAlignment(Pos.CENTER);
-            productPane.getChildren().addAll(productTitleLabel, imagePane, buttonBox, productPriceInGrid);
+            productPane.getChildren().addAll(imagePane, productTitleLabel, buttonBox, productPriceInGrid);
+            //imagePane.setTooltip(tt);
             productPane.getStyleClass().addAll("product-vbox");
             imagePane.getStyleClass().addAll("productImage");
 
@@ -1116,6 +1120,15 @@ public class AppController implements Initializable {
         updateReceiptPane();
         updateBillInfo();
         updateBill();
+        dateSetter();
+
+        Timeline clock = new Timeline(new KeyFrame(Duration.minutes(1), e ->
+                dateSetter()
+        ),
+                new KeyFrame(Duration.seconds(1))
+        );
+        clock.setCycleCount(Animation.INDEFINITE);
+        clock.play();
 
 
         categoryBoxMain.getItems().addAll(getCategories());
@@ -1156,7 +1169,7 @@ public class AppController implements Initializable {
         });
 
         ScrollPaneProducts.setStyle("-fx-background-color:transparent;");
-        kellnerLabel.setText("Kellner: " + getLoggedInUserName());
+        kellnerLabel.setText(getLoggedInUserName());
         userSettings.setVisible(isAdmin);
         tablesSettings.setVisible(isAdmin);
         productsSettings.setVisible(isAdmin);

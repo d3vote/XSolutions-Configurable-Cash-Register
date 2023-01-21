@@ -15,6 +15,7 @@
 }
 
 .loginBG{
+    -fx-background-color: white;
     -fx-background-image: url("https://i.imgur.com/HbMZomN.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: 20 20;
@@ -44,6 +45,8 @@
 }
 
 .product-vbox {
+  -fx-background-radius: 8 8 0 0;
+  -fx-border-radius: 8 8 0 0;
   -fx-background-color: #EAF0F0;
   -fx-background-radius: 8;
   -fx-border-radius: 8;
@@ -52,9 +55,9 @@
 .productImage {
   -fx-background-radius: 8 8 0 0;
   -fx-border-radius: 8 8 0 0;
-  -fx-background-size: contain;
+  -fx-background-position: center;
   -fx-background-repeat: no-repeat;
-  -fx-background-position: center center;
+  -fx-background-size: contain;
 }
 
 .minus {
@@ -121,6 +124,7 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
     -fx-background-color: transparent;
+    -fx-background-position: center center;
 }
 
 .calendar {
@@ -199,12 +203,14 @@
 }
 
 .acceptBtn {
-    -fx-background-color: #4A5C2F;
+    -fx-background-radius: 7;
+    -fx-background-color: black;
     -fx-text-fill: white;
     -fx-font-size: 14;
 }
 
 .deleteBtn {
+    -fx-background-radius: 7;
     -fx-background-color:  #a82b2b;
     -fx-text-fill: white;
     -fx-font-size: 14;
@@ -218,4 +224,25 @@
     -fx-background-color: #B1CED4;
     -fx-text-fill: black;
     -fx-font-size: 14;
+}
+
+.title{
+    -fx-font-size: 18;
+    -fx-font-weight: 700;
+}
+
+.logoutBtn{
+    -fx-background-color: white;
+    -fx-background-image: url("https://i.imgur.com/ISR83pn.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
+}
+
+.exitBtn{
+    -fx-background-color: white;
+    -fx-background-image: url("https://i.imgur.com/sxsj5S2.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: contain;
+    -fx-background-position: center center;
 }
