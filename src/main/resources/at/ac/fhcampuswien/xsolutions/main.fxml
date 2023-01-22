@@ -556,7 +556,7 @@
                      <Insets bottom="13.0" />
                   </padding>
                </VBox>
-               <ScrollPane fx:id="billScroll" prefHeight="744.0" prefWidth="413.0" styleClass="resetScrollPane" stylesheets="@styles.css" VBox.vgrow="ALWAYS">
+               <ScrollPane fx:id="billScroll" prefHeight="744.0" prefWidth="413.0" styleClass="resetScrollPane" stylesheets="@styles.css" visible="false" VBox.vgrow="ALWAYS">
                   <VBox.margin>
                      <Insets top="5.0" />
                   </VBox.margin>
