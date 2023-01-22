@@ -1131,7 +1131,9 @@ public class AppController implements Initializable {
         FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
         ft.setFromValue(0.75);
         ft.setToValue(1);
-        ft.play();
+        if (tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().contains("green")){
+            ft.play();
+        }
         tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("green");
     }
 
@@ -1169,10 +1171,24 @@ public class AppController implements Initializable {
 
 
                 tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
+
+                //Adds Animation to button when clicked
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), tablePane);
+                scaleTransition.setFromX(1);
+                scaleTransition.setFromY(1);
+                scaleTransition.setToX(0.95);
+                scaleTransition.setToY(0.95);
+                scaleTransition.setDuration(Duration.millis(100));
+                scaleTransition.setOnFinished(event -> {
+                    tablePane.setScaleX(1);
+                    tablePane.setScaleY(1);
+                });
                 tablePane.setOnMouseClicked(event -> {
+                    scaleTransition.play();
                     tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
                     updateBill();
                 });
+
                 tablePaneCollector.add(tablePane);
                 tablesGridPane.add(tablePane, col,row);
                 tablesListView.getItems().add(arrayTable.getTableNumberAsString());
