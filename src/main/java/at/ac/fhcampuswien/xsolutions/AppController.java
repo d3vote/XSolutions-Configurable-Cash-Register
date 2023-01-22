@@ -1157,7 +1157,9 @@ public class AppController implements Initializable {
         FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
         ft.setFromValue(0.75);
         ft.setToValue(1);
-        ft.play();
+        if (tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().isEmpty()){
+            ft.play();
+        }
         tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().add("green");
     }
 
