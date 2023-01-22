@@ -67,10 +67,11 @@ public class Receipt{
             productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(currency).append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct))).append("\n");
         }
 
+        System.out.println(table.getServersName());
         if (table.getServersName() != null){
             return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
         } else
-            return "";
+            return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
     }
 
     /** So the products list doesn't stack on every call, it is being set to empty and then recreated.
