@@ -692,7 +692,6 @@ public class AppController implements Initializable {
 
         if (foundReceipt != null) {
             receiptPreview.setVisible(true);
-
             receiptAddressFound.setText("Adresse: " + getAddress());
             receiptTelefonNumberFound.setText("Telefon: " + getTel());
             receiptBillNumberFound.setText("Belegnummer: " + foundReceipt.getCount());
