@@ -169,12 +169,12 @@ public class AppController implements Initializable {
     @FXML
     private TextField newTelField;
     @FXML
-    private TextField newAdressField;
+    private TextField newAddressField;
     @FXML
     private TextField newMessageField;
 
     @FXML
-    private Text previewAdress;
+    private Text previewAddress;
 
     @FXML
     private Text previewTel;
@@ -282,7 +282,7 @@ public class AppController implements Initializable {
     @FXML
     private Text receiptAddressFound;
     @FXML
-    private Label receiptPrevierwTitle;
+    private Label receiptPreviewTitle;
     @FXML
     private Text receiptTelefonNumberFound;
     @FXML
@@ -731,9 +731,9 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void saveBillinfo() throws IOException {
-        if (!newAdressField.getText().isEmpty()){
-            setAddress(newAdressField.getText());
+    void saveBillInfo() throws IOException {
+        if (!newAddressField.getText().isEmpty()){
+            setAddress(newAddressField.getText());
         }
         if (!newTelField.getText().isEmpty()){
             setTel(newTelField.getText());
@@ -742,7 +742,7 @@ public class AppController implements Initializable {
             setMessage(newMessageField.getText());
         }
 
-        newAdressField.clear();
+        newAddressField.clear();
         newTelField.clear();
         newMessageField.clear();
 
@@ -757,7 +757,7 @@ public class AppController implements Initializable {
     }
 
     void updateBillInfo() {
-        previewAdress.setText("Adresse: " + getAddress());
+        previewAddress.setText("Adresse: " + getAddress());
         previewTel.setText("Telefon: " + getTel());
         previewMessage.setText(getMessage());
     }
@@ -998,16 +998,16 @@ public class AppController implements Initializable {
     @FXML
     void resetPreview(){
         previewMessage.setText("");
-        previewAdress.setText("Adresse: ");
+        previewAddress.setText("Adresse: ");
         previewTel.setText("Telefon: ");
         try {
-            setAddress(previewAdress.getText());
+            setAddress(previewAddress.getText());
             setTel(previewTel.getText());
             setMessage(previewMessage.getText());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        newAdressField.clear();
+        newAddressField.clear();
         newTelField.clear();
         newMessageField.clear();
 
