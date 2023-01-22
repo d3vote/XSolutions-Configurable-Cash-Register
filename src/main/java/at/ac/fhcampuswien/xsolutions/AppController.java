@@ -1141,7 +1141,6 @@ public class AppController implements Initializable {
 
         categoryBoxMain.getItems().addAll(getCategories());
         categoryBoxMain.setValue("Kategorie");
-        //categoryBoxMain.setStyle("-fx-background-color:  #D9D9D9; -fx-background-radius: 8;");
         categoryBoxMain.getSelectionModel().selectedIndexProperty().addListener((observableValue, old_selection, new_selection) -> {
             addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(categoryBoxMain.getItems().get((Integer) new_selection)));
             System.out.println(categoryBoxMain.getItems().get((Integer) new_selection));
@@ -1221,12 +1220,30 @@ public class AppController implements Initializable {
                 tableVisitors.setLayoutX(42);
                 tableVisitors.setLayoutY(106);
 
+                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
 
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), tablePane);
+                scaleTransition.setFromX(1);
+                scaleTransition.setFromY(1);
+                scaleTransition.setToX(0.95);
+                scaleTransition.setToY(0.95);
+                scaleTransition.setDuration(Duration.millis(100));
+                scaleTransition.setOnFinished(event -> {
+                    tablePane.setScaleX(1);
+                    tablePane.setScaleY(1);
+                });
+                tablePane.setOnMouseClicked(event -> {
+                    scaleTransition.play();
+                    tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
+                    updateBill();
+                });
+                /*
                 tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
                 tablePane.setOnMouseClicked(event -> {
                     tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
                     updateBill();
                 });
+                */
                 tablePaneCollector.add(tablePane);
                 tablesGridPane.add(tablePane, col,row);
                 tablesListView.getItems().add(arrayTable.getTableNumberAsString());
