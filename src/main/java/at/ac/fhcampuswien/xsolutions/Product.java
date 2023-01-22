@@ -172,7 +172,8 @@ public class Product {
     }
 
     public static void categoriesToJSON() throws IOException {
-        FileWriter writer = new FileWriter(getCategoriesListPath());
+        FileOutputStream fos = new FileOutputStream(getCategoriesListPath());
+        OutputStreamWriter writer = new OutputStreamWriter(fos, StandardCharsets.UTF_8);
         for(String str: categories) {
             writer.write(str + System.lineSeparator());
         }
