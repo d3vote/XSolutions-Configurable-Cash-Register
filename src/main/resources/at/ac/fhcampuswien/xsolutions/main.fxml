@@ -529,7 +529,7 @@
                            <Font size="18.0" />
                         </font>
                      </Text>
-                     <Label alignment="CENTER" prefHeight="36.0" prefWidth="100.0" styleClass="text" stylesheets="@styles.css" text="Rechnung" textAlignment="CENTER">
+                     <Label prefHeight="36.0" prefWidth="228.0" styleClass="text" stylesheets="@styles.css" text="Rechnung" textAlignment="CENTER">
                         <font>
                            <Font size="22.0" />
                         </font>
@@ -539,7 +539,7 @@
                      </Label>
                      <Button fx:id="resetBill" mnemonicParsing="false" onAction="#resetBill" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css">
                         <HBox.margin>
-                           <Insets left="120.0" />
+                           <Insets />
                         </HBox.margin>
                      </Button>
                   </HBox>
