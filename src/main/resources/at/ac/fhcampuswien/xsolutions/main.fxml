@@ -24,10 +24,10 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <HBox prefHeight="984.0" prefWidth="1680.0" VBox.vgrow="ALWAYS">
-         <AnchorPane prefHeight="1016.0" prefWidth="390.0" style="-fx-background-color: white;" styleClass="text" stylesheets="@styles.css">
-            <ScrollPane prefHeight="1016.0" prefWidth="349.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <AnchorPane prefHeight="1016.0" prefWidth="380.0" style="-fx-background-color: white;" styleClass="text" stylesheets="@styles.css">
+            <ScrollPane fx:id="tableScrollPane" prefHeight="1016.0" prefWidth="356.0" styleClass="resetScrollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
                <content>
-                  <GridPane fx:id="tablesGridPane" hgap="20.0" prefHeight="1014.0" prefWidth="345.0" stylesheets="@styles.css" vgap="20.0">
+                  <GridPane fx:id="tablesGridPane" hgap="20.0" prefHeight="1014.0" prefWidth="348.0" stylesheets="@styles.css" vgap="20.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
                         <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
@@ -848,4 +848,27 @@
          <ListView fx:id="tablesListView" prefHeight="67.0" prefWidth="200.0" visible="false" />
       </Pane>
    </FlowPane>
+   <AnchorPane fx:id="popupPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" />
+         <HBox alignment="CENTER" prefHeight="366.0" prefWidth="497.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <AnchorPane prefHeight="1080.0" prefWidth="634.0">
+                  <children>
+                     <Pane layoutY="468.0" prefHeight="263.0" prefWidth="634.0" style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <children>
+                           <Button layoutX="299.0" layoutY="201.0" mnemonicParsing="false" onAction="#closePopup" styleClass="acceptBtn" stylesheets="@styles.css" text="Ok" />
+                           <Text fx:id="popupText" layoutX="55.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="523.0">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Text>
+                        </children>
+                     </Pane>
+                  </children>
+               </AnchorPane>
+            </children>
+         </HBox>
+      </children>
+   </AnchorPane>
 </AnchorPane>

@@ -8,6 +8,7 @@
 
 }
 
+
 .tablePane {
     -fx-border-radius: 26;
     -fx-background-color: black;
@@ -147,6 +148,7 @@
     -fx-background-color: transparent;
     -fx-background-position: center center;
 }
+
 
 .resetCategory {
     -fx-background-image: url("https://imgur.com/UywyA7D.png");

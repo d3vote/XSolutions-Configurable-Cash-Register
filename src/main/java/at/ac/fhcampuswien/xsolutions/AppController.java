@@ -45,6 +45,10 @@ public class AppController implements Initializable {
 
     @FXML
     private Button resetBill;
+
+    @FXML
+    private ScrollPane tableScrollPane;
+
     @FXML
     private Label totalPrice;
 
@@ -225,6 +229,12 @@ public class AppController implements Initializable {
 
     @FXML
     private Label paymentTotalLabel;
+
+    @FXML
+    private Pane popupPane;
+
+    @FXML
+    private Text popupText;
 
     @FXML
     private Label restMoneyLabel;
@@ -749,7 +759,7 @@ public class AppController implements Initializable {
         if (Objects.equals(getTel(), "Telefon: ")){
             setTel("");
         }
-
+        showPopup("Belegdaten wurden aktualisiert");
         updateBillInfo();
     }
 
@@ -765,6 +775,7 @@ public class AppController implements Initializable {
         String newCurrency = String.valueOf(systemNewCurrencySelector.getValue().getSymbol());
         setCurrency(newCurrency);
         setValue("currency", String.valueOf(newCurrency));
+        showPopup("Währung wurde auf \"" + systemNewCurrencySelector.getValue().getSymbol() + "\" aktualisiert");
         updateReceiptPane();
         updateBill();
         addProductElementsToGrid(GridPaneProducts, productsList);
@@ -774,6 +785,7 @@ public class AppController implements Initializable {
     void systemSettingsChangeBillNr() throws IOException {
         setReceiptNumber(Integer.parseInt(systemNewBillNrField.getText()));
         setValue("bill_nr", systemNewBillNrField.getText());
+        showPopup("Belegnummer wurde auf \"" + systemNewBillNrField.getText() + "\" umgesetzt");
         updateBill();
         systemNewBillNrField.clear();
     }
@@ -798,6 +810,7 @@ public class AppController implements Initializable {
     void systemSettingsChangeTaxes() throws IOException {
         setTaxes(Double.parseDouble(systemNewTaxesField.getText()));
         setValue("taxes", systemNewTaxesField.getText());
+        showPopup("Steuersatz wurde auf \"" + systemNewTaxesField.getText() + "%\" akutalisiert");
         updateBill();
     }
 
@@ -806,6 +819,7 @@ public class AppController implements Initializable {
     void productsSettingsChangeName() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newProductName.getText();
+        showPopup("Name vom Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() + "\" wurde akutalisiert");
         if (!Objects.equals(text, ""))  {
             productsList.get(currentProduct).setProductTitle(text);
         }
@@ -817,6 +831,7 @@ public class AppController implements Initializable {
     void productsSettingsChangeURL() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newURL.getText();
+        showPopup("Bild vom Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() + "\" wurde akutalisiert");
         if (!Objects.equals(text, ""))  {
             productsList.get(currentProduct).setProductImageUrl(text);
         }
@@ -828,6 +843,7 @@ public class AppController implements Initializable {
     void productsSettingsChangeDescription() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = newProductDescription.getText();
+        showPopup("Beschreibung vom Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() + "\" wurde akutalisiert");
         if (!Objects.equals(text, ""))  {
             productsList.get(currentProduct).setProductDescription(text);
         }
@@ -839,6 +855,7 @@ public class AppController implements Initializable {
     void productsSettingsChangePrice() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         double textFromNewProductPrice = Double.parseDouble(newProductPrice.getText());
+        showPopup("Preis vom Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() + "\" wurde auf \"" + textFromNewProductPrice + "\" akutalisiert");
         productsList.get(currentProduct).setProductPrice(textFromNewProductPrice);
         updateProductsList(currentProduct);
         newProductPrice.clear();
@@ -848,6 +865,7 @@ public class AppController implements Initializable {
     void productsSettingsAddCategory() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = categoryBoxSettings.getValue();
+        showPopup("Kategorie\"" + text + "\"wurde zum Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() + "\" hinzugefügt.");
         if (!Objects.equals(text, ""))  {
             productsList.get(currentProduct).setCategory(text);
         }
@@ -857,6 +875,7 @@ public class AppController implements Initializable {
     void productsSettingsRemoveCategory() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
         String text = categoryBoxSettings.getValue();
+        showPopup("Kategorie\"" + text + "\"wurde aus dem Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() + "\" entfernt.");
         productsList.get(currentProduct).removeCategory(text);
         updateProductsList(currentProduct);
     }
@@ -892,12 +911,14 @@ public class AppController implements Initializable {
         }
 
         new Product(productName, Double.parseDouble(productPrice), productDescription, productCategory, productURL);
+        showPopup("Neues Produkt \"" + productName + "\" wurde erstellt.");
         updateProductsList(currentProduct);
     }
 
     @FXML
     void productsSettingsDelete() {
         int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
+        showPopup("Produkt \"" + productsListViewSettings.getSelectionModel().getSelectedItem() +"\" wurde entfernt.");
         productsList.remove(currentProduct);
         updateProductsList(currentProduct);
     }
@@ -926,6 +947,7 @@ public class AppController implements Initializable {
     void userSettingsChangeName() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         String text = newFullNameField.getText();
+        showPopup("Name vom Benutzer \"" + usersListView.getSelectionModel().getSelectedItem() +"\" wurde auf \"" + text + "\" akutalisiert.");
         if (!Objects.equals(text, ""))  {
             usersList.get(currentUser).setFullName(text);
         }
@@ -937,6 +959,7 @@ public class AppController implements Initializable {
     void userSettingsChangePassword() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         String text = newPasswordField.getText();
+        showPopup("Passwort vom Benutzer \"" + usersListView.getSelectionModel().getSelectedItem() +"\" wurde akutalisiert.");
         if (!Objects.equals(text, ""))  {
             usersList.get(currentUser).setPassword(text);
         }
@@ -948,6 +971,7 @@ public class AppController implements Initializable {
     void userSettingsChangeUsername() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         String text = newUsernameField.getText();
+        showPopup("Benutzername vom Benutzer \"" + usersListView.getSelectionModel().getSelectedItem() +"\" wurde auf \"" + text + "\" akutalisiert.");
         if (!Objects.equals(text, ""))  {
             usersList.get(currentUser).setUserName(text);
         }
@@ -959,6 +983,7 @@ public class AppController implements Initializable {
     void userSettingsToggleAdminRights() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         usersList.get(currentUser).setAdmin(!usersList.get(currentUser).getIsAdmin());
+        showPopup("Administrator-Rechte vom Benutzer \"" + usersListView.getSelectionModel().getSelectedItem() +"\" wurden akutalisiert.");
         updateUsersList(currentUser);
     }
 
@@ -966,6 +991,7 @@ public class AppController implements Initializable {
     void userSettingsDeleteUser() {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         usersList.remove(currentUser);
+        showPopup("Benutzer \"" + usersListView.getSelectionModel().getSelectedItem() +"\" wurde entfernt");
         updateUsersList(currentUser);
     }
 
@@ -990,6 +1016,7 @@ public class AppController implements Initializable {
     void userSettingsCreateNewUser() throws IOException {
         int currentUser = usersListView.getSelectionModel().getSelectedIndex();
         new User("Neuer Benutzer", false, "NeuerBenutzer");
+        showPopup("Neuer Benutzer \"Neuer Benutzer\" wurde erstellt");
         updateUsersList(currentUser);
     }
 
@@ -1031,6 +1058,7 @@ public class AppController implements Initializable {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
         setValue("tableCount", String.valueOf(newSize));
+        showPopup("Tisch-Anzahl wurde auf \"" + newSize + "\" akutalisiert.");
         settingsInputField.clear();
     }
 
@@ -1078,20 +1106,26 @@ public class AppController implements Initializable {
 
     @FXML
     private void newCategoryAdd() throws IOException {
-        addCategory(categorySettingsField.getText());
+        String categoryName = categorySettingsField.getText();
+        addCategory(categoryName);
         categorySettingsField.clear();
+        showPopup("Neue Kategorie \"" + categoryName + "\" wurde erstellt");
         updateNewProductChoiceBox();
     }
 
     @FXML
     private void newCategoryRemove() throws IOException {
-        deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
+        String category = categoryListView.getSelectionModel().getSelectedItem();
+        showPopup("Kategorie \"" + category + "\" wurde entfernt");
+        deleteCategory(category);
         updateNewProductChoiceBox();
     }
 
     @FXML
     private void changeCategoryName() throws IOException {
+        String previousName = categoryListView.getSelectionModel().getSelectedItem();
         getCategories().set(categoryListView.getSelectionModel().getSelectedIndex(), categoryNameField.getText());
+        showPopup("Name von Kategorie \"" + previousName + "\" wurde auf " + categoryNameField.getText() + " akutalisiert");
         categoryNameField.clear();
         updateNewProductChoiceBox();
     }
@@ -1135,6 +1169,16 @@ public class AppController implements Initializable {
             ft.play();
         }
         tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("green");
+    }
+
+    private void showPopup(String text){
+        popupText.setText(text);
+        popupPane.setVisible(true);
+    }
+
+    @FXML
+    void closePopup(ActionEvent event) {
+        popupPane.setVisible(false);
     }
 
     private void initTables() {
@@ -1198,12 +1242,7 @@ public class AppController implements Initializable {
                     row++;
                     col = 0;
                 }
-                if (col % 2 == 0){
-                    System.out.println("true");
-                    tablesGridPane.setMinHeight(170 * row + 40);
-                } else {
-                    tablesGridPane.setMinHeight(170 * row + 20);
-                }
+                tablesGridPane.setMinHeight(170 * (row+1));
             }
         }
     }
@@ -1214,6 +1253,7 @@ public class AppController implements Initializable {
         updateBillInfo();
         updateBill();
         dateSetter();
+        tableScrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
 
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e ->
                 dateSetter()
