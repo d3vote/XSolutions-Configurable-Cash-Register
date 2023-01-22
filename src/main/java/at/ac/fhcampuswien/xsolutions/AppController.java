@@ -428,10 +428,15 @@ public class AppController implements Initializable {
 
             // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
             if (currentQuantity == 0) {
-                transitionToBlackSingle();
                 currentReceipt.removeUsedProducts(item);
             }
+
+            if (currentReceipt.getUsedProducts().isEmpty()){
+                transitionToBlackSingle();
+            }
+
             currentReceipt.subtractFromSubtotal(item.getProductPrice());
+
             updateBill();
         }
         if (currentReceipt.getUsedProducts().size() == 0) {
