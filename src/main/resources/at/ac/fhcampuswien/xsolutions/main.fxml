@@ -415,7 +415,7 @@
                            <HBox prefHeight="33.0" prefWidth="1167.0">
                               <children>
                                  <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-font-size: 18; -fx-font-weight: 700;" text="Kategorien bearbeiten" />
-                                 <Button fx:id="resetCategorySettings" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetCategory" stylesheets="@styles.css">
+                                 <Button fx:id="resetCategorySettings" mnemonicParsing="false" onAction="#clearCategorySelection" prefHeight="33.0" prefWidth="22.0" styleClass="resetCategory" stylesheets="@styles.css">
                                     <HBox.margin>
                                        <Insets left="5.0" />
                                     </HBox.margin></Button>
