@@ -1239,10 +1239,8 @@ public class AppController implements Initializable {
                         if (pane != tablePane) {
                             pane.setScaleX(1);
                             pane.setScaleY(1);
-                            pane.setStyle("-fx-background-color: black");
                         }
                     });
-                    tablePane.setStyle("-fx-background-color: #202020");
                     scaleTransition.play();
                     tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
                     updateBill();
