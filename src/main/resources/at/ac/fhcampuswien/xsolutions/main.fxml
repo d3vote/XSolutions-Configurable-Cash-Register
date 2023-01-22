@@ -29,11 +29,11 @@
                <content>
                   <GridPane fx:id="tablesGridPane" hgap="20.0" prefHeight="1014.0" prefWidth="345.0" stylesheets="@styles.css" vgap="20.0">
                      <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints maxHeight="150.0" minHeight="150.0" prefHeight="150.0" vgrow="ALWAYS" />
+                        <RowConstraints maxHeight="140.0" minHeight="140.0" prefHeight="140.0" vgrow="ALWAYS" />
                      </rowConstraints>
                      <padding>
                         <Insets bottom="20.0" left="13.0" right="12.0" top="20.0" />

@@ -1018,12 +1018,14 @@ public class AppController implements Initializable {
         // Regenerate Tables
         Tables[] newArray = new Tables[newSize];
         setTablesCount(0);
+        arrayReceipts = new ArrayList<>();
         for (int i = 0; i < newSize; i++) {
             newArray[i] = new Tables();
         }
         arrayTables = newArray;
         // Clear Table ListView
         tablesListView.getItems().clear();
+        initTables();
         // Recreating Tables ListView
         for (Tables arrayTable : arrayTables) {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());
@@ -1133,6 +1135,63 @@ public class AppController implements Initializable {
         tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("green");
     }
 
+    private void initTables() {
+        if (run) {
+            int col = 0;
+            int row = 0;
+            tablesGridPane.getChildren().clear();
+            tablePaneCollector.clear();
+            for (Tables arrayTable : arrayTables) {   //Parsing Tables
+                Pane tablePane = new Pane();
+                Label tableTitle = new Label("Tisch " + arrayTable.getTableName());
+                Label tableVisitors = new Label("1");
+                Pane visitorIcon = new Pane();
+
+                tablePane.getStyleClass().add("tablePane");
+                tableTitle.getStyleClass().add("tableText");
+                visitorIcon.getStyleClass().add("visitorIcon");
+                tableVisitors.getStyleClass().add("tableText");
+
+                tablePane.setMinWidth(150);
+                tablePane.setMinHeight(150);
+
+                tableTitle.setLayoutX(20);
+                tableTitle.setLayoutY(20);
+
+                visitorIcon.setMinHeight(13.5);
+                visitorIcon.setMinWidth(16);
+
+                visitorIcon.setLayoutX(20);
+                visitorIcon.setLayoutY(110);
+
+                tableVisitors.setLayoutX(42);
+                tableVisitors.setLayoutY(106);
+
+
+                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
+                tablePane.setOnMouseClicked(event -> {
+                    tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
+                    updateBill();
+                });
+                tablePaneCollector.add(tablePane);
+                tablesGridPane.add(tablePane, col,row);
+                tablesListView.getItems().add(arrayTable.getTableNumberAsString());
+                //System.out.println("[" + row + "," + col + "]");
+                col++;
+                if (col == 2){
+                    row++;
+                    col = 0;
+                }
+                if (col % 2 == 0){
+                    System.out.println("true");
+                    tablesGridPane.setMinHeight(170 * row + 40);
+                } else {
+                    tablesGridPane.setMinHeight(170 * row + 20);
+                }
+            }
+        }
+    }
+
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
         updateReceiptPane();
@@ -1199,67 +1258,7 @@ public class AppController implements Initializable {
         dateSetter();
         addProductElementsToGrid(GridPaneProducts, productsList);
 
-        int col = 0;
-        int row = 0;
-        tablesGridPane.setMinHeight(150);
-        // Generate Lists of Tables, Products and Users
-        for (Tables arrayTable : arrayTables) {   //Parsing Tables
-            if (run) {
-                Pane tablePane = new Pane();
-                Label tableTitle = new Label("Tisch " + arrayTable.getTableName());
-                Label tableVisitors = new Label("1");
-                Pane visitorIcon = new Pane();
-
-                tablePane.getStyleClass().add("tablePane");
-                tableTitle.getStyleClass().add("tableText");
-                visitorIcon.getStyleClass().add("visitorIcon");
-                tableVisitors.getStyleClass().add("tableText");
-
-                tablePane.setMinWidth(150);
-                tablePane.setMinHeight(150);
-
-                tableTitle.setLayoutX(20);
-                tableTitle.setLayoutY(20);
-
-                visitorIcon.setMinHeight(13.5);
-                visitorIcon.setMinWidth(16);
-
-                visitorIcon.setLayoutX(20);
-                visitorIcon.setLayoutY(110);
-
-                tableVisitors.setLayoutX(42);
-                tableVisitors.setLayoutY(106);
-
-                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
-
-                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), tablePane);
-                scaleTransition.setFromX(1);
-                scaleTransition.setFromY(1);
-                scaleTransition.setToX(0.95);
-                scaleTransition.setToY(0.95);
-                scaleTransition.setDuration(Duration.millis(100));
-                scaleTransition.setOnFinished(event -> {
-                    tablePane.setScaleX(1);
-                    tablePane.setScaleY(1);
-                });
-                tablePane.setOnMouseClicked(event -> {
-                    scaleTransition.play();
-                    tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
-                    updateBill();
-                });
-
-                tablePaneCollector.add(tablePane);
-                tablesGridPane.add(tablePane, col,row);
-                tablesListView.getItems().add(arrayTable.getTableNumberAsString());
-                //System.out.println("[" + row + "," + col + "]");
-                col++;
-                if (col == 2){
-                    row++;
-                    col = 0;
-                }
-                tablesGridPane.setMinHeight(170 * row + 20);
-            }
-        }
+       initTables();
 
         for (Product product : productsList) {
             productsListViewSettings.getItems().add(product.getProductTitle());
