@@ -18,9 +18,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.StringConverter;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
-import java.text.BreakIterator;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -43,7 +41,7 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.GERMANY),
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
-    private static ArrayList<Node> tablePaneCollector = new ArrayList<>();
+    private static final ArrayList<Node> tablePaneCollector = new ArrayList<>();
 
     @FXML
     private Button resetBill;
@@ -391,7 +389,7 @@ public class AppController implements Initializable {
         }
         // Otherwise, add the product to the map with a quantity of 1
         else {
-            tablePaneCollector.get(currentTable.getTableName() - 1).getStyleClass().add("orange");
+            transitionToGreen();
             currentReceipt.getProductCounter().put(item, 1);
         }
 
@@ -420,7 +418,7 @@ public class AppController implements Initializable {
 
             // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
             if (currentQuantity == 0) {
-                tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("orange");
+                transitionToBlack();
                 currentReceipt.removeUsedProducts(item);
             }
             currentReceipt.subtractFromSubtotal(item.getProductPrice());
@@ -530,7 +528,7 @@ public class AppController implements Initializable {
         restMoneyLabelSuccess.setVisible(false);
         currentReceipt.setChangeMoney((double) 0);
         paymentSuccessfulPane.setVisible(true);
-        tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("orange");
+        transitionToBlack();
     }
 
     @FXML
@@ -563,7 +561,7 @@ public class AppController implements Initializable {
             if (restMoney != 0) {
                 restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
                 restMoneyLabelSuccess.setVisible(true);
-                tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("orange");
+                transitionToBlack();
             }
 
             paymentSuccessfulPane.setVisible(true);
@@ -581,11 +579,11 @@ public class AppController implements Initializable {
         billScroll.setVisible(false);
         Receipt currentReceipt = getCurrentReceipt();
         currentReceipt.closeReceipt();
+        transitionToBlack();
         updateBill();
     }
 
     // Parse all Products into Grid
-
     @FXML
     private void addProductElementsToGrid(GridPane grid, List<Product> productsList) {
         DecimalFormat df = new DecimalFormat("#.00");
@@ -865,11 +863,7 @@ public class AppController implements Initializable {
 
     @FXML
     void clearCategoryInSettings(){
-        /*
-        int currentProduct = productsListViewSettings.getSelectionModel().getSelectedIndex();
-        productsList.get(currentProduct).clearCategory();
-        updateProductsList(currentProduct);
-        */
+        categoryListView.getSelectionModel().clearSelection();
     }
     @FXML
     void productsSettingsCreateNew() throws IOException {
@@ -1123,6 +1117,22 @@ public class AppController implements Initializable {
         return tt;
     }
 
+    private void transitionToGreen(){
+        FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
+        ft.setFromValue(0.75);
+        ft.setToValue(1);
+        ft.play();
+        tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().add("green");
+    }
+
+    private void transitionToBlack(){
+        FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
+        ft.setFromValue(0.75);
+        ft.setToValue(1);
+        ft.play();
+        tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("green");
+    }
+
     @FXML
     public void initialize(URL arg0, ResourceBundle arg1){
         updateReceiptPane();
@@ -1237,13 +1247,7 @@ public class AppController implements Initializable {
                     tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
                     updateBill();
                 });
-                /*
-                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
-                tablePane.setOnMouseClicked(event -> {
-                    tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
-                    updateBill();
-                });
-                */
+
                 tablePaneCollector.add(tablePane);
                 tablesGridPane.add(tablePane, col,row);
                 tablesListView.getItems().add(arrayTable.getTableNumberAsString());
@@ -1264,6 +1268,12 @@ public class AppController implements Initializable {
         for (User user : usersList) {
             usersListView.getItems().add(user.getName());
         }
+
+        // Listens if categoryBoxMain has changed
+        resetCategoryMain.setVisible(false);
+        categoryBoxMain.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            resetCategoryMain.setVisible(!Objects.equals(newValue, "Kategorie"));
+        });
 
         // Check if ListView Selection changed (Tables)
         tablesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateBill());
