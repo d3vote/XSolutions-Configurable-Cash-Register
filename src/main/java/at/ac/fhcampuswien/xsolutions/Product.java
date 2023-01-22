@@ -2,10 +2,13 @@ package at.ac.fhcampuswien.xsolutions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
-import java.io.IOException;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static at.ac.fhcampuswien.xsolutions.Configurator.getCategoriesListPath;
 import static at.ac.fhcampuswien.xsolutions.Configurator.getProductsListPath;
 
 public class Product {
@@ -14,7 +17,7 @@ public class Product {
     public String productDescription;
     public String productImageUrl;
     public ArrayList<String> category = new ArrayList<>();
-    public static ArrayList<String> categories = new ArrayList<>(Arrays.asList("Italienische K\u00FCche", "Internationale K\u00FCche", "Vegetarisch", "Desserts", "Salate", "Fischgerichte", "Suppen", "Alkoholfreie Getr\u00E4nke", "Alkoholische Getr\u00E4nke"));
+    public static ArrayList<String> categories = new ArrayList<>();
     public static List<Product> productsList = new ArrayList<>();    // ProductList
     private static int count;
 
@@ -167,6 +170,28 @@ public class Product {
             productsList = objectMapper.readValue(getProductsListPath(), typeFactory.constructCollectionType(List.class, Product.class));
         }
     }
+
+    public static void categoriesToJSON() throws IOException {
+        FileWriter writer = new FileWriter(getCategoriesListPath());
+        for(String str: categories) {
+            writer.write(str + System.lineSeparator());
+        }
+        writer.close();
+    }
+
+    public static void JSONtoCategories() {
+        ArrayList<String> list = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(getCategoriesListPath()), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                list.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        categories = list;
+    }
+
 
     /**
      * Search bar: shows a new array of sorted products by the search term

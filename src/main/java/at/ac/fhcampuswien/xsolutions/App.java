@@ -111,6 +111,7 @@ public class App extends Application {
 
         JSONtoUsersList(); //Convert the JSON File back to Objects in a List
         JSONtoProductList();
+        JSONtoCategories();
 
         readConfig();
 

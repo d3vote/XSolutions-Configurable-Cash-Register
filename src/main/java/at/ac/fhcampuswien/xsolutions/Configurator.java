@@ -14,6 +14,7 @@ public class Configurator {
     private static File xSolutionsPosFolder = new File(appDataPath + File.separator + "XSolutions-POS");
     private static File CONFIG_FILE = new File(xSolutionsPosFolder + File.separator + "config.txt");
     private static File productsListPath = new File(xSolutionsPosFolder + File.separator + "productsList.json");
+    private static File categoriesListPath = new File(xSolutionsPosFolder + File.separator + "categories.txt");
     private static File usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
     private static int tableCount;
 
@@ -29,6 +30,7 @@ public class Configurator {
             CONFIG_FILE = new File(xSolutionsPosFolder + File.separator + "config.txt");
             productsListPath = new File(xSolutionsPosFolder + File.separator + "productsList.json");
             usersListPath = new File(xSolutionsPosFolder + File.separator + "usersList.json");
+            categoriesListPath = new File(xSolutionsPosFolder + File.separator + "categories.txt");
         }
     }
 
@@ -42,6 +44,7 @@ public class Configurator {
             CONFIG_FILE.createNewFile();
             usersListPath.createNewFile();
             productsListPath.createNewFile();
+            categoriesListPath.createNewFile();
 
             BufferedWriter writerConfigFile = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(CONFIG_FILE), StandardCharsets.UTF_8));
             writerConfigFile.write("tableCount = 30");
@@ -65,6 +68,7 @@ public class Configurator {
             BufferedWriter writerProducts = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(productsListPath), StandardCharsets.UTF_8));
             String line;
             while ((line = reader.readLine()) != null) {
+                System.out.println(line);
                 writerProducts.write(line);
                 writerProducts.newLine();
             }
@@ -79,9 +83,18 @@ public class Configurator {
                 writerUsers.write(line);
                 writerUsers.newLine();
             }
-
             reader2.close();
             writerUsers.close();
+
+            URL urlCategories = new URL("https://raw.githubusercontent.com/d3vote/ConfigFiles/main/categories.txt");
+            BufferedReader reader3 = new BufferedReader(new InputStreamReader(urlCategories.openStream(), StandardCharsets.UTF_8));
+            BufferedWriter writerCategories = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(categoriesListPath), StandardCharsets.UTF_8));
+            while ((line = reader3.readLine()) != null) {
+                writerCategories.write(line);
+                writerCategories.newLine();
+            }
+            reader3.close();
+            writerCategories.close();
         }
     }
 
@@ -147,6 +160,10 @@ public class Configurator {
 
     public static File getProductsListPath() {
         return productsListPath;
+    }
+
+    public static File getCategoriesListPath() {
+        return categoriesListPath;
     }
 
     public static File getUsersListPath() {

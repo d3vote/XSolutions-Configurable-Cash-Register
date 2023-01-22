@@ -47,9 +47,17 @@
 .product-vbox {
   -fx-background-radius: 8 8 0 0;
   -fx-border-radius: 8 8 0 0;
-  -fx-background-color: #EAF0F0;
+  -fx-background-color: white;
   -fx-background-radius: 8;
   -fx-border-radius: 8;
+}
+
+.productsScroll {
+  -fx-background-color: #EDF1F8;
+}
+
+.productsScroll > .viewport {
+   -fx-background-color: #EDF1F8;
 }
 
 .productImage {
@@ -112,10 +120,11 @@
 }
 
 .resetButton {
-    -fx-background-image: url("https://i.imgur.com/fQC9B36.png");
+    -fx-background-image: url("https://i.imgur.com/8BejBWO.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: contain;
     -fx-background-color: transparent;
+    -fx-background-position: center center;
 }
 
 .resetCategory {

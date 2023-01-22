@@ -24,13 +24,13 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.ac.fhcampuswien.xsolutions.AppController">
    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <HBox prefHeight="984.0" prefWidth="1680.0" VBox.vgrow="ALWAYS">
-         <AnchorPane prefHeight="990.0" prefWidth="234.0" style="-fx-background-color: #D9D9D9;" styleClass="text" stylesheets="@styles.css">
+         <AnchorPane prefHeight="990.0" prefWidth="234.0" style="-fx-background-color: white;" styleClass="text" stylesheets="@styles.css">
+            <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="62.0" prefHeight="900.0" prefWidth="234.0" style="-fx-background-color: white; -fx-font-size: 15px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.0" />
             <Label layoutX="89.0" layoutY="15.0" prefHeight="36.0" prefWidth="66.0" styleClass="text" stylesheets="@styles.css" text="Tische" AnchorPane.leftAnchor="89.0" AnchorPane.topAnchor="15.0">
                <font>
                   <Font size="22.0" />
                </font>
             </Label>
-            <ListView fx:id="tablesListView" fixedCellSize="40.0" layoutY="60.0" prefHeight="900.0" prefWidth="404.0" style="-fx-background-color: transparent; -fx-font-size: 15px;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0" />
             <Pane layoutX="55.0" layoutY="14.0" prefHeight="39.0" prefWidth="34.0" styleClass="table" stylesheets="@styles.css" AnchorPane.leftAnchor="55.0" AnchorPane.topAnchor="14.0" />
          </AnchorPane>
          <AnchorPane prefHeight="990.0" prefWidth="1129.0" HBox.hgrow="ALWAYS">
@@ -414,15 +414,15 @@
                               <children>
                                  <VBox prefHeight="131.0" prefWidth="190.0" spacing="7.0">
                                     <children>
-                                       <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeCategoryName" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Name ändern" />
                                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryAdd" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Hinzufügen" VBox.vgrow="ALWAYS" />
+                                       <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeCategoryName" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Name ändern" />
                                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryRemove" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Entfernen" />
                                     </children>
                                  </VBox>
                                  <VBox prefHeight="131.0" prefWidth="241.0" spacing="5.0">
                                     <children>
-                                       <TextField fx:id="categorySettingsField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neue Kategorie" />
-                                       <TextField fx:id="categoryNameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neuer Name" />
+                                       <TextField fx:id="categorySettingsField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neuer Name" />
+                                       <TextField fx:id="categoryNameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neue Kategorie" />
                                     </children>
                                  </VBox>
                               </children>
@@ -432,7 +432,7 @@
                   </AnchorPane>
                </AnchorPane>
                <VBox fx:id="productsPane" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                  <AnchorPane prefHeight="44.0" prefWidth="909.0">
+                  <AnchorPane prefHeight="44.0" prefWidth="909.0" style="-fx-background-color: white;">
                      <GridPane alignment="CENTER" minWidth="62.0" prefHeight="62.0" prefWidth="868.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="0.0">
                         <columnConstraints>
                            <ColumnConstraints fillWidth="false" hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
@@ -474,7 +474,7 @@
                         </HBox>
                      </GridPane>
                   </AnchorPane>
-                  <ScrollPane fx:id="ScrollPaneProducts" prefHeight="954.0" prefWidth="1207.0">
+                  <ScrollPane fx:id="ScrollPaneProducts" prefHeight="954.0" prefWidth="1207.0" styleClass="productsScroll" stylesheets="@styles.css">
                      <HBox alignment="TOP_CENTER" prefHeight="930.0" prefWidth="1184.0">
                         <children>
                            <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="891.0" prefWidth="1018.0" stylesheets="@styles.css" vgap="20.0">
@@ -499,13 +499,10 @@
          </AnchorPane>
          <AnchorPane prefHeight="464.0" prefWidth="479.0" style="-fx-background-color: white; -fx-border-radius: 50%;">
             <VBox fx:id="emptyReceiptPane" alignment="CENTER" prefHeight="333.0" prefWidth="444.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <Pane prefHeight="183.0" prefWidth="479.0" styleClass="noReceipt" stylesheets="@styles.css">
-                  <VBox.margin>
-                     <Insets />
-                  </VBox.margin></Pane>
+               <Pane prefHeight="183.0" prefWidth="479.0" styleClass="noReceipt" stylesheets="@styles.css" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 400; -fx-font-size: 18;" text="Keine Produkte vorhanden" textAlignment="CENTER" wrappingWidth="215.0">
                   <VBox.margin>
-                     <Insets bottom="225.0" />
+                     <Insets bottom="30.0" />
                   </VBox.margin></Text>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -622,7 +619,7 @@
             <children>
                <VBox alignment="CENTER" prefHeight="64.0" prefWidth="78.0" spacing="5.0">
                   <children>
-                     <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="DD.MM.YY" />
+                     <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="DD. MMMM" />
                      <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="HH:mm:ss" />
                   </children>
                </VBox>

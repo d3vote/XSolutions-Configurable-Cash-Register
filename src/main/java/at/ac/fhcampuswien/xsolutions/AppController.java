@@ -594,17 +594,6 @@ public class AppController implements Initializable {
 
             addButton.getStyleClass().add("plus");
             removeButton.getStyleClass().add("minus");
-
-            // creates Tooltip that shows productDescription on productTitle
-            Tooltip tt = new Tooltip();
-            tt.setText(item.productDescription);
-            tt.setShowDelay(Duration.millis(100));
-            tt.setHideDelay(Duration.ZERO);
-            tt.setStyle("-fx-font: normal 14 Langdon; "
-                    + "-fx-base: black; "
-                    + "-fx-text-fill: white;");
-            productTitleLabel.setTooltip(tt);
-
             addButton.getStyleClass().add("cartOptions-l");
             removeButton.getStyleClass().add("cartOptions-r");
 
@@ -627,7 +616,7 @@ public class AppController implements Initializable {
             //productTitleLabel.setWrappingWidth(200);
             productPane.setAlignment(Pos.CENTER);
             productPane.getChildren().addAll(imagePane, productTitleLabel, buttonBox, productPriceInGrid);
-            //imagePane.setTooltip(tt);
+            productTitleLabel.setTooltip(createToolTip(item.productDescription));
             productPane.getStyleClass().addAll("product-vbox");
             imagePane.getStyleClass().addAll("productImage");
 
@@ -783,7 +772,7 @@ public class AppController implements Initializable {
             totalPrice.setText(currentReceipt.getTotal() + getCurrency());
             tableNumberText.setText(getCurrentTable().getTableNumberAsString());
             subTotalLabel.setText(currentReceipt.getSubtotal() + getCurrency());
-            taxesTitleLabel.setText("Steuer(" + getTaxes() + "%)");
+            taxesTitleLabel.setText("Steuer (" + getTaxes() + "%)");
             totalTaxesBill.setText(currentReceipt.calculateTaxesAmount() + getCurrency());
 
             emptyReceiptPane.setVisible(currentReceipt.getFullReceipt().equals(""));
@@ -904,10 +893,10 @@ public class AppController implements Initializable {
     }
 
     private void updateProductsList(int currentProduct) {
+        sortProducts();
         productsListViewSettings.getItems().clear();
 
         addProductElementsToGrid(GridPaneProducts, filterProductsByName(""));
-        productsList.sort((p1, p2) -> p2.getProductTitle().compareTo(p1.getProductTitle()));
 
         for (Product product : productsList) {
             productsListViewSettings.getItems().add(product.getProductTitle());
@@ -1076,26 +1065,27 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    private void newCategoryAdd(){
+    private void newCategoryAdd() throws IOException {
         addCategory(categorySettingsField.getText());
         categorySettingsField.clear();
         updateNewProductChoiceBox();
     }
 
     @FXML
-    private void newCategoryRemove(){
+    private void newCategoryRemove() throws IOException {
         deleteCategory(categoryListView.getSelectionModel().getSelectedItem());
         updateNewProductChoiceBox();
     }
 
     @FXML
-    private void changeCategoryName(){
+    private void changeCategoryName() throws IOException {
         getCategories().set(categoryListView.getSelectionModel().getSelectedIndex(), categoryNameField.getText());
         categoryNameField.clear();
         updateNewProductChoiceBox();
     }
 
-    private void updateNewProductChoiceBox(){
+    private void updateNewProductChoiceBox() throws IOException {
+        categoriesToJSON();
         categoryBoxSettings.getItems().clear();
         categoryBoxSettings.getItems().addAll(getCategories());
 
@@ -1124,7 +1114,7 @@ public class AppController implements Initializable {
         updateBill();
         dateSetter();
 
-        Timeline clock = new Timeline(new KeyFrame(Duration.minutes(1), e ->
+        Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e ->
                 dateSetter()
         ),
                 new KeyFrame(Duration.seconds(1))
