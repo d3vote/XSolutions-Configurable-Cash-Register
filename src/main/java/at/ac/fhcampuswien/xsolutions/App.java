@@ -20,6 +20,7 @@ import static at.ac.fhcampuswien.xsolutions.User.JSONtoUsersList;
 public class App extends Application {
     public static Tables[] arrayTables;
     public static Stage stage = null;
+    public static boolean run = false;
 
     /** GUI start
      */
@@ -73,6 +74,7 @@ public class App extends Application {
                 newStage.setMaximized(true);
                 newStage.setFullScreen(true);
                 stage.hide();
+                run = true;
                 newStage.show();
             } catch (Exception ex) {
                 ex.printStackTrace();
@@ -100,6 +102,12 @@ public class App extends Application {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd. MMMM");
         return currentDate.format(formatter);
+    }
+
+    public static int[] getTableLocation(int index, int cols) {
+        int row = index / cols;
+        int col = index % cols;
+        return new int[]{row, col};
     }
 
     /** Initializes everything needed for the App to function

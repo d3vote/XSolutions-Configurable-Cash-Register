@@ -23,8 +23,8 @@ public class Tables{
         Tables.count = count;
     }
 
-    public String getTableName(){
-        return "Tisch " + tableNumber;
+    public int getTableName(){
+        return tableNumber;
     }
 
     public String getTableNumberAsString(){

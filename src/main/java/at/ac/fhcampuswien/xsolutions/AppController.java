@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -42,11 +43,15 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.GERMANY),
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
+    private static ArrayList<Node> tablePaneCollector = new ArrayList<>();
 
     @FXML
     private Button resetBill;
     @FXML
     private Label totalPrice;
+
+    @FXML
+    private GridPane tablesGridPane;
 
     @FXML
     private ListView<String> usersListView;
@@ -386,6 +391,7 @@ public class AppController implements Initializable {
         }
         // Otherwise, add the product to the map with a quantity of 1
         else {
+            tablePaneCollector.get(currentTable.getTableName() - 1).getStyleClass().add("orange");
             currentReceipt.getProductCounter().put(item, 1);
         }
 
@@ -414,6 +420,7 @@ public class AppController implements Initializable {
 
             // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
             if (currentQuantity == 0) {
+                tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("orange");
                 currentReceipt.removeUsedProducts(item);
             }
             currentReceipt.subtractFromSubtotal(item.getProductPrice());
@@ -600,22 +607,30 @@ public class AppController implements Initializable {
             // Sets size of new elements
             imagePane.setMinSize(240, 135);
             imagePane.setMaxSize(240, 135);
-            addButton.setMinSize(65, 40);
-            removeButton.setMinSize(65, 40);
+            addButton.setMinSize(35, 40);
+            removeButton.setMinSize(35, 40);
+            productTitleLabel.setMinHeight(30);
+            productTitleLabel.setAlignment(Pos.CENTER_LEFT);
 
             // sets positions of new elements
             HBox buttonBox = new HBox();
+            HBox emptyHBox = new HBox();
             buttonBox.getChildren().addAll(addButton, removeButton);
-            buttonBox.setMinSize(180,40);
+            buttonBox.setMinSize(50,40);
             addButton.setAlignment(Pos.CENTER);
             removeButton.setAlignment(Pos.CENTER);
             buttonBox.setAlignment(Pos.BASELINE_CENTER);
             VBox productPane = new VBox();
-            productPriceInGrid.setStyle("-fx-font-size: 15;-fx-font-weight: 600;-fx-text-fill: black");
-            productTitleLabel.setStyle("-fx-font-size: 17;-fx-font-weight: 600;-fx-text-fill: black");
-            //productTitleLabel.setWrappingWidth(200);
             productPane.setAlignment(Pos.CENTER);
-            productPane.getChildren().addAll(imagePane, productTitleLabel, buttonBox, productPriceInGrid);
+            productPriceInGrid.setStyle("-fx-font-size: 15;-fx-font-weight: 700;-fx-text-fill: black");
+            productTitleLabel.setStyle("-fx-font-size: 17;-fx-font-weight: 600;-fx-text-fill: black");
+            HBox.setHgrow(emptyHBox, Priority.ALWAYS);
+            HBox hbox = new HBox(productTitleLabel);
+            HBox hbox2 = new HBox(productPriceInGrid, emptyHBox, buttonBox);
+            hbox2.setAlignment(Pos.CENTER_LEFT);
+            VBox vbox = new VBox(hbox, hbox2);
+            vbox.setPadding(new Insets(0,0,0,5));
+            productPane.getChildren().addAll(imagePane, vbox);
             productTitleLabel.setTooltip(createToolTip(item.productDescription));
             productPane.getStyleClass().addAll("product-vbox");
             imagePane.getStyleClass().addAll("productImage");
@@ -1015,7 +1030,7 @@ public class AppController implements Initializable {
         tablesListView.getItems().clear();
         // Recreating Tables ListView
         for (Tables arrayTable : arrayTables) {
-            tablesListView.getItems().add(arrayTable.getTableName());
+            tablesListView.getItems().add(arrayTable.getTableNumberAsString());
         }
         setValue("tableCount", String.valueOf(newSize));
         settingsInputField.clear();
@@ -1173,9 +1188,54 @@ public class AppController implements Initializable {
         dateSetter();
         addProductElementsToGrid(GridPaneProducts, productsList);
 
+        int col = 0;
+        int row = 0;
+        tablesGridPane.setMinHeight(150);
         // Generate Lists of Tables, Products and Users
         for (Tables arrayTable : arrayTables) {   //Parsing Tables
-            tablesListView.getItems().add(arrayTable.getTableName());
+            if (run) {
+                Pane tablePane = new Pane();
+                Label tableTitle = new Label("Tisch " + arrayTable.getTableName());
+                Label tableVisitors = new Label("1");
+                Pane visitorIcon = new Pane();
+
+                tablePane.getStyleClass().add("tablePane");
+                tableTitle.getStyleClass().add("tableText");
+                visitorIcon.getStyleClass().add("visitorIcon");
+                tableVisitors.getStyleClass().add("tableText");
+
+                tablePane.setMinWidth(150);
+                tablePane.setMinHeight(150);
+
+                tableTitle.setLayoutX(20);
+                tableTitle.setLayoutY(20);
+
+                visitorIcon.setMinHeight(13.5);
+                visitorIcon.setMinWidth(16);
+
+                visitorIcon.setLayoutX(20);
+                visitorIcon.setLayoutY(110);
+
+                tableVisitors.setLayoutX(42);
+                tableVisitors.setLayoutY(106);
+
+
+                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
+                tablePane.setOnMouseClicked(event -> {
+                    tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
+                    updateBill();
+                });
+                tablePaneCollector.add(tablePane);
+                tablesGridPane.add(tablePane, col,row);
+                tablesListView.getItems().add(arrayTable.getTableNumberAsString());
+                //System.out.println("[" + row + "," + col + "]");
+                col++;
+                if (col == 2){
+                    row++;
+                    col = 0;
+                }
+                tablesGridPane.setMinHeight(170 * row + 20);
+            }
         }
 
         for (Product product : productsList) {

@@ -8,6 +8,27 @@
 
 }
 
+.tablePane {
+    -fx-border-radius: 26;
+    -fx-background-color: black;
+    -fx-background-radius: 26;
+}
+
+.tableText {
+    -fx-text-fill: white;
+    -fx-font-size: 16;
+}
+
+.orange {
+    -fx-background-color: #609673;
+}
+
+.visitorIcon{
+    -fx-background-image: url("https://i.imgur.com/yidosug.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
 .settingsBtn {
     -fx-font-size: 12;
     -fx-background-color: #D9D9D9;
