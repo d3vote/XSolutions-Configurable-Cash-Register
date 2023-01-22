@@ -399,7 +399,6 @@ public class AppController implements Initializable {
         currentReceipt.addUsedProducts(item);
         // Update Total Price and Bill
         currentReceipt.addToSubtotal(item.getProductPrice());
-        System.out.println("Server: " + getLoggedInUserName());
         currentTable.setServerName(getLoggedInUserName());
         updateBill();
     }
@@ -1026,14 +1025,12 @@ public class AppController implements Initializable {
         // Regenerate Tables
         Tables[] newArray = new Tables[newSize];
         setTablesCount(0);
-        arrayReceipts = new ArrayList<>();
         for (int i = 0; i < newSize; i++) {
             newArray[i] = new Tables();
         }
         arrayTables = newArray;
         // Clear Table ListView
         tablesListView.getItems().clear();
-        initTables();
         // Recreating Tables ListView
         for (Tables arrayTable : arrayTables) {
             tablesListView.getItems().add(arrayTable.getTableNumberAsString());

@@ -511,7 +511,7 @@
                <Pane prefHeight="183.0" prefWidth="479.0" styleClass="noReceipt" stylesheets="@styles.css" />
                <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: 400; -fx-font-size: 18;" text="Keine Produkte vorhanden" textAlignment="CENTER" wrappingWidth="215.0">
                   <VBox.margin>
-                     <Insets bottom="30.0" />
+                     <Insets bottom="200.0" />
                   </VBox.margin></Text>
             </VBox>
             <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
