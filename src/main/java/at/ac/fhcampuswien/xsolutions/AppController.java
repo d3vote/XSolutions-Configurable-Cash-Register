@@ -530,6 +530,7 @@ public class AppController implements Initializable {
         restMoneyLabelSuccess.setVisible(false);
         currentReceipt.setChangeMoney((double) 0);
         paymentSuccessfulPane.setVisible(true);
+        tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("orange");
     }
 
     @FXML
@@ -562,6 +563,7 @@ public class AppController implements Initializable {
             if (restMoney != 0) {
                 restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
                 restMoneyLabelSuccess.setVisible(true);
+                tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().remove("orange");
             }
 
             paymentSuccessfulPane.setVisible(true);

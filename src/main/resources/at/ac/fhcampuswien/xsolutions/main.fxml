@@ -657,7 +657,6 @@
       </GridPane>
    </VBox>
    <FlowPane fx:id="paymentMethodsPane" alignment="CENTER" columnHalignment="CENTER" prefHeight="1080.0" prefWidth="1394.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <ListView fx:id="tablesListView" prefHeight="67.0" prefWidth="200.0" />
       <Pane prefHeight="1082.0" prefWidth="1921.0">
          <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" />
          <Pane fx:id="paymentSelectionPane" layoutX="626.0" layoutY="321.0" prefHeight="438.0" prefWidth="669.0" styleClass="paymentPane" stylesheets="@styles.css">
@@ -843,6 +842,7 @@
                </HBox>
             </FlowPane>
          </AnchorPane>
+         <ListView fx:id="tablesListView" prefHeight="67.0" prefWidth="200.0" visible="false" />
       </Pane>
    </FlowPane>
 </AnchorPane>
