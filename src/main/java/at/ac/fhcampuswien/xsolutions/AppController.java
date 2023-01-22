@@ -428,7 +428,7 @@ public class AppController implements Initializable {
 
             // If the product's quantity is 0, remove the product from the usedProducts list and update the bill
             if (currentQuantity == 0) {
-                transitionToBlack();
+                transitionToBlackSingle();
                 currentReceipt.removeUsedProducts(item);
             }
             currentReceipt.subtractFromSubtotal(item.getProductPrice());
@@ -538,7 +538,7 @@ public class AppController implements Initializable {
         restMoneyLabelSuccess.setVisible(false);
         currentReceipt.setChangeMoney((double) 0);
         paymentSuccessfulPane.setVisible(true);
-        transitionToBlack();
+        transitionToBlackAll();
     }
 
     @FXML
@@ -571,7 +571,7 @@ public class AppController implements Initializable {
             if (restMoney != 0) {
                 restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
                 restMoneyLabelSuccess.setVisible(true);
-                transitionToBlack();
+                transitionToBlackAll();
             }
 
             paymentSuccessfulPane.setVisible(true);
@@ -589,7 +589,7 @@ public class AppController implements Initializable {
         billScroll.setVisible(false);
         Receipt currentReceipt = getCurrentReceipt();
         currentReceipt.closeReceipt();
-        transitionToBlack();
+        transitionToBlackAll();
         updateBill();
     }
 
@@ -603,7 +603,7 @@ public class AppController implements Initializable {
         for (Product item : productsList) {
             // Create the elements
             Pane imagePane = new Pane();
-            imagePane.setStyle("-fx-background-image: url(\"" + item.getProductImageUrl() + "\");");
+            imagePane.setStyle(String.format("-fx-background-image: url(\"%s\");", item.getProductImageUrl()));
             Label productTitleLabel = new Label(item.getProductTitle());
             Label productPriceInGrid = new Label(df.format(item.getProductPrice()) + " " + getCurrency());
             Button addButton = new Button();
@@ -1157,13 +1157,13 @@ public class AppController implements Initializable {
         FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
         ft.setFromValue(0.75);
         ft.setToValue(1);
-        if (tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().isEmpty()){
+        if (!tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().contains("green")) {
             ft.play();
         }
         tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().add("green");
     }
 
-    private void transitionToBlack(){
+    private void transitionToBlackSingle(){
         FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
         ft.setFromValue(0.75);
         ft.setToValue(1);
@@ -1181,6 +1181,16 @@ public class AppController implements Initializable {
     @FXML
     void closePopup(ActionEvent event) {
         popupPane.setVisible(false);
+    }
+
+    private void transitionToBlackAll(){
+        FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
+        ft.setFromValue(0.75);
+        ft.setToValue(1);
+        if (tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().contains("green")){
+            ft.play();
+        }
+        tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().removeAll("green");
     }
 
     private void initTables() {
@@ -1326,6 +1336,8 @@ public class AppController implements Initializable {
             usersListView.getItems().add(user.getName());
         }
 
+
+
         // Listens if categoryBoxMain has changed
         resetCategoryMain.setVisible(false);
         categoryBoxMain.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -1354,7 +1366,7 @@ public class AppController implements Initializable {
                 productsSettingsURL.setText("Bild URL: " + productsList.get(currentProduct).getProductImageUrl());
                 productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
                 productsSettingsCategory.setText("Kategorie: " + productsList.get(currentProduct).getCategory());
-                productImagePreview.setStyle("-fx-background-image: url(\"" + productsList.get(currentProduct).getProductImageUrl() + "\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;");
+                productImagePreview.setStyle(String.format("-fx-background-image: url(\"%s\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;", productsList.get(currentProduct).getProductImageUrl()));
             }
         });
 

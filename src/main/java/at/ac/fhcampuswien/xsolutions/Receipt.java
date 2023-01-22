@@ -55,7 +55,7 @@ public class Receipt{
 
     /** So the products list doesn't stack on every call, it is being set to empty and then recreated.
      * <p>Than it is simple. By giving the key of "usedProducts" to the "productCounter" HashMap you receive all carted items back as a String.</p>
-     * @return Products List if Server's Name is set. It is implemented for the right Cart Pane with "Producs ordered:" in the start
+     * @return Products List if Server's Name is set. It is implemented for the right Cart Pane with "Products ordered:" in the start
      */
     public String getFullReceipt(){
         StringBuilder productsTotal = new StringBuilder();
@@ -68,10 +68,7 @@ public class Receipt{
         }
 
         System.out.println(table.getServersName());
-        if (table.getServersName() != null){
-            return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
-        } else
-            return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
+        return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
     }
 
     /** So the products list doesn't stack on every call, it is being set to empty and then recreated.
