@@ -25,21 +25,22 @@
    <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <HBox prefHeight="984.0" prefWidth="1680.0" VBox.vgrow="ALWAYS">
          <AnchorPane prefHeight="1016.0" prefWidth="380.0" style="-fx-background-color: white;" styleClass="text" stylesheets="@styles.css">
-            <ScrollPane fx:id="tableScrollPane" prefHeight="1016.0" prefWidth="356.0" styleClass="resetScrollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="0.0">
-               <content>
-                  <GridPane fx:id="tablesGridPane" hgap="20.0" prefHeight="1014.0" prefWidth="348.0" stylesheets="@styles.css" vgap="20.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
-                        <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints maxHeight="140.0" minHeight="140.0" prefHeight="140.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <padding>
-                        <Insets bottom="20.0" left="13.0" right="12.0" top="20.0" />
-                     </padding>
-                  </GridPane>
-               </content>
+            <ScrollPane fx:id="tableScrollPane" prefHeight="1016.0" prefWidth="356.0" styleClass="resetScrollPane"
+                        AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="8.0"
+                        AnchorPane.topAnchor="0.0">
+               <GridPane fx:id="tablesGridPane" hgap="20.0" prefHeight="1014.0" prefWidth="348.0"
+                         stylesheets="@styles.css" vgap="20.0">
+                  <columnConstraints>
+                     <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0"/>
+                     <ColumnConstraints hgrow="ALWAYS" maxWidth="140.0" minWidth="140.0" prefWidth="140.0"/>
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints maxHeight="140.0" minHeight="140.0" prefHeight="140.0" vgrow="ALWAYS"/>
+                  </rowConstraints>
+                  <padding>
+                     <Insets bottom="20.0" left="13.0" right="12.0" top="20.0"/>
+                  </padding>
+               </GridPane>
             </ScrollPane>
          </AnchorPane>
          <AnchorPane prefHeight="990.0" prefWidth="1129.0" HBox.hgrow="ALWAYS">
@@ -94,68 +95,88 @@
                         </Label>
                         <ListView fx:id="productsListViewSettings" prefHeight="311.0" prefWidth="828.0" />
                         <HBox prefHeight="100.0" prefWidth="200.0">
-                           <children>
-                              <VBox prefHeight="100.0" prefWidth="455.0">
-                                 <children>
-                                    <Label fx:id="productsSettingsName" prefHeight="27.0" prefWidth="828.0" text="Produktname: Keine" />
-                                    <Label fx:id="productsSettingsDescription" prefHeight="27.0" prefWidth="828.0" text="Beschreibung: Keine" />
-                                    <Label fx:id="productsSettingsURL" prefHeight="27.0" prefWidth="592.0" text="Bild-URL: Keine" />
-                                    <Label fx:id="productsSettingsPrice" prefHeight="27.0" prefWidth="828.0" text="Preis: Keiner" />
-                                    <Label fx:id="productsSettingsCategory" prefHeight="27.0" prefWidth="828.0" text="Kategorie: Keine" />
-                                 </children>
-                              </VBox>
-                              <Pane fx:id="productImagePreview" prefHeight="133.0" prefWidth="177.0" />
-                           </children>
+                           <VBox prefHeight="100.0" prefWidth="455.0">
+                              <Label fx:id="productsSettingsName" prefHeight="27.0" prefWidth="828.0"
+                                     text="Produktname: Keine"/>
+                              <Label fx:id="productsSettingsDescription" prefHeight="27.0" prefWidth="828.0"
+                                     text="Beschreibung: Keine"/>
+                              <Label fx:id="productsSettingsURL" prefHeight="27.0" prefWidth="592.0"
+                                     text="Bild-URL: Keine"/>
+                              <Label fx:id="productsSettingsPrice" prefHeight="27.0" prefWidth="828.0"
+                                     text="Preis: Keiner"/>
+                              <Label fx:id="productsSettingsCategory" prefHeight="27.0" prefWidth="828.0"
+                                     text="Kategorie: Keine"/>
+                           </VBox>
+                           <Pane fx:id="productImagePreview" prefHeight="133.0" prefWidth="177.0"/>
                         </HBox>
                         <HBox prefHeight="223.0" prefWidth="1167.0" spacing="10.0">
-                           <children>
-                              <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="200.0" spacing="7.0">
-                                 <Button mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Produktname ändern" />
-                                 <Button mnemonicParsing="false" onAction="#productsSettingsChangeDescription" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Beschreibung ändern" />
-                                 <Button mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Bild-URL ändern" />
-                                 <Button mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn" text="Preis ändern" />
-                                 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="240.0">
-                                    <columnConstraints>
-                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="101.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0" prefWidth="99.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.0" minWidth="10.0" prefWidth="40.0" />
-                                    </columnConstraints>
-                                    <rowConstraints>
-                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    </rowConstraints>
-                                    <VBox.margin>
-                                       <Insets right="25.0" />
-                                    </VBox.margin>
-                                    <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#productsSettingsAddCategory" prefHeight="30.0" prefWidth="97.0" styleClass="acceptBtn" text="hinzufügen">
-                                       <GridPane.margin>
-                                          <Insets />
-                                       </GridPane.margin>
-                                    </Button>
-                                    <Button layoutX="10.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#productsSettingsRemoveCategory" prefHeight="30.0" prefWidth="100.0" styleClass="acceptBtn" text="entfernen" GridPane.columnIndex="1">
-                                       <GridPane.margin>
-                                          <Insets left="5.0" />
-                                       </GridPane.margin>
-                                    </Button>
-                                 </GridPane>
-                              </VBox>
-                              <VBox prefHeight="171.0" prefWidth="238.0" spacing="5.0">
-                                 <TextField fx:id="newProductName" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Produktname" />
-                                 <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0" promptText="Neue Beschreibung" />
-                                 <TextField fx:id="newURL" prefHeight="32.0" prefWidth="156.0" promptText="Neue Bild-URL" />
-                                 <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0" promptText="Neuer Preis" />
-                                 <ChoiceBox fx:id="categoryBoxSettings" prefHeight="32.0" prefWidth="240.0" />
-                              </VBox>
-                              <Button fx:id="resetCategoryTrash" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetButton" stylesheets="@styles.css">
-                                 <HBox.margin>
-                                    <Insets top="148.0" />
-                                 </HBox.margin></Button>
-                           </children>
+                           <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="179.0" prefWidth="200.0"
+                                 spacing="7.0">
+                              <Button mnemonicParsing="false" onAction="#productsSettingsChangeName" prefHeight="25.0"
+                                      prefWidth="200.0" styleClass="acceptBtn" text="Produktname ändern"/>
+                              <Button mnemonicParsing="false" onAction="#productsSettingsChangeDescription"
+                                      prefHeight="25.0" prefWidth="200.0" styleClass="acceptBtn"
+                                      text="Beschreibung ändern"/>
+                              <Button mnemonicParsing="false" onAction="#productsSettingsChangeURL" prefHeight="25.0"
+                                      prefWidth="200.0" styleClass="acceptBtn" text="Bild-URL ändern"/>
+                              <Button mnemonicParsing="false" onAction="#productsSettingsChangePrice" prefHeight="25.0"
+                                      prefWidth="200.0" styleClass="acceptBtn" text="Preis ändern"/>
+                              <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                        minWidth="-Infinity" prefHeight="25.0" prefWidth="240.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0"
+                                                       prefWidth="101.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="105.0" minWidth="10.0"
+                                                       prefWidth="99.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="62.0" minWidth="10.0"
+                                                       prefWidth="40.0"/>
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                 </rowConstraints>
+                                 <VBox.margin>
+                                    <Insets right="25.0"/>
+                                 </VBox.margin>
+                                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                         onAction="#productsSettingsAddCategory" prefHeight="30.0" prefWidth="97.0"
+                                         styleClass="acceptBtn" text="hinzufügen">
+                                    <GridPane.margin>
+                                       <Insets/>
+                                    </GridPane.margin>
+                                 </Button>
+                                 <Button layoutX="10.0" layoutY="8.0" minHeight="-Infinity" mnemonicParsing="false"
+                                         onAction="#productsSettingsRemoveCategory" prefHeight="30.0" prefWidth="100.0"
+                                         styleClass="acceptBtn" text="entfernen" GridPane.columnIndex="1">
+                                    <GridPane.margin>
+                                       <Insets left="5.0"/>
+                                    </GridPane.margin>
+                                 </Button>
+                              </GridPane>
+                           </VBox>
+                           <VBox prefHeight="171.0" prefWidth="238.0" spacing="5.0">
+                              <TextField fx:id="newProductName" prefHeight="25.0" prefWidth="600.0"
+                                         promptText="Neuer Produktname"/>
+                              <TextField fx:id="newProductDescription" prefHeight="25.0" prefWidth="600.0"
+                                         promptText="Neue Beschreibung"/>
+                              <TextField fx:id="newURL" prefHeight="32.0" prefWidth="156.0" promptText="Neue Bild-URL"/>
+                              <TextField fx:id="newProductPrice" prefHeight="25.0" prefWidth="600.0"
+                                         promptText="Neuer Preis"/>
+                              <ChoiceBox fx:id="categoryBoxSettings" prefHeight="32.0" prefWidth="240.0"/>
+                           </VBox>
+                           <Button fx:id="resetCategoryTrash" mnemonicParsing="false"
+                                   onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0"
+                                   styleClass="resetButton" stylesheets="@styles.css">
+                              <HBox.margin>
+                                 <Insets top="148.0"/>
+                              </HBox.margin>
+                           </Button>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="15.0">
-                           <children>
-                              <Button mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0" prefWidth="200.0" styleClass="deleteBtn" text="Produkt löschen" />
-                              <Button mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew" prefHeight="30.0" prefWidth="223.0" styleClass="acceptBtn" text="Neues Produkt erstellen" />
-                           </children>
+                           <Button mnemonicParsing="false" onMouseReleased="#productsSettingsDelete" prefHeight="25.0"
+                                   prefWidth="200.0" styleClass="deleteBtn" text="Produkt löschen"/>
+                           <Button mnemonicParsing="false" onMouseReleased="#productsSettingsCreateNew"
+                                   prefHeight="30.0" prefWidth="223.0" styleClass="acceptBtn"
+                                   text="Neues Produkt erstellen"/>
                         </HBox>
                         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" spacing="10.0" />
                      </VBox>
@@ -193,184 +214,210 @@
                      </VBox>
                   </AnchorPane>
                   <AnchorPane fx:id="findReceiptPane" prefHeight="858.0" prefWidth="828.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-                     <HBox alignment="CENTER" layoutY="27.0" prefHeight="728.0" prefWidth="926.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
-                        <children>
-                           <VBox alignment="TOP_CENTER" prefHeight="796.0" prefWidth="443.0" spacing="15.0">
-                              <children>
-                                 <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="444.0" styleClass="title" text="Rechnung nach Belegnummer finden:" textAlignment="CENTER" />
-                                 <FlowPane fx:id="receiptPreview" prefHeight="681.0" prefWidth="443.0" style="-fx-background-color: white; -fx-background-radius: 8;">
-                                    <children>
-                                       <Pane prefHeight="43.0" prefWidth="442.0" />
-                                       <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="442.0">
-                                          <children>
-                                             <Label fx:id="receiptPrevierwTitle" style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;" stylesheets="@styles.css" text="RECHNUNG">
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                             <Text fx:id="receiptAddressFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Adresse: ">
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Text>
-                                             <Text fx:id="receiptTelefonNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Telefon: ">
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Text>
-                                             <Text fx:id="receiptBillNumberFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" text="Beleg Nummer: ">
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Text>
-                                          </children>
-                                       </VBox>
-                                       <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
-                                          <padding>
-                                             <Insets left="20.0" right="20.0" />
-                                          </padding>
-                                          <font>
-                                             <Font name="Calibri" size="12.0" />
-                                          </font>
-                                       </Label>
-                                       <GridPane prefHeight="24.0" prefWidth="443.0">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label fx:id="dateInReceiptFound" prefHeight="17.0" prefWidth="439.0" text="Datum: ">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                             </Label>
-                                             <Label fx:id="timeInReceiptFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="16.0" prefWidth="210.0" GridPane.columnIndex="1">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                             </Label>
-                                          </children>
-                                       </GridPane>
-                                       <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
-                                          <padding>
-                                             <Insets left="20.0" right="20.0" />
-                                          </padding>
-                                          <font>
-                                             <Font name="Calibri" size="12.0" />
-                                          </font>
-                                       </Label>
-                                       <ScrollPane prefHeight="289.0" prefWidth="395.0" styleClass="resetScrollPane" stylesheets="@styles.css">
-                                          <FlowPane.margin>
-                                             <Insets left="20.0" />
-                                          </FlowPane.margin>
-                                          <content>
-                                             <Text fx:id="receiptBillFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB;" wrappingWidth="380.13671875">
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Text>
-                                          </content>
-                                       </ScrollPane>
-                                       <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
-                                          <padding>
-                                             <Insets left="20.0" right="20.0" />
-                                          </padding>
-                                          <font>
-                                             <Font name="Calibri" size="12.0" />
-                                          </font>
-                                       </Label>
-                                       <GridPane prefHeight="73.0" prefWidth="429.0">
-                                          <columnConstraints>
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="223.0" />
-                                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="207.0" />
-                                          </columnConstraints>
-                                          <rowConstraints>
-                                             <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-                                             <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
-                                             <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                                          </rowConstraints>
-                                          <children>
-                                             <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Gesamtsumme inkl. Trinkgeld:">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                             <Label fx:id="receiptTotalFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                             <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Bezahlt:" GridPane.rowIndex="1">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                             <Label fx:id="receiptPayAmountFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                             <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" text="Restgeld:" GridPane.rowIndex="2">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                             <Label fx:id="receiptRestMoneyFound" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                                <padding>
-                                                   <Insets left="20.0" right="20.0" />
-                                                </padding>
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Label>
-                                          </children>
-                                       </GridPane>
-                                       <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;" text="----------------------------------------------------------------------------------">
-                                          <padding>
-                                             <Insets left="20.0" right="20.0" />
-                                          </padding>
-                                          <font>
-                                             <Font name="Calibri" size="12.0" />
-                                          </font>
-                                       </Label>
-                                       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="441.0">
-                                          <children>
-                                             <Text fx:id="receiptMessageFound" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;" text="Danke!">
-                                                <font>
-                                                   <Font name="Calibri" size="12.0" />
-                                                </font>
-                                             </Text>
-                                          </children>
-                                       </HBox>
-                                    </children>
-                                 </FlowPane>
-                                 <HBox prefHeight="0.0" prefWidth="443.0" spacing="10.0">
-                                    <children>
-                                       <TextField fx:id="receiptNumberField" prefHeight="32.0" prefWidth="365.0" promptText="Rechnung Nummer" />
-                                       <Button mnemonicParsing="false" onAction="#startSearchReceipt" prefHeight="25.0" prefWidth="73.0" styleClass="acceptBtn" stylesheets="@styles.css" text="Suchen" />
-                                    </children>
-                                 </HBox>
-                              </children>
-                           </VBox>
-                        </children>
+                     <HBox alignment="CENTER" layoutY="27.0" prefHeight="728.0" prefWidth="926.0"
+                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="20.0">
+                        <VBox alignment="TOP_CENTER" prefHeight="796.0" prefWidth="443.0" spacing="15.0">
+                           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="444.0"
+                                  styleClass="title" text="Rechnung nach Belegnummer finden:"
+                                  textAlignment="CENTER"/>
+                           <FlowPane fx:id="receiptPreview" prefHeight="681.0" prefWidth="443.0"
+                                     style="-fx-background-color: white; -fx-background-radius: 8;">
+                              <Pane prefHeight="43.0" prefWidth="442.0"/>
+                              <VBox alignment="TOP_CENTER" prefHeight="84.0" prefWidth="442.0">
+                                 <Label fx:id="receiptPreviewTitle"
+                                        style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;"
+                                        stylesheets="@styles.css" text="RECHNUNG">
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                                 <Text fx:id="receiptAddressFound" strokeType="OUTSIDE" strokeWidth="0.0"
+                                       style="-fx-font-family: Agency FB;" text="Adresse: ">
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Text>
+                                 <Text fx:id="receiptTelefonNumberFound" strokeType="OUTSIDE" strokeWidth="0.0"
+                                       style="-fx-font-family: Agency FB;" text="Telefon: ">
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Text>
+                                 <Text fx:id="receiptBillNumberFound" strokeType="OUTSIDE" strokeWidth="0.0"
+                                       style="-fx-font-family: Agency FB;" text="Beleg Nummer: ">
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Text>
+                              </VBox>
+                              <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="50.0"
+                                     prefHeight="17.0" prefWidth="434.0" style="-fx-font-family: Agency FB;"
+                                     text="----------------------------------------------------------------------------------">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0"/>
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="12.0"/>
+                                 </font>
+                              </Label>
+                              <GridPane prefHeight="24.0" prefWidth="443.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                 </rowConstraints>
+                                 <Label fx:id="dateInReceiptFound" prefHeight="17.0" prefWidth="439.0"
+                                        text="Datum: ">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                 </Label>
+                                 <Label fx:id="timeInReceiptFound" alignment="CENTER_RIGHT"
+                                        contentDisplay="RIGHT" prefHeight="16.0" prefWidth="210.0"
+                                        GridPane.columnIndex="1">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                 </Label>
+                              </GridPane>
+                              <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0"
+                                     style="-fx-font-family: Agency FB;"
+                                     text="----------------------------------------------------------------------------------">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0"/>
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="12.0"/>
+                                 </font>
+                              </Label>
+                              <ScrollPane prefHeight="289.0" prefWidth="395.0" styleClass="resetScrollPane"
+                                          stylesheets="@styles.css">
+                                 <FlowPane.margin>
+                                    <Insets left="20.0"/>
+                                 </FlowPane.margin>
+                                 <Text fx:id="receiptBillFound" strokeType="OUTSIDE" strokeWidth="0.0"
+                                       style="-fx-font-family: Agency FB;" wrappingWidth="380.13671875">
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Text>
+                              </ScrollPane>
+                              <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0"
+                                     style="-fx-font-family: Agency FB;"
+                                     text="----------------------------------------------------------------------------------">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0"/>
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="12.0"/>
+                                 </font>
+                              </Label>
+                              <GridPane prefHeight="73.0" prefWidth="429.0">
+                                 <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0"
+                                                       prefWidth="223.0"/>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0"
+                                                       prefWidth="207.0"/>
+                                 </columnConstraints>
+                                 <rowConstraints>
+                                    <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="26.0"
+                                                    vgrow="SOMETIMES"/>
+                                    <RowConstraints maxHeight="31.0" minHeight="10.0" prefHeight="28.0"
+                                                    vgrow="SOMETIMES"/>
+                                    <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="25.0"
+                                                    vgrow="SOMETIMES"/>
+                                 </rowConstraints>
+                                 <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;"
+                                        text="Gesamtsumme inkl. Trinkgeld:">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="receiptTotalFound" alignment="CENTER_RIGHT"
+                                        contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0"
+                                        style="-fx-font-family: Agency FB;" GridPane.columnIndex="1">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;"
+                                        text="Bezahlt:" GridPane.rowIndex="1">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="receiptPayAmountFound" alignment="CENTER_RIGHT"
+                                        contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0"
+                                        style="-fx-font-family: Agency FB;" GridPane.columnIndex="1"
+                                        GridPane.rowIndex="1">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                                 <Label prefHeight="17.0" prefWidth="439.0" style="-fx-font-family: Agency FB;"
+                                        text="Restgeld:" GridPane.rowIndex="2">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                                 <Label fx:id="receiptRestMoneyFound" alignment="CENTER_RIGHT"
+                                        contentDisplay="RIGHT" prefHeight="17.0" prefWidth="439.0"
+                                        style="-fx-font-family: Agency FB;" GridPane.columnIndex="1"
+                                        GridPane.rowIndex="2">
+                                    <padding>
+                                       <Insets left="20.0" right="20.0"/>
+                                    </padding>
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Label>
+                              </GridPane>
+                              <Label alignment="CENTER" graphicTextGap="50.0" prefHeight="17.0" prefWidth="434.0"
+                                     style="-fx-font-family: Agency FB;"
+                                     text="----------------------------------------------------------------------------------">
+                                 <padding>
+                                    <Insets left="20.0" right="20.0"/>
+                                 </padding>
+                                 <font>
+                                    <Font name="Calibri" size="12.0"/>
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="441.0">
+                                 <Text fx:id="receiptMessageFound" strokeType="OUTSIDE" strokeWidth="0.0"
+                                       style="-fx-font-family: Agency FB; -fx-font-weight: 700; -fx-font-size: 22;"
+                                       text="Danke!">
+                                    <font>
+                                       <Font name="Calibri" size="12.0"/>
+                                    </font>
+                                 </Text>
+                              </HBox>
+                           </FlowPane>
+                           <HBox prefHeight="0.0" prefWidth="443.0" spacing="10.0">
+                              <TextField fx:id="receiptNumberField" prefHeight="32.0" prefWidth="365.0"
+                                         promptText="Rechnung Nummer"/>
+                              <Button mnemonicParsing="false" onAction="#startSearchReceipt" prefHeight="25.0"
+                                      prefWidth="73.0" styleClass="acceptBtn" stylesheets="@styles.css"
+                                      text="Suchen"/>
+                           </HBox>
+                        </VBox>
                      </HBox>
                   </AnchorPane>
                   <AnchorPane fx:id="billSettingsPane" prefHeight="638.0" prefWidth="828.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
@@ -388,16 +435,16 @@
                            <padding>
                               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                            </padding>
-                           <Text fx:id="previewAdress" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Adresse: Favoritenstraße 226" />
+                           <Text fx:id="previewAddress" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Adresse: Favoritenstraße 226" />
                            <Text fx:id="previewTel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 14;" text="Telefon: 01 60668776600" />
                            <Text fx:id="previewMessage" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 20; -fx-font-weight: 700;" text="DANKE!" />
                         </VBox>
                      </Pane>
                      <VBox layoutX="3.0" layoutY="47.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="375.0" spacing="10.0">
-                        <TextField fx:id="newAdressField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Adresse" />
+                        <TextField fx:id="newAddressField" prefHeight="25.0" prefWidth="356.0" promptText="Neue Adresse" />
                         <TextField fx:id="newTelField" prefHeight="25.0" prefWidth="356.0" promptText="Neuer Telefonnummer" />
                         <TextField fx:id="newMessageField" prefHeight="32.0" prefWidth="21.0" promptText="Neue Nachricht" />
-                        <Button mnemonicParsing="false" onAction="#saveBillinfo" prefHeight="25.0" prefWidth="96.0" styleClass="acceptBtn" text="Speichern" />
+                        <Button mnemonicParsing="false" onAction="#saveBillInfo" prefHeight="25.0" prefWidth="96.0" styleClass="acceptBtn" text="Speichern" />
                         <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="73.0" prefWidth="350.0" spacing="15.0">
                            <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#systemSettingsChangeBillNr" prefHeight="30.0" prefWidth="180.0" styleClass="acceptBtn" text="Belegnummer ändern" />
                            <TextField fx:id="systemNewBillNrField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="180.0" promptText="Letzte Belegnummer">
@@ -410,36 +457,40 @@
                      <Button fx:id="resetPreview" layoutX="115.0" layoutY="172.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetPreview" prefHeight="30.0" prefWidth="25.0" styleClass="resetButton" stylesheets="@styles.css" />
                   </AnchorPane>
                   <AnchorPane fx:id="categorySettingPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="681.0" prefWidth="828.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
-                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <children>
-                           <HBox prefHeight="33.0" prefWidth="1167.0">
-                              <children>
-                                 <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" style="-fx-font-size: 18; -fx-font-weight: 700;" text="Kategorien bearbeiten" />
-                                 <Button fx:id="resetCategorySettings" mnemonicParsing="false" onAction="#clearCategoryInSettings" prefHeight="33.0" prefWidth="22.0" styleClass="resetCategory" stylesheets="@styles.css">
-                                    <HBox.margin>
-                                       <Insets left="5.0" />
-                                    </HBox.margin></Button>
-                              </children>
-                           </HBox>
-                           <ListView fx:id="categoryListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0" prefWidth="828.0" />
-                           <HBox prefHeight="131.0" prefWidth="1167.0" spacing="15.0">
-                              <children>
-                                 <VBox prefHeight="131.0" prefWidth="190.0" spacing="7.0">
-                                    <children>
-                                       <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryAdd" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Hinzufügen" VBox.vgrow="ALWAYS" />
-                                       <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#changeCategoryName" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Name ändern" />
-                                       <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#newCategoryRemove" prefHeight="30.0" prefWidth="191.0" styleClass="acceptBtn" text="Entfernen" />
-                                    </children>
-                                 </VBox>
-                                 <VBox prefHeight="131.0" prefWidth="241.0" spacing="5.0">
-                                    <children>
-                                       <TextField fx:id="categorySettingsField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neuer Name" />
-                                       <TextField fx:id="categoryNameField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0" promptText="Neue Kategorie" />
-                                    </children>
-                                 </VBox>
-                              </children>
-                           </HBox>
-                        </children>
+                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <HBox prefHeight="33.0" prefWidth="1167.0">
+                           <Label minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="200.0"
+                                  style="-fx-font-size: 18; -fx-font-weight: 700;" text="Kategorien bearbeiten"/>
+                           <Button fx:id="resetCategorySettings" mnemonicParsing="false"
+                                   onAction="#clearCategorySelection" prefHeight="33.0" prefWidth="22.0"
+                                   styleClass="resetCategory" stylesheets="@styles.css">
+                              <HBox.margin>
+                                 <Insets left="5.0"/>
+                              </HBox.margin>
+                           </Button>
+                        </HBox>
+                        <ListView fx:id="categoryListView" minHeight="-Infinity" minWidth="-Infinity" prefHeight="311.0"
+                                  prefWidth="828.0"/>
+                        <HBox prefHeight="131.0" prefWidth="1167.0" spacing="15.0">
+                           <VBox prefHeight="131.0" prefWidth="190.0" spacing="7.0">
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                      onAction="#newCategoryAdd" prefHeight="30.0" prefWidth="191.0"
+                                      styleClass="acceptBtn" text="Hinzufügen" VBox.vgrow="ALWAYS"/>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                      onAction="#changeCategoryName" prefHeight="30.0" prefWidth="191.0"
+                                      styleClass="acceptBtn" text="Name ändern"/>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
+                                      onAction="#newCategoryRemove" prefHeight="30.0" prefWidth="191.0"
+                                      styleClass="acceptBtn" text="Entfernen"/>
+                           </VBox>
+                           <VBox prefHeight="131.0" prefWidth="241.0" spacing="5.0">
+                              <TextField fx:id="categorySettingsField" minHeight="-Infinity" minWidth="-Infinity"
+                                         prefHeight="30.0" prefWidth="200.0" promptText="Neuer Name"/>
+                              <TextField fx:id="categoryNameField" minHeight="-Infinity" minWidth="-Infinity"
+                                         prefHeight="30.0" prefWidth="200.0" promptText="Neue Kategorie"/>
+                           </VBox>
+                        </HBox>
                      </VBox>
                   </AnchorPane>
                </AnchorPane>
@@ -472,38 +523,41 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0" GridPane.columnIndex="2">
-                           <children>
-                              <Button fx:id="resetCategoryMain" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#resetCategory" prefHeight="25.0" prefWidth="25.0" styleClass="resetCategory" stylesheets="@styles.css">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin></Button>
-                              <ChoiceBox fx:id="categoryBoxMain" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0" stylesheets="@styles.css">
-                                 <HBox.margin>
-                                    <Insets left="10.0" />
-                                 </HBox.margin></ChoiceBox>
-                           </children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0"
+                              GridPane.columnIndex="2">
+                           <Button fx:id="resetCategoryMain" minHeight="-Infinity" minWidth="-Infinity"
+                                   mnemonicParsing="false" onAction="#resetCategory" prefHeight="25.0" prefWidth="25.0"
+                                   styleClass="resetCategory" stylesheets="@styles.css">
+                              <HBox.margin>
+                                 <Insets/>
+                              </HBox.margin>
+                           </Button>
+                           <ChoiceBox fx:id="categoryBoxMain" minWidth="-Infinity" prefHeight="25.0" prefWidth="165.0"
+                                      stylesheets="@styles.css">
+                              <HBox.margin>
+                                 <Insets left="10.0"/>
+                              </HBox.margin>
+                           </ChoiceBox>
                         </HBox>
                      </GridPane>
                   </AnchorPane>
                   <ScrollPane fx:id="ScrollPaneProducts" prefHeight="954.0" prefWidth="1207.0" styleClass="productsScroll" stylesheets="@styles.css">
                      <HBox alignment="TOP_CENTER" prefHeight="930.0" prefWidth="1084.0">
-                        <children>
-                           <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="891.0" prefWidth="1018.0" stylesheets="@styles.css" vgap="20.0">
-                              <columnConstraints>
-                                 <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                                 <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
-                              </columnConstraints>
-                              <rowConstraints>
-                                 <RowConstraints maxHeight="190.0" minHeight="155.0" prefHeight="190.0" vgrow="NEVER" />
-                              </rowConstraints>
-                              <padding>
-                                 <Insets bottom="20.0" left="13.0" right="12.0" top="20.0" />
-                              </padding>
-                           </GridPane>
-                        </children>
+                        <GridPane fx:id="GridPaneProducts" hgap="20.0" prefHeight="891.0" prefWidth="1018.0"
+                                  stylesheets="@styles.css" vgap="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                              <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="190.0" minHeight="155.0" prefHeight="190.0" vgrow="NEVER"/>
+                           </rowConstraints>
+                           <padding>
+                              <Insets bottom="20.0" left="13.0" right="12.0" top="20.0"/>
+                           </padding>
+                        </GridPane>
                      </HBox>
                   </ScrollPane>
                </VBox>
@@ -628,19 +682,20 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.columnIndex="2">
-            <children>
-               <VBox alignment="CENTER" prefHeight="64.0" prefWidth="78.0" spacing="5.0">
-                  <children>
-                     <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="DD. MMMM" />
-                     <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="HH:mm:ss" />
-                  </children>
-               </VBox>
-               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#userLogout" prefHeight="42.0" prefWidth="40.0" styleClass="logoutBtn" stylesheets="@styles.css" textFill="WHITE" />
-               <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onMouseClicked="#exitButton" prefHeight="39.0" prefWidth="41.0" styleClass="exitBtn" stylesheets="@styles.css" textFill="WHITE" />
-            </children>
             <padding>
-               <Insets right="20.0" />
+               <Insets right="20.0"/>
             </padding>
+            <VBox alignment="CENTER" prefHeight="64.0" prefWidth="78.0" spacing="5.0">
+               <Text fx:id="datum" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;"
+                     text="DD. MMMM"/>
+               <Text fx:id="time" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="HH:mm:ss"/>
+            </VBox>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+                    onAction="#userLogout" prefHeight="42.0" prefWidth="40.0" styleClass="logoutBtn"
+                    stylesheets="@styles.css" textFill="WHITE"/>
+            <Button alignment="CENTER" contentDisplay="RIGHT" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
+                    onMouseClicked="#exitButton" prefHeight="39.0" prefWidth="41.0" styleClass="exitBtn"
+                    stylesheets="@styles.css" textFill="WHITE"/>
          </HBox>
          <ImageView fx:id="adminButton" fitHeight="42.0" fitWidth="41.0" onMouseClicked="#openSettings" pickOnBounds="true" preserveRatio="true">
             <Image url="@../../../../settingsBtn.png" />
@@ -649,13 +704,12 @@
             </GridPane.margin>
          </ImageView>
          <VBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="430.0" spacing="5.0">
-            <children>
-               <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="Kellner:" />
-               <Text fx:id="kellnerLabel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="Name Name" textAlignment="CENTER" />
-            </children>
             <GridPane.margin>
-               <Insets left="70.0" />
+               <Insets left="70.0"/>
             </GridPane.margin>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;" text="Kellner:"/>
+            <Text fx:id="kellnerLabel" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 15;"
+                  text="Name Name" textAlignment="CENTER"/>
          </VBox>
       </GridPane>
    </VBox>
@@ -737,7 +791,7 @@
                   <Insets left="10.0" top="5.0" />
                </padding>
             </Label>
-            <Button layoutX="286.0" layoutY="306.0" mnemonicParsing="false" onAction="#printReceipt" styleClass="acceptBtn" text="Print Reciept">
+            <Button layoutX="286.0" layoutY="306.0" mnemonicParsing="false" onAction="#printReceipt" styleClass="acceptBtn" text="Print Receipt">
                <font>
                   <Font size="14.0" />
                </font>
@@ -848,28 +902,26 @@
          <ListView fx:id="tablesListView" prefHeight="67.0" prefWidth="200.0" visible="false" />
       </Pane>
    </FlowPane>
-   <AnchorPane fx:id="popupPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <children>
-         <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;" />
-         <HBox alignment="CENTER" prefHeight="366.0" prefWidth="497.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-               <AnchorPane prefHeight="1080.0" prefWidth="634.0">
-                  <children>
-                     <Pane layoutY="468.0" prefHeight="263.0" prefWidth="634.0" style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                        <children>
-                           <Button layoutX="299.0" layoutY="201.0" mnemonicParsing="false" onAction="#closePopup" styleClass="acceptBtn" stylesheets="@styles.css" text="Ok" />
-                           <Text fx:id="popupText" layoutX="55.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="523.0">
-                              <font>
-                                 <Font size="20.0" />
-                              </font>
-                           </Text>
-                        </children>
-                     </Pane>
-                  </children>
-               </AnchorPane>
-            </children>
-         </HBox>
-      </children>
+   <AnchorPane fx:id="popupPane" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Pane opacity="0.62" prefHeight="1080.0" prefWidth="1920.0" style="-fx-background-color: black;"/>
+      <HBox alignment="CENTER" prefHeight="366.0" prefWidth="497.0" AnchorPane.bottomAnchor="0.0"
+            AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <AnchorPane prefHeight="1080.0" prefWidth="634.0">
+            <Pane layoutY="468.0" prefHeight="263.0" prefWidth="634.0"
+                  style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="0.0"
+                  AnchorPane.rightAnchor="0.0">
+               <Button layoutX="299.0" layoutY="201.0" mnemonicParsing="false" onAction="#closePopup"
+                       styleClass="acceptBtn" stylesheets="@styles.css" text="OK"/>
+               <Text fx:id="popupText" layoutX="55.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0"
+                     text="Text" textAlignment="CENTER" wrappingWidth="523.0">
+                  <font>
+                     <Font size="20.0"/>
+                  </font>
+               </Text>
+            </Pane>
+         </AnchorPane>
+      </HBox>
    </AnchorPane>
    <AnchorPane fx:id="tableSelectPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
