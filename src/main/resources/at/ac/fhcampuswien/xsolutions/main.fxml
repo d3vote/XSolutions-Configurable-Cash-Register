@@ -912,7 +912,7 @@
                   style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="0.0"
                   AnchorPane.rightAnchor="0.0">
                <Button layoutX="299.0" layoutY="201.0" mnemonicParsing="false" onAction="#closePopup"
-                       styleClass="acceptBtn" stylesheets="@styles.css" text="Ok"/>
+                       styleClass="acceptBtn" stylesheets="@styles.css" text="OK"/>
                <Text fx:id="popupText" layoutX="55.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0"
                      text="Text" textAlignment="CENTER" wrappingWidth="523.0">
                   <font>
