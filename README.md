@@ -57,6 +57,10 @@ Instruction for .zip and .exe can be found in each [Release](https://github.com/
 ## Info about Configuration Files
 When using the app, three configuration files will be created in the AppData/XSolutions-POS directory: __usersList.json__, __productsList.json__, __categoryList.json__ and __config.txt__. It is essential that these files and the directory are not empty, as the app will not function properly without them.
 
+For MacOS: the files will be created in User/username/Library/Application Support/XSolutions-POS
+
+(If you have any Problems with config file, just delete the entire XSolutions-POS folder.
+
 [Config-Files](https://github.com/d3vote/ConfigFiles) <- Github Repository where Files are stored
 
 ## User Data (Username, Password, Rights)
