@@ -42,14 +42,11 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
     private static final ArrayList<Node> tablePaneCollector = new ArrayList<>();
-    private static final ArrayList<Label> tableVisitorsCollector = new ArrayList<Label>();
+    private static final ArrayList<Label> tableVisitorsCollector = new ArrayList<>();
     private static boolean ignoreTableSwitch = true;
 
     @FXML
     private Button resetBill;
-
-    @FXML
-    private TextField visitorsField;
 
     @FXML
     private ScrollPane tableScrollPane;
@@ -366,6 +363,9 @@ public class AppController implements Initializable {
 
         return currentTableIndex;
     }
+
+    @FXML
+    private Label errorLabelSettings;
 
     private Tables getCurrentTable() {
         int currentTableIndex;
@@ -1220,8 +1220,8 @@ public class AppController implements Initializable {
     }
 
     @FXML
-    void closeVisitorsSelector(ActionEvent event) {
-        if (!getCurrentTable().isVisitorsSet()){
+    void closeVisitorsSelector() {
+        if (!getCurrentTable().isVisitorsSet() && Integer.parseInt(tableVisitorsField.getText()) > 0){
             getCurrentTable().setVisitors(Integer.parseInt(tableVisitorsField.getText()));
             tableVisitorsCollector.get(getCurrentTableIndex()).setText(tableVisitorsField.getText());
         }
@@ -1237,7 +1237,6 @@ public class AppController implements Initializable {
         }
         tablePaneCollector.get(getCurrentTable().getTableName() - 1).getStyleClass().removeAll("green");
     }
-
     private void initTables() {
         if (run) {
             int col = 0;
@@ -1249,11 +1248,15 @@ public class AppController implements Initializable {
                 Label tableTitle = new Label("Tisch " + arrayTable.getTableName());
                 Label tableVisitors = new Label("-");
                 Pane visitorIcon = new Pane();
+                Button addButton = new Button();
+                Button removeButton = new Button();
 
                 tablePane.getStyleClass().add("tablePane");
                 tableTitle.getStyleClass().add("tableText");
                 visitorIcon.getStyleClass().add("visitorIcon");
                 tableVisitors.getStyleClass().add("tableText");
+                addButton.getStyleClass().add("plusWhite");
+                removeButton.getStyleClass().add("minusWhite");
 
                 tablePane.setMinWidth(150);
                 tablePane.setMinHeight(150);
@@ -1261,17 +1264,25 @@ public class AppController implements Initializable {
                 tableTitle.setLayoutX(20);
                 tableTitle.setLayoutY(20);
 
+                addButton.setMinSize(30, 30);
+                removeButton.setMinSize(30, 30);
+
                 visitorIcon.setMinHeight(13.5);
                 visitorIcon.setMinWidth(16);
 
-                visitorIcon.setLayoutX(20);
-                visitorIcon.setLayoutY(110);
+                addButton.setLayoutX(65);
+                addButton.setLayoutY(110);
 
-                tableVisitors.setLayoutX(42);
-                tableVisitors.setLayoutY(106);
+                removeButton.setLayoutX(110);
+                removeButton.setLayoutY(110);
 
-                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
+                visitorIcon.setLayoutX(15);
+                visitorIcon.setLayoutY(117);
 
+                tableVisitors.setLayoutX(37);
+                tableVisitors.setLayoutY(112);
+
+                tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors, addButton, removeButton);
 
                 //Adds Animation to button when clicked
                 ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), tablePane);
@@ -1290,6 +1301,24 @@ public class AppController implements Initializable {
                     scaleTransition.play();
                     tablesListView.getSelectionModel().select(arrayTable.getTableName()-1);
                     updateBill();
+                });
+
+                //Adds or Removes Visitor on Action
+                addButton.setOnAction(event -> {
+                    if (getCurrentTableIndex() == tablePaneCollector.indexOf(tablePane)) {
+                        int currentVisitors = getCurrentTable().getVisitors();
+                        getCurrentTable().setVisitors(currentVisitors + 1);
+                        tableVisitorsCollector.get(getCurrentTableIndex()).setText(String.valueOf(currentVisitors + 1));
+                    }
+                });
+                removeButton.setOnAction(event -> {
+                    if (getCurrentTableIndex() == tablePaneCollector.indexOf(tablePane)) {
+                        int currentVisitors = getCurrentTable().getVisitors();
+                        if (currentVisitors > 0) {
+                            getCurrentTable().setVisitors(currentVisitors - 1);
+                            tableVisitorsCollector.get(getCurrentTableIndex()).setText(String.valueOf(currentVisitors - 1));
+                        }
+                    }
                 });
 
                 tablePaneCollector.add(tablePane);
@@ -1383,7 +1412,10 @@ public class AppController implements Initializable {
             usersListView.getItems().add(user.getName());
         }
 
-
+        // Check if systemNewTaxesField Text is a Word or a Number
+        systemNewTaxesField.textProperty().addListener((observable, oldValue, newValue) ->{
+            errorLabelSettings.setVisible(!newValue.trim().isEmpty() && !newValue.equals(systemNewTaxesField.getPromptText()) && newValue.matches("^[a-zA-Z!@#?,.;:_]*$"));
+        });
 
         // Listens if categoryBoxMain has changed
         resetCategoryMain.setVisible(false);
