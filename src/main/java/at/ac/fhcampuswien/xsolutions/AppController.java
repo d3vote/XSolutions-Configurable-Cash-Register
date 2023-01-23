@@ -41,8 +41,8 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.GERMANY),
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
-    private static final ArrayList<Node> tablePaneCollector = new ArrayList<>();
-    private static final ArrayList<Label> tableVisitorsCollector = new ArrayList<>();
+    private static ArrayList<Node> tablePaneCollector = new ArrayList<>();
+    private static ArrayList<Label> tableVisitorsCollector = new ArrayList<>();
     private static boolean ignoreTableSwitch = true;
 
     @FXML
@@ -1077,6 +1077,8 @@ public class AppController implements Initializable {
     void changeValue() throws IOException {
         int newSize = Integer.parseInt(settingsInputField.getText());
         ignoreTableSwitch = false;
+        tablePaneCollector = new ArrayList<>();
+        tableVisitorsCollector = new ArrayList<>();
 
         // Regenerate Tables
         Tables[] newArray = new Tables[newSize];
