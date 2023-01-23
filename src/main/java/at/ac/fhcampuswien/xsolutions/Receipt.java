@@ -67,7 +67,6 @@ public class Receipt{
             productsTotal.append(usedProduct.getProductTitle()).append(" x ").append(productCounter.get(usedProduct)).append(": ").append(currency).append(df.format(usedProduct.getProductPrice() * productCounter.get(usedProduct))).append("\n");
         }
 
-        System.out.println(table.getServersName());
         return "Produkte bestellt: " + System.lineSeparator() + productsTotal;
     }
 

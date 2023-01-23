@@ -6,6 +6,9 @@ public class Tables{
     private static int count;
     private String serverName;
     private boolean serverSet = false;
+    private int visitors;
+
+    private boolean visitorsSet = false;
 
     /** Constructor for a Table object. <p>
      * static counter is being increased by 1 <p>
@@ -23,6 +26,14 @@ public class Tables{
         Tables.count = count;
     }
 
+    public boolean isVisitorsSet() {
+        return visitorsSet;
+    }
+
+    public void setVisitorsSet(boolean visitorsSet) {
+        this.visitorsSet = visitorsSet;
+    }
+
     public int getTableName(){
         return tableNumber;
     }
@@ -33,6 +44,15 @@ public class Tables{
 
     public String getServersName() {
         return serverName;
+    }
+
+    public int getVisitors() {
+        return visitors;
+    }
+
+    public void setVisitors(int visitors) {
+        this.visitors = visitors;
+        visitorsSet = true;
     }
 
     public void resetServer() {

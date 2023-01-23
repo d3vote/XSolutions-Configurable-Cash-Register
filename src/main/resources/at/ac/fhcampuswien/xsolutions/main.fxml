@@ -871,4 +871,52 @@
          </HBox>
       </children>
    </AnchorPane>
+   <AnchorPane fx:id="tableSelectPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <Pane opacity="0.62" prefHeight="1094.0" prefWidth="1920.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         <HBox alignment="CENTER" prefHeight="731.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <AnchorPane prefHeight="1005.0" prefWidth="634.0">
+                  <children>
+                     <Pane layoutY="468.0" prefHeight="263.0" prefWidth="634.0" style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <children>
+                           <Button layoutX="299.0" layoutY="201.0" mnemonicParsing="false" onAction="#closePopup" styleClass="acceptBtn" stylesheets="@styles.css" text="Ok" />
+                           <Text fx:id="popupText1" layoutX="55.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="{text}" textAlignment="CENTER" wrappingWidth="523.0">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Text>
+                           <TextField layoutX="242.0" layoutY="139.0" />
+                        </children>
+                     </Pane>
+                  </children>
+               </AnchorPane>
+            </children>
+         </HBox>
+      </children>
+   </AnchorPane>
+   <AnchorPane fx:id="tableSelectVisitorsPane" layoutX="10.0" layoutY="10.0" prefHeight="731.0" prefWidth="1090.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+         <Pane opacity="0.62" prefHeight="1094.0" prefWidth="1920.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         <HBox alignment="CENTER" prefHeight="731.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+               <AnchorPane prefHeight="1005.0" prefWidth="634.0">
+                  <children>
+                     <Pane layoutY="468.0" prefHeight="263.0" prefWidth="634.0" style="-fx-background-color: white; -fx-background-radius: 8;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                        <children>
+                           <Button layoutX="299.0" layoutY="201.0" mnemonicParsing="false" onAction="#closeVisitorsSelector" styleClass="acceptBtn" stylesheets="@styles.css" text="Ok" />
+                           <Text fx:id="popupText11" layoutX="55.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Personen Anzahl auswählen" textAlignment="CENTER" wrappingWidth="523.0">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Text>
+                           <TextField fx:id="tableVisitorsField" layoutX="275.0" layoutY="146.0" prefHeight="25.0" prefWidth="83.0" />
+                        </children>
+                     </Pane>
+                  </children>
+               </AnchorPane>
+            </children>
+         </HBox>
+      </children>
+   </AnchorPane>
 </AnchorPane>

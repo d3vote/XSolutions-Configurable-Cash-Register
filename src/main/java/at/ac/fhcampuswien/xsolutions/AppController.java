@@ -42,9 +42,13 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.UK),
             Currency.getInstance(Locale.JAPAN));
     private static final ArrayList<Node> tablePaneCollector = new ArrayList<>();
+    private static final ArrayList<Label> tableVisitorsCollector = new ArrayList<Label>();
 
     @FXML
     private Button resetBill;
+
+    @FXML
+    private TextField visitorsField;
 
     @FXML
     private ScrollPane tableScrollPane;
@@ -357,6 +361,23 @@ public class AppController implements Initializable {
     @FXML
     private Label tipSuccessful;
 
+    @FXML
+    private AnchorPane tableSelectVisitorsPane;
+
+    @FXML
+    private TextField tableVisitorsField;
+
+    private int getCurrentTableIndex() {
+        int currentTableIndex;
+        if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
+            currentTableIndex = tablesListView.getSelectionModel().getSelectedIndex();
+        } else {
+            currentTableIndex = 0;
+        }
+
+        return currentTableIndex;
+    }
+
     private Tables getCurrentTable() {
         int currentTableIndex;
         if (tablesListView.getSelectionModel().getSelectedIndex() != -1){
@@ -543,6 +564,8 @@ public class AppController implements Initializable {
         restMoneyLabelSuccess.setVisible(false);
         currentReceipt.setChangeMoney((double) 0);
         paymentSuccessfulPane.setVisible(true);
+        getCurrentTable().setVisitors(0);
+        tableVisitorsCollector.get(getCurrentTableIndex()).setText("-");
         transitionToBlackAll();
     }
 
@@ -576,6 +599,8 @@ public class AppController implements Initializable {
             if (restMoney != 0) {
                 restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
                 restMoneyLabelSuccess.setVisible(true);
+                getCurrentTable().setVisitors(0);
+                tableVisitorsCollector.get(getCurrentTableIndex()).setText("-");
                 transitionToBlackAll();
             }
 
@@ -1188,6 +1213,15 @@ public class AppController implements Initializable {
         popupPane.setVisible(false);
     }
 
+    @FXML
+    void closeVisitorsSelector(ActionEvent event) {
+        if (!getCurrentTable().isVisitorsSet()){
+            getCurrentTable().setVisitors(Integer.parseInt(tableVisitorsField.getText()));
+            tableVisitorsCollector.get(getCurrentTableIndex()).setText(tableVisitorsField.getText());
+        }
+        tableSelectVisitorsPane.setVisible(false);
+    }
+
     private void transitionToBlackAll(){
         FadeTransition ft = new FadeTransition(Duration.millis(500), tablePaneCollector.get(getCurrentTable().getTableName() - 1));
         ft.setFromValue(0.75);
@@ -1207,7 +1241,7 @@ public class AppController implements Initializable {
             for (Tables arrayTable : arrayTables) {   //Parsing Tables
                 Pane tablePane = new Pane();
                 Label tableTitle = new Label("Tisch " + arrayTable.getTableName());
-                Label tableVisitors = new Label("1");
+                Label tableVisitors = new Label("-");
                 Pane visitorIcon = new Pane();
 
                 tablePane.getStyleClass().add("tablePane");
@@ -1233,6 +1267,7 @@ public class AppController implements Initializable {
 
                 tablePane.getChildren().addAll(tableTitle, visitorIcon, tableVisitors);
 
+
                 //Adds Animation to button when clicked
                 ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(100), tablePane);
                 scaleTransition.setFromX(1);
@@ -1251,6 +1286,7 @@ public class AppController implements Initializable {
                 });
 
                 tablePaneCollector.add(tablePane);
+                tableVisitorsCollector.add(tableVisitors);
                 tablesGridPane.add(tablePane, col,row);
                 tablesListView.getItems().add(arrayTable.getTableNumberAsString());
                 //System.out.println("[" + row + "," + col + "]");
@@ -1285,7 +1321,6 @@ public class AppController implements Initializable {
         categoryBoxMain.setValue("Kategorie");
         categoryBoxMain.getSelectionModel().selectedIndexProperty().addListener((observableValue, old_selection, new_selection) -> {
             addProductElementsToGrid(GridPaneProducts, filterProductsByCategory(categoryBoxMain.getItems().get((Integer) new_selection)));
-            System.out.println(categoryBoxMain.getItems().get((Integer) new_selection));
         });
 
 
@@ -1372,6 +1407,12 @@ public class AppController implements Initializable {
                 productsSettingsPrice.setText("Preis: " + productsList.get(currentProduct).getProductPrice() + getCurrency());
                 productsSettingsCategory.setText("Kategorie: " + productsList.get(currentProduct).getCategory());
                 productImagePreview.setStyle(String.format("-fx-background-image: url(\"%s\"); -fx-background-size: contain; -fx-background-repeat: no-repeat; -fx-background-position: center center;", productsList.get(currentProduct).getProductImageUrl()));
+            }
+        });
+
+        tablesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (!getCurrentTable().isVisitorsSet()){
+                tableSelectVisitorsPane.setVisible(true);
             }
         });
 
