@@ -43,6 +43,7 @@ public class AppController implements Initializable {
             Currency.getInstance(Locale.JAPAN));
     private static final ArrayList<Node> tablePaneCollector = new ArrayList<>();
     private static final ArrayList<Label> tableVisitorsCollector = new ArrayList<Label>();
+    private static boolean ignoreTableSwitch = true;
 
     @FXML
     private Button resetBill;
@@ -401,6 +402,13 @@ public class AppController implements Initializable {
         Receipt currentReceipt = getCurrentReceipt();
         Tables currentTable = getCurrentTable();
 
+        if (!getCurrentTable().isVisitorsSet()  && ignoreTableSwitch){
+            tableSelectVisitorsPane.setVisible(true);
+        } else {
+            //is only false when tables amount has been changed
+            ignoreTableSwitch = true;
+        }
+
         // If the product is already in the map, increase its quantity by 1
         if (currentReceipt.getProductCounter().containsKey(item)) {
             int currentQuantity = currentReceipt.getProductCounter().get(item);
@@ -553,6 +561,7 @@ public class AppController implements Initializable {
         currentReceipt.setChangeMoney((double) 0);
         paymentSuccessfulPane.setVisible(true);
         getCurrentTable().setVisitors(0);
+        getCurrentTable().setVisitorsSet(false);
         tableVisitorsCollector.get(getCurrentTableIndex()).setText("-");
         transitionToBlackAll();
     }
@@ -588,6 +597,7 @@ public class AppController implements Initializable {
                 restMoneyLabelSuccess.setText("Restgeld: " + df.format(restMoney) + getCurrency());
                 restMoneyLabelSuccess.setVisible(true);
                 getCurrentTable().setVisitors(0);
+                getCurrentTable().setVisitorsSet(false);
                 tableVisitorsCollector.get(getCurrentTableIndex()).setText("-");
                 transitionToBlackAll();
             }
@@ -1066,6 +1076,7 @@ public class AppController implements Initializable {
     @FXML
     void changeValue() throws IOException {
         int newSize = Integer.parseInt(settingsInputField.getText());
+        ignoreTableSwitch = false;
 
         // Regenerate Tables
         Tables[] newArray = new Tables[newSize];
@@ -1404,9 +1415,13 @@ public class AppController implements Initializable {
             }
         });
 
+        //Shows visitors selector Pane
         tablesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (!getCurrentTable().isVisitorsSet()){
+            if (!getCurrentTable().isVisitorsSet()  && ignoreTableSwitch){
                 tableSelectVisitorsPane.setVisible(true);
+            } else {
+                //is only false when tables amount has been changed
+                ignoreTableSwitch = true;
             }
         });
 
